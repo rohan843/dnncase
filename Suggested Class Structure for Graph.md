@@ -1,3 +1,4 @@
+```mermaid
 ---
 title: Graph Related Classes
 ---
@@ -7,3 +8,4 @@ classDiagram
     Node <|-- Repeater
     Layer <|-- TrainableLayer
     Layer <|-- FixedLayer
+```
