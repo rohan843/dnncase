@@ -1,0 +1,9 @@
+---
+title: Graph Related Classes
+---
+classDiagram
+    Node <|-- Layer
+    Node <|-- ReuseBlock
+    Node <|-- Repeater
+    Layer <|-- TrainableLayer
+    Layer <|-- FixedLayer
