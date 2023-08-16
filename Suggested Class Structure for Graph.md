@@ -14,6 +14,7 @@ classDiagram
     Layer <|-- TrainableLayer
     Layer <|-- FixedLayer
     note for TrainableLayer "Contains trainable parameters <br>(irrespective of whether training is enabled for them)."
+    note for FixedLayer "Does not contain ANY parameters.<br>E.g., Add()"
 
     class UniqueIdentifier{
         +BigInteger id
@@ -32,7 +33,13 @@ classDiagram
         +UniqueIdentifier id
     }
     class Node{
-        +list~InputPort~ Inputs
-        +list~OutputPort~ Outputs
+        +List~InputPort~ Inputs
+        +List~OutputPort~ Outputs
+    }
+    class ReuseBlock{
+        +Layer reusedLayer
+    }
+    class Repeater{
+        +Integer numberOfOutputs
     }
 ```
