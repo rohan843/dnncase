@@ -29,6 +29,13 @@ classDiagram
     UpdateRepeaterEvent <|-- UpdateRepeaterAttributesEvent
 
     UpdateReuseBlockEvent <|-- UpdateReuseBlockFormatEvent
-    UpdateReuseBlockEvent <|-- UpdateReuseBlockFormatEvent
+    UpdateReuseBlockEvent <|-- UpdateReuseBlockAttributesEvent
     UpdateReuseBlockEvent <|-- UpdateReuseBlockLayerEvent
+
+    class AddEvent{
+        +UniqueIdentifier IdOfElement
+    }
+    class RemoveEvent{
+        +UniqueIdentifier IdOfElement
+    }
 ```
