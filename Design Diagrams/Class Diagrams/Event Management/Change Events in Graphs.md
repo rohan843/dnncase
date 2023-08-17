@@ -3,9 +3,9 @@
 title: Change Events in Graphs
 ---
 classDiagram
-    ChangeEvent <|-- AddEvent
-    ChangeEvent <|-- RemoveEvent
-    ChangeEvent <|-- UpdateEvent
+    GraphChangeEvent <|-- AddEvent
+    GraphChangeEvent <|-- RemoveEvent
+    GraphChangeEvent <|-- UpdateEvent
 
     AddEvent <|-- AddEdgeEvent
     AddEvent <|-- AddLayerEvent
