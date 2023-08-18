@@ -5,9 +5,29 @@
 - [Suggested Top Level Modules and Their Possible Events (Hierarchically Arranged)](#suggested-top-level-modules-and-their-possible-events-hierarchically-arranged)
   - [Contents](#contents)
   - [Feature Requirements](#feature-requirements)
+  - [Suggested Modules](#suggested-modules)
+    - [Module 1](#module-1)
+      - [Description](#description)
+      - [Events](#events)
+        - [Event 1 hierarchy root](#event-1-hierarchy-root)
 
 ## Feature Requirements
 
 _Group these together to identify potential top level modules._
 
-1.
+1. 
+
+## Suggested Modules
+
+### Module 1
+
+#### Description
+
+#### Events
+
+##### Event 1 hierarchy root
+
+```mermaid
+classDiagram
+    Event1Root <|-- Event1Child
+```
