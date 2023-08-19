@@ -103,10 +103,10 @@ mindmap
         Console Management Module
             Visualization Module
                 id{{F36}}
-        Refactoring Module
-            id{{F17}}
         Window Management Module
             Document Management Module
+                Refactoring Module
+                    id{{F17}}
         File Interaction Module
             Import/Export Manager
                 id{{F21}}
