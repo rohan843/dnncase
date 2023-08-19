@@ -51,7 +51,7 @@ _Group these together to identify potential top level modules._
 33. Users should be allowed to train their models from within the system itself. This means that wherever the weights were preserved, transfer learning should take place.
 34. Users should be able to set up data pipelines from within the system. They should be allowed to access remote data repositories as needed via URLs, and all `tf.data`, which includes `tf.data.Dataset`, functionalities should be given to the user for such creation.
 35. Users should be able to test their model from within the system.
-36. As the training/testing takes place, users should be shown the graphs depicting various user-chosen metrics, along with variation of loss. 
+36. As the training/testing takes place, users should be shown the graphs depicting various user-chosen metrics, along with variation of loss.
 37. Users should have the option to stop training/testing whenever they wish.
 38. Users should be allowed to run inference on specific input data points.
 39. Users should be allowed to create a version controlled timeline of the neural net corresponsing to their project. This means if I train my model today, and re-train it tomorrow, I should have a snaphot of the model after both the training sessions.
@@ -71,8 +71,8 @@ mindmap
   root((Features))
     Core Module
         id[It manages core App features such as event management, OS/Storage/Network interactions and so on.]
-        System-Wide State Management Module
-            id{{F15}}
+        System Wide State Management Module
+          id{{F15}}
         Event Management Module
         Storage Management Module
         OS Management Module
