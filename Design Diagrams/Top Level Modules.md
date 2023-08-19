@@ -88,7 +88,7 @@ mindmap
                         id{{F13}}
             Undo/Redo Module
                 id{{F13, F14, F15, F42}}
-                id[This is responsile for managing the undo/redo stacks. Deltas will be stored in there. It does NOT deal with the deltas themselves.]
+                id[This is responsible for managing the undo/redo stacks. Deltas will be stored in there. It does NOT deal with the deltas themselves.]
     UI Module
         id{{F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F24, F26, F42}}
         Canvas Module
