@@ -72,7 +72,7 @@ mindmap
     Core Module
         id[It manages core App features such as event management, OS/Storage/Network interactions and so on.]
         System Wide State Management Module
-          id{{F15}}
+            id{{F15}}
         Event Management Module
         Storage Management Module
         OS Management Module
@@ -80,12 +80,22 @@ mindmap
         id{{F1}}
     UI Module
         id{{F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12}}
+        Canvas Module
+            id{{F18}}
         Theme and UI Configuration Management Module
             Keyboard Shortcuts Module
+    Workspace Management Module
+        Refactoring Module
+            id{{F17}}
+        Window Management Module
+            Document Management Module
     Graph Management Module
         Graph Editor Module
-            id{{F11, F12}}
+            id{{F11, F12, F19}}
             Custom Layers Module
+                id{{F20}}
+            Refactoring Module
+                id{{F17}}
         Validation Module
         Training Module
         Hyperparameter Tuning Module
@@ -98,7 +108,10 @@ mindmap
                     id{{F13}}
         Undo/Redo Module
             id{{F13, F14, F15}}
-    Command Palette Module
+    Command Palette Module   
+        id{{F16}}
+    Logs Management Module
+    Console Management Module
 ```
 
 ## Suggested Modules
