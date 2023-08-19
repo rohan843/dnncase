@@ -35,15 +35,21 @@ _Group these together to identify potential top level modules._
 17. Users should be allowed to auto format their graphs i.e., refactor the way the graph is being displayed.
 18. Users should be allowed to move various graph entities around on an 'infinite' canvas.
 19. Whenever a user adds an edge (u, v), the nodes u and v should exist.
-20. Users should be able to import other graphs in their current graph as a black-box (i.e., the imported graph won't be editable from current tab) and use it as many times as they wish. _Important: each use is an independent and deep copy, i.e., separate instantiation of the imported graph._
-21. Users should be able to convert their graphs into python code (keras based). This should be supported both as a python project, and as a jupyter notebook.
-22. Users should be able to have their graphs validated. This should be done to ensure there are no circular dependencies in their project, and also no cycles in their individual graphs.
-23. When a layer is hovered upon, users should get a docstring about that layer as a tooltip.
-24. Users should be allowed to create a `SavedModel` object from within the app as well, so that they can just import it in their code, rather than use the python code files generated.
-25. When users get their graphs validated, errors/warnings if any should be highlighted in the graph itself.
-26. Users should be able to work on neural network projects. This means that multiple projects, each as a folder should be allowed to be opened in the system, BUT one at a time. This is similar to the `Open Folder...` functionality in VS Code.
-27. Users should be provided with keyboard shortcuts, and as a future enhancement, these should be modifiable by the user, on a _per-action_ basis.
-28. Users should be allowed to import a model from its python code or its saved format. This will **only** be allowed if the input (code or saved format) _can be converted to a `tf.keras.Model` object_.
+20. Users should be allowed to create custom layers for their projects. The code for the custom layers should be given by the user. Our system should just import the layer as a black box, along with relevent metadata, such as hyperparameters, layer name, input-output count and so on.
+21. Users should be able to import other graphs in their current graph as a black-box (i.e., the imported graph won't be editable from current tab) and use it as many times as they wish. _Important: each use is an independent and deep copy, i.e., separate instantiation of the imported graph._
+22. Users should be able to convert their graphs into python code (keras based). This should be supported both as a python project, and as a jupyter notebook.
+23. Users should be able to have their graphs validated. This should be done to ensure there are no circular dependencies in their project, and also no cycles in their individual graphs.
+24. When a layer is hovered upon, users should get a docstring about that layer as a tooltip.
+25. Users should be allowed to create a `SavedModel` object from within the app as well, so that they can just import it in their code, rather than use the python code files generated.
+26. When users get their graphs validated, errors/warnings if any should be highlighted in the graph itself.
+27. Users should be able to work on neural network projects. This means that multiple projects, each as a folder should be allowed to be opened in the system, BUT one at a time. This is similar to the `Open Folder...` functionality in VS Code.
+28. Users should be provided with keyboard shortcuts, and as a future enhancement, these should be modifiable by the user, on a _per-action_ basis.
+29. Users should be allowed to import a model from its python code or its saved format. This will **only** be allowed if the input (code or saved format) _can be converted to a `tf.keras.Model` object_. The loaded models will be automatically formatted according to the formatting rules.
+30. In case the model is loaded from a saved instance, its layer-level weights should be preserved, unless the user wants them purged (If the user does want the weights to be deleted, only the architecture should be retained). In case the weights are to be preserved, user should be allowed to decide the same for each layer (i.e., layer level granularity, not graph level). The weights should be preserved by default.
+31. Users should be allowed to reorganize the layers of a loaded neural network's graph, and pre-trained weights if any must be preserved across this reorganization.
+32. The language the users use to specify a graph structure should contain the `reuse block`, `repeater`, `edge`s, and `layer`s, as previously decided. A layer can have multiple inputs and outputs. Therefore, if another graph is imported into the current graph, the imported graph will also be treated as a layer (which doesn't have any hyperparameters).
+33. Users should be allowed to train their models from within the system itself. This means that wherever the weights were preserved, transfer learning should take place.
+34. 
 
 ### Groupings as a Mindmap
 
