@@ -54,7 +54,9 @@ _Group these together to identify potential top level modules._
 36. As the training/testing takes place, users should be shown the graphs depicting various user-chosen metrics, along with variation of loss. 
 37. Users should have the option to stop training/testing whenever they wish.
 38. Users should be allowed to run inference on specific input data points.
-39. 
+39. Users should be allowed to create a version controlled timeline of the neural net corresponsing to their project. This means if I train my model today, and re-train it tomorrow, I should have a snaphot of the model after both the training sessions.
+40. Users should be allowed to perform hyperparameter tuning. This should be provided separate from the model testing and training, to ensure no compatibility issues with any relevant libraries arise.
+41. 
 
 ### Groupings as a Mindmap
 
