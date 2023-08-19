@@ -59,7 +59,6 @@ _Group these together to identify potential top level modules._
 41. Users should be allowed to decide which version of keras they'll use, in case there are major differences across upcoming and previous keras versions. (I.e., in case forward- or backward- compatibility is missing)
 42. Users should be provided a clear screen option. This should clear the currently visible graph on the screen (i.e., in the current tab). However, users should have the option to undo this change.
 43. Users should be allowed to zoom in or out of the workspace of the graph, as visible on the screen.
-44. Users should be provided 
 
 ### Groupings as a Mindmap
 
