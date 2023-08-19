@@ -16,7 +16,9 @@
 
 _Group these together to identify potential top level modules._
 
-1. 
+1. A desktop app that can run as a self contained system on any platform.
+2. The application should have multiple toolbars. One containing the project name, app icon, close/minimize/maximize keys. Another containing the menus (`File`, `Edit`...). A third containing quick access options such as undo/redo and command pallette. Another showing the tabs currently open in the current workspace. There should be a bottom bar showing warnings, errors, git pull/push status and output format (`.ipynb` or `.py`). The main work area should display contents of the open file. In case the open file is a NN graph, it should show side bars for element selection (e.g., layer) and parameter selection (e.g., hyperparameters specification).
+3. 
 
 ### Groupings as a Mindmap
 
