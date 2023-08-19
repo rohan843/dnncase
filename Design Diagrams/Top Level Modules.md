@@ -68,20 +68,31 @@ _Group these together to identify potential top level modules._
 
 ```mermaid
 mindmap
+  mindmap
   root((DNNCASE))
     Core Module
         id[It manages core App features such as event management, OS/Storage/Network interactions and so on.]
+        id{{F1}}
         System Wide State Management Module
+            id[Contains _every_ single piece of information about the current project, including all data, graphs, versions and so on.]
             id{{F15}}
         Event Management Module
         Storage Management Module
         OS Management Module
+            id{{F41}}
         Network Manager Module
-        id{{F1}}
+        History Module
+            Version Control Module
+                id{{F39}}
+                Snapshot Module
+                    Save and Autosave Manager
+                        id{{F13}}
+            Undo/Redo Module
+                id{{F13, F14, F15, F42}}
     UI Module
-        id{{F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F24, F26}}
+        id{{F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F24, F26, F42}}
         Canvas Module
-            id{{F18}}
+            id{{F18, F43}}
         Theme and UI Configuration Management Module
             Keyboard Shortcuts Module
                 id{{F28}}
@@ -90,6 +101,8 @@ mindmap
     Workspace Management Module
         id{{F27}}
         Console Management Module
+            Visualization Module
+                id{{F36}}
         Refactoring Module
             id{{F17}}
         Window Management Module
@@ -99,7 +112,7 @@ mindmap
                 id{{F21}}
     Graph Management Module
         Graph Editor Module
-            id{{F11, F12, F19, F21, F31, F32}}
+            id{{F11, F12, F19, F21, F31, F32, F42}}
             Custom Layers Module
                 id{{F20}}
             Refactoring Module
@@ -110,25 +123,29 @@ mindmap
         id[Responsible for managing the weights of each layer of a trained/imported model.]
         id{{F29, F30, F31}}
     Code Generator Module
-        id{{F21, F22, F25}}
+        id{{F21, F22, F25, F32}}
     Model Imports Module
         id[Responsible for Importing a Model from a SavedModel object/Model folder/Code via a tf.keras.Model intermediate.]
         id{{F29}}
     Model Management Module
-        Training Module
+        id{{F36}}
+        Training and Transfer Learning Module
+            id[This should preserve any existing weights of the layers.]
+            id{{F33, F37}}
         Hyperparameter Tuning Module
+            id{{F37, F40}}
         Testing Module
+            id{{F35, F37}}
         Inference Module
-    History Module
-        Version Control Module
-            Snapshot Module
-                Save and Autosave Manager
-                    id{{F13}}
-        Undo/Redo Module
-            id{{F13, F14, F15}}
+            id{{F36, F38}}
+            Random Data Point Selector
+                id[Select a random data point from a tf.data.Dataset]
+        Data Management Module
+            id{{F34}}
     Command Palette Module   
         id{{F16}}
     Logs Management Module
+        id{{F36}}
 ```
 
 ## Suggested Modules
