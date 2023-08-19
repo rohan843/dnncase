@@ -62,6 +62,8 @@ _Group these together to identify potential top level modules._
 44. Users should be given an option to choose their python interpreter, and tensorflow version (in case there are more than one installed). Also, users should be allowed to choose what underlying hardware they will use, in case, say more than 1 GPUs are available, or where they want to store any downloaded data (if not in the project folder itself).
 45. Users should be allowed to choose what theme they want (dark/light/etc...) via configurable files.
 
+<!-- Add any new features here onwards -->
+
 ### Groupings as a Mindmap
 
 ```mermaid
