@@ -59,7 +59,7 @@ _Group these together to identify potential top level modules._
 41. Users should be allowed to decide which version of keras they'll use, in case there are major differences across upcoming and previous keras versions. (I.e., in case forward- or backward- compatibility is missing)
 42. Users should be provided a clear screen option. This should clear the currently visible graph on the screen (i.e., in the current tab). However, users should have the option to undo this change.
 43. Users should be allowed to zoom in or out of the workspace of the graph, as visible on the screen.
-44. Users should be given an option to choose their python interpreter, and tensorflow version (in case there are more than one installed). Also, users should be allowed to choose what underlying hardware they will use, in case, say more than 1 GPUs are available.
+44. Users should be given an option to choose their python interpreter, and tensorflow version (in case there are more than one installed). Also, users should be allowed to choose what underlying hardware they will use, in case, say more than 1 GPUs are available, or where they want to store any downloaded data (if not in the project folder itself).
 45. Users should be allowed to choose what theme they want (dark/light/etc...) via configurable files.
 
 ### Groupings as a Mindmap
