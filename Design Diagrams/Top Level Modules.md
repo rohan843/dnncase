@@ -123,6 +123,8 @@ mindmap
         id[Responsible for managing the weights of each layer of a trained/imported model.]
         id{{F29, F30, F31}}
     Code Generator Module
+        Python Project Generator
+        Jupyter Notebook Generator
         id{{F21, F22, F25, F32}}
     Model Imports Module
         id[Responsible for Importing a Model from a SavedModel object/Model folder/Code via a tf.keras.Model intermediate.]
