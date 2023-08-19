@@ -78,7 +78,7 @@ mindmap
         Event Management Module
         Storage Management Module
         OS Management Module
-            id{{F41}}
+            id{{F41, F44}}
         Network Manager Module
         History Module
             Version Control Module
@@ -93,6 +93,7 @@ mindmap
         Canvas Module
             id{{F18, F43}}
         Theme and UI Configuration Management Module
+            id{{F45}}
             Keyboard Shortcuts Module
                 id{{F28}}
         User Action Tracker
