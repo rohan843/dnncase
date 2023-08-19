@@ -38,7 +38,7 @@ _Group these together to identify potential top level modules._
 20. Users should be allowed to create custom layers for their projects. The code for the custom layers should be given by the user. Our system should just import the layer as a black box, along with relevent metadata, such as hyperparameters, layer name, input-output count and so on.
 21. Users should be able to import other graphs in their current graph as a black-box (i.e., the imported graph won't be editable from current tab) and use it as many times as they wish. _Important: each use is an independent and deep copy, i.e., separate instantiation of the imported graph._
 22. Users should be able to convert their graphs into python code (keras based). This should be supported both as a python project, and as a jupyter notebook.
-23. Users should be able to have their graphs validated. This should be done to ensure there are no circular dependencies in their project, and also no cycles in their individual graphs.
+23. Users should be able to have their graphs validated. This should be done to ensure there are no circular dependencies in their project, and also no cycles in their individual graphs, among other errors.
 24. When a layer is hovered upon, users should get a docstring about that layer as a tooltip.
 25. Users should be allowed to create a `SavedModel` object from within the app as well, so that they can just import it in their code, rather than use the python code files generated.
 26. When users get their graphs validated, errors/warnings if any should be highlighted in the graph itself.
@@ -68,7 +68,7 @@ _Group these together to identify potential top level modules._
 
 ```mermaid
 mindmap
-  root((Features))
+  root((DNNCASE))
     Core Module
         id[It manages core App features such as event management, OS/Storage/Network interactions and so on.]
         System Wide State Management Module
@@ -79,24 +79,42 @@ mindmap
         Network Manager Module
         id{{F1}}
     UI Module
-        id{{F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12}}
+        id{{F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F24, F26}}
         Canvas Module
             id{{F18}}
         Theme and UI Configuration Management Module
             Keyboard Shortcuts Module
+                id{{F28}}
+        User Action Tracker
+            id{{F28}}
     Workspace Management Module
+        id{{F27}}
+        Console Management Module
         Refactoring Module
             id{{F17}}
         Window Management Module
             Document Management Module
+        File Interaction Module
+            Import/Export Manager
+                id{{F21}}
     Graph Management Module
         Graph Editor Module
-            id{{F11, F12, F19}}
+            id{{F11, F12, F19, F21, F31, F32}}
             Custom Layers Module
                 id{{F20}}
             Refactoring Module
                 id{{F17}}
-        Validation Module
+        Graph Validation Module
+            id{{F23, F26, F29}}
+    Model Weights Manager
+        id[Responsible for managing the weights of each layer of a trained/imported model.]
+        id{{F29, F30, F31}}
+    Code Generator Module
+        id{{F21, F22, F25}}
+    Model Imports Module
+        id[Responsible for Importing a Model from a SavedModel object/Model folder/Code via a tf.keras.Model intermediate.]
+        id{{F29}}
+    Model Management Module
         Training Module
         Hyperparameter Tuning Module
         Testing Module
@@ -111,7 +129,6 @@ mindmap
     Command Palette Module   
         id{{F16}}
     Logs Management Module
-    Console Management Module
 ```
 
 ## Suggested Modules
