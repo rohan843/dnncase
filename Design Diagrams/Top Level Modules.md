@@ -68,7 +68,6 @@ _Group these together to identify potential top level modules._
 
 ```mermaid
 mindmap
-  mindmap
   root((DNNCASE))
     Core Module
         id[It manages core App features such as event management, OS/Storage/Network interactions and so on.]
