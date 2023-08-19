@@ -69,11 +69,36 @@ _Group these together to identify potential top level modules._
 ```mermaid
 mindmap
   root((Features))
-    Module 1
-        Feature 1
-        Feature 3
-    Module 2
-        Feature 2
+    Core Module
+        id[It manages core App features such as event management, OS/Storage/Network interactions and so on.]
+        System-Wide State Management Module
+            id{{F15}}
+        Event Management Module
+        Storage Management Module
+        OS Management Module
+        Network Manager Module
+        id{{F1}}
+    UI Module
+        id{{F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12}}
+        Theme and UI Configuration Management Module
+            Keyboard Shortcuts Module
+    Graph Management Module
+        Graph Editor Module
+            id{{F11, F12}}
+            Custom Layers Module
+        Validation Module
+        Training Module
+        Hyperparameter Tuning Module
+        Testing Module
+        Inference Module
+    History Module
+        Version Control Module
+            Snapshot Module
+                Save and Autosave Manager
+                    id{{F13}}
+        Undo/Redo Module
+            id{{F13, F14, F15}}
+    Command Palette Module
 ```
 
 ## Suggested Modules
