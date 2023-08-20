@@ -89,18 +89,18 @@ mindmap
             Undo/Redo Module
                 id{{F13, F14, F15, F42}}
                 id[This is responsible for managing the undo/redo stacks. Deltas will be stored in there. It does NOT deal with the deltas themselves.]
-    UI Module
-        id{{F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F24, F26, F42}}
-        Canvas Module
-            id{{F18, F43}}
-        Theme and UI Configuration Management Module
-            id{{F45}}
-            Keyboard Shortcuts Module
-                id{{F28}}
-        User Action Tracker
-            id{{F28}}
     Workspace Management Module
         id{{F27}}
+        UI Module
+            id{{F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F24, F26, F42}}
+            Canvas Module
+                id{{F18, F43}}
+            Theme and UI Configuration Management Module
+                id{{F45}}
+                Keyboard Shortcuts Module
+                    id{{F28}}
+            User Action Tracker
+                id{{F28}}
         Console Management Module
             Visualization Module
                 id{{F36}}
