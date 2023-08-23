@@ -153,14 +153,98 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
     - [VGG19](#vgg19)
     - [Xception](#xception-1)
   - [Backend](#backend)
+    - [clear\_session](#clear_session)
+    - [epsilon](#epsilon)
+    - [floatx](#floatx)
+    - [get\_uid](#get_uid)
+    - [image\_data\_format](#image_data_format)
+    - [is\_keras\_tensor](#is_keras_tensor)
+    - [reset\_uids](#reset_uids)
+    - [rnn](#rnn)
+    - [set\_epsilon](#set_epsilon)
+    - [set\_floatx](#set_floatx)
+    - [set\_image\_data\_format](#set_image_data_format)
   - [Callbacks](#callbacks)
+    - [BackupAndRestore](#backupandrestore)
+    - [BaseLogger](#baselogger)
+    - [CSVLogger](#csvlogger)
+    - [Callback](#callback)
+    - [CallbackList](#callbacklist)
+    - [EarlyStopping](#earlystopping)
+    - [History](#history)
+    - [LambdaCallback](#lambdacallback)
+    - [LearningRateScheduler](#learningratescheduler)
+    - [ModelCheckpoint](#modelcheckpoint)
+    - [ProgbarLogger](#progbarlogger)
+    - [ReduceLROnPlateau](#reducelronplateau)
+    - [RemoteMonitor](#remotemonitor)
+    - [SidecarEvaluatorModelExport](#sidecarevaluatormodelexport)
+    - [TensorBoard](#tensorboard)
+    - [TerminateOnNaN](#terminateonnan)
   - [Constraints](#constraints)
+    - [Constraint](#constraint)
+    - [MaxNorm](#maxnorm)
+    - [MinMaxNorm](#minmaxnorm)
+    - [NonNeg](#nonneg)
+    - [RadialConstraint](#radialconstraint)
+    - [UnitNorm](#unitnorm)
+    - [max\_norm](#max_norm)
+    - [min\_max\_norm](#min_max_norm)
+    - [non\_neg](#non_neg)
+    - [radial\_constraint](#radial_constraint)
+    - [unit\_norm](#unit_norm)
+    - [deserialize](#deserialize-1)
+    - [get](#get-1)
+    - [serialize](#serialize-1)
   - [Datasets](#datasets)
+    - [boston\_housing](#boston_housing)
+    - [cifar10](#cifar10)
+    - [cifar100](#cifar100)
+    - [fashion\_mnist](#fashion_mnist)
+    - [imdb](#imdb)
+    - [mnist](#mnist)
+    - [reuters](#reuters)
   - [dtensor](#dtensor)
   - [Estimator](#estimator)
+    - [model\_to\_estimator](#model_to_estimator)
   - [Experimental](#experimental)
   - [Export](#export)
+    - [ExportArchive](#exportarchive)
   - [Initializers](#initializers)
+    - [Constant](#constant)
+    - [GlorotNormal](#glorotnormal)
+    - [GlorotUniform](#glorotuniform)
+    - [HeNormal](#henormal)
+    - [HeUniform](#heuniform)
+    - [Identity](#identity)
+    - [Initializer](#initializer)
+    - [LecunNormal](#lecunnormal)
+    - [LecunUniform](#lecununiform)
+    - [Ones](#ones)
+    - [Orthogonal](#orthogonal)
+    - [RandomNormal](#randomnormal)
+    - [RandomUniform](#randomuniform)
+    - [TruncatedNormal](#truncatednormal)
+    - [VarianceScaling](#variancescaling)
+    - [Zeros](#zeros)
+    - [constant](#constant-1)
+    - [glorot\_normal](#glorot_normal)
+    - [glorot\_uniform](#glorot_uniform)
+    - [he\_normal](#he_normal)
+    - [he\_uniform](#he_uniform)
+    - [identity](#identity-1)
+    - [lecun\_normal](#lecun_normal)
+    - [lecun\_uniform](#lecun_uniform)
+    - [ones](#ones-1)
+    - [orthogonal](#orthogonal-1)
+    - [random\_normal](#random_normal)
+    - [random\_uniform](#random_uniform)
+    - [truncated\_normal](#truncated_normal)
+    - [variance\_scaling](#variance_scaling)
+    - [zeros](#zeros-1)
+    - [deserialize](#deserialize-2)
+    - [get](#get-2)
+    - [serialize](#serialize-2)
   - [Layers](#layers)
   - [Losses](#losses)
   - [Metrics](#metrics)
@@ -392,21 +476,193 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
 
 ## Backend
 
+### clear_session
+
+### epsilon
+
+### floatx
+
+### get_uid
+
+### image_data_format
+
+### is_keras_tensor
+
+### reset_uids
+
+### rnn
+
+### set_epsilon
+
+### set_floatx
+
+### set_image_data_format
+
 ## Callbacks
+
+### BackupAndRestore
+
+### BaseLogger
+
+### CSVLogger
+
+### Callback
+
+### CallbackList
+
+### EarlyStopping
+
+### History
+
+### LambdaCallback
+
+### LearningRateScheduler
+
+### ModelCheckpoint
+
+### ProgbarLogger
+
+### ReduceLROnPlateau
+
+### RemoteMonitor
+
+### SidecarEvaluatorModelExport
+
+### TensorBoard
+
+### TerminateOnNaN
 
 ## Constraints
 
+### Constraint
+
+### MaxNorm
+
+### MinMaxNorm
+
+### NonNeg
+
+### RadialConstraint
+
+### UnitNorm
+
+### max_norm
+
+### min_max_norm
+
+### non_neg
+
+### radial_constraint
+
+### unit_norm
+
+### deserialize
+
+### get
+
+### serialize
+
 ## Datasets
+
+### boston_housing
+
+### cifar10
+
+### cifar100
+
+### fashion_mnist
+
+### imdb
+
+### mnist
+
+### reuters
 
 ## dtensor
 
+> Nothing found
+
 ## Estimator
+
+### model_to_estimator
 
 ## Experimental
 
+> Nothing found
+
 ## Export
 
+### ExportArchive
+
 ## Initializers
+
+### Constant
+
+### GlorotNormal
+
+### GlorotUniform
+
+### HeNormal
+
+### HeUniform
+
+### Identity
+
+### Initializer
+
+### LecunNormal
+
+### LecunUniform
+
+### Ones
+
+### Orthogonal
+
+### RandomNormal
+
+### RandomUniform
+
+### TruncatedNormal
+
+### VarianceScaling
+
+### Zeros
+
+### constant
+
+### glorot_normal
+
+### glorot_uniform
+
+### he_normal
+
+### he_uniform
+
+### identity
+
+### lecun_normal
+
+### lecun_uniform
+
+### ones
+
+### orthogonal
+
+### random_normal
+
+### random_uniform
+
+### truncated_normal
+
+### variance_scaling
+
+### zeros
+
+### deserialize
+
+### get
+
+### serialize
 
 ## Layers
 
