@@ -43,6 +43,9 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
 
 - [Keras](#keras)
   - [Contents](#contents)
+  - [Input](#input)
+  - [Model](#model)
+  - [Sequential](#sequential)
   - [Activations](#activations)
     - [Deserialize](#deserialize)
     - [Elu](#elu)
@@ -379,7 +382,7 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
     - [ZeroPadding1D](#zeropadding1d)
     - [ZeroPadding2D](#zeropadding2d)
     - [ZeroPadding3D](#zeropadding3d)
-    - [Input](#input)
+    - [Input](#input-1)
     - [add](#add-1)
     - [average](#average-1)
     - [concatenate](#concatenate-1)
@@ -619,6 +622,12 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
     - [to\_ordinal](#to_ordinal)
     - [unpack\_x\_y\_sample\_weight](#unpack_x_y_sample_weight)
     - [warmstart\_embedding\_matrix](#warmstart_embedding_matrix)
+
+## Input
+
+## Model
+
+## Sequential
 
 ## Activations
 
