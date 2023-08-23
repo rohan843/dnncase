@@ -609,7 +609,24 @@
 
 ## Model
 
+**Name**: tf.keras.Model
+
+**Hyperparameters**:
+
+| name    | input dtype/shape                                   | use |
+| ------- | --------------------------------------------------- | --- |
+| inputs  | keras.Input _or_ dict, list or tuple of keras.Input | req |
+| outputs | tensor                                              | req |
+| name    | String                                              | opt |
+
+**Extra Notes:**
+
+1. Only dicts, lists, and tuples of input tensors are supported. Nested inputs are not supported (e.g. lists of list or dicts of dict).
+2. **IMP**: The `run_eagerly` doesn't seem useful _ensure_ it is `False`. (It is `False` by default.)
+
 ## Sequential
+
+
 
 ## Activations
 
