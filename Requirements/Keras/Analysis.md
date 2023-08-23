@@ -246,6 +246,150 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
     - [get](#get-2)
     - [serialize](#serialize-2)
   - [Layers](#layers)
+    - [AbstractRNNCell](#abstractrnncell)
+    - [Activation](#activation)
+    - [ActivityRegularization](#activityregularization)
+    - [Add](#add)
+    - [AdditiveAttention](#additiveattention)
+    - [AlphaDropout](#alphadropout)
+    - [Attention](#attention)
+    - [Average](#average)
+    - [AveragePooling1D](#averagepooling1d)
+    - [AveragePooling2D](#averagepooling2d)
+    - [AveragePooling3D](#averagepooling3d)
+    - [AvgPool1D](#avgpool1d)
+    - [AvgPool2D](#avgpool2d)
+    - [AvgPool3D](#avgpool3d)
+    - [BatchNormalization](#batchnormalization)
+    - [Bidirectional](#bidirectional)
+    - [CategoryEncoding](#categoryencoding)
+    - [CenterCrop](#centercrop)
+    - [Concatenate](#concatenate)
+    - [Conv1D](#conv1d)
+    - [Conv1DTranspose](#conv1dtranspose)
+    - [Conv2D](#conv2d)
+    - [Conv2DTranspose](#conv2dtranspose)
+    - [Conv3D](#conv3d)
+    - [Conv3DTranspose](#conv3dtranspose)
+    - [ConvLSTM1D](#convlstm1d)
+    - [ConvLSTM2D](#convlstm2d)
+    - [ConvLSTM3D](#convlstm3d)
+    - [Convolution1D](#convolution1d)
+    - [Convolution1DTranspose](#convolution1dtranspose)
+    - [Convolution2D](#convolution2d)
+    - [Convolution2DTranspose](#convolution2dtranspose)
+    - [Convolution3D](#convolution3d)
+    - [Convolution3DTranspose](#convolution3dtranspose)
+    - [Cropping1D](#cropping1d)
+    - [Cropping2D](#cropping2d)
+    - [Cropping3D](#cropping3d)
+    - [Dense](#dense)
+    - [DenseFeatures](#densefeatures)
+    - [DepthwiseConv1D](#depthwiseconv1d)
+    - [DepthwiseConv2D](#depthwiseconv2d)
+    - [Discretization](#discretization)
+    - [Dot](#dot)
+    - [Dropout](#dropout)
+    - [ELU](#elu-1)
+    - [EinsumDense](#einsumdense)
+    - [Embedding](#embedding)
+    - [Flatten](#flatten)
+    - [GRU](#gru)
+    - [GRUCell](#grucell)
+    - [GaussianDropout](#gaussiandropout)
+    - [GaussianNoise](#gaussiannoise)
+    - [GlobalAveragePooling1D](#globalaveragepooling1d)
+    - [GlobalAveragePooling2D](#globalaveragepooling2d)
+    - [GlobalAveragePooling3D](#globalaveragepooling3d)
+    - [GlobalAvgPool1D](#globalavgpool1d)
+    - [GlobalAvgPool2D](#globalavgpool2d)
+    - [GlobalAvgPool3D](#globalavgpool3d)
+    - [GlobalMaxPool1D](#globalmaxpool1d)
+    - [GlobalMaxPool2D](#globalmaxpool2d)
+    - [GlobalMaxPool3D](#globalmaxpool3d)
+    - [GlobalMaxPooling1D](#globalmaxpooling1d)
+    - [GlobalMaxPooling2D](#globalmaxpooling2d)
+    - [GlobalMaxPooling3D](#globalmaxpooling3d)
+    - [GroupNormalization](#groupnormalization)
+    - [HashedCrossing](#hashedcrossing)
+    - [Hashing](#hashing)
+    - [Identity](#identity-2)
+    - [InputLayer](#inputlayer)
+    - [InputSpec](#inputspec)
+    - [IntegerLookup](#integerlookup)
+    - [LSTM](#lstm)
+    - [LSTMCell](#lstmcell)
+    - [Lambda](#lambda)
+    - [Layer](#layer)
+    - [LayerNormalization](#layernormalization)
+    - [LeakyReLU](#leakyrelu)
+    - [LocallyConnected1D](#locallyconnected1d)
+    - [LocallyConnected2D](#locallyconnected2d)
+    - [Masking](#masking)
+    - [MaxPool1D](#maxpool1d)
+    - [MaxPool2D](#maxpool2d)
+    - [MaxPool3D](#maxpool3d)
+    - [MaxPooling1D](#maxpooling1d)
+    - [MaxPooling2D](#maxpooling2d)
+    - [MaxPooling3D](#maxpooling3d)
+    - [Maximum](#maximum)
+    - [Minimum](#minimum)
+    - [MultiHeadAttention](#multiheadattention)
+    - [Multiply](#multiply)
+    - [Normalization](#normalization)
+    - [PReLU](#prelu)
+    - [Permute](#permute)
+    - [RNN](#rnn-1)
+    - [RandomBrightness](#randombrightness)
+    - [RandomContrast](#randomcontrast)
+    - [RandomCrop](#randomcrop)
+    - [RandomFlip](#randomflip)
+    - [RandomHeight](#randomheight)
+    - [RandomRotation](#randomrotation)
+    - [RandomTranslation](#randomtranslation)
+    - [RandomWidth](#randomwidth)
+    - [RandomZoom](#randomzoom)
+    - [ReLU](#relu-1)
+    - [RepeatVector](#repeatvector)
+    - [Rescaling](#rescaling)
+    - [Reshape](#reshape)
+    - [Resizing](#resizing)
+    - [SeparableConv1D](#separableconv1d)
+    - [SeparableConv2D](#separableconv2d)
+    - [SeparableConvolution1D](#separableconvolution1d)
+    - [SeparableConvolution2D](#separableconvolution2d)
+    - [SimpleRNN](#simplernn)
+    - [SimpleRNNCell](#simplernncell)
+    - [Softmax](#softmax-1)
+    - [SpatialDropout1D](#spatialdropout1d)
+    - [SpatialDropout2D](#spatialdropout2d)
+    - [SpatialDropout3D](#spatialdropout3d)
+    - [SpectralNormalization](#spectralnormalization)
+    - [StackedRNNCells](#stackedrnncells)
+    - [StringLookup](#stringlookup)
+    - [Subtract](#subtract)
+    - [TextVectorization](#textvectorization)
+    - [ThresholdedReLU](#thresholdedrelu)
+    - [TimeDistributed](#timedistributed)
+    - [UnitNormalization](#unitnormalization)
+    - [UpSampling1D](#upsampling1d)
+    - [UpSampling2D](#upsampling2d)
+    - [UpSampling3D](#upsampling3d)
+    - [Wrapper](#wrapper)
+    - [ZeroPadding1D](#zeropadding1d)
+    - [ZeroPadding2D](#zeropadding2d)
+    - [ZeroPadding3D](#zeropadding3d)
+    - [Input](#input)
+    - [add](#add-1)
+    - [average](#average-1)
+    - [concatenate](#concatenate-1)
+    - [deserialize](#deserialize-3)
+    - [dot](#dot-1)
+    - [maximum](#maximum-1)
+    - [minimum](#minimum-1)
+    - [multiply](#multiply-1)
+    - [serialize](#serialize-3)
+    - [subtract](#subtract-1)
   - [Losses](#losses)
   - [Metrics](#metrics)
   - [mixed\_precision](#mixed_precision)
@@ -665,6 +809,294 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
 ### serialize
 
 ## Layers
+
+### AbstractRNNCell
+
+### Activation
+
+### ActivityRegularization
+
+### Add
+
+### AdditiveAttention
+
+### AlphaDropout
+
+### Attention
+
+### Average
+
+### AveragePooling1D
+
+### AveragePooling2D
+
+### AveragePooling3D
+
+### AvgPool1D
+
+### AvgPool2D
+
+### AvgPool3D
+
+### BatchNormalization
+
+### Bidirectional
+
+### CategoryEncoding
+
+### CenterCrop
+
+### Concatenate
+
+### Conv1D
+
+### Conv1DTranspose
+
+### Conv2D
+
+### Conv2DTranspose
+
+### Conv3D
+
+### Conv3DTranspose
+
+### ConvLSTM1D
+
+### ConvLSTM2D
+
+### ConvLSTM3D
+
+### Convolution1D
+
+### Convolution1DTranspose
+
+### Convolution2D
+
+### Convolution2DTranspose
+
+### Convolution3D
+
+### Convolution3DTranspose
+
+### Cropping1D
+
+### Cropping2D
+
+### Cropping3D
+
+### Dense
+
+### DenseFeatures
+
+### DepthwiseConv1D
+
+### DepthwiseConv2D
+
+### Discretization
+
+### Dot
+
+### Dropout
+
+### ELU
+
+### EinsumDense
+
+### Embedding
+
+### Flatten
+
+### GRU
+
+### GRUCell
+
+### GaussianDropout
+
+### GaussianNoise
+
+### GlobalAveragePooling1D
+
+### GlobalAveragePooling2D
+
+### GlobalAveragePooling3D
+
+### GlobalAvgPool1D
+
+### GlobalAvgPool2D
+
+### GlobalAvgPool3D
+
+### GlobalMaxPool1D
+
+### GlobalMaxPool2D
+
+### GlobalMaxPool3D
+
+### GlobalMaxPooling1D
+
+### GlobalMaxPooling2D
+
+### GlobalMaxPooling3D
+
+### GroupNormalization
+
+### HashedCrossing
+
+### Hashing
+
+### Identity
+
+### InputLayer
+
+### InputSpec
+
+### IntegerLookup
+
+### LSTM
+
+### LSTMCell
+
+### Lambda
+
+### Layer
+
+### LayerNormalization
+
+### LeakyReLU
+
+### LocallyConnected1D
+
+### LocallyConnected2D
+
+### Masking
+
+### MaxPool1D
+
+### MaxPool2D
+
+### MaxPool3D
+
+### MaxPooling1D
+
+### MaxPooling2D
+
+### MaxPooling3D
+
+### Maximum
+
+### Minimum
+
+### MultiHeadAttention
+
+### Multiply
+
+### Normalization
+
+### PReLU
+
+### Permute
+
+### RNN
+
+### RandomBrightness
+
+### RandomContrast
+
+### RandomCrop
+
+### RandomFlip
+
+### RandomHeight
+
+### RandomRotation
+
+### RandomTranslation
+
+### RandomWidth
+
+### RandomZoom
+
+### ReLU
+
+### RepeatVector
+
+### Rescaling
+
+### Reshape
+
+### Resizing
+
+### SeparableConv1D
+
+### SeparableConv2D
+
+### SeparableConvolution1D
+
+### SeparableConvolution2D
+
+### SimpleRNN
+
+### SimpleRNNCell
+
+### Softmax
+
+### SpatialDropout1D
+
+### SpatialDropout2D
+
+### SpatialDropout3D
+
+### SpectralNormalization
+
+### StackedRNNCells
+
+### StringLookup
+
+### Subtract
+
+### TextVectorization
+
+### ThresholdedReLU
+
+### TimeDistributed
+
+### UnitNormalization
+
+### UpSampling1D
+
+### UpSampling2D
+
+### UpSampling3D
+
+### Wrapper
+
+### ZeroPadding1D
+
+### ZeroPadding2D
+
+### ZeroPadding3D
+
+### Input
+
+### add
+
+### average
+
+### concatenate
+
+### deserialize
+
+### dot
+
+### maximum
+
+### minimum
+
+### multiply
+
+### serialize
+
+### subtract
 
 ## Losses
 
