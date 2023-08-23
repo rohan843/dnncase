@@ -524,12 +524,101 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
     - [squared\_hinge](#squared_hinge-1)
     - [top\_k\_categorical\_accuracy](#top_k_categorical_accuracy)
   - [mixed\_precision](#mixed_precision)
+    - [LossScaleOptimizer](#lossscaleoptimizer)
+    - [Policy](#policy)
+    - [global\_policy](#global_policy)
+    - [set\_global\_policy](#set_global_policy)
   - [Models](#models)
+    - [clone\_model](#clone_model)
+    - [load\_model](#load_model)
+    - [model\_from\_config](#model_from_config)
+    - [model\_from\_json](#model_from_json)
+    - [model\_from\_yaml](#model_from_yaml)
+    - [save\_model](#save_model)
   - [Optimizers](#optimizers)
+    - [legacy](#legacy)
+    - [schedules](#schedules)
+    - [Adadelta](#adadelta)
+    - [Adafactor](#adafactor)
+    - [Adagrad](#adagrad)
+    - [Adam](#adam)
+    - [AdamW](#adamw)
+    - [Adamax](#adamax)
+    - [Ftrl](#ftrl)
+    - [Lion](#lion)
+    - [Nadam](#nadam)
+    - [Optimizer](#optimizer)
+    - [RMSprop](#rmsprop)
+    - [SGD](#sgd)
+    - [deserialize](#deserialize-6)
+    - [get](#get-5)
+    - [serialize](#serialize-6)
   - [Preprocessing](#preprocessing)
   - [Regularizers](#regularizers)
+    - [L1](#l1)
+    - [L1L2](#l1l2)
+    - [L2](#l2)
+    - [OrthogonalRegularizer](#orthogonalregularizer)
+    - [Regularizer](#regularizer)
+    - [l1](#l1-1)
+    - [l2](#l2-1)
+    - [orthogonal\_regularizer](#orthogonal_regularizer)
+    - [deserialize](#deserialize-7)
+    - [get](#get-6)
+    - [l1\_l2](#l1_l2)
+    - [serialize](#serialize-7)
   - [Saving](#saving)
+    - [custom\_object\_scope](#custom_object_scope)
+    - [deserialize\_keras\_object](#deserialize_keras_object)
+    - [get\_custom\_objects](#get_custom_objects)
+    - [get\_registered\_name](#get_registered_name)
+    - [get\_registered\_object](#get_registered_object)
+    - [load\_model](#load_model-1)
+    - [register\_keras\_serializable](#register_keras_serializable)
+    - [save\_model](#save_model-1)
+    - [serialize\_keras\_object](#serialize_keras_object)
   - [Utils](#utils)
+    - [legacy](#legacy-1)
+    - [CustomObjectScope](#customobjectscope)
+    - [FeatureSpace](#featurespace)
+    - [GeneratorEnqueuer](#generatorenqueuer)
+    - [OrderedEnqueuer](#orderedenqueuer)
+    - [Progbar](#progbar)
+    - [Sequence](#sequence)
+    - [SequenceEnqueuer](#sequenceenqueuer)
+    - [SidecarEvaluator](#sidecarevaluator)
+    - [TimedThread](#timedthread)
+    - [custom\_object\_scope](#custom_object_scope-1)
+    - [array\_to\_img](#array_to_img)
+    - [audio\_dataset\_from\_directory](#audio_dataset_from_directory)
+    - [deserialize\_keras\_object](#deserialize_keras_object-1)
+    - [disable\_interactive\_logging](#disable_interactive_logging)
+    - [enable\_interactive\_logging](#enable_interactive_logging)
+    - [get\_custom\_objects](#get_custom_objects-1)
+    - [get\_file](#get_file)
+    - [get\_registered\_name](#get_registered_name-1)
+    - [get\_registered\_object](#get_registered_object-1)
+    - [get\_source\_inputs](#get_source_inputs)
+    - [image\_dataset\_from\_directory](#image_dataset_from_directory)
+    - [img\_to\_array](#img_to_array)
+    - [is\_interactive\_logging\_enabled](#is_interactive_logging_enabled)
+    - [load\_img](#load_img)
+    - [model\_to\_dot](#model_to_dot)
+    - [normalize](#normalize)
+    - [pack\_x\_y\_sample\_weight](#pack_x_y_sample_weight)
+    - [pad\_sequences](#pad_sequences)
+    - [plot\_model](#plot_model)
+    - [register\_keras\_serializable](#register_keras_serializable-1)
+    - [save\_img](#save_img)
+    - [serialize\_keras\_object](#serialize_keras_object-1)
+    - [set\_random\_seed](#set_random_seed)
+    - [split\_dataset](#split_dataset)
+    - [text\_dataset\_from\_directory](#text_dataset_from_directory)
+    - [timeseries\_dataset\_from\_array](#timeseries_dataset_from_array)
+    - [to\_categorical](#to_categorical)
+    - [to\_ordinal](#to_ordinal)
+    - [unpack\_x\_y\_sample\_weight](#unpack_x_y_sample_weight)
+    - [warmstart\_embedding\_matrix](#warmstart_embedding_matrix)
 
 ## Activations
 
@@ -1497,14 +1586,194 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
 
 ## mixed_precision
 
+### LossScaleOptimizer
+
+### Policy
+
+### global_policy
+
+### set_global_policy
+
 ## Models
+
+### clone_model
+
+### load_model
+
+### model_from_config
+
+### model_from_json
+
+### model_from_yaml
+
+### save_model
 
 ## Optimizers
 
+### legacy
+
+### schedules
+
+### Adadelta
+
+### Adafactor
+
+### Adagrad
+
+### Adam
+
+### AdamW
+
+### Adamax
+
+### Ftrl
+
+### Lion
+
+### Nadam
+
+### Optimizer
+
+### RMSprop
+
+### SGD
+
+### deserialize
+
+### get
+
+### serialize
+
 ## Preprocessing
+
+> Depreciated
 
 ## Regularizers
 
+### L1
+
+### L1L2
+
+### L2
+
+### OrthogonalRegularizer
+
+### Regularizer
+
+### l1
+
+### l2
+
+### orthogonal_regularizer
+
+### deserialize
+
+### get
+
+### l1_l2
+
+### serialize
+
 ## Saving
 
+### custom_object_scope
+
+### deserialize_keras_object
+
+### get_custom_objects
+
+### get_registered_name
+
+### get_registered_object
+
+### load_model
+
+### register_keras_serializable
+
+### save_model
+
+### serialize_keras_object
+
 ## Utils
+
+### legacy
+
+### CustomObjectScope
+
+### FeatureSpace
+
+### GeneratorEnqueuer
+
+### OrderedEnqueuer
+
+### Progbar
+
+### Sequence
+
+### SequenceEnqueuer
+
+### SidecarEvaluator
+
+### TimedThread
+
+### custom_object_scope
+
+### array_to_img
+
+### audio_dataset_from_directory
+
+### deserialize_keras_object
+
+### disable_interactive_logging
+
+### enable_interactive_logging
+
+### get_custom_objects
+
+### get_file
+
+### get_registered_name
+
+### get_registered_object
+
+### get_source_inputs
+
+### image_dataset_from_directory
+
+### img_to_array
+
+### is_interactive_logging_enabled
+
+### load_img
+
+### model_to_dot
+
+### normalize
+
+### pack_x_y_sample_weight
+
+### pad_sequences
+
+### plot_model
+
+### register_keras_serializable
+
+### save_img
+
+### serialize_keras_object
+
+### set_random_seed
+
+### split_dataset
+
+### text_dataset_from_directory
+
+### timeseries_dataset_from_array
+
+### to_categorical
+
+### to_ordinal
+
+### unpack_x_y_sample_weight
+
+### warmstart_embedding_matrix
