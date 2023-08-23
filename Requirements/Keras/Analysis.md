@@ -611,7 +611,7 @@
 
 **Name**: tf.keras.Model
 
-**Hyperparameters**:
+**Parameters**:
 
 | name    | input dtype/shape                                   | use |
 | ------- | --------------------------------------------------- | --- |
@@ -626,15 +626,57 @@
 
 ## Sequential
 
+**Name**: tf.keras.Sequential
 
+**Parameters**:
+
+| name   | input dtype/shape | use |
+| ------ | ----------------- | --- |
+| layers | list of layers    | opt |
+| name   | String            | opt |
+
+**Compatibility Concerns**:
+
+1. This is more restrictive than `Functional` API. Try _not_ supporting this. Use that instead.
 
 ## Activations
 
 ### Deserialize
 
+> This is a `function`.
+
+**Name**: tf.keras.activations.deserialize
+
+**Parameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| name | String            | req |
+
+**Extra Notes:**
+
+1. This returns the _function_. We pass to it the function name.
+
 ### Elu
 
+> This is a `function`.
+
+**Name**: tf.keras.activations.elu
+
+**Parameters**:
+
+| name  | input dtype/shape | use |
+| ----- | ----------------- | --- |
+| x     | tensor            | req |
+| alpha | float             | opt |
+
+**Extra Notes:**
+
+1. This is typically assigned to a layer, and not directly used on a tensor.
+
 ### Exponential
+
+
 
 ### Gelu
 
