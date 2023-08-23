@@ -391,7 +391,138 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
     - [serialize](#serialize-3)
     - [subtract](#subtract-1)
   - [Losses](#losses)
+    - [BinaryCrossentropy](#binarycrossentropy)
+    - [BinaryFocalCrossentropy](#binaryfocalcrossentropy)
+    - [CategoricalCrossentropy](#categoricalcrossentropy)
+    - [CategoricalFocalCrossentropy](#categoricalfocalcrossentropy)
+    - [CategoricalHinge](#categoricalhinge)
+    - [CosineSimilarity](#cosinesimilarity)
+    - [Hinge](#hinge)
+    - [Huber](#huber)
+    - [KLDivergence](#kldivergence)
+    - [LogCosh](#logcosh)
+    - [Loss](#loss)
+    - [MeanAbsoluteError](#meanabsoluteerror)
+    - [MeanAbsolutePercentageError](#meanabsolutepercentageerror)
+    - [MeanSquaredError](#meansquarederror)
+    - [MeanSquaredLogarithmicError](#meansquaredlogarithmicerror)
+    - [Poisson](#poisson)
+    - [Reduction](#reduction)
+    - [SparseCategoricalCrossentropy](#sparsecategoricalcrossentropy)
+    - [SquaredHinge](#squaredhinge)
+    - [KLD](#kld)
+    - [MAE](#mae)
+    - [MAPE](#mape)
+    - [MSE](#mse)
+    - [MSLE](#msle)
+    - [binary\_crossentropy](#binary_crossentropy)
+    - [binary\_focal\_crossentropy](#binary_focal_crossentropy)
+    - [categorical\_crossentropy](#categorical_crossentropy)
+    - [categorical\_focal\_crossentropy](#categorical_focal_crossentropy)
+    - [categorical\_hinge](#categorical_hinge)
+    - [cosine\_similarity](#cosine_similarity)
+    - [deserialize](#deserialize-4)
+    - [get](#get-3)
+    - [hinge](#hinge-1)
+    - [huber](#huber-1)
+    - [kl\_divergence](#kl_divergence)
+    - [kld](#kld-1)
+    - [kullback\_leibler\_divergence](#kullback_leibler_divergence)
+    - [log\_cosh](#log_cosh)
+    - [logcosh](#logcosh-1)
+    - [mae](#mae-1)
+    - [mape](#mape-1)
+    - [mean\_absolute\_error](#mean_absolute_error)
+    - [mean\_absolute\_percentage\_error](#mean_absolute_percentage_error)
+    - [mean\_squared\_error](#mean_squared_error)
+    - [mean\_squared\_logarithmic\_error](#mean_squared_logarithmic_error)
+    - [mse](#mse-1)
+    - [msle](#msle-1)
+    - [poisson](#poisson-1)
+    - [serialize](#serialize-4)
+    - [sparse\_categorical\_crossentropy](#sparse_categorical_crossentropy)
+    - [squared\_hinge](#squared_hinge)
   - [Metrics](#metrics)
+    - [AUC](#auc)
+    - [Accuracy](#accuracy)
+    - [BinaryAccuracy](#binaryaccuracy)
+    - [BinaryCrossentropy](#binarycrossentropy-1)
+    - [BinaryIoU](#binaryiou)
+    - [CategoricalAccuracy](#categoricalaccuracy)
+    - [CategoricalCrossentropy](#categoricalcrossentropy-1)
+    - [CategoricalHinge](#categoricalhinge-1)
+    - [CosineSimilarity](#cosinesimilarity-1)
+    - [F1Score](#f1score)
+    - [FBetaScore](#fbetascore)
+    - [FalseNegatives](#falsenegatives)
+    - [FalsePositives](#falsepositives)
+    - [Hinge](#hinge-2)
+    - [IoU](#iou)
+    - [KLDivergence](#kldivergence-1)
+    - [LogCoshError](#logcosherror)
+    - [Mean](#mean)
+    - [MeanAbsoluteError](#meanabsoluteerror-1)
+    - [MeanAbsolutePercentageError](#meanabsolutepercentageerror-1)
+    - [MeanIoU](#meaniou)
+    - [MeanMetricWrapper](#meanmetricwrapper)
+    - [MeanRelativeError](#meanrelativeerror)
+    - [MeanSquaredError](#meansquarederror-1)
+    - [MeanSquaredLogarithmicError](#meansquaredlogarithmicerror-1)
+    - [MeanTensor](#meantensor)
+    - [Metric](#metric)
+    - [OneHotIoU](#onehotiou)
+    - [OneHotMeanIoU](#onehotmeaniou)
+    - [Poisson](#poisson-2)
+    - [Precision](#precision)
+    - [PrecisionAtRecall](#precisionatrecall)
+    - [R2Score](#r2score)
+    - [Recall](#recall)
+    - [RecallAtPrecision](#recallatprecision)
+    - [RootMeanSquaredError](#rootmeansquarederror)
+    - [SensitivityAtSpecificity](#sensitivityatspecificity)
+    - [SparseCategoricalAccuracy](#sparsecategoricalaccuracy)
+    - [SparseCategoricalCrossentropy](#sparsecategoricalcrossentropy-1)
+    - [SparseTopKCategoricalAccuracy](#sparsetopkcategoricalaccuracy)
+    - [SpecificityAtSensitivity](#specificityatsensitivity)
+    - [SquaredHinge](#squaredhinge-1)
+    - [Sum](#sum)
+    - [TopKCategoricalAccuracy](#topkcategoricalaccuracy)
+    - [TrueNegatives](#truenegatives)
+    - [TruePositives](#truepositives)
+    - [KLD](#kld-2)
+    - [MAE](#mae-2)
+    - [MAPE](#mape-2)
+    - [MSE](#mse-2)
+    - [MSLE](#msle-2)
+    - [binary\_accuracy](#binary_accuracy)
+    - [binary\_crossentropy](#binary_crossentropy-1)
+    - [binary\_focal\_crossentropy](#binary_focal_crossentropy-1)
+    - [categorical\_accuracy](#categorical_accuracy)
+    - [categorical\_crossentropy](#categorical_crossentropy-1)
+    - [categorical\_focal\_crossentropy](#categorical_focal_crossentropy-1)
+    - [deserialize](#deserialize-5)
+    - [get](#get-4)
+    - [hinge](#hinge-3)
+    - [kl\_divergence](#kl_divergence-1)
+    - [kld](#kld-3)
+    - [kullback\_leibler\_divergence](#kullback_leibler_divergence-1)
+    - [log\_cosh](#log_cosh-1)
+    - [logcosh](#logcosh-2)
+    - [mae](#mae-3)
+    - [mape](#mape-3)
+    - [mean\_absolute\_error](#mean_absolute_error-1)
+    - [mean\_absolute\_percentage\_error](#mean_absolute_percentage_error-1)
+    - [mean\_squared\_error](#mean_squared_error-1)
+    - [mean\_squared\_logarithmic\_error](#mean_squared_logarithmic_error-1)
+    - [mse](#mse-3)
+    - [msle](#msle-3)
+    - [poisson](#poisson-3)
+    - [serialize](#serialize-5)
+    - [sparse\_categorical\_accuracy](#sparse_categorical_accuracy)
+    - [sparse\_categorical\_crossentropy](#sparse_categorical_crossentropy-1)
+    - [sparse\_top\_k\_categorical\_accuracy](#sparse_top_k_categorical_accuracy)
+    - [squared\_hinge](#squared_hinge-1)
+    - [top\_k\_categorical\_accuracy](#top_k_categorical_accuracy)
   - [mixed\_precision](#mixed_precision)
   - [Models](#models)
   - [Optimizers](#optimizers)
@@ -1100,7 +1231,269 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
 
 ## Losses
 
+### BinaryCrossentropy
+
+### BinaryFocalCrossentropy
+
+### CategoricalCrossentropy
+
+### CategoricalFocalCrossentropy
+
+### CategoricalHinge
+
+### CosineSimilarity
+
+### Hinge
+
+### Huber
+
+### KLDivergence
+
+### LogCosh
+
+### Loss
+
+### MeanAbsoluteError
+
+### MeanAbsolutePercentageError
+
+### MeanSquaredError
+
+### MeanSquaredLogarithmicError
+
+### Poisson
+
+### Reduction
+
+### SparseCategoricalCrossentropy
+
+### SquaredHinge
+
+### KLD
+
+### MAE
+
+### MAPE
+
+### MSE
+
+### MSLE
+
+### binary_crossentropy
+
+### binary_focal_crossentropy
+
+### categorical_crossentropy
+
+### categorical_focal_crossentropy
+
+### categorical_hinge
+
+### cosine_similarity
+
+### deserialize
+
+### get
+
+### hinge
+
+### huber
+
+### kl_divergence
+
+### kld
+
+### kullback_leibler_divergence
+
+### log_cosh
+
+### logcosh
+
+### mae
+
+### mape
+
+### mean_absolute_error
+
+### mean_absolute_percentage_error
+
+### mean_squared_error
+
+### mean_squared_logarithmic_error
+
+### mse
+
+### msle
+
+### poisson
+
+### serialize
+
+### sparse_categorical_crossentropy
+
+### squared_hinge
+
 ## Metrics
+
+### AUC
+
+### Accuracy
+
+### BinaryAccuracy
+
+### BinaryCrossentropy
+
+### BinaryIoU
+
+### CategoricalAccuracy
+
+### CategoricalCrossentropy
+
+### CategoricalHinge
+
+### CosineSimilarity
+
+### F1Score
+
+### FBetaScore
+
+### FalseNegatives
+
+### FalsePositives
+
+### Hinge
+
+### IoU
+
+### KLDivergence
+
+### LogCoshError
+
+### Mean
+
+### MeanAbsoluteError
+
+### MeanAbsolutePercentageError
+
+### MeanIoU
+
+### MeanMetricWrapper
+
+### MeanRelativeError
+
+### MeanSquaredError
+
+### MeanSquaredLogarithmicError
+
+### MeanTensor
+
+### Metric
+
+### OneHotIoU
+
+### OneHotMeanIoU
+
+### Poisson
+
+### Precision
+
+### PrecisionAtRecall
+
+### R2Score
+
+### Recall
+
+### RecallAtPrecision
+
+### RootMeanSquaredError
+
+### SensitivityAtSpecificity
+
+### SparseCategoricalAccuracy
+
+### SparseCategoricalCrossentropy
+
+### SparseTopKCategoricalAccuracy
+
+### SpecificityAtSensitivity
+
+### SquaredHinge
+
+### Sum
+
+### TopKCategoricalAccuracy
+
+### TrueNegatives
+
+### TruePositives
+
+### KLD
+
+### MAE
+
+### MAPE
+
+### MSE
+
+### MSLE
+
+### binary_accuracy
+
+### binary_crossentropy
+
+### binary_focal_crossentropy
+
+### categorical_accuracy
+
+### categorical_crossentropy
+
+### categorical_focal_crossentropy
+
+### deserialize
+
+### get
+
+### hinge
+
+### kl_divergence
+
+### kld
+
+### kullback_leibler_divergence
+
+### log_cosh
+
+### logcosh
+
+### mae
+
+### mape
+
+### mean_absolute_error
+
+### mean_absolute_percentage_error
+
+### mean_squared_error
+
+### mean_squared_logarithmic_error
+
+### mse
+
+### msle
+
+### poisson
+
+### serialize
+
+### sparse_categorical_accuracy
+
+### sparse_categorical_crossentropy
+
+### sparse_top_k_categorical_accuracy
+
+### squared_hinge
+
+### top_k_categorical_accuracy
 
 ## mixed_precision
 
