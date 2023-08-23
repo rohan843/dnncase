@@ -817,15 +817,68 @@
 
 ### Softmax
 
+> This is a `function`.
 
+**Name**: tf.keras.activations.softmax
+
+**Parameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| x    | tensor            | req |
+| axis | int               | opt |
+
+**Extra Notes:**
+
+1. This is softmax; its output is a tensor, with a 1-D vector for each example.
 
 ### Softplus
 
+> This is a `function`.
+
+**Name**: tf.keras.activations.softplus
+
+**Parameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| x    | tensor            | req |
+
 ### Softsign
+
+> This is a `function`.
+
+**Name**: tf.keras.activations.softsign
+
+**Parameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| x    | tensor            | req |
 
 ### Swish
 
+> This is a `function`.
+
+**Name**: tf.keras.activations.swish
+
+**Parameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| x    | tensor            | req |
+
 ### Tanh
+
+> This is a `function`.
+
+**Name**: tf.keras.activations.tanh
+
+**Parameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| x    | tensor            | req |
 
 ## Applications
 
