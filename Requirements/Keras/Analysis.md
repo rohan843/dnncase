@@ -676,23 +676,120 @@
 
 ### Exponential
 
+> This is a `function`.
 
+**Name**: tf.keras.activations.exponential
+
+**Hyperparameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| x    | tensor            | req |
+
+**Extra Notes:**
+
+1. Typically, it is assigned to a layer, not used directly.
 
 ### Gelu
 
+> This is a `function`.
+
+**Name**: tf.keras.activations.gelu
+
+**Hyperparameters**:
+
+| name        | input dtype/shape | use |
+| ----------- | ----------------- | --- |
+| x           | tensor            | req |
+| approximate | bool              | opt |
+
+**Extra Notes:**
+
+1. This is typically assigned to layer, not used directly on a tensor.
+
 ### Get
+
+> This is a `function`.
+
+**Name**: tf.keras.activations.get
+
+**Hyperparameters**:
+
+| name       | input dtype/shape    | use |
+| ---------- | -------------------- | --- |
+| identifier | Function `or` string | req |
+
+**Extra Notes:**
+
+1. Returns a function.
+2. This is either very useless or very useful. (ref: `deserialize`).
 
 ### Hard Sigmoid
 
+> This is a `function`.
+
+**Name**: tf.keras.activations.hard_sigmoid
+
+**Parameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| x    | tensor            | req |
+
 ### Linear
+
+> This is a `function`
+
+**Name**: tf.keras.activations.linear
+
+**Parameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| x    | tensor            | req |
 
 ### Mish
 
+> This is a `function`.
+
+**Name**: tf.keras.activations.mish
+
+**Hyperparameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| x    | tensor            | req |
+
 ### Relu
+
+> This is a `function`
+
+**Name**: tf.keras.activations.relu
+
+**Parameters**:
+
+| name      | input dtype/shape | use |
+| --------- | ----------------- | --- |
+| x         | tensor            | req |
+| alpha     | float             | opt |
+| max_value | float             | opt |
+| threshold | float             | opt |
 
 ### Selu
 
+> This is a `function`.
+
+**Name**: Place layer name
+
+**Hyperparameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| x    | tensor            | req |
+
 ### Serialize
+
+
 
 ### Sigmoid
 
