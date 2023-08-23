@@ -1,44 +1,5 @@
 # Keras
 
-<!-- ## Layers
-
-### Layer 1
-
-Writing the format for a layer, but this works everywhere, for metrics, activations, losses, etc.
-
-**Name**:  Place layer name
-
-**Hyperparameters**:
-
-| name | input dtype/shape | use |
-| ---- | ----------------- | --- |
-|      |                   |     |
-|      |                   |     |
-|      |                   |     |
-
-**Layer Inputs**:
-
-1. All permitted layer inputs, with their shape and data type
-2. ...
-3. ...
-
-**Layer Outputs**:
-
-1. All layer outputs, with their shape and data type
-2. ...
-3. ...
-
-**Extra Notes:**
-
-1. Any extra notes about the layer
-2. ...
-3. ...
-
-**Compatibility Concerns**:
-
-1. If the current layer seems incompatible with our current design, write it here.
--->
-
 ## Contents
 
 - [Keras](#keras)
@@ -624,6 +585,27 @@ Writing the format for a layer, but this works everywhere, for metrics, activati
     - [warmstart\_embedding\_matrix](#warmstart_embedding_matrix)
 
 ## Input
+
+> This is a `function`.
+
+**Name**: tf.keras.Input
+
+**Parameters**:
+
+| name       | input dtype/shape                              | use |
+| ---------- | ---------------------------------------------- | --- |
+| shape      | tuple (integers), not including the batch size | req |
+| batch_size | integer                                        | opt |
+| name       | string                                         | opt |
+| dtype      | data type object                               | opt |
+| sparse     | boolean                                        | opt |
+| tensor     | tensor                                         | opt |
+| ragged     | boolean                                        | opt |
+| type_spec  | tf.TypeSpec                                    | opt |
+
+**Extra Notes:**
+
+1. Used to instantiate a Keras tensor.
 
 ## Model
 
