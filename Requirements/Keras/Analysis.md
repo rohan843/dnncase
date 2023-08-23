@@ -789,11 +789,35 @@
 
 ### Serialize
 
+> This is a `function`.
 
+**Name**: tf.keras.activations.serialize
+
+**Hyperparameters**:
+
+| name       | input dtype/shape | use |
+| ---------- | ----------------- | --- |
+| activation | Function object   | req |
+
+**Extra Notes:**
+
+1. Converts a function to its name.
 
 ### Sigmoid
 
+> This is a `function`.
+
+**Name**: tf.keras.activations.sigmoid
+
+**Parameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+| x    | tensor            | req |
+
 ### Softmax
+
+
 
 ### Softplus
 
