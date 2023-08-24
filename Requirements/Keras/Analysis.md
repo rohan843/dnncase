@@ -47,89 +47,18 @@
     - [Vgg 16](#vgg-16)
     - [Vgg 19](#vgg-19)
     - [Xception](#xception)
-    - [ConvNeXtBase](#convnextbase)
-    - [ConvNeXtLarge](#convnextlarge)
-    - [ConvNeXtSmall](#convnextsmall)
-    - [ConvNeXtTiny](#convnexttiny)
-    - [ConvNeXtXLarge](#convnextxlarge)
-    - [DenseNet121](#densenet121)
-    - [DenseNet169](#densenet169)
-    - [DenseNet201](#densenet201)
-    - [EfficientNetB0](#efficientnetb0)
-    - [EfficientNetB1](#efficientnetb1)
-    - [EfficientNetB2](#efficientnetb2)
-    - [EfficientNetB3](#efficientnetb3)
-    - [EfficientNetB4](#efficientnetb4)
-    - [EfficientNetB5](#efficientnetb5)
-    - [EfficientNetB6](#efficientnetb6)
-    - [EfficientNetB7](#efficientnetb7)
-    - [EfficientNetV2B0](#efficientnetv2b0)
-    - [EfficientNetV2B1](#efficientnetv2b1)
-    - [EfficientNetV2B2](#efficientnetv2b2)
-    - [EfficientNetV2B3](#efficientnetv2b3)
-    - [EfficientNetV2L](#efficientnetv2l)
-    - [EfficientNetV2M](#efficientnetv2m)
-    - [EfficientNetV2S](#efficientnetv2s)
-    - [Inception-ResNet v2](#inception-resnet-v2-1)
-    - [Inception v3](#inception-v3-1)
-    - [MobileNet](#mobilenet-1)
-    - [MobileNetV2](#mobilenetv2)
-    - [MobileNetV3Large](#mobilenetv3large-1)
-    - [MobileNetV3Small](#mobilenetv3small-1)
-    - [NASNetLarge](#nasnetlarge)
-    - [NASNetMobile](#nasnetmobile)
-    - [RegNetX002](#regnetx002)
-    - [RegNetX004](#regnetx004)
-    - [RegNetX006](#regnetx006)
-    - [RegNetX008](#regnetx008)
-    - [RegNetX016](#regnetx016)
-    - [RegNetX032](#regnetx032)
-    - [RegNetX040](#regnetx040)
-    - [RegNetX064](#regnetx064)
-    - [RegNetX080](#regnetx080)
-    - [RegNetX120](#regnetx120)
-    - [RegNetX160](#regnetx160)
-    - [RegNetX320](#regnetx320)
-    - [RegNetY002](#regnety002)
-    - [RegNetY004](#regnety004)
-    - [RegNetY006](#regnety006)
-    - [RegNetY008](#regnety008)
-    - [RegNetY016](#regnety016)
-    - [RegNetY032](#regnety032)
-    - [RegNetY040](#regnety040)
-    - [RegNetY064](#regnety064)
-    - [RegNetY080](#regnety080)
-    - [RegNetY120](#regnety120)
-    - [RegNetY160](#regnety160)
-    - [RegNetY320](#regnety320)
-    - [ResNet101](#resnet101)
-    - [ResNet101V2](#resnet101v2)
-    - [ResNet152](#resnet152)
-    - [ResNet152V2](#resnet152v2)
-    - [ResNet50](#resnet50)
-    - [ResNet50V2](#resnet50v2)
-    - [ResNetRS101](#resnetrs101)
-    - [ResNetRS152](#resnetrs152)
-    - [ResNetRS200](#resnetrs200)
-    - [ResNetRS270](#resnetrs270)
-    - [ResNetRS350](#resnetrs350)
-    - [ResNetRS420](#resnetrs420)
-    - [ResNetRS50](#resnetrs50)
-    - [VGG16](#vgg16)
-    - [VGG19](#vgg19)
-    - [Xception](#xception-1)
   - [Backend](#backend)
-    - [clear\_session](#clear_session)
+    - [clear_session](#clear_session)
     - [epsilon](#epsilon)
     - [floatx](#floatx)
-    - [get\_uid](#get_uid)
-    - [image\_data\_format](#image_data_format)
-    - [is\_keras\_tensor](#is_keras_tensor)
-    - [reset\_uids](#reset_uids)
+    - [get_uid](#get_uid)
+    - [image_data_format](#image_data_format)
+    - [is_keras_tensor](#is_keras_tensor)
+    - [reset_uids](#reset_uids)
     - [rnn](#rnn)
-    - [set\_epsilon](#set_epsilon)
-    - [set\_floatx](#set_floatx)
-    - [set\_image\_data\_format](#set_image_data_format)
+    - [set_epsilon](#set_epsilon)
+    - [set_floatx](#set_floatx)
+    - [set_image_data_format](#set_image_data_format)
   - [Callbacks](#callbacks)
     - [BackupAndRestore](#backupandrestore)
     - [BaseLogger](#baselogger)
@@ -154,25 +83,25 @@
     - [NonNeg](#nonneg)
     - [RadialConstraint](#radialconstraint)
     - [UnitNorm](#unitnorm)
-    - [max\_norm](#max_norm)
-    - [min\_max\_norm](#min_max_norm)
-    - [non\_neg](#non_neg)
-    - [radial\_constraint](#radial_constraint)
-    - [unit\_norm](#unit_norm)
+    - [max_norm](#max_norm)
+    - [min_max_norm](#min_max_norm)
+    - [non_neg](#non_neg)
+    - [radial_constraint](#radial_constraint)
+    - [unit_norm](#unit_norm)
     - [deserialize](#deserialize-1)
     - [get](#get-1)
     - [serialize](#serialize-1)
   - [Datasets](#datasets)
-    - [boston\_housing](#boston_housing)
+    - [boston_housing](#boston_housing)
     - [cifar10](#cifar10)
     - [cifar100](#cifar100)
-    - [fashion\_mnist](#fashion_mnist)
+    - [fashion_mnist](#fashion_mnist)
     - [imdb](#imdb)
     - [mnist](#mnist)
     - [reuters](#reuters)
   - [dtensor](#dtensor)
   - [Estimator](#estimator)
-    - [model\_to\_estimator](#model_to_estimator)
+    - [model_to_estimator](#model_to_estimator)
   - [Experimental](#experimental)
   - [Export](#export)
     - [ExportArchive](#exportarchive)
@@ -194,19 +123,19 @@
     - [VarianceScaling](#variancescaling)
     - [Zeros](#zeros)
     - [constant](#constant-1)
-    - [glorot\_normal](#glorot_normal)
-    - [glorot\_uniform](#glorot_uniform)
-    - [he\_normal](#he_normal)
-    - [he\_uniform](#he_uniform)
+    - [glorot_normal](#glorot_normal)
+    - [glorot_uniform](#glorot_uniform)
+    - [he_normal](#he_normal)
+    - [he_uniform](#he_uniform)
     - [identity](#identity-1)
-    - [lecun\_normal](#lecun_normal)
-    - [lecun\_uniform](#lecun_uniform)
+    - [lecun_normal](#lecun_normal)
+    - [lecun_uniform](#lecun_uniform)
     - [ones](#ones-1)
     - [orthogonal](#orthogonal-1)
-    - [random\_normal](#random_normal)
-    - [random\_uniform](#random_uniform)
-    - [truncated\_normal](#truncated_normal)
-    - [variance\_scaling](#variance_scaling)
+    - [random_normal](#random_normal)
+    - [random_uniform](#random_uniform)
+    - [truncated_normal](#truncated_normal)
+    - [variance_scaling](#variance_scaling)
     - [zeros](#zeros-1)
     - [deserialize](#deserialize-2)
     - [get](#get-2)
@@ -381,33 +310,33 @@
     - [MAPE](#mape)
     - [MSE](#mse)
     - [MSLE](#msle)
-    - [binary\_crossentropy](#binary_crossentropy)
-    - [binary\_focal\_crossentropy](#binary_focal_crossentropy)
-    - [categorical\_crossentropy](#categorical_crossentropy)
-    - [categorical\_focal\_crossentropy](#categorical_focal_crossentropy)
-    - [categorical\_hinge](#categorical_hinge)
-    - [cosine\_similarity](#cosine_similarity)
+    - [binary_crossentropy](#binary_crossentropy)
+    - [binary_focal_crossentropy](#binary_focal_crossentropy)
+    - [categorical_crossentropy](#categorical_crossentropy)
+    - [categorical_focal_crossentropy](#categorical_focal_crossentropy)
+    - [categorical_hinge](#categorical_hinge)
+    - [cosine_similarity](#cosine_similarity)
     - [deserialize](#deserialize-4)
     - [get](#get-3)
     - [hinge](#hinge-1)
     - [huber](#huber-1)
-    - [kl\_divergence](#kl_divergence)
+    - [kl_divergence](#kl_divergence)
     - [kld](#kld-1)
-    - [kullback\_leibler\_divergence](#kullback_leibler_divergence)
-    - [log\_cosh](#log_cosh)
+    - [kullback_leibler_divergence](#kullback_leibler_divergence)
+    - [log_cosh](#log_cosh)
     - [logcosh](#logcosh-1)
     - [mae](#mae-1)
     - [mape](#mape-1)
-    - [mean\_absolute\_error](#mean_absolute_error)
-    - [mean\_absolute\_percentage\_error](#mean_absolute_percentage_error)
-    - [mean\_squared\_error](#mean_squared_error)
-    - [mean\_squared\_logarithmic\_error](#mean_squared_logarithmic_error)
+    - [mean_absolute_error](#mean_absolute_error)
+    - [mean_absolute_percentage_error](#mean_absolute_percentage_error)
+    - [mean_squared_error](#mean_squared_error)
+    - [mean_squared_logarithmic_error](#mean_squared_logarithmic_error)
     - [mse](#mse-1)
     - [msle](#msle-1)
     - [poisson](#poisson-1)
     - [serialize](#serialize-4)
-    - [sparse\_categorical\_crossentropy](#sparse_categorical_crossentropy)
-    - [squared\_hinge](#squared_hinge)
+    - [sparse_categorical_crossentropy](#sparse_categorical_crossentropy)
+    - [squared_hinge](#squared_hinge)
   - [Metrics](#metrics)
     - [AUC](#auc)
     - [Accuracy](#accuracy)
@@ -460,47 +389,47 @@
     - [MAPE](#mape-2)
     - [MSE](#mse-2)
     - [MSLE](#msle-2)
-    - [binary\_accuracy](#binary_accuracy)
-    - [binary\_crossentropy](#binary_crossentropy-1)
-    - [binary\_focal\_crossentropy](#binary_focal_crossentropy-1)
-    - [categorical\_accuracy](#categorical_accuracy)
-    - [categorical\_crossentropy](#categorical_crossentropy-1)
-    - [categorical\_focal\_crossentropy](#categorical_focal_crossentropy-1)
+    - [binary_accuracy](#binary_accuracy)
+    - [binary_crossentropy](#binary_crossentropy-1)
+    - [binary_focal_crossentropy](#binary_focal_crossentropy-1)
+    - [categorical_accuracy](#categorical_accuracy)
+    - [categorical_crossentropy](#categorical_crossentropy-1)
+    - [categorical_focal_crossentropy](#categorical_focal_crossentropy-1)
     - [deserialize](#deserialize-5)
     - [get](#get-4)
     - [hinge](#hinge-3)
-    - [kl\_divergence](#kl_divergence-1)
+    - [kl_divergence](#kl_divergence-1)
     - [kld](#kld-3)
-    - [kullback\_leibler\_divergence](#kullback_leibler_divergence-1)
-    - [log\_cosh](#log_cosh-1)
+    - [kullback_leibler_divergence](#kullback_leibler_divergence-1)
+    - [log_cosh](#log_cosh-1)
     - [logcosh](#logcosh-2)
     - [mae](#mae-3)
     - [mape](#mape-3)
-    - [mean\_absolute\_error](#mean_absolute_error-1)
-    - [mean\_absolute\_percentage\_error](#mean_absolute_percentage_error-1)
-    - [mean\_squared\_error](#mean_squared_error-1)
-    - [mean\_squared\_logarithmic\_error](#mean_squared_logarithmic_error-1)
+    - [mean_absolute_error](#mean_absolute_error-1)
+    - [mean_absolute_percentage_error](#mean_absolute_percentage_error-1)
+    - [mean_squared_error](#mean_squared_error-1)
+    - [mean_squared_logarithmic_error](#mean_squared_logarithmic_error-1)
     - [mse](#mse-3)
     - [msle](#msle-3)
     - [poisson](#poisson-3)
     - [serialize](#serialize-5)
-    - [sparse\_categorical\_accuracy](#sparse_categorical_accuracy)
-    - [sparse\_categorical\_crossentropy](#sparse_categorical_crossentropy-1)
-    - [sparse\_top\_k\_categorical\_accuracy](#sparse_top_k_categorical_accuracy)
-    - [squared\_hinge](#squared_hinge-1)
-    - [top\_k\_categorical\_accuracy](#top_k_categorical_accuracy)
-  - [mixed\_precision](#mixed_precision)
+    - [sparse_categorical_accuracy](#sparse_categorical_accuracy)
+    - [sparse_categorical_crossentropy](#sparse_categorical_crossentropy-1)
+    - [sparse_top_k_categorical_accuracy](#sparse_top_k_categorical_accuracy)
+    - [squared_hinge](#squared_hinge-1)
+    - [top_k_categorical_accuracy](#top_k_categorical_accuracy)
+  - [mixed_precision](#mixed_precision)
     - [LossScaleOptimizer](#lossscaleoptimizer)
     - [Policy](#policy)
-    - [global\_policy](#global_policy)
-    - [set\_global\_policy](#set_global_policy)
+    - [global_policy](#global_policy)
+    - [set_global_policy](#set_global_policy)
   - [Models](#models)
-    - [clone\_model](#clone_model)
-    - [load\_model](#load_model)
-    - [model\_from\_config](#model_from_config)
-    - [model\_from\_json](#model_from_json)
-    - [model\_from\_yaml](#model_from_yaml)
-    - [save\_model](#save_model)
+    - [clone_model](#clone_model)
+    - [load_model](#load_model)
+    - [model_from_config](#model_from_config)
+    - [model_from_json](#model_from_json)
+    - [model_from_yaml](#model_from_yaml)
+    - [save_model](#save_model)
   - [Optimizers](#optimizers)
     - [legacy](#legacy)
     - [schedules](#schedules)
@@ -528,21 +457,21 @@
     - [Regularizer](#regularizer)
     - [l1](#l1-1)
     - [l2](#l2-1)
-    - [orthogonal\_regularizer](#orthogonal_regularizer)
+    - [orthogonal_regularizer](#orthogonal_regularizer)
     - [deserialize](#deserialize-7)
     - [get](#get-6)
-    - [l1\_l2](#l1_l2)
+    - [l1_l2](#l1_l2)
     - [serialize](#serialize-7)
   - [Saving](#saving)
-    - [custom\_object\_scope](#custom_object_scope)
-    - [deserialize\_keras\_object](#deserialize_keras_object)
-    - [get\_custom\_objects](#get_custom_objects)
-    - [get\_registered\_name](#get_registered_name)
-    - [get\_registered\_object](#get_registered_object)
-    - [load\_model](#load_model-1)
-    - [register\_keras\_serializable](#register_keras_serializable)
-    - [save\_model](#save_model-1)
-    - [serialize\_keras\_object](#serialize_keras_object)
+    - [custom_object_scope](#custom_object_scope)
+    - [deserialize_keras_object](#deserialize_keras_object)
+    - [get_custom_objects](#get_custom_objects)
+    - [get_registered_name](#get_registered_name)
+    - [get_registered_object](#get_registered_object)
+    - [load_model](#load_model-1)
+    - [register_keras_serializable](#register_keras_serializable)
+    - [save_model](#save_model-1)
+    - [serialize_keras_object](#serialize_keras_object)
   - [Utils](#utils)
     - [legacy](#legacy-1)
     - [CustomObjectScope](#customobjectscope)
@@ -554,37 +483,37 @@
     - [SequenceEnqueuer](#sequenceenqueuer)
     - [SidecarEvaluator](#sidecarevaluator)
     - [TimedThread](#timedthread)
-    - [custom\_object\_scope](#custom_object_scope-1)
-    - [array\_to\_img](#array_to_img)
-    - [audio\_dataset\_from\_directory](#audio_dataset_from_directory)
-    - [deserialize\_keras\_object](#deserialize_keras_object-1)
-    - [disable\_interactive\_logging](#disable_interactive_logging)
-    - [enable\_interactive\_logging](#enable_interactive_logging)
-    - [get\_custom\_objects](#get_custom_objects-1)
-    - [get\_file](#get_file)
-    - [get\_registered\_name](#get_registered_name-1)
-    - [get\_registered\_object](#get_registered_object-1)
-    - [get\_source\_inputs](#get_source_inputs)
-    - [image\_dataset\_from\_directory](#image_dataset_from_directory)
-    - [img\_to\_array](#img_to_array)
-    - [is\_interactive\_logging\_enabled](#is_interactive_logging_enabled)
-    - [load\_img](#load_img)
-    - [model\_to\_dot](#model_to_dot)
+    - [custom_object_scope](#custom_object_scope-1)
+    - [array_to_img](#array_to_img)
+    - [audio_dataset_from_directory](#audio_dataset_from_directory)
+    - [deserialize_keras_object](#deserialize_keras_object-1)
+    - [disable_interactive_logging](#disable_interactive_logging)
+    - [enable_interactive_logging](#enable_interactive_logging)
+    - [get_custom_objects](#get_custom_objects-1)
+    - [get_file](#get_file)
+    - [get_registered_name](#get_registered_name-1)
+    - [get_registered_object](#get_registered_object-1)
+    - [get_source_inputs](#get_source_inputs)
+    - [image_dataset_from_directory](#image_dataset_from_directory)
+    - [img_to_array](#img_to_array)
+    - [is_interactive_logging_enabled](#is_interactive_logging_enabled)
+    - [load_img](#load_img)
+    - [model_to_dot](#model_to_dot)
     - [normalize](#normalize)
-    - [pack\_x\_y\_sample\_weight](#pack_x_y_sample_weight)
-    - [pad\_sequences](#pad_sequences)
-    - [plot\_model](#plot_model)
-    - [register\_keras\_serializable](#register_keras_serializable-1)
-    - [save\_img](#save_img)
-    - [serialize\_keras\_object](#serialize_keras_object-1)
-    - [set\_random\_seed](#set_random_seed)
-    - [split\_dataset](#split_dataset)
-    - [text\_dataset\_from\_directory](#text_dataset_from_directory)
-    - [timeseries\_dataset\_from\_array](#timeseries_dataset_from_array)
-    - [to\_categorical](#to_categorical)
-    - [to\_ordinal](#to_ordinal)
-    - [unpack\_x\_y\_sample\_weight](#unpack_x_y_sample_weight)
-    - [warmstart\_embedding\_matrix](#warmstart_embedding_matrix)
+    - [pack_x_y_sample_weight](#pack_x_y_sample_weight)
+    - [pad_sequences](#pad_sequences)
+    - [plot_model](#plot_model)
+    - [register_keras_serializable](#register_keras_serializable-1)
+    - [save_img](#save_img)
+    - [serialize_keras_object](#serialize_keras_object-1)
+    - [set_random_seed](#set_random_seed)
+    - [split_dataset](#split_dataset)
+    - [text_dataset_from_directory](#text_dataset_from_directory)
+    - [timeseries_dataset_from_array](#timeseries_dataset_from_array)
+    - [to_categorical](#to_categorical)
+    - [to_ordinal](#to_ordinal)
+    - [unpack_x_y_sample_weight](#unpack_x_y_sample_weight)
+    - [warmstart_embedding_matrix](#warmstart_embedding_matrix)
 
 ## Input
 
@@ -892,217 +821,89 @@
 
 **Name**: tf.keras.applications.MobileNetV3Large
 
-**Parameters**:
-
-| name | input dtype/shape | use |
-| ---- | ----------------- | --- |
-|      |                   |     |
-|      |                   |     |
-|      |                   |     |
-
-**Layer Inputs**:
-
-1. All permitted layer inputs, with their shape and data type
-2. ...
-3. ...
-
-**Layer Outputs**:
-
-1. All layer outputs, with their shape and data type
-2. ...
-3. ...
-
-**Extra Notes:**
-
-1. Any extra notes about the layer
-2. ...
-3. ...
-
-**Compatibility Concerns**:
-
-1. 
-
 ### MobileNetV3Small
+
+> This is a `function`.
+
+**Name**: tf.keras.applications.MobileNetV3Small
 
 ### Convnext
 
+> This is a `module`.
+
+**Name**: tf.keras.applications.convnext
+
 ### Densenet
+
+> This is a `module`.
 
 ### Efficientnet
 
+> This is a `module`.
+
 ### Efficientnet V2
+
+> This is a `module`.
 
 ### Imagenet Utils
 
+> This is a `module`.
+
 ### Inception Resnet V2
+
+> This is a `module`.
 
 ### Inception V3
 
+> This is a `module`.
+
 ### Mobilenet
+
+> This is a `module`.
 
 ### Mobilenet V2
 
+> This is a `module`.
+
 ### Mobilenet V3
+
+> This is a `module`.
 
 ### Nasnet
 
+> This is a `module`.
+
 ### Regnet
+
+> This is a `module`.
 
 ### Resnet
 
+> This is a `module`.
+
 ### Resnet 50
+
+> This is a `module`.
 
 ### Resner Rs
 
+> This is a `module`.
+
 ### Resnet V2
+
+> This is a `module`.
 
 ### Vgg 16
 
+> This is a `module`.
+
 ### Vgg 19
 
+> This is a `module`.
+
 ### Xception
 
-### ConvNeXtBase
-
-### ConvNeXtLarge
-
-### ConvNeXtSmall
-
-### ConvNeXtTiny
-
-### ConvNeXtXLarge
-
-### DenseNet121
-
-### DenseNet169
-
-### DenseNet201
-
-### EfficientNetB0
-
-### EfficientNetB1
-
-### EfficientNetB2
-
-### EfficientNetB3
-
-### EfficientNetB4
-
-### EfficientNetB5
-
-### EfficientNetB6
-
-### EfficientNetB7
-
-### EfficientNetV2B0
-
-### EfficientNetV2B1
-
-### EfficientNetV2B2
-
-### EfficientNetV2B3
-
-### EfficientNetV2L
-
-### EfficientNetV2M
-
-### EfficientNetV2S
-
-### Inception-ResNet v2
-
-### Inception v3
-
-### MobileNet
-
-### MobileNetV2
-
-### MobileNetV3Large
-
-### MobileNetV3Small
-
-### NASNetLarge
-
-### NASNetMobile
-
-### RegNetX002
-
-### RegNetX004
-
-### RegNetX006
-
-### RegNetX008
-
-### RegNetX016
-
-### RegNetX032
-
-### RegNetX040
-
-### RegNetX064
-
-### RegNetX080
-
-### RegNetX120
-
-### RegNetX160
-
-### RegNetX320
-
-### RegNetY002
-
-### RegNetY004
-
-### RegNetY006
-
-### RegNetY008
-
-### RegNetY016
-
-### RegNetY032
-
-### RegNetY040
-
-### RegNetY064
-
-### RegNetY080
-
-### RegNetY120
-
-### RegNetY160
-
-### RegNetY320
-
-### ResNet101
-
-### ResNet101V2
-
-### ResNet152
-
-### ResNet152V2
-
-### ResNet50
-
-### ResNet50V2
-
-### ResNetRS101
-
-### ResNetRS152
-
-### ResNetRS200
-
-### ResNetRS270
-
-### ResNetRS350
-
-### ResNetRS420
-
-### ResNetRS50
-
-### VGG16
-
-### VGG19
-
-### Xception
+> This is a `module`.
 
 ## Backend
 
