@@ -26,6 +26,8 @@
     - [Swish](#swish)
     - [Tanh](#tanh)
   - [Applications](#applications)
+    - [MobileNetV3Large](#mobilenetv3large)
+    - [MobileNetV3Small](#mobilenetv3small)
     - [Convnext](#convnext)
     - [Densenet](#densenet)
     - [Efficientnet](#efficientnet)
@@ -72,8 +74,8 @@
     - [Inception v3](#inception-v3-1)
     - [MobileNet](#mobilenet-1)
     - [MobileNetV2](#mobilenetv2)
-    - [MobileNetV3Large](#mobilenetv3large)
-    - [MobileNetV3Small](#mobilenetv3small)
+    - [MobileNetV3Large](#mobilenetv3large-1)
+    - [MobileNetV3Small](#mobilenetv3small-1)
     - [NASNetLarge](#nasnetlarge)
     - [NASNetMobile](#nasnetmobile)
     - [RegNetX002](#regnetx002)
@@ -881,6 +883,46 @@
 | x    | tensor            | req |
 
 ## Applications
+
+### MobileNetV3Large
+
+<!-- TODO: Finish this -->
+
+> This is a `function`.
+
+**Name**: tf.keras.applications.MobileNetV3Large
+
+**Parameters**:
+
+| name | input dtype/shape | use |
+| ---- | ----------------- | --- |
+|      |                   |     |
+|      |                   |     |
+|      |                   |     |
+
+**Layer Inputs**:
+
+1. All permitted layer inputs, with their shape and data type
+2. ...
+3. ...
+
+**Layer Outputs**:
+
+1. All layer outputs, with their shape and data type
+2. ...
+3. ...
+
+**Extra Notes:**
+
+1. Any extra notes about the layer
+2. ...
+3. ...
+
+**Compatibility Concerns**:
+
+1. 
+
+### MobileNetV3Small
 
 ### Convnext
 
