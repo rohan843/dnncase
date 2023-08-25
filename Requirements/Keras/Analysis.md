@@ -959,11 +959,23 @@ Sets image data format to 'channels_first' or 'channels_last'.
 
 ### BackupAndRestore
 
+> Useful in our case.
+
+Used to introduce fault tolerance. In case training (`model.fit()`) fails due to any errors, when the _user_ restarts the training, it starts from last successful epoch.
+
 ### BaseLogger
+
+> **_Absolutely Necessary_** to include this.
+
+Averages all metrics after each training epoch. We can choose what metrics _not_ to average.
 
 ### CSVLogger
 
+Streams epoch results in a CSV file.
+
 ### Callback
+
+
 
 ### CallbackList
 
