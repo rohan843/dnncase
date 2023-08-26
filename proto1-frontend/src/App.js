@@ -8,17 +8,17 @@ import ReactFlow, {
   addEdge,
 } from "reactflow";
 import Input from "./Components/Nodes/Input";
+import Output from "./Components/Nodes/Output";
 
 import "reactflow/dist/style.css";
 
-const nodeTypes = { input: Input };
+const nodeTypes = { input: Input, output: Output };
 
 const initialNodes = [
-  { id: "1", position: { x: 0, y: 0 }, data: { label: "1" } },
-  { id: "2", position: { x: 0, y: 100 }, data: { label: "2" } },
-  { id: "3", position: { x: 0, y: 100 }, type: "input" },
+  { id: "1", position: { x: 0, y: 100 }, type: "input" },
+  { id: "2", position: { x: 100, y: 100 }, type: "output" },
 ];
-const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
+const initialEdges = [];
 
 export default function App() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
