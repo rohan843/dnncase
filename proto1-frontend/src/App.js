@@ -11,6 +11,7 @@ import Input from "./Components/Nodes/Input";
 import Output from "./Components/Nodes/Output";
 import Layer from "./Components/Nodes/Layer";
 import Repeater from "./Components/Nodes/Repeater";
+import Reuse from "./Components/Nodes/Reuse";
 
 import "reactflow/dist/style.css";
 
@@ -19,6 +20,7 @@ const nodeTypes = {
   output: Output,
   layer: Layer,
   repeater: Repeater,
+  reuse: Reuse
 };
 
 const initialNodes = [
@@ -28,13 +30,19 @@ const initialNodes = [
     id: "3",
     position: { x: 100, y: 100 },
     type: "layer",
-    data: { inputCount: 2, outputCount: 3, value: "123" },
+    data: { inputCount: 2, outputCount: 3 },
   },
   {
     id: "4",
     position: { x: 200, y: 100 },
     type: "repeater",
     data: { outputCount: 5 },
+  },
+  {
+    id: "5",
+    position: { x: 300, y: 300 },
+    type: "reuse",
+    data: { reuseCount: 5 },
   },
 ];
 const initialEdges = [];
