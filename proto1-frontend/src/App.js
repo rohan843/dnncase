@@ -9,14 +9,21 @@ import ReactFlow, {
 } from "reactflow";
 import Input from "./Components/Nodes/Input";
 import Output from "./Components/Nodes/Output";
+import Layer from "./Components/Nodes/Layer";
 
 import "reactflow/dist/style.css";
 
-const nodeTypes = { input: Input, output: Output };
+const nodeTypes = { input: Input, output: Output, layer: Layer };
 
 const initialNodes = [
   { id: "1", position: { x: 0, y: 100 }, type: "input" },
   { id: "2", position: { x: 100, y: 100 }, type: "output" },
+  {
+    id: "3",
+    position: { x: 100, y: 100 },
+    type: "layer",
+    data: { inputCount: 2, outputCount: 3, value: "123" },
+  },
 ];
 const initialEdges = [];
 
