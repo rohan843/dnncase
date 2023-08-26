@@ -48,6 +48,7 @@ const initialNodes = [
 const initialEdges = [];
 
 export default function App() {
+  // eslint-disable-next-line no-unused-vars
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
