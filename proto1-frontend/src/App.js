@@ -10,10 +10,16 @@ import ReactFlow, {
 import Input from "./Components/Nodes/Input";
 import Output from "./Components/Nodes/Output";
 import Layer from "./Components/Nodes/Layer";
+import Repeater from "./Components/Nodes/Repeater";
 
 import "reactflow/dist/style.css";
 
-const nodeTypes = { input: Input, output: Output, layer: Layer };
+const nodeTypes = {
+  input: Input,
+  output: Output,
+  layer: Layer,
+  repeater: Repeater,
+};
 
 const initialNodes = [
   { id: "1", position: { x: 0, y: 100 }, type: "input" },
@@ -23,6 +29,12 @@ const initialNodes = [
     position: { x: 100, y: 100 },
     type: "layer",
     data: { inputCount: 2, outputCount: 3, value: "123" },
+  },
+  {
+    id: "4",
+    position: { x: 200, y: 100 },
+    type: "repeater",
+    data: { outputCount: 5 },
   },
 ];
 const initialEdges = [];
