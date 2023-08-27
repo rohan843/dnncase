@@ -1,4 +1,4 @@
-import BaseNode from "./BaseNode";
+import BaseNode from "./node_components/BaseNode";
 
 function Repeater({ data: { outputCount } }) {
   return (

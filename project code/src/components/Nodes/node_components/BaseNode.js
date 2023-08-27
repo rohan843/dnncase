@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import { Handle, Position } from "reactflow";
+import { Position } from "reactflow";
+import SingleConnectionHandle from "./SingleConnectionHandle";
 
 function BaseNode({ inputCount, outputCount, children, className }) {
   // Placing these in case either prop is null.
@@ -12,7 +13,7 @@ function BaseNode({ inputCount, outputCount, children, className }) {
 
   for (let i = 0; i < inputCount; i++) {
     handles.push(
-      <Handle
+      <SingleConnectionHandle
         id={`i${i}`}
         key={`i${i}`}
         type="target"
@@ -24,7 +25,7 @@ function BaseNode({ inputCount, outputCount, children, className }) {
 
   for (let i = 0; i < outputCount; i++) {
     handles.push(
-      <Handle
+      <SingleConnectionHandle
         id={`o${i}`}
         key={`o${i}`}
         type="source"
