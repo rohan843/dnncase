@@ -2,7 +2,14 @@ import classNames from "classnames";
 import { Position } from "reactflow";
 import SingleConnectionHandle from "./SingleConnectionHandle";
 
-function BaseNode({ inputCount, outputCount, children, className }) {
+function BaseNode({
+  inputCount,
+  outputCount,
+  children,
+  className,
+  showInputCountManipulationButtons,
+  showOutputCountManipulationButtons,
+}) {
   // Placing these in case either prop is null.
   if (!inputCount) inputCount = 0;
   if (!outputCount) outputCount = 0;
