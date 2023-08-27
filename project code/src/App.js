@@ -12,7 +12,7 @@ function App() {
   const handleNodeInsert = () => {
     setNodes([
       ...nodes,
-      { data: { label: "newNode" }, id: new Date().getTime() % 1000, position: { x: 0, y: 0 } },
+      { data: { label: "newNode" }, id: (new Date().getTime() % 1000).toString(), position: { x: 0, y: 0 } },
     ]);
   };
 
@@ -34,7 +34,6 @@ function App() {
         <GraphCanvas
           nodes={nodes}
           edges={edges}
-          onEntityDelete={handleNodeDelete}
         />
         <Right />
       </Bottom>
