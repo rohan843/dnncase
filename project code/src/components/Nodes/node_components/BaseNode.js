@@ -2,7 +2,8 @@ import classNames from "classnames";
 import { Position, NodeToolbar } from "reactflow";
 import SingleConnectionHandle from "./SingleConnectionHandle";
 
-// TODO: Add functionality to allow increase/decrease in input/output handles, i.e., the NodeToolbar functionality
+// TODO 1: Add functionality to allow increase/decrease in input/output handles, i.e., the NodeToolbar functionality
+// TODO 2: Make the toolbar functionality more tuned for repeater and reuse block and remove it for layers later.
 
 function BaseNode({
   inputCount,
