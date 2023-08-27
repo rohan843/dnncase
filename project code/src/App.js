@@ -9,7 +9,7 @@ function App() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
 
-  const handleNodeInsert = (type) => {
+  const handleNodeInsert = (type, typeAppropriateInputOutputCount) => {
     setNodes([
       ...nodes,
       {
@@ -18,6 +18,7 @@ function App() {
           inputCount: 2,
           outputCount: 2,
           reuseCount: 2,
+          ...typeAppropriateInputOutputCount,
         },
         id: (new Date().getTime() % 10000).toString(),
         position: { x: 0, y: 0 },
@@ -40,7 +41,7 @@ function App() {
           </button>
           <button
             onClick={() => {
-              handleNodeInsert("layer");
+              handleNodeInsert("layer", { inputCount: 2, outputCount: 2 });
             }}
           >
             Add new layer node
@@ -54,14 +55,14 @@ function App() {
           </button>
           <button
             onClick={() => {
-              handleNodeInsert("repeater");
+              handleNodeInsert("repeater", { outputCount: 2 });
             }}
           >
             Add new repeater node
           </button>
           <button
             onClick={() => {
-              handleNodeInsert("reuse");
+              handleNodeInsert("reuse", { reuseCount: 2 });
             }}
           >
             Add new reuse node
