@@ -1,6 +1,8 @@
 import classNames from "classnames";
-import { Position } from "reactflow";
+import { Position, NodeToolbar } from "reactflow";
 import SingleConnectionHandle from "./SingleConnectionHandle";
+
+// TODO: Add functionality to allow increase/decrease in input/output handles, i.e., the NodeToolbar functionality
 
 function BaseNode({
   inputCount,
@@ -15,6 +17,25 @@ function BaseNode({
   if (!outputCount) outputCount = 0;
 
   const handles = [];
+  const toolbar = (showOutputCountManipulationButtons ||
+    showInputCountManipulationButtons) && (
+    <NodeToolbar position={Position.Bottom}>
+      {showInputCountManipulationButtons && (
+        <div>
+          <p>Input</p>
+          <button>+</button>
+          <button>-</button>
+        </div>
+      )}
+      {showOutputCountManipulationButtons && (
+        <div>
+          <p>Output</p>
+          <button>+</button>
+          <button>-</button>
+        </div>
+      )}
+    </NodeToolbar>
+  );
 
   const height = Math.max(inputCount, outputCount) * 16;
 
@@ -43,9 +64,10 @@ function BaseNode({
   }
 
   return (
-    <div className={classNames("node", className)} style={{ height: height }}>
+    <div className={classNames("node", className)} style={{ height }}>
       <div>{children}</div>
       {handles}
+      {toolbar}
     </div>
   );
 }

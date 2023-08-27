@@ -1,5 +1,7 @@
 import { Handle, getConnectedEdges, useNodeId, useStore } from "reactflow";
 
+// TODO: This has the HIGHEST priority.
+// FIXME: Modify this at line 8 to get the number of edges connected to the _handle_ not the node.
 function SingleConnectionHandle(props) {
   const enclosingNodeId = useNodeId();
   const isConnectable = useStore((s) => {

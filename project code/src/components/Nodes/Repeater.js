@@ -2,7 +2,7 @@ import BaseNode from "./node_components/BaseNode";
 
 function Repeater({ data: { outputCount } }) {
   return (
-    <BaseNode inputCount={1} outputCount={outputCount}>
+    <BaseNode inputCount={1} outputCount={outputCount} showOutputCountManipulationButtons>
       Repeater
     </BaseNode>
   );
