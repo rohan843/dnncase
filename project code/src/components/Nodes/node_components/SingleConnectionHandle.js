@@ -7,7 +7,6 @@ function SingleConnectionHandle(props) {
     const connectedEdges = getConnectedEdges([node], s.edges);
     const handleId = props.id;
     const isCurHandleASource = props.type === "source";
-    console.log(connectedEdges);
     return (
       connectedEdges.filter((edge) => {
         if (isCurHandleASource) {
