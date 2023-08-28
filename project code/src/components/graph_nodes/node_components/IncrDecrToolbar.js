@@ -1,8 +1,8 @@
-import { NodeToolbar, Position } from "reactflow";
+import { NodeToolbar } from "reactflow";
 
-function HandleToolbar({ label, onIncrement, onDecrement }) {
+function IncrDecrToolbar({ label, onIncrement, onDecrement, position }) {
   return (
-    <NodeToolbar position={Position.Top}>
+    <NodeToolbar position={position}>
       <div>
         <p>{label}</p>
         <button onClick={onIncrement}>+</button>
@@ -12,4 +12,4 @@ function HandleToolbar({ label, onIncrement, onDecrement }) {
   );
 }
 
-export default HandleToolbar;
+export default IncrDecrToolbar;
