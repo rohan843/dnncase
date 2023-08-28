@@ -15,6 +15,7 @@ function App() {
       {
         data: {
           label: "newNode",
+          setNodes,
           ...typeAppropriateInputOutputCount,
         },
         id: (new Date().getTime() % 10000).toString(),

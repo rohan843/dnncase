@@ -12,6 +12,10 @@ function BaseNode({
   className,
   showInputCountManipulationButtons,
   showOutputCountManipulationButtons,
+  onIncrInputCount,
+  onDecrInputCount,
+  onIncrOutputCount,
+  onDecrOutputCount,
 }) {
   // Placing these in case either prop is null.
   if (!inputCount) inputCount = 0;
@@ -24,15 +28,15 @@ function BaseNode({
       {showInputCountManipulationButtons && (
         <div>
           <p>Input</p>
-          <button>+</button>
-          <button>-</button>
+          <button onClick={onIncrInputCount}>+</button>
+          <button onClick={onDecrInputCount}>-</button>
         </div>
       )}
       {showOutputCountManipulationButtons && (
         <div>
           <p>Output</p>
-          <button>+</button>
-          <button>-</button>
+          <button onClick={onIncrOutputCount}>+</button>
+          <button onClick={onDecrOutputCount}>-</button>
         </div>
       )}
     </NodeToolbar>
