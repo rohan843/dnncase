@@ -1,46 +1,13 @@
 import classNames from "classnames";
-import { Position, NodeToolbar } from "reactflow";
+import { Position } from "reactflow";
 import SingleConnectionHandle from "./SingleConnectionHandle";
 
-// TODO 1: Add functionality to allow increase/decrease in input/output handles, i.e., the NodeToolbar functionality
-// TODO 2: Make the toolbar functionality more tuned for repeater and reuse block and remove it for layers later.
-
-function BaseNode({
-  inputCount,
-  outputCount,
-  children,
-  className,
-  showInputCountManipulationButtons,
-  showOutputCountManipulationButtons,
-  onIncrInputCount,
-  onDecrInputCount,
-  onIncrOutputCount,
-  onDecrOutputCount,
-}) {
+function BaseNode({ inputCount, outputCount, children, className }) {
   // Placing these in case either prop is null.
   if (!inputCount) inputCount = 0;
   if (!outputCount) outputCount = 0;
 
   const handles = [];
-  const toolbar = (showOutputCountManipulationButtons ||
-    showInputCountManipulationButtons) && (
-    <NodeToolbar position={Position.Bottom}>
-      {showInputCountManipulationButtons && (
-        <div>
-          <p>Input</p>
-          <button onClick={onIncrInputCount}>+</button>
-          <button onClick={onDecrInputCount}>-</button>
-        </div>
-      )}
-      {showOutputCountManipulationButtons && (
-        <div>
-          <p>Output</p>
-          <button onClick={onIncrOutputCount}>+</button>
-          <button onClick={onDecrOutputCount}>-</button>
-        </div>
-      )}
-    </NodeToolbar>
-  );
 
   const height = Math.max(inputCount, outputCount) * 16;
 
@@ -72,7 +39,6 @@ function BaseNode({
     <div className={classNames("node", className)} style={{ height }}>
       <div>{children}</div>
       {handles}
-      {toolbar}
     </div>
   );
 }

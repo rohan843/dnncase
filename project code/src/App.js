@@ -39,7 +39,7 @@ function App() {
           </button>
           <button
             onClick={() => {
-              handleNodeInsert("layer", { inputCount: 2, outputCount: 2 });
+              handleNodeInsert("layer", { inputCount: 1, outputCount: 1 });
             }}
           >
             Add new layer node
