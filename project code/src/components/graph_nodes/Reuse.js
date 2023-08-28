@@ -7,7 +7,7 @@ import { Position } from "reactflow";
 function Reuse({ data: { reuseCount, setNodes }, id }) {
   const incrReuseCount = useOnIncrReuseCount();
   const decrReuseCount = useOnDecrReuseCount(2);
-  console.log(id, reuseCount);
+  
   return (
     <BaseNode inputCount={reuseCount} outputCount={reuseCount}>
       <div>Reuse</div>
