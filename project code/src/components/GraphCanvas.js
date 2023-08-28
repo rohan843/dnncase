@@ -4,7 +4,7 @@ import {
   GraphOutput,
   Repeater,
   Reuse,
-} from "./nodes/AllCustomNodes";
+} from "./graph_nodes/AllCustomNodes";
 import ReactFlow, {
   Background,
   Controls,
