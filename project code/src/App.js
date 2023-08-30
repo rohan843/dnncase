@@ -34,19 +34,49 @@ function App() {
 
   function onDownload(){
     const nodes1 = nodes.map(node => {
-      return {
-        id: node.id,
-        type: node.type,
-        inputCount: 0,
-        outputCount: 1
-      };
+      if(node.type == "layer"){
+        return {
+          id: node.id,
+          type: node.type,
+          inputCount: node.data.inputCount,
+          outputCount: node.data.outputCount
+        };
+      }else if(node.type == "reuse"){
+        return {
+          id: node.id,
+          type: node.type,
+          inputCount: node.data.reuseCount,
+          outputCount: node.data.reuseCount
+        };
+      }else if(node.type == "graphinput"){
+        return {
+          id: node.id,
+          type: node.type,
+          inputCount: 0,
+          outputCount: 1
+        };
+      }else if(node.type == "graphoutput"){
+        return {
+          id: node.id,
+          type: node.type,
+          inputCount: 1,
+          outputCount: 0
+        };
+      }else if(node.type == "repeater"){
+        return {
+          id: node.id,
+          type: node.type,
+          inputCount: 1,
+          outputCount: node.data.outputCount
+        };
+      }
     });
     const edges1 = edges.map(edge =>{
       return {
         sourceNode: edge.source,
-        sourceNodeHandle: edge.sourceHandle,
+        sourceNodeHandle: parseInt((edge.sourceHandle.substring(1)),10),
         targetNode: edge.target,
-        targetNodeHandle: edge.targetHandle,
+        targetNodeHandle: parseInt((edge.targetHandle.substring(1)),10)
       };
     })
     download(JSON.stringify(nodes1), "yourfile.json", "text/plain");
