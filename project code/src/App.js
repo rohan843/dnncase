@@ -24,12 +24,41 @@ function App() {
       },
     ]);
   };
+  function download(content, fileName, contentType) {
+    const a = document.createElement("a");
+    const file = new Blob([content], { type: contentType });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+  }
+
+  function onDownload(){
+    const nodes1 = nodes.map(node => {
+      return {
+        id: node.id,
+        type: node.type,
+        inputCount: 0,
+        outputCount: 1
+      };
+    });
+    const edges1 = edges.map(edge =>{
+      return {
+        sourceNode: edge.source,
+        sourceNodeHandle: edge.sourceHandle,
+        targetNode: edge.target,
+        targetNodeHandle: edge.targetHandle,
+      };
+    })
+    download(JSON.stringify(nodes1), "yourfile.json", "text/plain");
+    download(JSON.stringify(edges1), "yourfile.json", "text/plain");
+  }
 
   return (
     <div>
       <Top />
       <Bottom>
         <Left>
+          <button onClick={()=>{onDownload()}}>Download</button>
           <button
             onClick={() => {
               handleNodeInsert("graphinput");
