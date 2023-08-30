@@ -81,8 +81,8 @@ function App() {
         targetNodeHandle: parseInt(edge.targetHandle.substring(1), 10),
       };
     });
-    download(JSON.stringify(nodes1), "yourfile.json", "text/plain");
-    download(JSON.stringify(edges1), "yourfile.json", "text/plain");
+    const res = { nodes: nodes1, edges: edges1 };
+    download(JSON.stringify(res), "graph.json", "text/plain");
   }
 
   return (
