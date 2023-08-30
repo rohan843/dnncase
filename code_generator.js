@@ -1,8 +1,8 @@
 //pushing all input layers to a queue
 
 //const jsonString = '{"layers":[{"id":1,"type":"Graphinput"},{"id":2,"type":"dense"}]}';
-const response = await fetch("/api/names");
-const names = await response.json();
+// const response = await fetch("/api/names");
+// const names = await response.json();
 
 const jsonObject = {
   nodes: [
