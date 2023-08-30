@@ -32,53 +32,55 @@ function App() {
     a.click();
   }
 
-  function onDownload(){
-    const nodes1 = nodes.map(node => {
-      if(node.type == "layer"){
+  function onDownload() {
+    const nodes1 = nodes.map((node) => {
+      if (node.type === "layer") {
         return {
           id: node.id,
           type: node.type,
           inputCount: node.data.inputCount,
-          outputCount: node.data.outputCount
+          outputCount: node.data.outputCount,
         };
-      }else if(node.type == "reuse"){
+      } else if (node.type === "reuse") {
         return {
           id: node.id,
           type: node.type,
           inputCount: node.data.reuseCount,
-          outputCount: node.data.reuseCount
+          outputCount: node.data.reuseCount,
         };
-      }else if(node.type == "graphinput"){
+      } else if (node.type === "graphinput") {
         return {
           id: node.id,
           type: node.type,
           inputCount: 0,
-          outputCount: 1
+          outputCount: 1,
         };
-      }else if(node.type == "graphoutput"){
+      } else if (node.type === "graphoutput") {
         return {
           id: node.id,
           type: node.type,
           inputCount: 1,
-          outputCount: 0
+          outputCount: 0,
         };
-      }else if(node.type == "repeater"){
+      } else if (node.type === "repeater") {
         return {
           id: node.id,
           type: node.type,
           inputCount: 1,
-          outputCount: node.data.outputCount
+          outputCount: node.data.outputCount,
         };
+      } else {
+        return {};
       }
     });
-    const edges1 = edges.map(edge =>{
+    const edges1 = edges.map((edge) => {
       return {
         sourceNode: edge.source,
-        sourceNodeHandle: parseInt((edge.sourceHandle.substring(1)),10),
+        sourceNodeHandle: parseInt(edge.sourceHandle.substring(1), 10),
         targetNode: edge.target,
-        targetNodeHandle: parseInt((edge.targetHandle.substring(1)),10)
+        targetNodeHandle: parseInt(edge.targetHandle.substring(1), 10),
       };
-    })
+    });
     download(JSON.stringify(nodes1), "yourfile.json", "text/plain");
     download(JSON.stringify(edges1), "yourfile.json", "text/plain");
   }
@@ -88,7 +90,13 @@ function App() {
       <Top />
       <Bottom>
         <Left>
-          <button onClick={()=>{onDownload()}}>Download</button>
+          <button
+            onClick={() => {
+              onDownload();
+            }}
+          >
+            Download
+          </button>
           <button
             onClick={() => {
               handleNodeInsert("graphinput");
