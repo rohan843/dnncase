@@ -45,8 +45,8 @@ function App() {
         return {
           id: node.id,
           type: node.type,
-          inputCount: node.data.reuseCount,
-          outputCount: node.data.reuseCount,
+          inputCount: 1,
+          outputCount: 1,
         };
       } else if (node.type === "graphinput") {
         return {
