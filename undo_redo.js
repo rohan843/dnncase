@@ -8,7 +8,10 @@ class Delta {
     }
 
     fetchDeltaUndo() {
-     if(this.position>=0){
+     if(this.position==0){
+        this.position-=1;
+        print("empty array")
+     }else if(this.position>0){
         this.position-=1
         return this.history[this.position]  // Finally it will be converse
                 
