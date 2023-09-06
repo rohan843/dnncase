@@ -10,7 +10,7 @@ function Reuse({ data: { reuseCount, setNodes }, id }) {
   const nodeUpdate = useUpdateNodeInternals();
 
   return (
-    <BaseNode inputCount={reuseCount} outputCount={reuseCount}>
+    <BaseNode inputCount={reuseCount} outputCount={reuseCount} repetitionCount={5}>
       <div>Reuse</div>
       <IncrDecrToolbar
         label="Reuse"
