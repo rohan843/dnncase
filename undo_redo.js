@@ -1,5 +1,5 @@
 
-class Delta {
+class Undo_Redo_Delta_Archiver {
     
     constructor(){
         //this.object=object
@@ -10,10 +10,12 @@ class Delta {
     fetchDeltaUndo() {
      if(this.position==0){
         this.position-=1;
-        print("empty array")
-     }else if(this.position>0){
+        return null;
+     }
+     if(this.position>0){
+        let curr_obj=this.history[this.position].conjugate()
         this.position-=1
-        return this.history[this.position]  // Finally it will be converse
+        return curr_obj
                 
      }
         
@@ -50,19 +52,4 @@ class Delta {
 }
 
 const obj = new Delta()
-obj.insertNewDelta(1);
-obj.insertNewDelta(2);
-obj.insertNewDelta(3)
-obj.insertNewDelta(4)
-obj.insertNewDelta(5)
-obj.insertNewDelta(6)
-console.log(obj.history)
-console.log(obj.fetchDeltaUndo());
-console.log(obj.fetchDeltaUndo());
-console.log(obj.history)
-obj.insertNewDelta(7)
-console.log(obj.history)
-console.log(obj.fetchDeltaUndo());
-console.log(obj.history)
-console.log(obj.fetchDeltaRedo());
-console.log(obj.history)
+
