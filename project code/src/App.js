@@ -9,7 +9,11 @@ function App() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
 
-  const handleNodeInsert = (type, typeAppropriateInputOutputCount,hyperparameters) => {
+  const handleNodeInsert = (
+    type,
+    typeAppropriateInputOutputCount,
+    hyperparameters
+  ) => {
     setNodes([
       ...nodes,
       {
@@ -17,7 +21,7 @@ function App() {
           label: "newNode",
           setNodes,
           ...typeAppropriateInputOutputCount,
-          hyperparameters:hyperparameters
+          hyperparameters: hyperparameters,
         },
         id: (new Date().getTime() % 10000).toString(),
         position: { x: 0, y: 0 },
@@ -87,7 +91,7 @@ function App() {
   }
   const [text, setText] = useState("No Hyper Parameters");
 
-  function setRight(val){
+  function setRight(val) {
     setText(val);
   }
 
@@ -119,17 +123,21 @@ function App() {
           </button>
           <button
             onClick={() => {
-              handleNodeInsert("embedding_layer", { inputCount: 1, outputCount: 1}, {
-                input_dim:1,
-                output_dim:1,
-                embeddings_initializer:'uniform',
-                embeddings_regularizer:'None',
-                activity_regularizer:'None',
-                embeddings_constraint:'None',
-                mask_zero:false,
-                input_length:'None',
-                sparse:false,
-              });
+              handleNodeInsert(
+                "embedding_layer",
+                { inputCount: 1, outputCount: 1 },
+                {
+                  input_dim: 1,
+                  output_dim: 1,
+                  embeddings_initializer: "uniform",
+                  embeddings_regularizer: "None",
+                  activity_regularizer: "None",
+                  embeddings_constraint: "None",
+                  mask_zero: false,
+                  input_length: "None",
+                  sparse: false,
+                }
+              );
             }}
           >
             Add new Embedding layer node
@@ -150,7 +158,11 @@ function App() {
           </button>
           <button
             onClick={() => {
-              handleNodeInsert("reuse", { reuseCount: 2 });
+              handleNodeInsert("reuse", {
+                inputCount: 2,
+                outputCount: 3,
+                reuseCount: 2,
+              });
             }}
           >
             Add new reuse node
@@ -163,7 +175,7 @@ function App() {
           setNodes={setNodes}
           setRight={setRight}
         />
-        <Right text={text} nodes={nodes}/>
+        <Right text={text} nodes={nodes} />
       </Bottom>
     </div>
   );
