@@ -9,7 +9,11 @@ function App() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
 
-  const handleNodeInsert = (type, typeAppropriateInputOutputCount) => {
+  const handleNodeInsert = (
+    type,
+    typeAppropriateInputOutputCount,
+    hyperparameters
+  ) => {
     setNodes([
       ...nodes,
       {
@@ -17,6 +21,7 @@ function App() {
           label: "newNode",
           setNodes,
           ...typeAppropriateInputOutputCount,
+          hyperparameters: hyperparameters,
         },
         id: (new Date().getTime() % 10000).toString(),
         position: { x: 0, y: 0 },
@@ -84,6 +89,11 @@ function App() {
     const res = { nodes: nodes1, edges: edges1 };
     download(JSON.stringify(res), "graph.json", "text/plain");
   }
+  const [text, setText] = useState("No Hyper Parameters");
+
+  function setRight(val) {
+    setText(val);
+  }
 
   return (
     <div>
@@ -113,6 +123,27 @@ function App() {
           </button>
           <button
             onClick={() => {
+              handleNodeInsert(
+                "embedding_layer",
+                { inputCount: 1, outputCount: 1 },
+                {
+                  input_dim: 1,
+                  output_dim: 1,
+                  embeddings_initializer: "uniform",
+                  embeddings_regularizer: "None",
+                  activity_regularizer: "None",
+                  embeddings_constraint: "None",
+                  mask_zero: false,
+                  input_length: "None",
+                  sparse: false,
+                }
+              );
+            }}
+          >
+            Add new Embedding layer node
+          </button>
+          <button
+            onClick={() => {
               handleNodeInsert("graphoutput");
             }}
           >
@@ -127,7 +158,11 @@ function App() {
           </button>
           <button
             onClick={() => {
-              handleNodeInsert("reuse", { reuseCount: 2 });
+              handleNodeInsert("reuse", {
+                inputCount: 2,
+                outputCount: 3,
+                reuseCount: 2,
+              });
             }}
           >
             Add new reuse node
@@ -138,8 +173,9 @@ function App() {
           edges={edges}
           setEdges={setEdges}
           setNodes={setNodes}
+          setRight={setRight}
         />
-        <Right />
+        <Right text={text} nodes={nodes} />
       </Bottom>
     </div>
   );

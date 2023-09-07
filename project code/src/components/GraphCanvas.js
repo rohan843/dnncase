@@ -1,6 +1,8 @@
+import { useState } from "react";
 import {
   GraphInput,
   Layer,
+  EmbeddingLayer,
   GraphOutput,
   Repeater,
   Reuse,
@@ -19,13 +21,23 @@ import "reactflow/dist/style.css";
 const nodeTypes = {
   graphinput: GraphInput,
   layer: Layer,
+  embedding_layer:EmbeddingLayer,
   graphoutput: GraphOutput,
   repeater: Repeater,
   reuse: Reuse,
 };
 
-function GraphCanvas({ nodes, edges, setNodes, setEdges }) {
+
+function GraphCanvas({ nodes, edges, setNodes, setEdges,setRight }) {
+  const [text, setText] = useState("success");
+
+  function setright(val){
+    setRight(val);
+  }
+
   const onNodesChange = (changes) => {
+    setright(changes[0].id);
+    console.log(changes);
     setNodes((nodes) => applyNodeChanges(changes, nodes));
   };
   const onEdgesChange = (changes) => {
