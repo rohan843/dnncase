@@ -4,127 +4,7 @@
 // const response = await fetch("/api/names");
 // const names = await response.json();
 
-const jsonObject = {
-  nodes: [
-    {
-      id: "10",
-      type: "graphinput",
-      inputCount: 0,
-      outputCount: 1,
-    },
-    {
-      id: "11",
-      type: "graphinput",
-      inputCount: 0,
-      outputCount: 1,
-    },
-    {
-      id: "12",
-      type: "layer",
-      inputCount: 2,
-      outputCount: 2,
-    },
-    {
-      id: "13",
-      type: "repeater",
-      inputCount: 1,
-      outputCount: 2,
-    },
-    {
-      id: "14",
-      type: "layer",
-      inputCount: 2,
-      outputCount: 2,
-    },
-    {
-      id: "15",
-      type: "reuse",
-      inputCount: 1,
-      outputCount: 1,
-    },
-
-    {
-      id: "16",
-      type: "graphoutput",
-      inputCount: 1,
-      outputCount: 0,
-    },
-    {
-      id: "17",
-      type: "graphoutput",
-      inputCount: 1,
-      outputCount: 0,
-    },
-    {
-      id: "18",
-      type: "graphoutput",
-      inputCount: 1,
-      outputCount: 0,
-    },
-  ],
-  edges: [
-    {
-      sourceNode: "10",
-      sourceNodeHandle: 0,
-      targetNode: "12",
-      targetNodeHandle: 0,
-    },
-    {
-      sourceNode: "11",
-      sourceNodeHandle: 0,
-      targetNode: "12",
-      targetNodeHandle: 1,
-    },
-    {
-      sourceNode: "12",
-      sourceNodeHandle: 0,
-      targetNode: "13",
-      targetNodeHandle: 0,
-    },
-    {
-      sourceNode: "12",
-      sourceNodeHandle: 1,
-      targetNode: "14",
-      targetNodeHandle: 0,
-    },
-    {
-      sourceNode: "13",
-      sourceNodeHandle: 0,
-      targetNode: "15",
-      targetNodeHandle: 0,
-    },
-    {
-      sourceNode: "13",
-      sourceNodeHandle: 1,
-      targetNode: "14",
-      targetNodeHandle: 1,
-    },
-    {
-      sourceNode: "14",
-      sourceNodeHandle: 0,
-      targetNode: "15",
-      targetNodeHandle: 1,
-    },
-    {
-      sourceNode: "14",
-      sourceNodeHandle: 1,
-      targetNode: "18",
-      targetNodeHandle: 0,
-    },
-    {
-      sourceNode: "15",
-      sourceNodeHandle: 0,
-      targetNode: "16",
-      targetNodeHandle: 0,
-    },
-    {
-      sourceNode: "15",
-      sourceNodeHandle: 1,
-      targetNode: "17",
-      targetNodeHandle: 0,
-    },
-  ],
-};
+const jsonObject = {"nodes":[{"id":"5483","type":"graphinput","inputCount":0,"outputCount":1},{"id":"1418","type":"layer","inputCount":1,"outputCount":1},{"id":"7410","type":"graphoutput","inputCount":1,"outputCount":0}],"edges":[{"sourceNode":"5483","sourceNodeHandle":0,"targetNode":"1418","targetNodeHandle":0},{"sourceNode":"1418","sourceNodeHandle":0,"targetNode":"7410","targetNodeHandle":0}]};
 
 // pushing input layer in a list
 const inpt_layers = [];
@@ -145,7 +25,7 @@ for (const layer of jsonObject.nodes) {
   nde_out_list.set(layer.id, []);
 }
 // console.log(inpt_layers)
-console.log(nde_inpt_list);
+// console.log(nde_inpt_list);
 
 // adjacency list
 const adjList = new Map();
@@ -164,7 +44,7 @@ for (const layer of jsonObject.edges) {
   }
 }
 // console.log("start")
-console.log(adjList);
+// console.log(adjList);
 
 let global_cnt = 1;
 
