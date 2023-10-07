@@ -159,8 +159,8 @@ function App() {
           <button
             onClick={() => {
               handleNodeInsert("reuse", {
-                inputCount: 2,
-                outputCount: 3,
+                inputCount: 1,
+                outputCount: 1,
                 reuseCount: 2,
               });
             }}
