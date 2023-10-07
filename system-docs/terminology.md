@@ -39,8 +39,17 @@ There are various terms used in this system. Each may refer to a system componen
 ### A
 
 - Artifact
+  - Relation to Configuration Files
   - Immutable
   - Versioned
+  - TrainedModel
+  - TunedModel
+  - ModelBlueprint
+  - HyperModelBlueprint
+  - LayerBlueprint
+  - TrainableModel
+  - TunableModel
+  - Dataset
 
 ### B
 
@@ -51,10 +60,14 @@ There are various terms used in this system. Each may refer to a system componen
   - Code
   - TODOs
   - Low-Level
+- Configuration Files
+  - Relation to artifacts
 
 ### D
 
 ### E
+
+- Error Analyser: _Samples a dataset and evaluates a model on it. Displays the error-causing data points._
 
 ### F
 
@@ -81,6 +94,13 @@ There are various terms used in this system. Each may refer to a system componen
 ### N
 
 - Neural Network
+- Nodes
+  - Layer
+  - Packer
+  - Unpacker
+  - Reuse
+  - Input
+  - Output
 
 ### O
 
