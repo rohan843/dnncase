@@ -1,10 +1,10 @@
-<mxfile host="Electron" modified="2023-09-20T18:38:05.914Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="VH9ny4J9xCW52Ofq5NUk" version="21.7.5" type="device">
+<mxfile host="Electron" modified="2023-10-04T17:43:17.853Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.8.2 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="GclWN754lEZKn-Msxv2O" version="21.8.2" type="device">
   <diagram name="Page-1" id="XSA-Azo793KCP2tqFHlI">
-    <mxGraphModel dx="1750" dy="1435" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="2333" dy="1380" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-18" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;orthogonal=1;strokeColor=default;startArrow=classic;startFill=1;noEdgeStyle=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-15" target="y4iu-hzvsDn3vC2Kyh1K-16">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-18" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;orthogonal=1;strokeColor=default;startArrow=classic;startFill=1;noEdgeStyle=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-15" target="y4iu-hzvsDn3vC2Kyh1K-16" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="165" y="802" />
@@ -12,10 +12,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-15" value="Frontend Design&lt;br&gt;=&lt;br&gt;React Component Hierarchy + Redux Store Design + Event Management Design" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-15" value="Frontend Design&lt;br&gt;=&lt;br&gt;React Component Hierarchy + Redux Store Design + Event Management Design" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry y="710" width="330" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-16" target="y4iu-hzvsDn3vC2Kyh1K-38">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-16" target="y4iu-hzvsDn3vC2Kyh1K-38" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="225" y="982" />
@@ -23,10 +23,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-16" value="Begin implementation of Frontend&lt;br&gt;=&lt;br&gt;Create code + add comments to serve as initial documentation" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-16" value="Begin implementation of Frontend&lt;br&gt;=&lt;br&gt;Create code + add comments to serve as initial documentation" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="120" y="890" width="210" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-17" target="y4iu-hzvsDn3vC2Kyh1K-15">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-17" target="y4iu-hzvsDn3vC2Kyh1K-15" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="341" y="612" />
@@ -34,7 +34,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-17" target="y4iu-hzvsDn3vC2Kyh1K-20">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-17" target="y4iu-hzvsDn3vC2Kyh1K-20" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="391" y="612" />
@@ -42,10 +42,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-17" value="Finalize Set of features for first release" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-17" value="Finalize Set of features for first release" style="html=1;whiteSpace=wrap;fillColor=#c3ae98;strokeColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="311" y="550" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-20" target="y4iu-hzvsDn3vC2Kyh1K-22">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;startArrow=classic;startFill=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-20" target="y4iu-hzvsDn3vC2Kyh1K-22" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="525" y="802" />
@@ -53,10 +53,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-20" value="Backend Design&lt;br&gt;=&lt;br&gt;Class Design + Frontend-backend interface design + Design of active components as (service workers/renderer processes/utility processes/etc.) + (to be decided)" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-20" value="Backend Design&lt;br&gt;=&lt;br&gt;Class Design + Frontend-backend interface design + Design of active components as (service workers/renderer processes/utility processes/etc.) + (to be decided)" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="360" y="700" width="330" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.707;entryY=0.021;entryDx=0;entryDy=0;entryPerimeter=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-22" target="y4iu-hzvsDn3vC2Kyh1K-38">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.707;entryY=0.021;entryDx=0;entryDy=0;entryPerimeter=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-22" target="y4iu-hzvsDn3vC2Kyh1K-38" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="465" y="982" />
@@ -64,10 +64,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-22" value="Begin implementation of Backend&lt;br&gt;=&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Create code + add comments to serve as initial documentation" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-22" value="Begin implementation of Backend&lt;br&gt;=&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Create code + add comments to serve as initial documentation" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="360" y="890" width="210" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-24" target="y4iu-hzvsDn3vC2Kyh1K-17">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-24" target="y4iu-hzvsDn3vC2Kyh1K-17" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="190" y="462" />
@@ -75,10 +75,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-24" value="UI Design&lt;br&gt;=&lt;br&gt;Main interface design + Tab based internal design" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-24" value="UI Design&lt;br&gt;=&lt;br&gt;Main interface design + Tab based internal design" style="html=1;whiteSpace=wrap;fillColor=#c3ae98;strokeColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="100" y="370" width="180" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-26" target="y4iu-hzvsDn3vC2Kyh1K-17">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-26" target="y4iu-hzvsDn3vC2Kyh1K-17" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="380" y="462" />
@@ -86,10 +86,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-26" value="Checking initial graph language on examples for coverage" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-26" value="Checking initial graph language on examples for coverage" style="html=1;whiteSpace=wrap;fillColor=#c3ae98;strokeColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="310" y="372.5" width="140" height="75" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-29" target="y4iu-hzvsDn3vC2Kyh1K-17">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-29" target="y4iu-hzvsDn3vC2Kyh1K-17" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="535" y="462" />
@@ -97,10 +97,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-29" value="Design of validation on graphs of neural networks" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-29" value="Design of validation on graphs of neural networks" style="html=1;whiteSpace=wrap;fillColor=#c3ae98;strokeColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="480" y="385" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-38" target="y4iu-hzvsDn3vC2Kyh1K-41">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-38" target="y4iu-hzvsDn3vC2Kyh1K-41" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="345" y="1142" />
@@ -108,10 +108,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-38" value="Create system-wide documentation for first release" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-38" value="Create system-wide documentation for first release" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="250" y="1070" width="190" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-41" target="y4iu-hzvsDn3vC2Kyh1K-56">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-41" target="y4iu-hzvsDn3vC2Kyh1K-56" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="345" y="1312" />
@@ -119,10 +119,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-41" value="Test the first release&lt;br&gt;=&lt;br&gt;black-box testing + usability testing" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-41" value="Test the first release&lt;br&gt;=&lt;br&gt;black-box testing + usability testing" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="265" y="1230" width="160" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-43" target="y4iu-hzvsDn3vC2Kyh1K-24">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-43" target="y4iu-hzvsDn3vC2Kyh1K-24" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="317.6666666666667" y="282" />
@@ -130,7 +130,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-43" target="y4iu-hzvsDn3vC2Kyh1K-26">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-43" target="y4iu-hzvsDn3vC2Kyh1K-26" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="371" y="284" />
@@ -138,7 +138,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-43" target="y4iu-hzvsDn3vC2Kyh1K-29">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-43" target="y4iu-hzvsDn3vC2Kyh1K-29" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="424.3333333333333" y="282" />
@@ -146,10 +146,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-43" value="Create a prototype for basic system understanding and requirements gathering" style="html=1;whiteSpace=wrap;fillColor=#c3ae98;strokeColor=#523f0f;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-43" value="Create a prototype for basic system understanding and requirements gathering" style="html=1;whiteSpace=wrap;fillColor=#c3ae98;strokeColor=#523f0f;" parent="1" vertex="1">
           <mxGeometry x="286" y="180" width="170" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-47" target="y4iu-hzvsDn3vC2Kyh1K-43">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-47" target="y4iu-hzvsDn3vC2Kyh1K-43" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="260" y="92" />
@@ -157,10 +157,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-47" value="Analyse previous work done in the area of graphical interface for neural network code generation" style="html=1;whiteSpace=wrap;fillColor=#c3ae98;strokeColor=#523f0f;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-47" value="Analyse previous work done in the area of graphical interface for neural network code generation" style="html=1;whiteSpace=wrap;fillColor=#c3ae98;strokeColor=#523f0f;" parent="1" vertex="1">
           <mxGeometry x="165" width="190" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" edge="1" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-49" target="y4iu-hzvsDn3vC2Kyh1K-43">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;" parent="1" source="y4iu-hzvsDn3vC2Kyh1K-49" target="y4iu-hzvsDn3vC2Kyh1K-43" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="455" y="92" />
@@ -168,23 +168,23 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-49" value="Decide a very top level and initial set of requirements for the system." style="html=1;whiteSpace=wrap;fillColor=#c3ae98;strokeColor=#523f0f;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-49" value="Decide a very top level and initial set of requirements for the system." style="html=1;whiteSpace=wrap;fillColor=#c3ae98;strokeColor=#523f0f;" parent="1" vertex="1">
           <mxGeometry x="385" y="5" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-54" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
-          <mxGeometry x="630" y="350" width="20" height="120" as="geometry" />
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-54" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="750" y="685" width="20" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-55" value="&lt;b&gt;This part ongoing&lt;/b&gt;" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
-          <mxGeometry x="690" y="385" width="90" height="50" as="geometry" />
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-55" value="&lt;b&gt;This part ongoing&lt;/b&gt;" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="810" y="720" width="90" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-56" value="Analyse:&lt;br&gt;&lt;ol&gt;&lt;li&gt;Black-box test results (was the system working as it should?)&lt;/li&gt;&lt;li&gt;Usability testing results&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Were people who were not on the development team, but knew about keras and deep learning able to use the system for code generation with ease? Was the generated code valid and readable?&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Were people who were not on the development team, but had only a very basic knowledge of neural networks (i.e., knew about dense networks, CNNs, and (optionally) RNNs conceptually, but had little to no practical experience of using them) able to create architectures with ease?&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;In any run, were any kind of validation messages easy to understand and resolve?&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Were the comments (low-level + high-level) easy to write? Were the low-level comments placed in the exported code appropriately?&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Future set of features to work on, for the next release&lt;/li&gt;&lt;ul&gt;&lt;li&gt;What new features to add?&lt;/li&gt;&lt;li&gt;What improvements to be made to the existing features?&lt;/li&gt;&lt;li&gt;What changes to be made to the system design for more expandablity?&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Any other relevant detail.&lt;/li&gt;&lt;/ol&gt;" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;align=left;" vertex="1" parent="1">
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-56" value="Analyse:&lt;br&gt;&lt;ol&gt;&lt;li&gt;Black-box test results (was the system working as it should?)&lt;/li&gt;&lt;li&gt;Usability testing results&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Were people who were not on the development team, but knew about keras and deep learning able to use the system for code generation with ease? Was the generated code valid and readable?&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Were people who were not on the development team, but had only a very basic knowledge of neural networks (i.e., knew about dense networks, CNNs, and (optionally) RNNs conceptually, but had little to no practical experience of using them) able to create architectures with ease?&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;In any run, were any kind of validation messages easy to understand and resolve?&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Were the comments (low-level + high-level) easy to write? Were the low-level comments placed in the exported code appropriately?&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Future set of features to work on, for the next release&lt;/li&gt;&lt;ul&gt;&lt;li&gt;What new features to add?&lt;/li&gt;&lt;li&gt;What improvements to be made to the existing features?&lt;/li&gt;&lt;li&gt;What changes to be made to the system design for more expandablity?&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Any other relevant detail.&lt;/li&gt;&lt;/ol&gt;" style="html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;align=left;" parent="1" vertex="1">
           <mxGeometry x="120" y="1400" width="450" height="359" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-51" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
-          <mxGeometry x="630" y="-40" width="20" height="360" as="geometry" />
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-51" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="710" width="20" height="590" as="geometry" />
         </mxCell>
-        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-52" value="This part done" style="text;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
-          <mxGeometry x="710" y="112.5" width="91" height="55" as="geometry" />
+        <mxCell id="y4iu-hzvsDn3vC2Kyh1K-52" value="This part done" style="text;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="809" y="267.5" width="91" height="55" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
