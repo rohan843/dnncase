@@ -81,7 +81,7 @@ function App() {
     const edges1 = edges.map((edge) => {
       return {
         sourceNode: edge.source,
-        sourceNodeHandle: parseInt(edge.sourceHandle.substring(1), 10),
+        sourceNodeHandle: parseInt(edge.sourceHandle.substring(1), 10), // i2g3
         targetNode: edge.target,
         targetNodeHandle: parseInt(edge.targetHandle.substring(1), 10),
       };

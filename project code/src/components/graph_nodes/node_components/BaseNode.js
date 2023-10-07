@@ -23,7 +23,8 @@ function BaseNode({
   for (let i = 0; i < repetitionCount; i++) {
     for (let j = 0; j < inputCount; j++) {
       const overallCountOfInputHandle = j + i * inputCount;
-      const curId = `i${j}g${i}`;
+      // const curId = `i${j}g${i}`;
+      const curId = `i${overallCountOfInputHandle}`;
       handles.push(
         <SingleConnectionHandle
           id={curId}
@@ -39,7 +40,7 @@ function BaseNode({
     }
     for (let j = 0; j < outputCount; j++) {
       const overallCountOfOutputHandle = j + i * outputCount;
-      const curId = `o${j}g${i}`;
+      const curId = `o${overallCountOfOutputHandle}`;
       handles.push(
         <SingleConnectionHandle
           id={curId}
