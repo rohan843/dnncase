@@ -65,6 +65,8 @@ There are various terms used in this system. Each may refer to a system componen
 
 ### D
 
+- Delta
+
 ### E
 
 - Error Analyser: _Samples a dataset and evaluates a model on it. Displays the error-causing data points._
@@ -113,15 +115,21 @@ There are various terms used in this system. Each may refer to a system componen
 
 ### R
 
+- Redo
+- Reversibility Of Actions
+
 ### S
 
 ### T
 
 ### U
 
+- Undo
+
 ### V
 
 - Validator
+- Versioning
 - Visualizer
 
 ### W
