@@ -71,6 +71,8 @@ There are various terms used in this system. Each may refer to a system componen
 
 ### F
 
+- Fixes
+
 ### G
 
 ### H
@@ -85,6 +87,7 @@ There are various terms used in this system. Each may refer to a system componen
 
 ### L
 
+- Localization of Validation Messages
 - Logger
 
 ### M
