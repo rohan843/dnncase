@@ -42,11 +42,24 @@ Let's quickly review what these are.
 Say we have a function $F(x)$. This function may be expanded as follows:
 
 $$
-F(x) = \theta_{1} * x_{1} + \theta_{2} * x_{2} + ... + \theta_{n} * x_{n}
-     = \sum_{i = 1}^n \theta_{i} * x_{i}
+F(x) = \theta_{1} * x_{1} + \theta_{2} * x_{2} + ... + \theta_{n} * x_{n} + \theta_{0}
+     = \sum_{i = 1}^n (\theta_{i} * x_{i}) + \theta_{0}
 $$
 
 Here, all the $\theta_{i}$'s are the various parameters of this model, and $x$ is an $n$-dimensional array.
+
+You may have guessed already what model this is. This is the common and well-known `linear regression` model. It is widely used in predicting the value of an unknown, $F(x)$, given the value of lots of knowns, i.e., $x_{i}$'s.
+
+> **A side note**: This is probably the most simplest neural network one encounters. It has a dense layer with linear activation, or, as Keras would describe it:
+>
+> ```py
+> n = some_integer_value  # The dimentions in input
+>
+> x = Input(input_shape=(n))
+> result = Dense(1, activation='linear')(x)
+>
+> F = Model(inputs=x, outputs=result)
+> ```
 
 ## References
 
