@@ -100,13 +100,13 @@ $\hat{y}$: This is the output value given by our model for an input $x$.
 
 $y$: This is the actual (or, ground truth) value that should have been given out for $x$.
 
-$C$: Let's consider what we have - a task which when _fully_ acheived, we'll have created a function (or, model) that can take in any input $x$, no matter how complex and map it to an output $\hat{y}$ that is always correct, i.e., $y = \hat{y}$. This is hypothetical of course, as many tasks can never be fully acheived (see: [bayes error](https://en.wikipedia.org/wiki/Bayes_error_rate), TLDR: it is the minimum error intrinsic in a task). If, however a function existed that _did_ give us a correct output for each input, let's call that function $C$. We don't know this function, but are creating out models and training them to make them reach as close as possible to this function.
+$C$: Let's consider what we have - a task which when _fully_ acheived, we'll have created a function (or, model) that can take in any input $x$, no matter how complex and map it to an output $\hat{y}$ that is always correct, i.e., $y = \hat{y}$. This is hypothetical of course, as many tasks can never be fully acheived (see: [bayes error](https://en.wikipedia.org/wiki/Bayes_error_rate), TLDR: it is the minimum error intrinsic in a task that can't be overcome). If, however a function existed that _did_ give us a correct output for each input, let's call that function $C$. We don't know this function, but are creating out models and training them to make them reach as close as possible to this function.
 
 $D_{train}$: Let's use this to refer to the training dataset (with $(x, y)$ pairs) for our model.
 
 $D_{test}$: Let's use this to refer to the testing dataset (with $(x, y)$ pairs) for our model. This is typically different from $D_{train}$.
 
-$\Theta$: Let's use capitalized $\theta$ to refer to the set of parameters of out model.
+$\Theta$: Let's use capitalized $\theta$ to refer to the set of parameters of our model.
 
 $J$: Finally, we require a cost metric that serves as our objective function. We wish to reduce this value to a minimum. This is essentially a function of the following signature:
 
@@ -127,6 +127,28 @@ def cost_function(assigned_probs, true_probs):
 > **Note on Terminology**: Some people prefer to call it a _loss_ function when computed on a single $(y, \hat{y})$ pair and a _cost_ function when applied on a set of pairs. We do not make this distinction and use the terms 'cost function' and 'loss function' interchangeably.
 
 Observe that a cost function is computed on a _batch_ of data. This batch may have only a single entry, but it's a batch nonetheless. Although training is not covered yet, but in each training pass, we compute losses w.r.t. a batch of data. Each 'pass' is refered to as a training `epoch`. There are various ways to choose a batch in every epoch - we can choose the full training set $D_{train}$, some random subset of it, or even a single value from it.
+
+Based on this batching idea, we may rewrite the computation of $J$ as:
+
+$$
+J(set\ of\ (y, \hat{y})\ pairs) = J_{given\ M\ with\ params\ \Theta}(D_{current\ batch})
+$$
+
+So, as stated above, first we define a model architecture, $M$, with some trainable parameters $\Theta$ that have some initial values. Our next step would be to train this model on our dataset $D_{train}$. This is done to minimize the total loss $J$.
+
+Mathematically, we are looking for
+
+$$
+\underset{\Theta}{argmin}\ (J_{given\ M\ with\ params\ \Theta}(D_{training\ batch\ of\ current\ epoch}))
+$$
+
+in each training epoch.
+
+> I.e., each in each training epoch, we do the following:
+> 
+> 1. Get a batch of data to use in this epoch. This will be considered as a set of **constants** for this epoch.
+> 2. Apply to each $(x, y)$ pair the model $M$ with parameters $\Theta$ to convert it to a $(y, \hat{y})$ pair.
+> 3. To this set of $(y, \hat{y})$ pairs, apply the cost function to calculate the cost.
 
 
 
