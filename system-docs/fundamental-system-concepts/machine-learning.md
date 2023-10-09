@@ -61,6 +61,12 @@ You may have guessed already what model this is. This is the common and well-kno
 > F = Model(inputs=x, outputs=result)
 > ```
 
+This is a very simple model - you'll probably work with models that are way deeper and have more complex computations happening inside, not just a linear sum of products.
+
+Although model complexity may vary, all parametric models have one fundamental thing in common - they all have parameters as the only thing they need to learn. (Although there are the issues of hyperparameter tuning and data pre-processing which we won't discuss at this point for the sake of simplicity.)
+
+_As far as our system is concerned_, all models we create will have parameters (and only parameters) to be trained, and they can be trained using backpropagation.
+
 ## References
 
 [1]: T. M. Mitchell, "1.1 WELL-POSED LEARNING PROBLEMS," in Machine learning, Massachusetts: WCB McGraw-Hill, 1997, pp. 2–2.
