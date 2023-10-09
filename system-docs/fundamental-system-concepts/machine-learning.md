@@ -189,6 +189,8 @@ $H_{tunable}$: The set of hyperparameters that can be "tuned" to find best possi
 $\ddot{M}$: A function/class constructor that inputs a set of values as candidates for $H_{tunable}$ and builds a model along with associated training workflow and data preprocessing steps.
 
 > **This part is still under active analysis.** See also: [artifact relations](../artifacts.md)
+>
+> See also: [KerasTuner](https://keras.io/guides/keras_tuner/).
 
 ## References
 
