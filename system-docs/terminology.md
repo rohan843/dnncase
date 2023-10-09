@@ -65,7 +65,7 @@ There are various terms used in this system. Each may refer to a system componen
 
 ### D
 
-- Delta
+- [Delta](./delta.md)
 
 ### E
 
