@@ -154,7 +154,7 @@ How the updation of parameters occurs once the derivatives are calculated is not
 
 Now, given these automatically calculated gradients, the optimizer can update the values of parameters to a possibly better value based on its internal mechanisms.
 
-This completes one training step.
+This completes one training epoch.
 
 > I.e., each in each training epoch, we do the following:
 > 
@@ -167,7 +167,28 @@ This completes one training step.
 > This is repeated in each epoch.
 >
 
+Here, we need to be able to specify some things to be able to accurately perform training: 
 
+1. The dataset we'll use.
+2. How will forward propagation take place. (Specifying model architectures and parameter initializations is not enough in places where more than one models need to be combined in complex ways, such as while training GANs.)
+3. What cost function to use.
+4. What optimizer to use, along with its learning rate and other hyperparameters.
+
+Understanding testing is simple now. Simply follow steps 1-3 of training, with whatever cost functions to use to test the model.
+
+We said that a model is an architecture with multiple possible assignment of hyperparameters. But, in some cases coming up with the architecture itself can be a challenging task. The idea of automatic model architecture selection stems from the idea of a 'model' with not just multiple possible parameter assignments but lots of possible _hyperparameter_ assignments. We call this entity a **hypermodel** and denote it by $\ddot{M}$.
+
+Let's formally define a hypermodel and related terminology:
+
+$h$: A hyperparameter occurring in a model/set of models or associated training workflow(s).
+
+$H$: The set of all hyperparameters of a hypermodel.
+
+$H_{tunable}$: The set of hyperparameters that can be "tuned" to find best possible set of values.
+
+$\ddot{M}$: A function/class constructor that inputs a set of values as candidates for $H_{tunable}$ and builds a model along with associated training workflow and data preprocessing steps.
+
+> **This part is still under active analysis.** See also: [artifact relations](../artifacts.md)
 
 ## References
 
