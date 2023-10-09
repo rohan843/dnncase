@@ -144,11 +144,28 @@ $$
 
 in each training epoch.
 
+Naturally, we wish to minimize the cost. So, we apply an optimizer to our model. The way an optimizer works, is that it uses a variant of gradient descent to change the value of each parameter ($\theta$) based on the partial derivative of the cost function $J$ w.r.t. that parameter (a.k.a. gradient w.r.t. $\theta$), i.e., w.r.t. this value:
+
+$$
+\frac{\partial{J}}{\partial{\theta}} 
+$$
+
+How the updation of parameters occurs once the derivatives are calculated is not super relevant at this point, nor is too complex to understand. Therefore, it is left to the reader. However, we do have to find some way to calculate the derivatives of cost function w.r.t. each parameter. Thankfully, frameworks that underlie Keras already have a mechanism for this, known as **automatic differentiation**.
+
+Now, given these automatically calculated gradients, the optimizer can update the values of parameters to a possibly better value based on its internal mechanisms.
+
+This completes one training step.
+
 > I.e., each in each training epoch, we do the following:
 > 
-> 1. Get a batch of data to use in this epoch. This will be considered as a set of **constants** for this epoch.
-> 2. Apply to each $(x, y)$ pair the model $M$ with parameters $\Theta$ to convert it to a $(y, \hat{y})$ pair.
-> 3. To this set of $(y, \hat{y})$ pairs, apply the cost function to calculate the cost.
+> 1. **Get Data Batch**: Get a batch of data to use in this epoch. This will be considered as a set of **constants** for this epoch.
+> 2. **Perform Forward Propagation**: Apply to each $(x, y)$ pair the model $M$ with parameters $\Theta$ to convert it to a $(y, \hat{y})$ pair. (I.e., perform forward-propagation.)
+> 3. **Compute Cost**: To this set of $(y, \hat{y})$ pairs, apply the cost function to calculate the cost.
+> 4. **Perform Back Propagation**: Based on the calculation of the cost function, calculate the gradients of cost function w.r.t. each of the trainable parameters. (I.e., perform back-propagation.)
+> 5. **Apply Optimizer**: Update the values of each trainable parameter using the optimizer specified.
+>
+> This is repeated in each epoch.
+>
 
 
 
