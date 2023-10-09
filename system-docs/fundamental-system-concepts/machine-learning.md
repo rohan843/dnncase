@@ -16,9 +16,9 @@ Documenting the complete area of machine would be far beyond the scope of this d
 
 ## A Definition
 
-Tom Mitchell in his book 'Machine Learning' defines it in this manner[^1]:
+Tom Mitchell in his book 'Machine Learning' defines it in this manner [1]:
 
-> A computer program is said to learn from `experience E` with respect to some class of `tasks T` and `performance measure P`, _if its performance at tasks in T, as measured by P, improves with experience E_.
+> A `computer program` is said to learn from `experience E` with respect to some class of `tasks T` and `performance measure P`, _if its performance at tasks in T, as measured by P, improves with experience E_.
 
 
 
