@@ -6,8 +6,9 @@
   - [Contents](#contents)
   - [Scope of this Article](#scope-of-this-article)
   - [A Definition](#a-definition)
+  - [Parametric models](#parametric-models)
   - [Relevance to DNNCASE](#relevance-to-dnncase)
-    - [Parametric models](#parametric-models)
+  - [The Grand Scheme of Things](#the-grand-scheme-of-things)
   - [References](#references)
 
 ## Scope of this Article
@@ -29,15 +30,13 @@ This can be broken down as follows:
 3. `Experience E`: This is the _data_ that we use to train our learning algorithm. It may be labelled or unlabelled. Note that from a pure mathematical standpoint, **data is treated like constants, not variables when training an algorithm**.
 4. `Performance Measure P`: This is also called the _loss function or cost function or accuracy_, depending on context. When dealing with a single labelled data point (rather rare), we usually refer to it by a loss function. In the more common case of a labelled dataset, we may refer to this as a cost function (perhaps an average of all losses as calculated from a single data point). In the most generic case, we don't even need a labelled dataset. Any dataset works (depending on things such as task as well). Here, we usually measure performance by a generic accuracy metric. This is the case in decision trees. In DNNCASE, our focus is mainly on layered neural networks that require labelled data, so a loss/cost function is a must to be able to train the network, but we may use other accuracy metrics to gain insights from training processes too.
 
-## Relevance to DNNCASE
+## Parametric models
 
 The above discussion may have been a mouthful! In this section, we break it down to simpler terms in the context of DNNCASE.
 
 Recall that currently DNNCASE is built with neural networks in mind. This means that our focus is on parametric models.
 
 Let's quickly review what these are.
-
-### Parametric models
 
 Say we have a function $F(x)$. This function may be expanded as follows:
 
@@ -66,6 +65,32 @@ This is a very simple model - you'll probably work with models that are way deep
 Although model complexity may vary, all parametric models have one fundamental thing in common - they all have parameters as the only thing they need to learn. (Although there are the issues of hyperparameter tuning and data pre-processing which we won't discuss at this point for the sake of simplicity.)
 
 _As far as our system is concerned_, all models we create will have parameters (and only parameters) to be trained, and they can be trained using backpropagation.
+
+## Relevance to DNNCASE
+
+We saw above what parametric models are. Neural networks are a type of parametric models, and DNNCASE is a tool to build them, train them, tune them, and test them.
+
+For this purpose, we need to clearly define what these actions mean, and how they fit into the grand scheme of machine learning.
+
+## The Grand Scheme of Things
+
+Let's revisit Tom Mitchell's definition of machine learning. As a start, we require a task that we wish to perform in the real world. There are lots of tasks all around us. Here, we list some of them:
+
+1. Classify a picture as a cat picture or a dog picture.
+2. Classify a tumor as malicious or benign.
+3. Predict a house's price given its details.
+4. Hallucinate images of a tiger.
+5. Encode an audio file of a piano key into a 10 - dimensional vector.
+
+All these tasks can be acheived by training parametric models. Easier said than done!
+
+Here, let's try to come up with a way to acheive these tasks.
+
+First, we need a parametric model, i.e., a model consisting of a fixed number of parameters. Let's call this model $M$. This plays the role of the `computer program` in the definition above.
+
+> **Technical Note**: Because of the nature of our system, models that can't be trained via backpropagation, i.e., those without a differentiable cost function (more on that below) cannot be accomodated. However, this constraint shouldn't deter all but the most innovative algorithms from incorporation into DNNCASE.
+
+Next, 
 
 ## References
 
