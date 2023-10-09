@@ -86,11 +86,23 @@ All these tasks can be acheived by training parametric models. Easier said than 
 
 Here, let's try to come up with a way to acheive these tasks.
 
-First, we need a parametric model, i.e., a model consisting of a fixed number of parameters. Let's call this model $M$. This plays the role of the `computer program` in the definition above.
+First, we need a parametric model, i.e., a model consisting of a fixed number of parameters. Let's call this model $M$. This plays the role of the `computer program` in the definition above. The parameters will naturally be at some initial value. In most cases (other than transfer learning) this is a random initialization.
+
+For all purposes, a model is not much different from what we call a function (i.e., a mapping from one set to another). A way to look at a model is a _set_ of functions that all look the same (i.e., have the same syntax tree w.r.t. inputs and operators) with the only difference being the values of the constant multipliers or addends (i.e., parameter values) used. This goes on to say that **a model is like a specification of an _architecture_ in which various (possibly to-be-trained) parameters are placed, with each initialized to some value**.
 
 > **Technical Note**: Because of the nature of our system, models that can't be trained via backpropagation, i.e., those without a differentiable cost function (more on that below) cannot be accomodated. However, this constraint shouldn't deter all but the most innovative algorithms from incorporation into DNNCASE.
 
-Next, 
+Next, we require a few terms to make our analysis easier:
+
+$x$: Let's call the input(s) to our model $x$.
+
+$\hat{y}$: This is the output value given by our model for an input $x$.
+
+$y$: This is the actual (or, ground truth) value that should have been given out for $x$.
+
+$C$: Let's consider what we have - a task which when _fully_ acheived, we'll have created a function (or, model) that can take in any input $x$, no matter how complex and map it to an output $\hat{y}$ that is always correct, i.e., $y = \hat{y}$. This is hypothetical of course, as many tasks can never be fully acheived (see: [bayes error](https://en.wikipedia.org/wiki/Bayes_error_rate), TLDR: it is the minimum error intrinsic in a task). If, however a function existed that _did_ give us a correct output for each input, let's call that function $C$. We don't know this function, but are creating out models and training them to make them reach as close as possible to this function.
+
+
 
 ## References
 
