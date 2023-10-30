@@ -1,5 +1,15 @@
+import TopBar from "./components/topBarComponents/TopBar";
+import MainScreen from "./components/mainScreenComponents/MainScreen";
+import BottomBar from "./components/bottomBarComponents/BottomBar";
+
 function App() {
-  return <h1>App</h1>;
+  return (
+    <div>
+      <TopBar />
+      <MainScreen />
+      <BottomBar />
+    </div>
+  );
 }
 
 export default App;
