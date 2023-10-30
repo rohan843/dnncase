@@ -1,5 +1,11 @@
+import Logo from "./Logo";
+
 function TopBar() {
-  return <h2>TopBar</h2>;
+  return (
+    <div>
+      <Logo />
+    </div>
+  );
 }
 
 export default TopBar;
