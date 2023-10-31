@@ -1,11 +1,14 @@
 import OptionButton from "./OptionButton";
-import commentImage from '../../assets/comment.png'
+import commentImage from "../../assets/comment.png";
+import ToolTipWrapper from "../tooltipWrapper/ToolTipWrapper";
 
 function CommentsButton() {
   return (
-    <OptionButton>
-      <img className="h-full" src={commentImage} alt="" />
-    </OptionButton>
+    <ToolTipWrapper className="h-full" helpText="Comments">
+      <OptionButton>
+        <img className="h-full" src={commentImage} alt="" />
+      </OptionButton>
+    </ToolTipWrapper>
   );
 }
 

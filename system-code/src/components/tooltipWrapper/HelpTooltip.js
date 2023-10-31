@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useId } from "react";
 import { Tooltip } from "react-tooltip";
 
@@ -6,7 +7,6 @@ function HelpTooltip({ children, helpText, ...props }) {
   return (
     <div {...props}>
       <a
-        href="/"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();

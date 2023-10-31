@@ -4,11 +4,11 @@ import ToolTipWrapper from "../tooltipWrapper/ToolTipWrapper";
 
 function LogsButton() {
   return (
-    <OptionButton>
-      <ToolTipWrapper className="h-full" helpText="Logs">
+    <ToolTipWrapper className="h-full" helpText="Logs">
+      <OptionButton>
         <img className="h-full" src={logImage} alt="" />
-      </ToolTipWrapper>
-    </OptionButton>
+      </OptionButton>
+    </ToolTipWrapper>
   );
 }
 
