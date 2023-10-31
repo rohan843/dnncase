@@ -5,7 +5,7 @@ function OptionButton({ children, className, ...props }) {
     <div
       className={classNames(
         className,
-        "h-full cursor-pointer px-0.5 py-px rounded hover-background-darker hover-border-black-else-dark",
+        "h-full cursor-pointer px-1 py-px rounded hover-background-darker hover-border-black-else-dark",
         ""
       )}
       {...props}
