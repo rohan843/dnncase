@@ -1,5 +1,7 @@
 function MainScreen() {
-  return <div className="border-2 w-screen grow">MainScreen</div>;
+  return <div className="w-screen grow">
+    
+  </div>;
 }
 
 export default MainScreen;
