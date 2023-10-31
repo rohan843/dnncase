@@ -6,7 +6,7 @@ function OptionButton({ children, className, ...props }) {
       className={classNames(
         className,
         "h-full cursor-pointer px-1 py-px rounded hover-background-darker hover-border-black-else-dark",
-        ""
+        "select-none"
       )}
       {...props}
     >

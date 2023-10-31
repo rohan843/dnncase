@@ -6,7 +6,12 @@ function HelpTooltip({ children, helpText, ...props }) {
   window.test = children;
   return (
     <div {...props}>
-      <a data-tooltip-id={id} data-tooltip-content={helpText}>
+      <a
+        href="/"
+        className="pointer-events-none"
+        data-tooltip-id={id}
+        data-tooltip-content={helpText}
+      >
         {children}
       </a>
       <Tooltip id={id} />
