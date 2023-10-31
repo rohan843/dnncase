@@ -5,7 +5,7 @@ import HelpTooltip from "./HelpTooltip";
 function ToolTipWrapper({ docId, helpText, children, ...props }) {
   if (helpText && docId) {
   } else if (helpText && !docId) {
-    <HelpTooltip helpText={helpText} {...props}>
+    return <HelpTooltip helpText={helpText} {...props}>
       {children}
     </HelpTooltip>;
   } else if (!helpText && docId) {
