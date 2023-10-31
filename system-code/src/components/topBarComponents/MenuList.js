@@ -10,10 +10,10 @@ const menuData = [
 ];
 
 function MenuList() {
-  const individualMenusList = menuData.forEach((menu) => (
+  const individualMenusList = menuData.map((menu) => (
     <Menu key={menu.name} title={menu.name} />
   ));
-  return <div>{individualMenusList}</div>;
+  return <div className="flex flex-row">{individualMenusList}</div>;
 }
 
 export default MenuList;

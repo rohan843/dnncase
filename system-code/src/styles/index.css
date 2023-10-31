@@ -7,6 +7,7 @@ html {
     width: 100%;
     padding: 0%;
     margin: 0%;
+    overflow: hidden;
 }
 
 body {
@@ -20,4 +21,16 @@ body {
 
 .border-bottom-darker {
     border-bottom: 1px solid #8C8C8C;
+}
+
+.hover-background-darker:hover {
+    background-color: #8C8C8C;
+}
+
+.hover-border-black-else-dark {
+    border: 1px solid #C5C5C5;
+}
+
+.hover-border-black-else-dark:hover {
+    border: 1px solid black;
 }
