@@ -4,7 +4,7 @@ import CommentsButton from "./CommentsButton";
 
 function LeftSideOptions() {
   return (
-    <div className="h-3/4 flex flex-row px-1">
+    <div className="h-3/4 flex flex-row px-1 justify-between">
       <ValidationButton />
       <LogsButton />
       <CommentsButton />
