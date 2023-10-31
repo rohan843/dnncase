@@ -1,5 +1,5 @@
 function LeftPanel() {
-  return <div>LeftPanel</div>;
+  return <div className="border-2 h-full">LeftPanel</div>;
 }
 
 export default LeftPanel;

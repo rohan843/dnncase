@@ -6,7 +6,7 @@ function MainScreen() {
   return (
     <div className="w-screen grow flex flex-row">
       <LeftPanel />
-      <div className="flex flex-col">
+      <div className="flex flex-col border-2 h-full w-full">
         <Workspace />
         <Terminal />
       </div>
