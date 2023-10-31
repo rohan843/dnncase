@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Element Specific Global Rules */
+
 html {
     height: 100%;
     width: 100%;
@@ -15,9 +17,17 @@ body {
     margin: 0%;
 }
 
+/* Backgrounds */
+
 .background-dark {
     background-color: #C5C5C5;
 }
+
+.hover-background-darker:hover {
+    background-color: #8C8C8C;
+}
+
+/* Borders */
 
 .border-bottom-darker {
     border-bottom: 1px solid #8C8C8C;
@@ -27,10 +37,17 @@ body {
     border: 1px solid #8C8C8C;
 }
 
-.hover-background-darker:hover {
-    background-color: #8C8C8C;
-}
+/* 
+The bottom class displays a dark border or a black border, depending on the hover status.
+This is done to prevent any partial movement of the element the class is applied to, when hovered,
+as border occupies its own space.
 
+In other words, use this in place of something like
+
+.hover-border-black:hover {
+    border: 1px solid black
+}
+*/
 .hover-border-black-else-dark {
     border: 1px solid #C5C5C5;
 }
