@@ -4,7 +4,7 @@ import BottomBar from "./components/bottomBarComponents/BottomBar";
 
 function App() {
   return (
-    <div>
+    <div className="flex flex-col h-full w-screen">
       <TopBar />
       <MainScreen />
       <BottomBar />
