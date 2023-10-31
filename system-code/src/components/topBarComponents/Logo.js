@@ -1,7 +1,11 @@
-import { ReactComponent as LogoSVG } from "../../assets/Logo.svg";
+import logoImage from "../../assets/Logo.png";
 
 function Logo() {
-  return <LogoSVG />;
+  return (
+    <div className="">
+      <img src={logoImage} alt="" />
+    </div>
+  );
 }
 
 export default Logo;
