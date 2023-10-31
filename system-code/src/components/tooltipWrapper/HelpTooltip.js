@@ -7,10 +7,6 @@ function HelpTooltip({ children, helpText, ...props }) {
   return (
     <div {...props}>
       <a
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        }}
         data-tooltip-id={id}
         data-tooltip-content={helpText}
       >
