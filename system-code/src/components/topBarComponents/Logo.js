@@ -2,8 +2,8 @@ import logoImage from "../../assets/Logo.png";
 
 function Logo() {
   return (
-    <div className="">
-      <img src={logoImage} alt="" />
+    <div>
+      <img className="h-7" src={logoImage} alt="" />
     </div>
   );
 }

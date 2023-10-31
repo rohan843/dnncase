@@ -6,3 +6,7 @@ html {
     height: 100%;
     width: 100%;
 }
+
+.background-dark {
+    background-color: #C5C5C5;
+}
