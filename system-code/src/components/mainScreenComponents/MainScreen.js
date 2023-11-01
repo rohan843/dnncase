@@ -5,7 +5,7 @@ import Terminal from "./terminal/Terminal";
 
 function MainScreen() {
   return (
-    <div className="w-screen grow flex flex-row">
+    <div className="w-screen main-screen-height flex flex-row">
       <LeftBar />
       <LeftPanel />
       <div className="flex flex-col border-2 h-full w-full">

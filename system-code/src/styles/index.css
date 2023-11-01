@@ -71,3 +71,28 @@ In other words, use this in place of something like
     writing-mode: vertical-lr;
     transform: rotate(180deg);
 }
+
+/* Scrollbar Properties */
+
+.hide-scrollbar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.hide-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+/* Dimensions */
+
+.top-bar-height {
+    height: 2.75rem;
+}
+
+.main-screen-height {
+    height: calc(100vh - 4.75rem);
+}
+
+.bottom-bar-height {
+    height: 2rem;
+}
