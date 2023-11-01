@@ -7,11 +7,11 @@ function MainScreen() {
   return (
     <div className="w-screen grow flex flex-row">
       <LeftBar />
-      {/* <LeftPanel />
+      <LeftPanel />
       <div className="flex flex-col border-2 h-full w-full">
         <Workspace />
         <Terminal />
-      </div> */}
+      </div>
     </div>
   );
 }

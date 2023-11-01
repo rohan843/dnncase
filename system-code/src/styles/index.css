@@ -64,3 +64,10 @@ In other words, use this in place of something like
 .hover-border-black-else-dark:hover {
     border: 1px solid black;
 }
+
+/* Text Properties */
+
+.vertical-left-up-text {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}

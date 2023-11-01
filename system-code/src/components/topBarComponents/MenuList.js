@@ -13,7 +13,7 @@ function MenuList() {
   const individualMenusList = menuData.map((menu) => (
     <Menu key={menu.name} title={menu.name} />
   ));
-  return <div className="flex flex-row">{individualMenusList}</div>;
+  return <div className="flex flex-row select-none">{individualMenusList}</div>;
 }
 
 export default MenuList;
