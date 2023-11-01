@@ -1,5 +1,10 @@
 function Terminal() {
-  return <div className="border-2 w-full h-full">Terminal</div>;
+  return (
+    <div className="border-darker w-full h-full">
+      {/* <div className="w-full h-px cursor-row-resize" /> */}
+      Terminal
+    </div>
+  );
 }
 
 export default Terminal;
