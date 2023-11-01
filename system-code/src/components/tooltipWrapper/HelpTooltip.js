@@ -12,7 +12,7 @@ function HelpTooltip({ children, helpText, ...props }) {
       >
         {children}
       </a>
-      <Tooltip id={id} delayShow={100}/>
+      <Tooltip id={id} delayShow={100} className="z-50"/>
     </div>
   );
 }
