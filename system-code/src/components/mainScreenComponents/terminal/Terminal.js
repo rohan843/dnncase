@@ -1,7 +1,6 @@
 function Terminal() {
   return (
-    <div className="border-top-darker w-full h-full">
-      {/* <div className="w-full h-px cursor-row-resize" /> */}
+    <div className="border-top-darker w-full h-full background-dark">
       Terminal
     </div>
   );

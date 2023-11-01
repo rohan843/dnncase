@@ -4,7 +4,7 @@ import BottomBar from "./components/bottomBarComponents/BottomBar";
 
 function App() {
   return (
-    <div className="h-full w-screen">
+    <div className="h-full w-screen background-light">
       <TopBar />
       <MainScreen />
       <BottomBar />
