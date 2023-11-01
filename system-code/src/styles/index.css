@@ -42,6 +42,18 @@ body {
     border-bottom: 1px solid #8C8C8C;
 }
 
+.border-top-darker {
+    border-top: 1px solid #8C8C8C;
+}
+
+.border-left-darker {
+    border-left: 1px solid #8C8C8C;
+}
+
+.border-right-darker {
+    border-right: 1px solid #8C8C8C;
+}
+
 .border-darker {
     border: 1px solid #8C8C8C;
 }
