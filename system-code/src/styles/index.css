@@ -75,8 +75,8 @@ In other words, use this in place of something like
 /* Scrollbar Properties */
 
 .hide-scrollbar::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+    width: 0px;
+    height: 0px;
 }
 
 .hide-scrollbar::-webkit-scrollbar-thumb {
