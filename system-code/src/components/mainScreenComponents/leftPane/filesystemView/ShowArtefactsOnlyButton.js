@@ -17,11 +17,14 @@ function ShowArtefactsOnlyButton() {
       customDelayMS={ToolTipDelays.large}
     >
       <div
-        className={classNames("h-full py-2 px-1 opacity-50 cursor-pointer", {
-          "opacity-100": activated,
-          "hover:opacity-50": justDeactivatedButMouseStillOnElement,
-          "hover:opacity-100": !justDeactivatedButMouseStillOnElement,
-        })}
+        className={classNames(
+          "h-full py-2 px-1 cursor-pointer",
+          { "opacity-100": activated, "opacity-50": !activated },
+          {
+            "hover:opacity-100": !justDeactivatedButMouseStillOnElement,
+            "hover:opacity-50": justDeactivatedButMouseStillOnElement,
+          },
+        )}
         onClick={() => {
           if (activated) {
             setJustDeactivatedButMouseStillOnElement(true);
