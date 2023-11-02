@@ -6,6 +6,7 @@ import {
 import openDropdownIcon from "../../../../assets/hierarchy-dropdown-open.png";
 import closedDropdownIcon from "../../../../assets/hierarchy-dropdown-close.png";
 import fileIcon from "../../../../assets/file.png";
+import classNames from "classnames";
 
 // Keep this in redux
 // For an algo to get this, refer -> https://colab.research.google.com/drive/15wcb00OYHopah1twNGtBIeydOMb6ydic?usp=sharing
@@ -104,7 +105,7 @@ function HierarchicalDirectoryDisplay() {
   return (
     <div
       style={{ scrollbarGutter: "stable" }}
-      className="w-full h-full overflow-scroll thin-scrollbar-xy stable-scrollbar-gutter pt-1 pl-1 select-none"
+      className="w-full h-full overflow-scroll thin-scrollbar-xy stable-scrollbar-gutter pt-1 select-none"
     >
       <UncontrolledTreeEnvironment
         dataProvider={
@@ -121,16 +122,16 @@ function HierarchicalDirectoryDisplay() {
         renderItemTitle={({ title }) => <span>{title}</span>}
         renderItemArrow={({ item, context }) =>
           item.isFolder ? (
-            <div {...context.arrowProps} className="h-full">
+            <div {...context.arrowProps} className="h-full flex items-center">
               {context.isExpanded ? (
-                <img src={openDropdownIcon} alt="" className="h-full" />
+                <img src={openDropdownIcon} alt="" className="h-1 mx-1" />
               ) : (
-                <img src={closedDropdownIcon} alt="" className="h-full" />
+                <img src={closedDropdownIcon} alt="" className="w-1 mx-1" />
               )}
             </div>
           ) : (
-            <div {...context.arrowProps} className="h-full">
-              <img src={fileIcon} alt="" className="h-full" />
+            <div {...context.arrowProps} className="h-full flex items-center">
+              <img src={fileIcon} alt="" className="h-full mx-1" />
             </div>
           )
         }
@@ -139,12 +140,14 @@ function HierarchicalDirectoryDisplay() {
             <div
               {...context.itemContainerWithoutChildrenProps}
               {...context.interactiveElementProps}
-              className="flex flex-row h-4 items-center border-b-2"
+              className={classNames(
+                "flex flex-row h-6 items-center mb-1 pb-1 cursor-pointer hover-background-dark"
+              )}
             >
               {arrow}
               {title}
             </div>
-            {children}
+            <div className="ml-2.5">{children}</div>
           </div>
         )}
         renderItemsContainer={({ children, containerProps }) => (
