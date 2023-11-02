@@ -12,7 +12,7 @@ function ShowArtefactsOnlyButton() {
   ] = useState(false);
   return (
     <ToolTipWrapper
-      helpText="Only Show Artefacts"
+      helpText="Only Show<br />Artefacts"
       className="h-full"
       customDelayMS={ToolTipDelays.large}
     >
