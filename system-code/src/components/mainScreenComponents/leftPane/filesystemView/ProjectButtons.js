@@ -4,7 +4,7 @@ import CollapseAllButton from "./CollapseAllButton";
 
 function ProjectButtons() {
   return (
-    <div className="flex flex-row h-full">
+    <div className="flex flex-row h-full pr-1">
       <ShowArtefactsOnlyButton />
       <RefreshButton />
       <CollapseAllButton />
