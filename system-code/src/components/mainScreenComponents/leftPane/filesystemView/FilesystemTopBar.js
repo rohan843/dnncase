@@ -4,9 +4,11 @@ import ProjectButtons from "./ProjectButtons";
 
 function FilesystemTopBar() {
   return (
-    <div className="flex flex-row items-center w-full h-8 border-bottom-darker">
-      <ProjectIcon />
-      <ProjectTitle />
+    <div className="flex flex-row items-center justify-between w-full h-8 border-bottom-darker select-none">
+      <div className="flex flex-row items-center h-full">
+        <ProjectIcon />
+        <ProjectTitle />
+      </div>
       <ProjectButtons />
     </div>
   );
