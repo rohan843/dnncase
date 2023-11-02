@@ -10,6 +10,7 @@
     "classnames": "^2.3.2",
     "electron": "^27.0.2",
     "react": "^18.2.0",
+    "react-complex-tree": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "react-tooltip": "^5.21.6",

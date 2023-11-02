@@ -94,6 +94,36 @@ In other words, use this in place of something like
 
 /* Scrollbar Properties */
 
+.stable-scrollbar-gutter {
+    scrollbar-gutter: stable;
+}
+
+.thin-scrollbar-xy::-webkit-scrollbar {
+    width: 2px;
+}
+
+.thin-scrollbar-xy::-webkit-scrollbar-thumb {
+    background: #8C8C8C;
+}
+
+.thin-scrollbar-xy::-webkit-scrollbar-track {
+    background: #C5C5C5;
+}
+
+
+.thin-scrollbar-xy::-webkit-scrollbar:horizontal {
+    height: 2px;
+}
+
+.thin-scrollbar-xy::-webkit-scrollbar-thumb:horizontal {
+    background: #8C8C8C;
+}
+
+.thin-scrollbar-xy::-webkit-scrollbar-track:horizontal {
+    background: #C5C5C5;
+}
+
+
 .hide-scrollbar::-webkit-scrollbar {
     width: 0px;
     height: 0px;
