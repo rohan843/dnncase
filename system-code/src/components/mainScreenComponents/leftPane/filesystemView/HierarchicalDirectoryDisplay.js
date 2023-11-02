@@ -1,7 +1,7 @@
 import {
   UncontrolledTreeEnvironment,
   StaticTreeDataProvider,
-  Tree,
+  Tree
 } from "react-complex-tree";
 import "react-complex-tree/lib/style-modern.css";
 
