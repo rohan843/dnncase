@@ -6,7 +6,7 @@ function CollapseAllButton() {
   return (
     <ToolTipWrapper
       className="h-full"
-      helpText="Collapse All Folders"
+      helpText="Collapse All<br />Folders"
       customDelayMS={ToolTipDelays.large}
     >
       <div className="h-full py-2 px-1 opacity-50 hover:opacity-100 cursor-pointer">
