@@ -1,4 +1,4 @@
-import FilesystemView from "./FilesystemView";
+import FilesystemView from "./filesystemView/FilesystemView";
 
 function LeftbarView({ viewType }) {
   return (
