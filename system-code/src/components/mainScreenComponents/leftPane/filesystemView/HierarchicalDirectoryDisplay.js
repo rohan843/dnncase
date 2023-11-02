@@ -1,9 +1,11 @@
 import {
   UncontrolledTreeEnvironment,
   StaticTreeDataProvider,
-  Tree
+  Tree,
 } from "react-complex-tree";
-import "react-complex-tree/lib/style-modern.css";
+import openDropdownIcon from "../../../../assets/hierarchy-dropdown-open.png";
+import closedDropdownIcon from "../../../../assets/hierarchy-dropdown-close.png";
+import fileIcon from "../../../../assets/file.png";
 
 // Keep this in redux
 // For an algo to get this, refer -> https://colab.research.google.com/drive/15wcb00OYHopah1twNGtBIeydOMb6ydic?usp=sharing
@@ -102,7 +104,7 @@ function HierarchicalDirectoryDisplay() {
   return (
     <div
       style={{ scrollbarGutter: "stable" }}
-      className="w-full h-full overflow-scroll thin-scrollbar-xy stable-scrollbar-gutter"
+      className="w-full h-full overflow-scroll thin-scrollbar-xy stable-scrollbar-gutter pt-1 pl-1 select-none"
     >
       <UncontrolledTreeEnvironment
         dataProvider={
@@ -113,6 +115,48 @@ function HierarchicalDirectoryDisplay() {
         }
         getItemTitle={(item) => item.data.name}
         viewState={{ "tree-1": {} }}
+        canDragAndDrop={false}
+        canDropOnFolder={false}
+        canReorderItems={false}
+        renderItemTitle={({ title }) => <span>{title}</span>}
+        renderItemArrow={({ item, context }) =>
+          item.isFolder ? (
+            <div {...context.arrowProps} className="h-full">
+              {context.isExpanded ? (
+                <img src={openDropdownIcon} alt="" className="h-full" />
+              ) : (
+                <img src={closedDropdownIcon} alt="" className="h-full" />
+              )}
+            </div>
+          ) : (
+            <div {...context.arrowProps} className="h-full">
+              <img src={fileIcon} alt="" className="h-full" />
+            </div>
+          )
+        }
+        renderItem={({ title, arrow, depth, context, children }) => (
+          <div {...context.itemContainerWithChildrenProps} className="">
+            <div
+              {...context.itemContainerWithoutChildrenProps}
+              {...context.interactiveElementProps}
+              className="flex flex-row h-4 items-center border-b-2"
+            >
+              {arrow}
+              {title}
+            </div>
+            {children}
+          </div>
+        )}
+        renderItemsContainer={({ children, containerProps }) => (
+          <div {...containerProps} className="flex flex-col">
+            {children}
+          </div>
+        )}
+        renderTreeContainer={({ children, containerProps }) => (
+          <div {...containerProps} className="h-full w-full">
+            {children}
+          </div>
+        )}
       >
         <Tree treeId="tree-1" rootItem="/Project1" treeLabel="Tree Example" />
       </UncontrolledTreeEnvironment>
