@@ -1,8 +1,14 @@
 import OptionsList from "./OptionsList";
+import classNames from "classnames";
 
-function LeftBar() {
+function LeftBar({ className }) {
   return (
-    <div className="border-left-dark border-right-darker p-px h-full background-dark overflow-y-auto hide-scrollbar">
+    <div
+      className={classNames(
+        className,
+        "border-left-dark border-right-darker p-px h-full background-dark overflow-y-auto hide-scrollbar"
+      )}
+    >
       <OptionsList />
     </div>
   );
