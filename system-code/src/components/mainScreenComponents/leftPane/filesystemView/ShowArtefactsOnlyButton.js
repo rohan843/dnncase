@@ -23,7 +23,7 @@ function ShowArtefactsOnlyButton() {
           {
             "hover:opacity-100": !justDeactivatedButMouseStillOnElement,
             "hover:opacity-50": justDeactivatedButMouseStillOnElement,
-          },
+          }
         )}
         onClick={() => {
           if (activated) {
