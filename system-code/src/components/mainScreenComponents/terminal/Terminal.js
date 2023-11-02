@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 // TODO: See -> https://stackoverflow.com/questions/26233180/resize-a-div-on-border-drag-and-drop-without-adding-extra-markup
+// https://codesandbox.io/s/react-resizable-sidebar-kz9de?file=/src/App.js
 function Terminal() {
   const [height, setHeight] = useState(300);
   return (
