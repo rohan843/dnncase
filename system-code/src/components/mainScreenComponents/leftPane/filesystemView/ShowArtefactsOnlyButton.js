@@ -2,6 +2,7 @@ import { useState } from "react";
 import artefactImage from "../../../../assets/artefact.png";
 import classNames from "classnames";
 import ToolTipWrapper from "../../../tooltipWrapper/ToolTipWrapper";
+import { ToolTipDelays } from "../../../../constants";
 
 function ShowArtefactsOnlyButton() {
   const [activated, setActivated] = useState(false);
@@ -10,7 +11,11 @@ function ShowArtefactsOnlyButton() {
     setJustDeactivatedButMouseStillOnElement,
   ] = useState(false);
   return (
-    <ToolTipWrapper helpText="Only Show Artefacts" className="h-full">
+    <ToolTipWrapper
+      helpText="Only Show Artefacts"
+      className="h-full"
+      customDelayMS={ToolTipDelays.large}
+    >
       <div
         className={classNames("h-full py-2 px-1 opacity-50 cursor-pointer", {
           "opacity-100": activated,
