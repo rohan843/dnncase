@@ -2,17 +2,14 @@
 import { useId } from "react";
 import { Tooltip } from "react-tooltip";
 
-function HelpTooltip({ children, helpText, ...props }) {
+function HelpTooltip({ children, helpText, customDelayMS, ...props }) {
   const id = useId();
   return (
     <div {...props}>
-      <a
-        data-tooltip-id={id}
-        data-tooltip-content={helpText}
-      >
+      <a data-tooltip-id={id} data-tooltip-content={helpText}>
         {children}
       </a>
-      <Tooltip id={id} delayShow={100} className="z-50"/>
+      <Tooltip id={id} delayShow={customDelayMS || 100} className="z-50" />
     </div>
   );
 }

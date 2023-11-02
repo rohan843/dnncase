@@ -2,10 +2,10 @@
 
 import HelpTooltip from "./HelpTooltip";
 
-function ToolTipWrapper({ docId, helpText, children, ...props }) {
+function ToolTipWrapper({ docId, helpText, customDelayMS, children, ...props }) {
   if (helpText && docId) {
   } else if (helpText && !docId) {
-    return <HelpTooltip helpText={helpText} {...props}>
+    return <HelpTooltip helpText={helpText} customDelayMS={customDelayMS} {...props}>
       {children}
     </HelpTooltip>;
   } else if (!helpText && docId) {
