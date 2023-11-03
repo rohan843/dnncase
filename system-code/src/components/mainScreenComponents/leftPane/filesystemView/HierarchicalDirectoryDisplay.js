@@ -147,7 +147,7 @@ function HierarchicalDirectoryDisplay() {
               {arrow}
               {title}
             </div>
-            <div className="ml-2.5">{children}</div>
+            <div className="ml-1.5 border-left-darker pl-1">{children}</div>
           </div>
         )}
         renderItemsContainer={({ children, containerProps }) => (
