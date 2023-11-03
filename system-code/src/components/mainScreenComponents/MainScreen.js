@@ -8,8 +8,8 @@ function MainScreen() {
     <div className="w-screen main-screen-height flex flex-row">
       <LeftBar className="w-[1.9rem]" />
       <div style={{ width: "calc(100% - 1.9rem)" }} className="flex flex-row">
-        <LeftPanel />
-        <div className="flex flex-col h-full w-full relative">
+        <LeftPanel className="w-[25%]"/>
+        <div className="flex flex-col w-[75%] h-full relative">
           <Workspace />
           <Terminal />
         </div>
