@@ -1,5 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { filesystemReducer, changeTitle } from "./slices/filesystemSlice";
+import {
+  filesystemReducer,
+  deactivateArtefactsOnlyFilter,
+  activateArtefactsOnlyFilter,
+  clearExpandedItems,
+  removeExpandedItem,
+  addExpandedItem,
+  setSelectedItems,
+  setFocusedItem,
+  setFsState,
+} from "./slices/filesystemSlice";
 import {
   mainScreenReducer,
   removeLeftPane,
@@ -17,7 +27,18 @@ const store = configureStore({
 
 export {
   store,
-  changeTitle,
+
+  // filesystemSlice
+  deactivateArtefactsOnlyFilter,
+  activateArtefactsOnlyFilter,
+  clearExpandedItems,
+  removeExpandedItem,
+  addExpandedItem,
+  setSelectedItems,
+  setFocusedItem,
+  setFsState,
+
+  // mainScreenSlice
   removeLeftPane,
   removeTerminal,
   setLeftPane,

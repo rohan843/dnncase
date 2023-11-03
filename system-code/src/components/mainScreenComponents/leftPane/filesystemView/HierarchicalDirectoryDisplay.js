@@ -3,105 +3,19 @@ import openDropdownIcon from "../../../../assets/hierarchy-dropdown-open.png";
 import closedDropdownIcon from "../../../../assets/hierarchy-dropdown-close.png";
 import fileIcon from "../../../../assets/file.png";
 import classNames from "classnames";
-import { useState } from "react";
-
-// Keep this in redux
-// For an algo to get this, refer -> https://colab.research.google.com/drive/15wcb00OYHopah1twNGtBIeydOMb6ydic?usp=sharing
-const fsState = {
-  "/Project1": {
-    index: "/Project1",
-    data: { name: "Project1", folder: true, artefact: false },
-    isFolder: true,
-    children: ["/Project1/bin", "/Project1/home1", "/Project1/home"],
-  },
-  "/Project1/bin": {
-    index: "/Project1/bin",
-    data: { name: "bin", folder: true, artefact: true },
-    isFolder: true,
-    children: ["/Project1/bin/ls", "/Project1/bin/mkdir"],
-  },
-  "/Project1/bin/ls": {
-    index: "/Project1/bin/ls",
-    data: { name: "ls", folder: true, artefact: false },
-    isFolder: true,
-    children: [],
-  },
-  "/Project1/bin/mkdir": {
-    index: "/Project1/bin/mkdir",
-    data: { name: "mkdir", folder: true, artefact: false },
-    isFolder: true,
-    children: [],
-  },
-  "/Project1/home1": {
-    index: "/Project1/home1",
-    data: { name: "home1", folder: true, artefact: false },
-    isFolder: true,
-    children: ["/Project1/home1/user1", "/Project1/home1/user2"],
-  },
-  "/Project1/home1/user1": {
-    index: "/Project1/home1/user1",
-    data: { name: "user1", folder: true, artefact: false },
-    isFolder: true,
-    children: ["/Project1/home1/user1/file1.txt"],
-  },
-  "/Project1/home1/user1/file1.txt": {
-    index: "/Project1/home1/user1/file1.txt",
-    data: { name: "file1.txt", folder: false, artefact: false },
-    isFolder: false,
-    children: [],
-  },
-  "/Project1/home1/user2": {
-    index: "/Project1/home1/user2",
-    data: { name: "user2", folder: true, artefact: false },
-    isFolder: true,
-    children: [],
-  },
-  "/Project1/home": {
-    index: "/Project1/home",
-    data: { name: "home", folder: true, artefact: false },
-    isFolder: true,
-    children: ["/Project1/home/user1", "/Project1/home/user2"],
-  },
-  "/Project1/home/user1": {
-    index: "/Project1/home/user1",
-    data: { name: "user1", folder: true, artefact: false },
-    isFolder: true,
-    children: [
-      "/Project1/home/user1/file1.txt",
-      "/Project1/home/user1/file2.txt",
-      "/Project1/home/user1/file3.txt",
-    ],
-  },
-  "/Project1/home/user1/file1.txt": {
-    index: "/Project1/home/user1/file1.txt",
-    data: { name: "file1.txt", folder: false, artefact: true },
-    isFolder: false,
-    children: [],
-  },
-  "/Project1/home/user1/file2.txt": {
-    index: "/Project1/home/user1/file2.txt",
-    data: { name: "file2.txt", folder: false, artefact: false },
-    isFolder: false,
-    children: [],
-  },
-  "/Project1/home/user1/file3.txt": {
-    index: "/Project1/home/user1/file3.txt",
-    data: { name: "file3.txt", folder: false, artefact: false },
-    isFolder: false,
-    children: [],
-  },
-  "/Project1/home/user2": {
-    index: "/Project1/home/user2",
-    data: { name: "user2", folder: true, artefact: false },
-    isFolder: true,
-    children: [],
-  },
-};
+import { useDispatch, useSelector } from "react-redux";
+import {
+  removeExpandedItem,
+  addExpandedItem,
+  setSelectedItems,
+  setFocusedItem,
+} from "../../../../store";
 
 function HierarchicalDirectoryDisplay() {
-  const [focusedItem, setFocusedItem] = useState();
-  const [expandedItems, setExpandedItems] = useState([]);
-  const [selectedItems, setSelectedItems] = useState([]);
+  const dispatch = useDispatch();
+  const { fsState, focusedItem, expandedItems, selectedItems } = useSelector(
+    (state) => state.filesystem
+  );
 
   return (
     <div
@@ -122,19 +36,11 @@ function HierarchicalDirectoryDisplay() {
         canDropOnFolder={false}
         canReorderItems={false}
         onFocusItem={(item) => {
-          setFocusedItem(item.index);
+          dispatch(setFocusedItem(item.index));
         }}
-        onExpandItem={(item) =>
-          setExpandedItems([...expandedItems, item.index])
-        }
-        onCollapseItem={(item) =>
-          setExpandedItems(
-            expandedItems.filter(
-              (expandedItemIndex) => expandedItemIndex !== item.index
-            )
-          )
-        }
-        onSelectItems={(items) => setSelectedItems(items)}
+        onExpandItem={(item) => dispatch(addExpandedItem(item.index))}
+        onCollapseItem={(item) => dispatch(removeExpandedItem(item.index))}
+        onSelectItems={(items) => dispatch(setSelectedItems(items))}
         renderItemTitle={({ title, context }) => (
           <span
             className={classNames({
