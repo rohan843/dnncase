@@ -6,7 +6,7 @@ function RefreshButton() {
   return (
     <ToolTipWrapper
       className="h-full"
-      helpText="Refresh Filesystem Data"
+      helpText="Refresh<br />Filesystem Data"
       customDelayMS={ToolTipDelays.large}
     >
       <div className="h-full py-2 px-1 opacity-50 hover:opacity-100 cursor-pointer">
