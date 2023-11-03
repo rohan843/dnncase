@@ -1,12 +1,9 @@
-import {
-  UncontrolledTreeEnvironment,
-  StaticTreeDataProvider,
-  Tree,
-} from "react-complex-tree";
+import { ControlledTreeEnvironment, Tree } from "react-complex-tree";
 import openDropdownIcon from "../../../../assets/hierarchy-dropdown-open.png";
 import closedDropdownIcon from "../../../../assets/hierarchy-dropdown-close.png";
 import fileIcon from "../../../../assets/file.png";
 import classNames from "classnames";
+import { useState } from "react";
 
 // Keep this in redux
 // For an algo to get this, refer -> https://colab.research.google.com/drive/15wcb00OYHopah1twNGtBIeydOMb6ydic?usp=sharing
@@ -102,24 +99,51 @@ const fsState = {
 };
 
 function HierarchicalDirectoryDisplay() {
+  const [focusedItem, setFocusedItem] = useState();
+  const [expandedItems, setExpandedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
+
   return (
     <div
       style={{ scrollbarGutter: "stable" }}
       className="w-full h-full overflow-scroll thin-scrollbar-xy stable-scrollbar-gutter pt-1 select-none"
     >
-      <UncontrolledTreeEnvironment
-        dataProvider={
-          new StaticTreeDataProvider(fsState, (item, data) => ({
-            ...item,
-            data,
-          }))
-        }
+      <ControlledTreeEnvironment
+        items={fsState}
         getItemTitle={(item) => item.data.name}
-        viewState={{ "tree-1": {} }}
+        viewState={{
+          "fs-tree": {
+            focusedItem,
+            expandedItems,
+            selectedItems,
+          },
+        }}
         canDragAndDrop={false}
         canDropOnFolder={false}
         canReorderItems={false}
-        renderItemTitle={({ title }) => <span>{title}</span>}
+        onFocusItem={(item) => {
+          setFocusedItem(item.index);
+        }}
+        onExpandItem={(item) =>
+          setExpandedItems([...expandedItems, item.index])
+        }
+        onCollapseItem={(item) =>
+          setExpandedItems(
+            expandedItems.filter(
+              (expandedItemIndex) => expandedItemIndex !== item.index
+            )
+          )
+        }
+        onSelectItems={(items) => setSelectedItems(items)}
+        renderItemTitle={({ title, context }) => (
+          <span
+            className={classNames({
+              "font-medium": context.isFocused,
+            })}
+          >
+            {title}
+          </span>
+        )}
         renderItemArrow={({ item, context }) =>
           item.isFolder ? (
             <div {...context.arrowProps} className="h-full flex items-center">
@@ -161,8 +185,8 @@ function HierarchicalDirectoryDisplay() {
           </div>
         )}
       >
-        <Tree treeId="tree-1" rootItem="/Project1" treeLabel="Tree Example" />
-      </UncontrolledTreeEnvironment>
+        <Tree treeId="fs-tree" rootItem="/Project1" treeLabel="Tree Example" />
+      </ControlledTreeEnvironment>
     </div>
   );
 }
