@@ -11,10 +11,44 @@ import {
   setFocusedItem,
 } from "../../../../store";
 import { createSelector } from "@reduxjs/toolkit";
+import { cloneDeep, keys } from "lodash";
 
-// TODO: Write the artefact-only filtering algorithm.
-function getOnlyArtefactDirs(fsState) {
-  return fsState;
+function retainCompleteSubtree(rootIndex, fsState, nodesToRetain) {
+  nodesToRetain[rootIndex] = true;
+  for (let childIndex of fsState[rootIndex].children) {
+    retainCompleteSubtree(childIndex, fsState, nodesToRetain);
+  }
+}
+
+function populateNodesToRetain(rootIndex, fsState, nodesToRetain) {
+  // If the current root itself is an artefact, retain its complete subtree.
+  if (fsState[rootIndex].data.artefact) {
+    retainCompleteSubtree(rootIndex, fsState, nodesToRetain);
+    return true;
+  } else if (fsState[rootIndex].data.folder) {
+    let rootHasAnyArtefactDescendant = false;
+    for (let childIndex of fsState[rootIndex].children) {
+      rootHasAnyArtefactDescendant =
+        rootHasAnyArtefactDescendant ||
+        populateNodesToRetain(childIndex, fsState, nodesToRetain);
+    }
+    if (rootHasAnyArtefactDescendant) {
+      nodesToRetain[rootIndex] = true;
+    }
+    return rootHasAnyArtefactDescendant;
+  }
+}
+
+function getOnlyArtefactDirs(fsState, rootIndex) {
+  const nodesToRetain = {};
+  populateNodesToRetain(rootIndex, fsState, nodesToRetain);
+  const resFSState = {};
+  for (let nodeIndex of keys(nodesToRetain)) {
+    resFSState[nodeIndex] = fsState[nodeIndex];
+    resFSState[nodeIndex].children = resFSState[nodeIndex].children.filter(
+      (nodeIndex) => !!nodesToRetain[nodeIndex]
+    );
+  }
 }
 
 function HierarchicalDirectoryDisplay() {
@@ -22,11 +56,13 @@ function HierarchicalDirectoryDisplay() {
 
   const selectFSState = (state) => state.filesystem.fsState;
   const selectOnlyShowArtefacts = (state) => state.filesystem.onlyShowArtefacts;
+  const selectRootIndex = (state) => state.filesystem.rootIndex;
   const selectFilteredFSState = createSelector(
-    [selectFSState, selectOnlyShowArtefacts],
-    (fsState, onlyShowArtefacts) => {
+    [selectFSState, selectOnlyShowArtefacts, selectRootIndex],
+    (fsState, onlyShowArtefacts, rootIndex) => {
+      fsState = cloneDeep(fsState);
       if (onlyShowArtefacts) {
-        return getOnlyArtefactDirs(fsState);
+        return getOnlyArtefactDirs(fsState, rootIndex);
       } else {
         return fsState;
       }
