@@ -12,6 +12,7 @@ import {
 } from "../../../../store";
 import { createSelector } from "@reduxjs/toolkit";
 
+// TODO: Write the artefact-only filtering algorithm.
 function getOnlyArtefactDirs(fsState) {
   return fsState;
 }
