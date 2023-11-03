@@ -22,6 +22,8 @@ import {
   removeTerminal,
   setLeftPane,
   setTerminal,
+  maximizeTerminal,
+  deMaximizeTerminal,
 } from "./slices/mainScreenSlice";
 
 const store = configureStore({
@@ -55,4 +57,6 @@ export {
   removeTerminal,
   setLeftPane,
   setTerminal,
+  maximizeTerminal,
+  deMaximizeTerminal,
 };
