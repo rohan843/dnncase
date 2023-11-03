@@ -1,5 +1,6 @@
 import { keys } from "lodash";
 
+// Marks an entire subtree for retention.
 function retainCompleteSubtree(rootIndex, fsState, nodesToRetain) {
   nodesToRetain[rootIndex] = true;
   for (let childIndex of fsState[rootIndex].children) {
@@ -7,6 +8,9 @@ function retainCompleteSubtree(rootIndex, fsState, nodesToRetain) {
   }
 }
 
+// Traverses nodes recursively (depth-first) and marks any artefact nodes / their
+// ancestors / their descendants for retention. Returns true if the current root
+// (rootIndex) has any artefact nodes in its subtree.
 function populateNodesToRetain(rootIndex, fsState, nodesToRetain) {
   // If the current root itself is an artefact, retain its complete subtree.
   if (fsState[rootIndex].data.artefact) {
@@ -30,6 +34,9 @@ function populateNodesToRetain(rootIndex, fsState, nodesToRetain) {
   }
 }
 
+// Takes as input the filesystem state (fsState) and an identifier for the
+// root directory (rootIndex). Returns a modified fsState with only artefact
+// nodes, their descendants and ancestors.
 function getOnlyArtefactDirs(fsState, rootIndex) {
   const nodesToRetain = {};
   populateNodesToRetain(rootIndex, fsState, nodesToRetain);
