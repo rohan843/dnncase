@@ -1,5 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
+  handleArtefactFilterButtonCaseA,
+  handleArtefactFilterButtonCaseB,
+  handleArtefactFilterButtonCaseC,
+  handleArtefactFilterButtonCaseD,
+  unsetJustDeactivatedButMouseStillOnElementFlag,
+  setJustDeactivatedButMouseStillOnElementFlag,
   filesystemReducer,
   deactivateArtefactsOnlyFilter,
   activateArtefactsOnlyFilter,
@@ -29,6 +35,12 @@ export {
   store,
 
   // filesystemSlice
+  handleArtefactFilterButtonCaseA,
+  handleArtefactFilterButtonCaseB,
+  handleArtefactFilterButtonCaseC,
+  handleArtefactFilterButtonCaseD,
+  unsetJustDeactivatedButMouseStillOnElementFlag,
+  setJustDeactivatedButMouseStillOnElementFlag,
   deactivateArtefactsOnlyFilter,
   activateArtefactsOnlyFilter,
   clearExpandedItems,

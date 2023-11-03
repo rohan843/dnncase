@@ -99,6 +99,9 @@ const filesystemSlice = createSlice({
     selectedItems: [],
     expandedItems: [],
     onlyShowArtefacts: false,
+    artefactFilterButtonState: {
+      justDeactivatedButMouseStillOnElementFlag: false,
+    },
   },
   reducers: {
     setFsState(state, action) {
@@ -123,14 +126,43 @@ const filesystemSlice = createSlice({
     },
     activateArtefactsOnlyFilter(state) {
       state.onlyShowArtefacts = true;
+      state.artefactFilterButtonState.justDeactivatedButMouseStillOnElementFlag = false;
     },
     deactivateArtefactsOnlyFilter(state) {
       state.onlyShowArtefacts = false;
+      state.artefactFilterButtonState.justDeactivatedButMouseStillOnElementFlag = false;
+    },
+    setJustDeactivatedButMouseStillOnElementFlag(state) {
+      state.artefactFilterButtonState.justDeactivatedButMouseStillOnElementFlag = true;
+    },
+    unsetJustDeactivatedButMouseStillOnElementFlag(state) {
+      state.artefactFilterButtonState.justDeactivatedButMouseStillOnElementFlag = false;
+    },
+    handleArtefactFilterButtonCaseA(state) {
+      state.onlyShowArtefacts = false;
+      state.artefactFilterButtonState.justDeactivatedButMouseStillOnElementFlag = false;
+    },
+    handleArtefactFilterButtonCaseB(state) {
+      state.onlyShowArtefacts = true;
+      state.artefactFilterButtonState.justDeactivatedButMouseStillOnElementFlag = false;
+    },
+    handleArtefactFilterButtonCaseC(state) {
+      state.onlyShowArtefacts = false;
+      state.artefactFilterButtonState.justDeactivatedButMouseStillOnElementFlag = true;
+    },
+    handleArtefactFilterButtonCaseD(state) {
+      state.onlyShowArtefacts = true;
     },
   },
 });
 
 export const {
+  handleArtefactFilterButtonCaseA,
+  handleArtefactFilterButtonCaseB,
+  handleArtefactFilterButtonCaseC,
+  handleArtefactFilterButtonCaseD,
+  unsetJustDeactivatedButMouseStillOnElementFlag,
+  setJustDeactivatedButMouseStillOnElementFlag,
   deactivateArtefactsOnlyFilter,
   activateArtefactsOnlyFilter,
   clearExpandedItems,
