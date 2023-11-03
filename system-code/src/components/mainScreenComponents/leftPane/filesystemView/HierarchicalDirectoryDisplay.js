@@ -147,11 +147,11 @@ function HierarchicalDirectoryDisplay() {
               {arrow}
               {title}
             </div>
-            <div className="ml-1.5 border-left-darker pl-1">{children}</div>
+            <div className="ml-1.5 border-left-darker pl-2">{children}</div>
           </div>
         )}
         renderItemsContainer={({ children, containerProps }) => (
-          <div {...containerProps} className="flex flex-col">
+          <div {...containerProps} className="flex flex-col mr-2">
             {children}
           </div>
         )}
