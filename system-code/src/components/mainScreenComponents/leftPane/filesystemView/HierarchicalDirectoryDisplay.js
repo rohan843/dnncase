@@ -28,9 +28,13 @@ function populateNodesToRetain(rootIndex, fsState, nodesToRetain) {
   } else if (fsState[rootIndex].data.folder) {
     let rootHasAnyArtefactDescendant = false;
     for (let childIndex of fsState[rootIndex].children) {
+      const childHasAnyArtefactDescendant = populateNodesToRetain(
+        childIndex,
+        fsState,
+        nodesToRetain
+      );
       rootHasAnyArtefactDescendant =
-        rootHasAnyArtefactDescendant ||
-        populateNodesToRetain(childIndex, fsState, nodesToRetain);
+        rootHasAnyArtefactDescendant || childHasAnyArtefactDescendant;
     }
     if (rootHasAnyArtefactDescendant) {
       nodesToRetain[rootIndex] = true;
@@ -49,6 +53,7 @@ function getOnlyArtefactDirs(fsState, rootIndex) {
       (nodeIndex) => !!nodesToRetain[nodeIndex]
     );
   }
+  return resFSState;
 }
 
 function HierarchicalDirectoryDisplay() {
