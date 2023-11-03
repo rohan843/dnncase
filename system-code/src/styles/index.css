@@ -36,6 +36,10 @@ body {
     background-color: #C5C5C5;
 }
 
+.background-darker {
+    background-color: #8C8C8C;
+}
+
 .hover-background-dark:hover {
     background-color: #C5C5C5;
 }
@@ -68,6 +72,10 @@ body {
 
 .border-darker {
     border: 1px solid #8C8C8C;
+}
+
+.border-black {
+    border: 1px solid black;
 }
 
 .border-left-dark {

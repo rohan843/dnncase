@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux";
 import LeftbarView from "./LeftbarView";
 import classNames from "classnames";
 
 // This component serves as a resizable parent component.
 function LeftPanel({ className }) {
+  const { leftPane } = useSelector((state) => state.mainScreen);
   return (
     <div
       className={classNames(
@@ -10,7 +12,7 @@ function LeftPanel({ className }) {
         className
       )}
     >
-      <LeftbarView viewType="fs" />
+      <LeftbarView viewType={leftPane} />
     </div>
   );
 }
