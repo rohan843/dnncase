@@ -10,11 +10,37 @@ import {
   setSelectedItems,
   setFocusedItem,
 } from "../../../../store";
+import { createSelector } from "@reduxjs/toolkit";
+
+function getOnlyArtefactDirs(fsState) {
+  return fsState;
+}
 
 function HierarchicalDirectoryDisplay() {
   const dispatch = useDispatch();
+
+  const selectFSState = (state) => state.filesystem.fsState;
+  const selectOnlyShowArtefacts = (state) => state.filesystem.onlyShowArtefacts;
+  const selectFilteredFSState = createSelector(
+    [selectFSState, selectOnlyShowArtefacts],
+    (fsState, onlyShowArtefacts) => {
+      if (onlyShowArtefacts) {
+        return getOnlyArtefactDirs(fsState);
+      } else {
+        return fsState;
+      }
+    }
+  );
   const { fsState, focusedItem, expandedItems, selectedItems } = useSelector(
-    (state) => state.filesystem
+    (state) => {
+      const fsState = selectFilteredFSState(state);
+      return {
+        fsState,
+        focusedItem: state.filesystem.focusedItem,
+        expandedItems: state.filesystem.expandedItems,
+        selectedItems: state.filesystem.selectedItems,
+      };
+    }
   );
 
   return (
