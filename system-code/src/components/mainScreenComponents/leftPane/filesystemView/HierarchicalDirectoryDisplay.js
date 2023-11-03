@@ -131,7 +131,7 @@ function HierarchicalDirectoryDisplay() {
             </div>
           ) : (
             <div {...context.arrowProps} className="h-full flex items-center">
-              <img src={fileIcon} alt="" className="h-full mx-1" />
+              <img src={fileIcon} alt="" className="h-5 w-5 mx-1" />
             </div>
           )
         }
@@ -141,7 +141,7 @@ function HierarchicalDirectoryDisplay() {
               {...context.itemContainerWithoutChildrenProps}
               {...context.interactiveElementProps}
               className={classNames(
-                "flex flex-row h-6 items-center mb-1 pb-1 cursor-pointer hover-background-dark"
+                "flex flex-row h-6 items-center mb-1 pb-1 cursor-pointer hover-background-dark rounded"
               )}
             >
               {arrow}
@@ -151,7 +151,7 @@ function HierarchicalDirectoryDisplay() {
           </div>
         )}
         renderItemsContainer={({ children, containerProps }) => (
-          <div {...containerProps} className="flex flex-col mr-2">
+          <div {...containerProps} className="flex flex-col mr-2 ml-1">
             {children}
           </div>
         )}
