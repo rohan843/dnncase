@@ -4,7 +4,7 @@ const mainScreenSlice = createSlice({
   name: "mainScreen",
   initialState: {
     leftPane: null,
-    terminal: null,
+    terminal: true,
   },
   reducers: {
     removeLeftPane(state) {
