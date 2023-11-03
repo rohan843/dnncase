@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const filesystemSlice = createSlice({
   name: "filesystem",
   initialState: {
-    root: "Project1",
+    root: "Project1", // Name of the entry in fsState with the index as rootIndex.
+    rootIndex: "/Project1",
     // For an algo to get this, refer -> https://colab.research.google.com/drive/15wcb00OYHopah1twNGtBIeydOMb6ydic?usp=sharing
     fsState: {
       "/Project1": {
