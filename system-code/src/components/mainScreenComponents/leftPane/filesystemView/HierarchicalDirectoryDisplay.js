@@ -141,7 +141,7 @@ function HierarchicalDirectoryDisplay() {
               {...context.itemContainerWithoutChildrenProps}
               {...context.interactiveElementProps}
               className={classNames(
-                "flex flex-row h-6 items-center mb-1 pb-1 cursor-pointer hover-background-dark rounded"
+                "flex flex-row h-7 items-center mb-1 pb-1 cursor-pointer hover-background-dark rounded mt-px"
               )}
             >
               {arrow}
