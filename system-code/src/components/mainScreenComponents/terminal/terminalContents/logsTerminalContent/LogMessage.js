@@ -4,15 +4,7 @@ import classNames from "classnames";
 import { logSeverities } from "../../../../../constants";
 import highlightTextImage from "../../../../../assets/highlight-text.png";
 import { useRef, useState } from "react";
-
-// Takes an element and 'selects' all its inner text.
-function selectContents(el) {
-  let range = document.createRange();
-  range.selectNodeContents(el);
-  let sel = window.getSelection();
-  sel.removeAllRanges();
-  sel.addRange(range);
-}
+import { selectContents } from "../../../../../utils/selectContents";
 
 function LogMessage({ timestamp, logString, logSource, logSeverity }) {
   const [showHighlightButton, setShowHighlightButton] = useState(false);
