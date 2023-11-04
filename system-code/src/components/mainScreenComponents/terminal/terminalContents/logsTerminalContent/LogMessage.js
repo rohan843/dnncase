@@ -3,10 +3,20 @@ import MessageString from "./MessageString";
 import classNames from "classnames";
 import { logSeverities } from "../../../../../constants";
 import highlightTextImage from "../../../../../assets/highlight-text.png";
-import { useState } from "react";
+import { useRef, useState } from "react";
+
+// Takes an element and 'selects' all its inner text.
+function selectContents(el) {
+  let range = document.createRange();
+  range.selectNodeContents(el);
+  let sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+}
 
 function LogMessage({ timestamp, logString, logSource, logSeverity }) {
   const [showHighlightButton, setShowHighlightButton] = useState(false);
+  const messageStringRef = useRef(null);
   return (
     <div
       className={classNames(
@@ -28,9 +38,16 @@ function LogMessage({ timestamp, logString, logSource, logSeverity }) {
         logString={logString}
         logSource={logSource}
         logSeverity={logSeverity}
+        ref={messageStringRef}
       />
       {showHighlightButton && (
-        <div className="h-5 w-5 absolute right-2 z-30 opacity-20 hover:opacity-50 cursor-pointer mt-auto mb-auto top-0 bottom-0">
+        <div
+          className="select-none h-5 w-5 absolute right-2 z-30 opacity-10 hover:opacity-50 cursor-pointer mt-auto mb-auto top-0 bottom-0"
+          onClick={(e) => {
+            e.stopPropagation();
+            selectContents(messageStringRef.current);
+          }}
+        >
           <img src={highlightTextImage} alt="" />
         </div>
       )}
