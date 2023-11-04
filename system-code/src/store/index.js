@@ -37,6 +37,7 @@ import {
 import {
   setCommentsFilterString,
   commentsTerminalReducer,
+  toggleOnlyActiveFileComments,
 } from "./slices/commentsTerminalSlice";
 
 const store = configureStore({
@@ -85,4 +86,5 @@ export {
 
   // commentsTerminalSlice
   setCommentsFilterString,
+  toggleOnlyActiveFileComments,
 };
