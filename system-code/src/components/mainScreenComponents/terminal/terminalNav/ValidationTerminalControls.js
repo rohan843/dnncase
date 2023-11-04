@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import FilterBox from "./FilterBox";
 import { setValidationFilterString } from "../../../../store";
+import Checkbox from "./Checkbox";
 
 function ValidationTerminalControls() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function ValidationTerminalControls() {
         value={filterString}
         onValueChange={handleFilterStringChange}
       />
+      <Checkbox />
     </div>
   );
 }

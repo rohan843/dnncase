@@ -183,4 +183,5 @@ In other words, use this in place of something like
     padding-top: 4px;
     padding-bottom: 4px;
     text-transform: capitalize;
+    user-select: none;
 }
