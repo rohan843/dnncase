@@ -167,6 +167,14 @@ In other words, use this in place of something like
     height: 2rem;
 }
 
+.terminal-nav-height {
+    height: 2rem;
+}
+
+.terminal-content-height {
+    height: calc(100% - 2rem);
+}
+
 /* Shadows */
 
 .thin-inset-box-shadow {
