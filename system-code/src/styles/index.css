@@ -23,6 +23,10 @@ input:focus-visible {
     outline: none;
 }
 
+::selection {
+    background-color: #8C8C8C;
+}
+
 #root {
     height: 100%;
     width: 100%;
