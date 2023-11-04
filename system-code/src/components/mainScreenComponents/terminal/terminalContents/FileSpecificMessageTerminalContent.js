@@ -1,5 +1,11 @@
+import HierarchicalMessageDisplay from "./HierarchicalMessageDisplay";
+
 function FileSpecificMessageTerminalContent() {
-  return <div>FileSpecificMessageTerminalContent</div>;
+  return (
+    <div>
+      <HierarchicalMessageDisplay />
+    </div>
+  );
 }
 
 export default FileSpecificMessageTerminalContent;
