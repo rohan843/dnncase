@@ -3,7 +3,7 @@ import MessageString from "./MessageString";
 
 function LogMessage({ timestamp, logString }) {
   return (
-    <div className="w-full hover-border-black-else-dark rounded h-max flex flex-row">
+    <div className="w-full hover-border-black-else-dark hover-background-slightly-darker rounded h-max flex flex-row">
       <MessageTimestamp timestamp={timestamp} />
       <MessageString logString={logString} />
     </div>
