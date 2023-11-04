@@ -1,17 +1,18 @@
-import { logSeverities } from "../../../../../constants";
+import { useSelector } from "react-redux";
 import LogMessage from "./LogMessage";
 
 function LogsTerminalContent() {
-  return (
-    <div className="flex flex-col pb-2">
-      <LogMessage
-        timestamp="[17/09/2023 20:15]"
-        logString={"A warning message from a source.\na   b  c\n12  1  2"}
-        logSource="MessageSource"
-        logSeverity={logSeverities.warning}
-      />
-    </div>
-  );
+  const { logs } = useSelector((store) => store.logsTerminal);
+  const displayLogElements = logs.map((logData) => (
+    <LogMessage
+      timestamp={logData.timestamp}
+      logString={logData.logString}
+      logSource={logData.logSource}
+      logSeverity={logData.logSeverity}
+      key={logData.id}
+    />
+  ));
+  return <div className="flex flex-col pb-2">{displayLogElements}</div>;
 }
 
 export default LogsTerminalContent;
