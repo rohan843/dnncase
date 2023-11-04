@@ -1,5 +1,11 @@
+import FileSpecificMessageTerminalContent from "./FileSpecificMessageTerminalContent";
+
 function ValidationTerminalContent() {
-  return <div>ValidationTerminalContent</div>;
+  return (
+    <div>
+      <FileSpecificMessageTerminalContent />
+    </div>
+  );
 }
 
 export default ValidationTerminalContent;

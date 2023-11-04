@@ -1,5 +1,11 @@
+import FileSpecificMessageTerminalContent from "./FileSpecificMessageTerminalContent";
+
 function CommentsTerminalContent() {
-    return <div>CommentsTerminalContent</div>
+  return (
+    <div>
+      <FileSpecificMessageTerminalContent />
+    </div>
+  );
 }
 
 export default CommentsTerminalContent;
