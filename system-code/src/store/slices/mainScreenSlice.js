@@ -4,7 +4,7 @@ const mainScreenSlice = createSlice({
   name: "mainScreen",
   initialState: {
     leftPane: null,
-    terminal: true,
+    terminal: null,
     isTerminalMaximized: false,
     terminalHeightInPercent: 40,
   },
