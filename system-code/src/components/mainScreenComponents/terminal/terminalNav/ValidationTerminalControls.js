@@ -2,10 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import FilterBox from "./FilterBox";
 import { setValidationFilterString } from "../../../../store";
 import Checkbox from "./Checkbox";
+import { toggleOnlyActiveFileMessages } from "../../../../store";
 
 function ValidationTerminalControls() {
   const dispatch = useDispatch();
-  const { filterString } = useSelector((state) => state.validationTerminal);
+  const { filterString, onlyActiveFileMessages } = useSelector(
+    (state) => state.validationTerminal
+  );
 
   const handleFilterStringChange = (newFilterString) => {
     dispatch(setValidationFilterString(newFilterString));
@@ -17,7 +20,13 @@ function ValidationTerminalControls() {
         value={filterString}
         onValueChange={handleFilterStringChange}
       />
-      <Checkbox />
+      <Checkbox
+        desc="Only show messages from active file."
+        state={onlyActiveFileMessages}
+        onStateToggle={() => {
+          dispatch(toggleOnlyActiveFileMessages());
+        }}
+      />
     </div>
   );
 }
