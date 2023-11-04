@@ -6,8 +6,9 @@ import {
   setTerminal,
   removeTerminal,
 } from "../../store/slices/mainScreenSlice";
+import { TerminalIDs } from "../../constants";
 
-const id = "commentst";
+const id = TerminalIDs.comments;
 
 function CommentsButton() {
   const dispatch = useDispatch();

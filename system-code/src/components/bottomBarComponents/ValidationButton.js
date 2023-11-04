@@ -7,8 +7,9 @@ import {
   setTerminal,
   removeTerminal,
 } from "../../store/slices/mainScreenSlice";
+import { TerminalIDs } from "../../constants";
 
-const id = "validationt";
+const id = TerminalIDs.validation;
 
 function ValidationButton() {
   const dispatch = useDispatch();

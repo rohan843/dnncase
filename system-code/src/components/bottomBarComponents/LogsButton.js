@@ -6,8 +6,9 @@ import {
   setTerminal,
   removeTerminal,
 } from "../../store/slices/mainScreenSlice";
+import { TerminalIDs } from "../../constants";
 
-const id = "logst";
+const id = TerminalIDs.logs;
 
 function LogsButton() {
   const dispatch = useDispatch();

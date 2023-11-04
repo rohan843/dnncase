@@ -8,4 +8,10 @@ const ToolTipDelays = {
   large: 500,
 };
 
-export { ToolTipDelays };
+const TerminalIDs = {
+  comments: "commentst",
+  logs: "logst",
+  validation: "validationt",
+};
+
+export { ToolTipDelays, TerminalIDs };
