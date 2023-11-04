@@ -19,6 +19,10 @@ body {
     margin: 0%;
 }
 
+input:focus-visible {
+    outline: none;
+}
+
 #root {
     height: 100%;
     width: 100%;
@@ -161,4 +165,22 @@ In other words, use this in place of something like
 
 .bottom-bar-height {
     height: 2rem;
+}
+
+/* Shadows */
+
+.thin-inset-box-shadow {
+    box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Placeholders */
+
+.placeholder-style::placeholder {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-transform: capitalize;
 }

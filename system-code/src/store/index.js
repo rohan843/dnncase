@@ -25,11 +25,16 @@ import {
   maximizeTerminal,
   deMaximizeTerminal,
 } from "./slices/mainScreenSlice";
+import {
+  logsTerminalReducer,
+  setFilterString,
+} from "./slices/logsTerminalSlice";
 
 const store = configureStore({
   reducer: {
     filesystem: filesystemReducer,
     mainScreen: mainScreenReducer,
+    logsTerminal: logsTerminalReducer,
   },
 });
 
@@ -59,4 +64,7 @@ export {
   setTerminal,
   maximizeTerminal,
   deMaximizeTerminal,
+
+  // logsTerminalSlice
+  setFilterString,
 };
