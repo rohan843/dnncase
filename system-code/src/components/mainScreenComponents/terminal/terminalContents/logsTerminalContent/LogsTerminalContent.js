@@ -1,3 +1,4 @@
+import { logSeverities } from "../../../../../constants";
 import LogMessage from "./LogMessage";
 
 function LogsTerminalContent() {
@@ -5,7 +6,9 @@ function LogsTerminalContent() {
     <div className="flex flex-col pb-2">
       <LogMessage
         timestamp="[17/09/2023 20:15]"
-        logString="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio nemo omnis, repellendus sapiente accusantium officiis eius atque commodi quas quam dicta accusamus magni recusandae velit voluptatem vel ipsam rem aspernatur."
+        logString={"A warning message from a source.\na   b  c\n12  1  2"}
+        logSource="MessageSource"
+        logSeverity={logSeverities.warning}
       />
     </div>
   );

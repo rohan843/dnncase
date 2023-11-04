@@ -2,16 +2,20 @@
 
 // Tooltip Display Delays (in ms)
 
-const ToolTipDelays = {
+export const ToolTipDelays = {
   small: 100,
   medium: 300,
   large: 500,
 };
 
-const TerminalIDs = {
+export const TerminalIDs = {
   comments: "commentst",
   logs: "logst",
   validation: "validationt",
 };
 
-export { ToolTipDelays, TerminalIDs };
+export const logSeverities = {
+  info: "info",
+  warning: "warning",
+  error: "error",
+};
