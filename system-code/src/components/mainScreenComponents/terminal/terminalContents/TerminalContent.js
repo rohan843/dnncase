@@ -2,8 +2,8 @@
 // However, any children must be responsive to width (i.e., x-direction). There is only a
 // finite width available and any x-overflows are hidden. In case of text wrapping, consider
 // the following CSS styles to allow hyphenation (hyphens) and automatic work break (overflow-wrap):
-//      hyphens: auto;              -> break-and-wrap-large-words
-//      overflow-wrap: anywhere;    -> hyphenate-word-breaks-automatically
+//      hyphens: auto;              -> .break-and-wrap-large-words
+//      overflow-wrap: anywhere;    -> .hyphenate-word-breaks-automatically
 
 import { useSelector } from "react-redux";
 import { TerminalIDs } from "../../../../constants";
