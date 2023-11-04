@@ -5,7 +5,7 @@ const mainScreenSlice = createSlice({
   initialState: {
     leftPane: null,
     terminal: true,
-    maximizeTerminal: false,
+    isTerminalMaximized: false,
     terminalHeightInPercent: 40,
   },
   reducers: {
@@ -22,10 +22,10 @@ const mainScreenSlice = createSlice({
       state.terminal = action.payload;
     },
     maximizeTerminal(state) {
-      state.maximizeTerminal = true;
+      state.isTerminalMaximized = true;
     },
     deMaximizeTerminal(state) {
-      state.maximizeTerminal = false;
+      state.isTerminalMaximized = false;
     }
   },
 });
