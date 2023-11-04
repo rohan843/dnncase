@@ -3,7 +3,7 @@ import ExportButton from "./ExportButton";
 
 function LogsTerminalControls() {
   return (
-    <div>
+    <div className="flex flex-row items-center">
       <FilterBox />
       <ExportButton />
     </div>
