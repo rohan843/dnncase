@@ -1,3 +1,5 @@
-function ValidationTerminalContent() {}
+function ValidationTerminalContent() {
+  return <div>ValidationTerminalContent</div>;
+}
 
 export default ValidationTerminalContent;
