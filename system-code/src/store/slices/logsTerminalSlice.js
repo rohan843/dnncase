@@ -6,11 +6,11 @@ const logsTerminalSlice = createSlice({
     filterString: "",
   },
   reducers: {
-    setFilterString(state, action) {
+    setLogsFilterString(state, action) {
       state.filterString = action.payload;
     },
   },
 });
 
-export const { setFilterString } = logsTerminalSlice.actions;
+export const { setLogsFilterString } = logsTerminalSlice.actions;
 export const logsTerminalReducer = logsTerminalSlice.reducer;

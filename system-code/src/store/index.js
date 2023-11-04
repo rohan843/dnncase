@@ -27,14 +27,24 @@ import {
 } from "./slices/mainScreenSlice";
 import {
   logsTerminalReducer,
-  setFilterString,
+  setLogsFilterString,
 } from "./slices/logsTerminalSlice";
+import {
+  setValidationFilterString,
+  validationTerminalReducer,
+} from "./slices/validationTerminalSlice";
+import {
+  setCommentsFilterString,
+  commentsTerminalReducer,
+} from "./slices/commentsTerminalSlice";
 
 const store = configureStore({
   reducer: {
     filesystem: filesystemReducer,
     mainScreen: mainScreenReducer,
     logsTerminal: logsTerminalReducer,
+    validationTerminal: validationTerminalReducer,
+    commentsTerminal: commentsTerminalReducer,
   },
 });
 
@@ -66,5 +76,11 @@ export {
   deMaximizeTerminal,
 
   // logsTerminalSlice
-  setFilterString,
+  setLogsFilterString,
+
+  // validationTerminalSlice
+  setValidationFilterString,
+
+  // commentsTerminalSlice
+  setCommentsFilterString,
 };

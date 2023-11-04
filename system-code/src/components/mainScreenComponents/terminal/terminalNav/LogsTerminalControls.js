@@ -1,14 +1,14 @@
 import FilterBox from "./FilterBox";
 import ExportButton from "./ExportButton";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilterString } from "../../../../store";
+import { setLogsFilterString } from "../../../../store";
 
 function LogsTerminalControls() {
   const dispatch = useDispatch();
   const { filterString } = useSelector((state) => state.logsTerminal);
 
   const handleFilterStringChange = (newFilterString) => {
-    dispatch(setFilterString(newFilterString));
+    dispatch(setLogsFilterString(newFilterString));
   };
 
   return (
