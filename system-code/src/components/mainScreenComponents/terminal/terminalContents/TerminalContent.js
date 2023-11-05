@@ -2,8 +2,8 @@
 // However, any children must be responsive to width (i.e., x-direction). There is only a
 // finite width available and any x-overflows are hidden. In case of text wrapping, consider
 // the following CSS styles to allow hyphenation (hyphens) and automatic work break (overflow-wrap):
-//      hyphens: auto;              -> .break-and-wrap-large-words
-//      overflow-wrap: anywhere;    -> .hyphenate-word-breaks-automatically
+//      hyphens: auto;              -> .hyphenate-word-breaks-automatically
+//      overflow-wrap: break-word;  -> .break-and-wrap-large-words
 
 import { useSelector } from "react-redux";
 import { TerminalIDs } from "../../../../constants";
@@ -20,7 +20,7 @@ function TerminalContent() {
     (terminal === TerminalIDs.validation && <ValidationTerminalContent />);
 
   return (
-    <div className="w-full terminal-content-height pl-1 pr-2 pt-1 overflow-y-auto overflow-x-hidden stable-scrollbar-gutter style-scrollbar-rounded-no-buttons">
+    <div className="w-full terminal-content-height pl-1 pr-2 pt-1 overflow-y-auto overflow-x-hidden break-and-wrap-large-words stable-scrollbar-gutter style-scrollbar-rounded-no-buttons">
       {elementToShow}
     </div>
   );

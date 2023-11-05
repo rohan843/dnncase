@@ -121,7 +121,7 @@ In other words, use this in place of something like
 }
 
 .break-and-wrap-large-words {
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 .hyphenate-word-breaks-automatically {
