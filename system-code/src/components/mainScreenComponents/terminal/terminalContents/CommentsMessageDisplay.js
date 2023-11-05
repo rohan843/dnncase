@@ -27,13 +27,11 @@ function CommentsMessageDisplay({ context, item }) {
       </div>
       {/* Message */}
       <div className="ml-1 w-[calc(100%-2rem)] whitespace-break-spaces">
-        <div>
-          {(shouldContentBeRenderedAsMarkdown && (
-            <span>{item.data.messageContent.message}</span>
-          )) || (
-            <MarkdownTextDisplay mdString={item.data.messageContent.message} />
-          )}
-        </div>
+        {(shouldContentBeRenderedAsMarkdown && (
+          <span>{item.data.messageContent.message}</span>
+        )) || (
+          <MarkdownTextDisplay mdString={item.data.messageContent.message} />
+        )}
       </div>
     </div>
   );
