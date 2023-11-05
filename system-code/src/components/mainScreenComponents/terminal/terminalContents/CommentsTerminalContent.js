@@ -2,7 +2,7 @@ import FileSpecificMessageTerminalContent from "./FileSpecificMessageTerminalCon
 
 function CommentsTerminalContent() {
   return (
-    <div>
+    <div className="w-full h-max">
       <FileSpecificMessageTerminalContent />
     </div>
   );

@@ -2,7 +2,7 @@ import HierarchicalMessageDisplay from "./HierarchicalMessageDisplay";
 
 function FileSpecificMessageTerminalContent() {
   return (
-    <div>
+    <div className="h-max w-full">
       <HierarchicalMessageDisplay />
     </div>
   );
