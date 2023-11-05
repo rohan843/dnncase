@@ -6,9 +6,7 @@ import {
 
 import openDropdownIcon from "../../../../assets/hierarchy-dropdown-open.png";
 import closedDropdownIcon from "../../../../assets/hierarchy-dropdown-close.png";
-import errorIcon from "../../../../assets/error.png";
-import warningIcon from "../../../../assets/warning.png";
-import infoIcon from "../../../../assets/info.png";
+import ValidationMessageDisplay from "./ValidationMessageDisplay";
 
 const dummyMessages = {
   root: {
@@ -146,40 +144,7 @@ function HierarchicalMessageDisplay() {
                   {...context.itemContainerWithoutChildrenProps}
                   {...context.interactiveElementProps}
                 >
-                  {/* Message Div */}
-                  <div className="w-full h-max flex flex-row items-center mb-1 rounded" style={{alignContent: "baseline"}}>
-                    {/* Arrow */}
-                    <div
-                      {...context.arrowProps}
-                      className="h-full w-[2rem] items-start content-start select-none"
-                    >
-                      <img
-                        src={
-                          (item.data.messageContent.type === "error" &&
-                            errorIcon) ||
-                          (item.data.messageContent.type === "warning" &&
-                            warningIcon) ||
-                          (item.data.messageContent.type === "info" && infoIcon)
-                        }
-                        alt=""
-                        className="h-5 w-5 mx-1"
-                      />
-                    </div>
-                    {/* Message */}
-                    <div className="ml-1 w-[calc(100%-2rem)] whitespace-break-spaces">
-                      <span>{item.data.messageContent.message}</span>
-                      {"  "}
-                      <span className="font-medium italic">
-                        {item.data.messageContent.affectedNodes &&
-                          item.data.messageContent.affectedNodes.join(" ")}
-                      </span>
-                      {"    "}
-                      <span className="font-light italic">
-                        {item.data.messageContent.displayPositionCoordinates &&
-                          `pos=(${item.data.messageContent.displayPositionCoordinates[0]},${item.data.messageContent.displayPositionCoordinates[1]})`}
-                      </span>
-                    </div>
-                  </div>
+                  <ValidationMessageDisplay context={context} item={item} />
                 </div>
               </div>
             );
