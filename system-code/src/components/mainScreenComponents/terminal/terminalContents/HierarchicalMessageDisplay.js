@@ -147,11 +147,11 @@ function HierarchicalMessageDisplay() {
                   {...context.interactiveElementProps}
                 >
                   {/* Message Div */}
-                  <div className="flex flex-row items-center mb-1 rounded">
+                  <div className="w-full h-max flex flex-row items-center mb-1 rounded" style={{alignContent: "baseline"}}>
                     {/* Arrow */}
                     <div
                       {...context.arrowProps}
-                      className="h-5 w-5 flex items-center select-none"
+                      className="h-full w-[2rem] items-start content-start select-none"
                     >
                       <img
                         src={
@@ -166,7 +166,7 @@ function HierarchicalMessageDisplay() {
                       />
                     </div>
                     {/* Message */}
-                    <div className="ml-1 whitespace-break-spaces">
+                    <div className="ml-1 w-[calc(100%-2rem)] whitespace-break-spaces">
                       <span>{item.data.messageContent.message}</span>
                       {"  "}
                       <span className="font-medium italic">
