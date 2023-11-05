@@ -40,6 +40,8 @@ import {
   setCommentsFilterString,
   commentsTerminalReducer,
   toggleOnlyActiveFileComments,
+  addExpandedCommentItem,
+  removeExpandedCommentItem,
 } from "./slices/commentsTerminalSlice";
 
 const store = configureStore({
@@ -91,4 +93,6 @@ export {
   // commentsTerminalSlice
   setCommentsFilterString,
   toggleOnlyActiveFileComments,
+  addExpandedCommentItem,
+  removeExpandedCommentItem,
 };
