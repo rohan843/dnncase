@@ -113,7 +113,7 @@ function HierarchicalMessageDisplay() {
                 <div
                   {...context.itemContainerWithoutChildrenProps}
                   {...context.interactiveElementProps}
-                  className="flex flex-row items-center mb-1"
+                  className="flex flex-row items-center mb-1 select-none"
                 >
                   {/* Arrow */}
                   <div
@@ -151,7 +151,7 @@ function HierarchicalMessageDisplay() {
                     {/* Arrow */}
                     <div
                       {...context.arrowProps}
-                      className="h-full flex items-center"
+                      className="h-full flex items-center select-none"
                     >
                       <img
                         src={
@@ -167,12 +167,13 @@ function HierarchicalMessageDisplay() {
                     </div>
                     {/* Message */}
                     <div className="ml-1 whitespace-break-spaces">
-                      <span>{item.data.messageContent.message}</span>
-                      <span>
+                      <span>{item.data.messageContent.message}</span>{"  "}
+                      <span className="font-medium italic">
                         {item.data.messageContent.affectedNodes &&
                           item.data.messageContent.affectedNodes.join(" ")}
                       </span>
-                      <span>
+                      {"    "}
+                      <span className="font-light italic">
                         {item.data.messageContent.displayPositionCoordinates &&
                           `pos=(${item.data.messageContent.displayPositionCoordinates[0]},${item.data.messageContent.displayPositionCoordinates[1]})`}
                       </span>
