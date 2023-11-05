@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm";
 
 function MarkdownTextDisplay({ mdString }) {
   return (
-    <span className="thisisdangerous-unreset-onlyformarkdownuse">
+    <span className="this_is_dangerous-unreset-only_for_markdown_use">
       <Markdown remarkPlugins={[remarkGfm]}>{mdString}</Markdown>
     </span>
   );
