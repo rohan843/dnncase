@@ -1,9 +1,9 @@
-import FileSpecificMessageTerminalContent from "./FileSpecificMessageTerminalContent";
+import HierarchicalMessageDisplay from "./HierarchicalMessageDisplay";
 
 function CommentsTerminalContent() {
   return (
     <div className="w-full h-max">
-      <FileSpecificMessageTerminalContent />
+      <HierarchicalMessageDisplay />
     </div>
   );
 }

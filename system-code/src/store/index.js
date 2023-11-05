@@ -33,6 +33,8 @@ import {
   setValidationFilterString,
   validationTerminalReducer,
   toggleOnlyActiveFileMessages,
+  addExpandedValidationItem,
+  removeExpandedValidationItem,
 } from "./slices/validationTerminalSlice";
 import {
   setCommentsFilterString,
@@ -83,6 +85,8 @@ export {
   // validationTerminalSlice
   setValidationFilterString,
   toggleOnlyActiveFileMessages,
+  addExpandedValidationItem,
+  removeExpandedValidationItem,
 
   // commentsTerminalSlice
   setCommentsFilterString,
