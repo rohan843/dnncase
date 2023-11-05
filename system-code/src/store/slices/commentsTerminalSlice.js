@@ -29,7 +29,9 @@ const commentsTerminalSlice = createSlice({
           type: "message",
           messageContent: {
             type: "codeComment",
-            message: "Unconnected handle",
+            treatAsMarkdown: false,
+            message:
+              "This is a low level comment, that will be written in the generated code (in case code is generated), as a docstring.",
             commentNode: "s89df0",
           },
         },
@@ -41,7 +43,9 @@ const commentsTerminalSlice = createSlice({
           type: "message",
           messageContent: {
             type: "codeComment",
-            message: "Unconnected handle",
+            treatAsMarkdown: true,
+            message:
+              "# Code Comment\n\nCode comments can also use `markdown` to describe some fact or entity in greater detail.\n\n> Markdown comes with its benefits in enhancing readability, but will be input as a docstring containing markdown text in the generated code files. _Typically_, that should not be a problem. If however the docstring format is absolutely necessary to be kept clean, this comment can always be switched back to plain text.",
             commentNode: "s89df0",
           },
         },
@@ -62,7 +66,8 @@ const commentsTerminalSlice = createSlice({
           type: "message",
           messageContent: {
             type: "graphComment",
-            message: "Unused reuse block",
+            message:
+              "This comment describes what some section of a model does.",
             commentNode: "s89df0",
           },
         },
@@ -75,7 +80,7 @@ const commentsTerminalSlice = createSlice({
           messageContent: {
             type: "todoComment",
             commentNode: "s89df0",
-            message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni officiis dolor saepe eius neque cumque maxime dolores quis deleniti. Suscipit, culpa. Unde exercitationem at cumque aut nobis consequatur! Corrupti, incidunt. Optio sapiente beatae culpa similique, eligendi distinctio nesciunt minima, fuga eum ducimus labore dolor odio dicta provident vero? Totam vero facilis eaque ad molestiae non ipsum quisquam ipsa tempore necessitatibus? Voluptatibus veniam earum praesentium ex expedita, nobis optio totam, neque placeat vitae ratione! Ex mollitia vitae illum nesciunt in nam non animi sint? Non nisi voluptate maiores, placeat culpa laboriosam. Illum est alias numquam assumenda atque ducimus debitis, architecto maxime molestiae reprehenderit autem officia soluta impedit nobis amet eum doloremque dolor, incidunt ea obcaecati rem! Enim odio laudantium quis eos? Modi assumenda explicabo tempore iste nobis accusamus pariatur ut non voluptatum sequi nihil in maxime soluta nesciunt omnis deserunt culpa, perspiciatis aut nam fugiat repellendus. Laborum corporis aperiam voluptas necessitatibus. Quo explicabo fugit facilis beatae! Repellat, delectus sed in ad officia aspernatur odit quaerat libero nostrum adipisci laudantium, consequatur et alias consequuntur reprehenderit est. Maxime, voluptatibus id! Dolore, dicta ex! Eligendi rerum corporis est doloribus praesentium eos libero ab? Sed, assumenda exercitationem fugiat omnis amet incidunt at, pariatur asperiores similique animi harum. Nobis, facilis in laborum exercitationem omnis et aspernatur. Saepe fugit accusamus quos neque laudantium quasi reprehenderit enim temporibus excepturi laboriosam? Ea commodi quos unde. Accusantium, perspiciatis. Laboriosam reiciendis porro dignissimos deserunt vero dolor accusamus veniam ex inventore at! Quis fugiat deleniti nihil obcaecati. Explicabo debitis nobis cum tempora molestiae corporis, asperiores natus, quia autem facere vitae blanditiis, officia optio excepturi. Sit at eligendi, aliquam modi maiores architecto pariatur. Odit dolorem voluptatem cum non corporis ex. Reprehenderit consequuntur voluptatibus rerum enim fuga dolorem cum odit aspernatur eius, omnis, perferendis dolore atque ab perspiciatis provident consequatur incidunt nobis, at voluptatum.`,
+            message: "TODO: This comment marks a task that is yet to be done.",
           },
         },
         children: [],

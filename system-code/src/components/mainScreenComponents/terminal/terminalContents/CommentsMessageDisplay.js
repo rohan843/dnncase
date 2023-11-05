@@ -3,6 +3,9 @@ import graphCommentIcon from "../../../../assets/graph-comment.png";
 import todoCommentIcon from "../../../../assets/todo-comment.png";
 
 function CommentsMessageDisplay({ context, item }) {
+  const shouldContentBeRenderedAsMarkdown =
+    item.data.messageContent.type !== "codeComment" ||
+    !item.data.messageContent.treatAsMarkdown;
   return (
     <div className="w-full h-max flex flex-row  mb-1 rounded">
       {/* Arrow */}
@@ -24,7 +27,9 @@ function CommentsMessageDisplay({ context, item }) {
       {/* Message */}
       <div className="ml-1 w-[calc(100%-2rem)] whitespace-break-spaces">
         <div>
-          <span>{item.data.messageContent.message}</span>
+          {shouldContentBeRenderedAsMarkdown && (
+            <span>{item.data.messageContent.message}</span>
+          )}
         </div>
       </div>
     </div>
