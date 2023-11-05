@@ -82,7 +82,7 @@ const dummyMessages = {
       type: "message",
       messageContent: {
         type: "info",
-        message: "An informational message about the file.",
+        message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni officiis dolor saepe eius neque cumque maxime dolores quis deleniti. Suscipit, culpa. Unde exercitationem at cumque aut nobis consequatur! Corrupti, incidunt. Optio sapiente beatae culpa similique, eligendi distinctio nesciunt minima, fuga eum ducimus labore dolor odio dicta provident vero? Totam vero facilis eaque ad molestiae non ipsum quisquam ipsa tempore necessitatibus? Voluptatibus veniam earum praesentium ex expedita, nobis optio totam, neque placeat vitae ratione! Ex mollitia vitae illum nesciunt in nam non animi sint? Non nisi voluptate maiores, placeat culpa laboriosam. Illum est alias numquam assumenda atque ducimus debitis, architecto maxime molestiae reprehenderit autem officia soluta impedit nobis amet eum doloremque dolor, incidunt ea obcaecati rem! Enim odio laudantium quis eos? Modi assumenda explicabo tempore iste nobis accusamus pariatur ut non voluptatum sequi nihil in maxime soluta nesciunt omnis deserunt culpa, perspiciatis aut nam fugiat repellendus. Laborum corporis aperiam voluptas necessitatibus. Quo explicabo fugit facilis beatae! Repellat, delectus sed in ad officia aspernatur odit quaerat libero nostrum adipisci laudantium, consequatur et alias consequuntur reprehenderit est. Maxime, voluptatibus id! Dolore, dicta ex! Eligendi rerum corporis est doloribus praesentium eos libero ab? Sed, assumenda exercitationem fugiat omnis amet incidunt at, pariatur asperiores similique animi harum. Nobis, facilis in laborum exercitationem omnis et aspernatur. Saepe fugit accusamus quos neque laudantium quasi reprehenderit enim temporibus excepturi laboriosam? Ea commodi quos unde. Accusantium, perspiciatis. Laboriosam reiciendis porro dignissimos deserunt vero dolor accusamus veniam ex inventore at! Quis fugiat deleniti nihil obcaecati. Explicabo debitis nobis cum tempora molestiae corporis, asperiores natus, quia autem facere vitae blanditiis, officia optio excepturi. Sit at eligendi, aliquam modi maiores architecto pariatur. Odit dolorem voluptatem cum non corporis ex. Reprehenderit consequuntur voluptatibus rerum enim fuga dolorem cum odit aspernatur eius, omnis, perferendis dolore atque ab perspiciatis provident consequatur incidunt nobis, at voluptatum.`,
       },
     },
     children: [],
@@ -113,7 +113,7 @@ function HierarchicalMessageDisplay() {
                 <div
                   {...context.itemContainerWithoutChildrenProps}
                   {...context.interactiveElementProps}
-                  className="flex flex-row items-center mb-1 select-none"
+                  className="flex flex-row items-center mb-1 select-none cursor-pointer hover-background-darker rounded"
                 >
                   {/* Arrow */}
                   <div
@@ -147,11 +147,11 @@ function HierarchicalMessageDisplay() {
                   {...context.interactiveElementProps}
                 >
                   {/* Message Div */}
-                  <div className="flex flex-row items-center mb-1">
+                  <div className="flex flex-row items-center mb-1 rounded">
                     {/* Arrow */}
                     <div
                       {...context.arrowProps}
-                      className="h-full flex items-center select-none"
+                      className="h-5 w-5 flex items-center select-none"
                     >
                       <img
                         src={
@@ -167,7 +167,8 @@ function HierarchicalMessageDisplay() {
                     </div>
                     {/* Message */}
                     <div className="ml-1 whitespace-break-spaces">
-                      <span>{item.data.messageContent.message}</span>{"  "}
+                      <span>{item.data.messageContent.message}</span>
+                      {"  "}
                       <span className="font-medium italic">
                         {item.data.messageContent.affectedNodes &&
                           item.data.messageContent.affectedNodes.join(" ")}
