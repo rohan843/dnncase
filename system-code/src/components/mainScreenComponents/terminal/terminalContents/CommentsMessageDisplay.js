@@ -1,8 +1,6 @@
-// TODO: Tune this for comments (.md too).
-
-import errorIcon from "../../../../assets/error.png";
-import warningIcon from "../../../../assets/warning.png";
-import infoIcon from "../../../../assets/info.png";
+import commentIcon from "../../../../assets/comment.png";
+import graphCommentIcon from "../../../../assets/graph-comment.png";
+import todoCommentIcon from "../../../../assets/todo-comment.png";
 
 function CommentsMessageDisplay({ context, item }) {
   return (
@@ -14,9 +12,10 @@ function CommentsMessageDisplay({ context, item }) {
       >
         <img
           src={
-            (item.data.messageContent.type === "error" && errorIcon) ||
-            (item.data.messageContent.type === "warning" && warningIcon) ||
-            (item.data.messageContent.type === "info" && infoIcon)
+            (item.data.messageContent.type === "codeComment" && commentIcon) ||
+            (item.data.messageContent.type === "graphComment" &&
+              graphCommentIcon) ||
+            (item.data.messageContent.type === "todoComment" && todoCommentIcon)
           }
           alt=""
           className="h-5 w-5 mx-1"
@@ -26,16 +25,6 @@ function CommentsMessageDisplay({ context, item }) {
       <div className="ml-1 w-[calc(100%-2rem)] whitespace-break-spaces">
         <div>
           <span>{item.data.messageContent.message}</span>
-          {"  "}
-          <span className="font-medium italic">
-            {item.data.messageContent.affectedNodes &&
-              item.data.messageContent.affectedNodes.join(" ")}
-          </span>
-          {"    "}
-          <span className="font-light italic">
-            {item.data.messageContent.displayPositionCoordinates &&
-              `pos=(${item.data.messageContent.displayPositionCoordinates[0]},${item.data.messageContent.displayPositionCoordinates[1]})`}
-          </span>
         </div>
       </div>
     </div>
