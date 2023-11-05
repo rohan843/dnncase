@@ -1,6 +1,7 @@
 import commentIcon from "../../../../assets/comment.png";
 import graphCommentIcon from "../../../../assets/graph-comment.png";
 import todoCommentIcon from "../../../../assets/todo-comment.png";
+import MarkdownTextDisplay from "../../../utils/MarkdownTextDisplay";
 
 function CommentsMessageDisplay({ context, item }) {
   const shouldContentBeRenderedAsMarkdown =
@@ -27,8 +28,10 @@ function CommentsMessageDisplay({ context, item }) {
       {/* Message */}
       <div className="ml-1 w-[calc(100%-2rem)] whitespace-break-spaces">
         <div>
-          {shouldContentBeRenderedAsMarkdown && (
+          {(shouldContentBeRenderedAsMarkdown && (
             <span>{item.data.messageContent.message}</span>
+          )) || (
+            <MarkdownTextDisplay mdString={item.data.messageContent.message} />
           )}
         </div>
       </div>
