@@ -20,7 +20,7 @@ function QuickAddressBar({ addressList }) {
   return (
     <div
       ref={ref}
-      className="h-6 flex flex-row items-center pl-1 pr-5 w-full border-bottom-darker background-dark overflow-x-scroll overflow-y-hidden hide-scrollbar"
+      className="w-full h-[1.5rem] flex flex-row items-center pl-1 pr-5 border-bottom-darker background-dark overflow-x-scroll overflow-y-hidden hide-scrollbar"
     >
       {addressComponents}
     </div>
