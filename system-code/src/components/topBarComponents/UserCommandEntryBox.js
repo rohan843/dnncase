@@ -1,3 +1,5 @@
+// TODO: Make this controlled
+
 function UserCommandEntryBox() {
   return (
     <div className="h-full flex items-center justify-center rounded grow mx-32">
