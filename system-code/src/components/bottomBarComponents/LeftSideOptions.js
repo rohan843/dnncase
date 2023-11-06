@@ -8,7 +8,7 @@ import CitationsManagerButton from "./CitationsManagerButton";
 
 function LeftSideOptions() {
   return (
-    <div className="h-3/4 flex flex-row px-1 justify-between">
+    <div className="h-3/4 w-max flex flex-row px-1">
       <ValidationButton />
       <LogsButton />
       <SystemTerminalButton />
