@@ -3,7 +3,7 @@ import CloseButton from "./CloseButton";
 import FileName from "./FileName";
 import UnsavedFlag from "./UnsavedFlag";
 
-function Tab({ active }) {
+function Tab({ active, name, unsaved, onClose }) {
   return (
     <div
       //   style={active && { boxShadow: "2px -2px 11px -1px rgba(0,0,0,0.59)" }}
@@ -15,10 +15,10 @@ function Tab({ active }) {
         }
       )}
     >
-      <FileName name="Tab" />
+      <FileName name={name} />
       <div className="flex flex-row items-center px-1">
-        <UnsavedFlag show={true} />
-        <CloseButton />
+        <UnsavedFlag show={unsaved} />
+        <CloseButton onClick={onClose} />
       </div>
     </div>
   );
