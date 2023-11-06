@@ -14,14 +14,6 @@ function TabsList() {
       <Tab name="file1.dnnconf" />
       <Tab name="file2.dnnconf" active />
       <Tab name="file3.dnnconf" unsaved />
-      <Tab name="file4.dnnconf" />
-      <Tab name="file5.dnnconf" unsaved />
-      <Tab name="file6.dnnconf" />
-      <Tab name="file7.dnnconf" />
-      <Tab name="file7.dnnconf" />
-      <Tab name="file7.dnnconf" />
-      <Tab name="file7.dnnconf" />
-      <Tab name="file7.dnnconf" />
     </div>
   );
 }
