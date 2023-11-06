@@ -43,6 +43,10 @@ import {
   addExpandedCommentItem,
   removeExpandedCommentItem,
 } from "./slices/commentsTerminalSlice";
+import {
+  activeElementReducer,
+  setActiveElementTo,
+} from "./slices/activeElementSlice";
 
 const store = configureStore({
   reducer: {
@@ -51,6 +55,7 @@ const store = configureStore({
     logsTerminal: logsTerminalReducer,
     validationTerminal: validationTerminalReducer,
     commentsTerminal: commentsTerminalReducer,
+    activeElement: activeElementReducer,
   },
 });
 
@@ -95,4 +100,7 @@ export {
   toggleOnlyActiveFileComments,
   addExpandedCommentItem,
   removeExpandedCommentItem,
+
+  // activeElementSlice
+  setActiveElementTo,
 };
