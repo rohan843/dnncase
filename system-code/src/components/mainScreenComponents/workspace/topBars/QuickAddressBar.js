@@ -7,7 +7,7 @@ function QuickAddressBar({ addressList }) {
   const addressComponents = addressList.map((addressComponent, idx) => {
     return (
       <span
-        className="h-full w-max text-gray-600 hover:text-gray-950 select-none cursor-pointer"
+        className="h-full w-max opacity-[0.65] hover:opacity-90 select-none cursor-pointer"
         onClick={addressComponent.onClick}
         key={idx}
         onWheel={handleScroll}
