@@ -1,3 +1,5 @@
+// TODO: Handle those clicks that are meant to de-activate an entity (outside all entities).
+
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveElementTo } from "../../store";
 
@@ -9,6 +11,9 @@ import { setActiveElementTo } from "../../store";
 // CSS Note: This wraps elements in a div. Any classes (esp. height and width) must be
 // applies to this element just as if they are being applies to a parent div.
 function ActivatableEntity({ id, children, ...props }) {
+
+  console.warn("ActivatableEntity: This component is not complete yet.");
+
   const dispatch = useDispatch();
   const { id: activeElementID } = useSelector((store) => store.activeElement);
 
