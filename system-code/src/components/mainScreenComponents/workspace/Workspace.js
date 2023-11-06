@@ -1,12 +1,10 @@
-import { MajorEntityIDs } from "../../../constants";
-import ActivatableEntity from "../../activationAndKeystrokeMonitoring/ActivatableEntity";
+import TopTabBar from "./topBars/TopTabBar";
 
 function Workspace() {
-  console.log('re-render!');
   return (
-    <ActivatableEntity id={MajorEntityIDs.workspace} className="w-full h-full z-0">
-      <div className="w-full h-full z-0">Workspace</div>
-    </ActivatableEntity>
+    <div className="w-full h-full z-0">
+      <TopTabBar />
+    </div>
   );
 }
 
