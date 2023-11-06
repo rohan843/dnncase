@@ -1,7 +1,6 @@
 // This file contains system-wide constants.
 
 // Tooltip Display Delays (in ms)
-
 export const ToolTipDelays = {
   small: 100,
   medium: 300,
@@ -14,13 +13,13 @@ export const TerminalIDs = {
   validation: "validationt",
 };
 
-export const logSeverities = {
+export const LogSeverities = {
   info: "info",
   warning: "warning",
   error: "error",
 };
 
-export const majorEntityIDs = {
+export const MajorEntityIDs = {
   workspace: "workspace",
   terminalArea: "terminalArea",
   leftPane: "leftPane",
