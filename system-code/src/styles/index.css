@@ -238,6 +238,7 @@ In other words, use this in place of something like
     text-transform: capitalize;
     user-select: none;
     text-align: center;
+    color: #585858;
 }
 
 .user-command-placeholder-style:focus::placeholder {
