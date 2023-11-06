@@ -90,6 +90,10 @@ input:focus-visible {
     border: 1px solid black;
 }
 
+.thicker-border-black {
+    border: 2px solid black;
+}
+
 .border-left-dark {
     border-left: 1px solid #C5C5C5;
 }
