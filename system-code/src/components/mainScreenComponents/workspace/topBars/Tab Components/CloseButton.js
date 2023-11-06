@@ -5,7 +5,10 @@ function CloseButton({ onClick }) {
     <img
       src={closeImage}
       alt=""
-      onClick={onClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick(e);
+      }}
       className="h-3 opacity-70 pl-0.5 hover:opacity-100"
     />
   );
