@@ -7,7 +7,7 @@ function CloseButton({ onClick }) {
       alt=""
       onClick={(e) => {
         e.stopPropagation();
-        onClick(e);
+        onClick && onClick(e);
       }}
       className="h-3 opacity-70 pl-0.5 hover:opacity-100"
     />
