@@ -1,5 +1,6 @@
 import Logo from "./Logo";
 import MenuList from "./MenuList";
+import UserCommandEntryBox from "./UserCommandEntryBox";
 import WindowButtons from "./WindowButtons";
 
 function TopBar() {
@@ -10,6 +11,7 @@ function TopBar() {
         <div className="ml-2">
           <MenuList />
         </div>
+        <UserCommandEntryBox />
       </div>
       <WindowButtons />
     </div>
