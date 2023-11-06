@@ -6,7 +6,7 @@ import WindowButtons from "./WindowButtons";
 function TopBar() {
   return (
     <div className="w-screen top-bar-height background-dark border-bottom-darker flex flex-row items-center justify-between">
-      <div className="flex flex-row items-center">
+      <div className="h-full grow flex flex-row items-center">
         <Logo />
         <div className="ml-2">
           <MenuList />
