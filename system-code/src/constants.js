@@ -19,3 +19,9 @@ export const logSeverities = {
   warning: "warning",
   error: "error",
 };
+
+export const majorEntityIDs = {
+  workspace: "workspace",
+  terminalArea: "terminalArea",
+  leftPane: "leftPane",
+};
