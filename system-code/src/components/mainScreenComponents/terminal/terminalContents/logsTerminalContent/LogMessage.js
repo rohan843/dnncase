@@ -1,7 +1,7 @@
 import MessageTimestamp from "./MessageTimestamp";
 import MessageString from "./MessageString";
 import classNames from "classnames";
-import { logSeverities } from "../../../../../constants";
+import { LogSeverities } from "../../../../../constants";
 import highlightTextImage from "../../../../../assets/highlight-text.png";
 import { useRef, useState } from "react";
 import { selectContents } from "../../../../../utils/selectContents";
@@ -14,8 +14,8 @@ function LogMessage({ timestamp, logString, logSource, logSeverity }) {
       className={classNames(
         "w-full hover-border-black-else-dark hover-background-slightly-darker rounded h-max flex flex-row relative",
         {
-          "text-rose-800": logSeverity === logSeverities.error,
-          "text-yellow-800": logSeverity === logSeverities.warning,
+          "text-rose-800": logSeverity === LogSeverities.error,
+          "text-yellow-800": logSeverity === LogSeverities.warning,
         }
       )}
       onMouseEnter={() => {

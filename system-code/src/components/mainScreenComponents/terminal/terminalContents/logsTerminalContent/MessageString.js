@@ -4,7 +4,7 @@
 // not be easy to produce.
 
 import { forwardRef } from "react";
-import { logSeverities } from "../../../../../constants";
+import { LogSeverities } from "../../../../../constants";
 
 const MessageString = forwardRef(
   ({ logString, logSource, logSeverity }, ref) => {
@@ -12,7 +12,7 @@ const MessageString = forwardRef(
       <div className="w-[calc(100%-11rem)] whitespace-break-spaces" ref={ref}>
         <span className="font-medium">
           {logSource}:{" "}
-          {logSeverity !== logSeverities.info && (
+          {logSeverity !== LogSeverities.info && (
             <span className="capitalize">{"[" + logSeverity + "] "}</span>
           )}
         </span>
