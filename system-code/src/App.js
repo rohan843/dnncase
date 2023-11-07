@@ -1,18 +1,20 @@
 import TopBar from "./components/topBarComponents/TopBar";
 import MainScreen from "./components/mainScreenComponents/MainScreen";
 import BottomBar from "./components/bottomBarComponents/BottomBar";
-import ActivatableEntity from "./components/activationAndKeystrokeMonitoring/ActivatableEntity";
 import { MajorEntityIDs } from "./constants";
+import useActivatableEntity from "./hooks/useActivatableEntity";
 
 function App() {
+  const handleClickCapture = useActivatableEntity(MajorEntityIDs.base);
   return (
-    <ActivatableEntity id={MajorEntityIDs.base}>
-      <div className="h-full w-screen background-light">
-        <TopBar />
-        <MainScreen />
-        <BottomBar />
-      </div>
-    </ActivatableEntity>
+    <div
+      className="h-full w-screen background-light"
+      onClickCapture={handleClickCapture}
+    >
+      <TopBar />
+      <MainScreen />
+      <BottomBar />
+    </div>
   );
 }
 
