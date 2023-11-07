@@ -192,7 +192,7 @@ In other words, use this in place of something like
 }
 
 .style-scrollbar-slightly-rounded::-webkit-scrollbar {
-    
+
 }
 
 /* Dimensions */
@@ -221,6 +221,14 @@ In other words, use this in place of something like
 
 .thin-inset-box-shadow {
     box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.thin-box-shadow-right {
+    box-shadow: 2px 0px 9px 0px rgba(0, 0, 0, 0.3);
+}
+
+.thin-box-shadow-left {
+    box-shadow: -2px 0px 9px 0px rgba(0, 0, 0, 0.3);
 }
 
 /* Placeholders */

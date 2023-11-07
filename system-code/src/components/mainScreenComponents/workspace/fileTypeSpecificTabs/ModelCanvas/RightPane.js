@@ -1,6 +1,6 @@
 function RightPane() {
   return (
-    <div className="border-bottom-darker border-top-darker border-left-darker background-light w-[400px] h-[95%] p-2 absolute right-0 top-0 bottom-0 my-auto z-3 rounded-l-lg overflow-x-clip overflow-y-scroll stable-scrollbar-gutter style-scrollbar-slightly-rounded">
+    <div className="border-bottom-darker border-top-darker border-left-darker background-light w-[400px] h-[95%] p-2 absolute right-0 top-0 bottom-0 my-auto z-3 rounded-l-lg overflow-x-clip overflow-y-scroll stable-scrollbar-gutter style-scrollbar-slightly-rounded thin-box-shadow-left">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa saepe
       impedit fugit ipsum, facere distinctio illum in eius minus modi libero
       perferendis unde repellat excepturi sequi sunt non natus quo! Repellat
