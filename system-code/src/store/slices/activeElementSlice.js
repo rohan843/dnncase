@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { MajorEntityIDs } from "../../constants";
 
 const activeElementSlice = createSlice({
   name: "activeElement",
   initialState: {
-    id: null,
+    id: MajorEntityIDs.base,
   },
   reducers: {
     setActiveElementTo(state, action) {
