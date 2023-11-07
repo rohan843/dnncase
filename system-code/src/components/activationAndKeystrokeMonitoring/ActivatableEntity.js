@@ -9,8 +9,12 @@ import { setActiveElementTo } from "../../store";
 // a dispatch is only triggered when the active ID and the provided ID are unequal.)
 //
 // CSS Note: This wraps elements in a div. Any classes (esp. height and width) must be
-// applies to this element just as if they are being applies to a parent div.
+// applied to this element just as if they are being applied to a parent div.
 function ActivatableEntity({ id, children, ...props }) {
+  throw Error(
+    "This component is not to be used any more. Use the `useActivatableEntity` hook instead."
+  );
+
   const dispatch = useDispatch();
   const { id: activeElementID } = useSelector((store) => store.activeElement);
 
