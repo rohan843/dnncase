@@ -191,6 +191,10 @@ In other words, use this in place of something like
     border-radius: 3px;
 }
 
+.style-scrollbar-slightly-rounded::-webkit-scrollbar {
+    
+}
+
 /* Dimensions */
 
 .top-bar-height {
