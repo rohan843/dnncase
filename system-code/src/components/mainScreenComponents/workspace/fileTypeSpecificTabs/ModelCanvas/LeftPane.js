@@ -1,6 +1,6 @@
 function LeftPane() {
   return (
-    <div className="border-bottom-darker border-top-darker border-right-darker background-light w-[400px] h-[95%] p-2 absolute left-0 top-0 bottom-0 my-auto z-2 rounded-r-lg overflow-x-clip overflow-y-scroll stable-scrollbar-gutter style-scrollbar-slightly-rounded thin-box-shadow-right">
+    <div className="border-bottom-darker border-top-darker border-right-darker background-light w-[400px] h-[95%] p-2 absolute left-0 top-0 bottom-0 my-auto rounded-r-lg overflow-x-clip overflow-y-scroll stable-scrollbar-gutter style-scrollbar-slightly-rounded thin-box-shadow-right">
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum ab, animi
       sequi, ducimus perferendis praesentium, quis eligendi temporibus
       consequatur saepe ipsam. Alias nulla fugiat est cum similique molestias
