@@ -6,6 +6,7 @@ import ReactFlow, {
   addEdge,
   useEdgesState,
   useNodesState,
+  BackgroundVariant,
 } from "reactflow";
 import "reactflow/dist/style.css";
 
@@ -30,10 +31,27 @@ function GraphCanvas() {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        snapToGrid
+        snapGrid={[5, 5]}
       >
         <Controls />
         <MiniMap pannable zoomable className="opacity-80 hover:opacity-100" />
-        <Background variant="dots" gap={12} size={1} />
+        {/* <Background variant="dots" gap={12} size={1} /> */}
+        <Background
+        id="1"
+        gap={10}
+        lineWidth={0.5}
+        color="#ccc"
+        variant={BackgroundVariant.Lines}
+      />
+ 
+      <Background
+        id="2"
+        gap={100}
+        lineWidth={0.5}
+        color="#aaa"
+        variant={BackgroundVariant.Lines}
+      />
       </ReactFlow>
     </div>
   );
