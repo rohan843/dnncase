@@ -1,4 +1,4 @@
-// TODO: Handle those clicks that are meant to de-activate an entity (outside all entities).
+// TODO: Profile this component in depth to ensure no untoward re-renders are occurring.
 
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveElementTo } from "../../store";
