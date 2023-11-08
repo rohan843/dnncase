@@ -34,24 +34,22 @@ function GraphCanvas() {
         snapToGrid
         snapGrid={[5, 5]}
       >
-        <Controls />
+        <Controls className="opacity-60 hover:opacity-100 bg-white" />
         <MiniMap pannable zoomable className="opacity-80 hover:opacity-100" />
-        {/* <Background variant="dots" gap={12} size={1} /> */}
         <Background
-        id="1"
-        gap={10}
-        lineWidth={0.5}
-        color="#ccc"
-        variant={BackgroundVariant.Lines}
-      />
- 
-      <Background
-        id="2"
-        gap={100}
-        lineWidth={0.5}
-        color="#aaa"
-        variant={BackgroundVariant.Lines}
-      />
+          id="1"
+          gap={10}
+          lineWidth={0.5}
+          color="#ccc"
+          variant={BackgroundVariant.Lines}
+        />
+        <Background
+          id="2"
+          gap={100}
+          lineWidth={0.5}
+          color="#aaa"
+          variant={BackgroundVariant.Lines}
+        />
       </ReactFlow>
     </div>
   );
