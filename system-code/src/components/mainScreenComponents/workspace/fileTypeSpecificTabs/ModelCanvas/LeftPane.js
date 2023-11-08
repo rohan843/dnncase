@@ -33,7 +33,7 @@ function LeftPane({ open, onOpen, onClose }) {
     )) || (
       <ToggleButton
         pointLeft={false}
-        className="absolute top-2 left-2 opacity-80 hover:opacity-100"
+        className="absolute top-2 left-2"
         onClick={onOpen}
       />
     )
