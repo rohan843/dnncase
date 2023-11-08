@@ -8,7 +8,7 @@ function Title({ config }) {
   return (
     <div
       ref={ref}
-      className="border-darker w-[90%] h-12 background-dark flex items-center text-3xl font-mono mb-2 overflow-y-hidden overflow-x-scroll hide-scrollbar break-keep whitespace-nowrap relative"
+      className="border-darker w-[90%] h-12 background-dark flex items-center text-3xl font-mono mb-2 overflow-y-hidden overflow-x-scroll hide-scrollbar break-keep whitespace-nowrap"
       onWheel={scrollHandler}
     >
       <span className="h-full grow"></span>
