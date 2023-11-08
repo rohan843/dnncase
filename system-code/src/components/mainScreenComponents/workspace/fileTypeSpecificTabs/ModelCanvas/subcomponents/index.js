@@ -1,5 +1,5 @@
 import Title from "./Title";
-import Button from "./Button";
+import H1Button from "./H1Button";
 import H from "./H";
 import HierarchicalElementSelector from "./HierarchicalElementSelector";
 import KeyValue from "./tables/KeyValue";
@@ -7,7 +7,7 @@ import Markdown from "./textAreas/Markdown";
 import Plaintext from "./textAreas/Plaintext";
 
 export const SubcomponentsIndex = {
-  button: Button,
+  "h1-button": H1Button,
   "hierarchical-element-selector": HierarchicalElementSelector,
   title: Title,
   h: H,

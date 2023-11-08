@@ -6,9 +6,9 @@ import { useState } from "react";
 const leftPaneConfig = [
   {
     id: "addalayerbutton",
-    componentType: "button",
+    componentType: "h1-button",
     show: true,
-    innerText: "Add a Layer",
+    innerText: "Layers",
     onClick: () => {},
   },
   {
@@ -18,21 +18,21 @@ const leftPaneConfig = [
   },
   {
     id: "addapackerbutton",
-    componentType: "button",
+    componentType: "h1-button",
     show: true,
     innerText: "Add a Packer",
     onClick: () => {},
   },
   {
     id: "addarepeaterbutton",
-    componentType: "button",
+    componentType: "h1-button",
     show: true,
     innerText: "Add a Repeater",
     onClick: () => {},
   },
   {
     id: "addactivationsbutton",
-    componentType: "button",
+    componentType: "h1-button",
     show: true,
     innerText: "Activations",
     onClick: () => {},
