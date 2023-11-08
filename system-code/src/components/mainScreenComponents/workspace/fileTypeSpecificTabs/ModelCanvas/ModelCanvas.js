@@ -5,28 +5,33 @@ import { useState } from "react";
 
 const leftPaneConfig = [
   {
+    id: "addalayerbutton",
     componentType: "button",
     show: true,
     innerText: "Add a Layer",
     onClick: () => {},
   },
   {
+    id: "layerselector",
     componentType: "hierarchical-element-selector",
     show: false,
   },
   {
+    id: "addapackerbutton",
     componentType: "button",
     show: true,
     innerText: "Add a Packer",
     onClick: () => {},
   },
   {
+    id: "addarepeaterbutton",
     componentType: "button",
     show: true,
     innerText: "Add a Repeater",
     onClick: () => {},
   },
   {
+    id: "addactivationsbutton",
     componentType: "button",
     show: true,
     innerText: "Activations",
@@ -36,17 +41,20 @@ const leftPaneConfig = [
 
 const rightPaneConfig = [
   {
+    id: "titlerightpane",
     componentType: "title",
     show: true,
     innerText: "Conv2D Layer",
   },
   {
+    id: "argumentsheading",
     componentType: "h",
     show: true,
     level: 1,
     innerText: "Arguments",
   },
   {
+    id: "keyvalueparameters",
     componentType: "table/key-value",
     show: true,
     content: [
@@ -67,12 +75,14 @@ const rightPaneConfig = [
     ],
   },
   {
+    id: "codecommentsheading",
     componentType: "h",
     show: true,
     level: 1,
     innerText: "Code Comments",
   },
   {
+    id: "plaintextcodecomment",
     componentType: "text-area/plaintext",
     show: true,
     editsEnabled: false,
@@ -80,6 +90,7 @@ const rightPaneConfig = [
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
   },
   {
+    id: "markdowncodecomment",
     componentType: "text-area/markdown",
     show: true,
     editsEnabled: false,
