@@ -11,7 +11,46 @@ const leftPaneConfig = [
     onClick: () => {},
   },
   {
-    componentType: ""
+    componentType: "title",
+    show: true,
+    innerText: "Conv2D Layer",
+  },
+  {
+    componentType: "h1",
+    show: true,
+    innerText: "Arguments",
+  },
+  {
+    componentType: "table/key-value",
+    show: true,
+    content: [
+      [
+        {
+          keyInnerText: "Demo Parameter",
+          valueInnerText: 25,
+          isValueEditable: true,
+          removable: true,
+        },
+        {
+          keyInnerText: "Demo Parameter",
+          valueInnerText: 25,
+          isValueEditable: false,
+          removable: true,
+        },
+      ],
+    ],
+  },
+  {
+    componentType: "text-area/editable-text",
+    show: true,
+  },
+  {
+    componentType: "text-area/readonly-plaintext",
+    show: true,
+  },
+  {
+    componentType: "text-area/readonly-markdown",
+    show: true,
   },
   {
     componentType: "button",
