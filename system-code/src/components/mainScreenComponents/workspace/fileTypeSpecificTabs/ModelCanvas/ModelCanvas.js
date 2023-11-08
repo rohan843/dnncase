@@ -71,14 +71,14 @@ const rightPaneConfig = [
     innerText: "Code Comments",
   },
   {
-    componentType: "text-area/readonly-plaintext",
+    componentType: "text-area/plaintext",
     show: true,
     editsEnabled: false,
     innerText:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
   },
   {
-    componentType: "text-area/readonly-markdown",
+    componentType: "text-area/markdown",
     show: true,
     editsEnabled: false,
     innerText:
