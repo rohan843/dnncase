@@ -11,6 +11,10 @@ const leftPaneConfig = [
     onClick: () => {},
   },
   {
+    componentType: "hierarchical-element-selector",
+    show: false,
+  },
+  {
     componentType: "button",
     show: true,
     innerText: "Add a Packer",
@@ -71,7 +75,7 @@ const rightPaneConfig = [
     show: true,
     editsEnabled: false,
     innerText:
-    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
   },
   {
     componentType: "text-area/readonly-markdown",
