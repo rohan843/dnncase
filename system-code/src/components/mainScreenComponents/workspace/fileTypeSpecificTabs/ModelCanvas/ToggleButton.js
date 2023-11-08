@@ -5,7 +5,7 @@ function ToggleButton({ pointLeft, className, onClick }) {
   return (
     <div
       className={classNames(
-        "border-black flex items-center justify-center w-5 h-5 rounded-full cursor-pointer background-dark hover-background-darker",
+        "select-none border-black flex items-center justify-center w-5 h-5 rounded-full cursor-pointer background-dark hover-background-darker",
         className
       )}
       onClick={onClick}
