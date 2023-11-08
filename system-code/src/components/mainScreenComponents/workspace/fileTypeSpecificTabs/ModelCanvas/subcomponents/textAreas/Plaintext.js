@@ -6,7 +6,7 @@ import MarkdownEnableButton from "./MarkdownEnableButton";
 function Plaintext({ config, ...props }) {
   if (!config.show) return null;
   return (
-    <div className="h-max w-[95%] border-darker rounded p-1 overflow-hidden whitespace-break-spaces font-mono relative">
+    <div className="h-max w-[95%] border-darker rounded p-1 mb-2 overflow-hidden whitespace-break-spaces font-mono relative">
       <MarkdownEnableButton
         enabled={false}
         className="absolute right-0 top-0 z-10"
