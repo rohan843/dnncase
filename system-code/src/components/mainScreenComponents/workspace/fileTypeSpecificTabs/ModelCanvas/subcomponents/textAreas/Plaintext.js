@@ -1,3 +1,5 @@
+// TODO: Add config based inputs for all possible props.
+
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import MarkdownEnableButton from "./MarkdownEnableButton";
 
