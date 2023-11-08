@@ -62,16 +62,23 @@ const rightPaneConfig = [
     ],
   },
   {
-    componentType: "text-area/editable-text",
+    componentType: "h1",
     show: true,
+    innerText: "Code Comments",
   },
   {
     componentType: "text-area/readonly-plaintext",
     show: true,
+    editsEnabled: false,
+    innerText:
+    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
   },
   {
     componentType: "text-area/readonly-markdown",
     show: true,
+    editsEnabled: false,
+    innerText:
+      "# Dummy Text\nLorem, ipsum dolor sit amet consectetur adipisicing elit.\n>Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
   },
 ];
 
