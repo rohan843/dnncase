@@ -58,20 +58,18 @@ const rightPaneConfig = [
     componentType: "table/key-value",
     show: true,
     content: [
-      [
-        {
-          keyInnerText: "Demo Parameter",
-          valueInnerText: 25,
-          isValueEditable: true,
-          removable: true,
-        },
-        {
-          keyInnerText: "Demo Parameter",
-          valueInnerText: 25,
-          isValueEditable: false,
-          removable: true,
-        },
-      ],
+      {
+        keyInnerText: "Demo Parameter 1",
+        valueInnerText: 25,
+        isValueEditable: true,
+        removable: true,
+      },
+      {
+        keyInnerText: "Demo Parameter 2",
+        valueInnerText: 25,
+        isValueEditable: false,
+        removable: true,
+      },
     ],
   },
   {
