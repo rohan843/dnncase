@@ -2,7 +2,7 @@ function H1Button({ config }) {
   if (!config.show) return null;
   return (
     <div
-      className="w-[95%] h-10 cursor-pointer select-none text-2xl tracking-wide border-darker background-dark flex items-center mb-2 flex items-center overflow-y-hidden overflow-x-scroll hide-scrollbar break-keep whitespace-nowrap"
+      className="w-[95%] h-10 cursor-pointer select-none text-2xl tracking-wide border-darker background-dark hover-background-darker hover-border-black active-thin-inset-box-shadow flex items-center mb-2 flex items-center overflow-y-hidden overflow-x-scroll hide-scrollbar break-keep whitespace-nowrap"
       onClick={config.onClick}
     >
       <span className="h-full grow"></span>
