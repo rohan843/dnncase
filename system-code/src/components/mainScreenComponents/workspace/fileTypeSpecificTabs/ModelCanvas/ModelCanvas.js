@@ -96,7 +96,7 @@ const rightPaneConfig = [
     show: true,
     editsEnabled: false,
     innerText:
-      "# Dummy Text\nLorem, ipsum dolor sit amet consectetur adipisicing elit.\n>Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
+      "# Dummy Text\nLorem, ipsum dolor _sit_ **amet** consectetur adipisicing elit.\n>Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
     onChange: () => {},
     onConvertToPlaintext: () => {},
   },
