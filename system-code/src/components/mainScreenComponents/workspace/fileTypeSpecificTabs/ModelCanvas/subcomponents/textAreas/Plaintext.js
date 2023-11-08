@@ -1,7 +1,7 @@
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import MarkdownEnableButton from "./MarkdownEnableButton";
 
-function Plaintext({ config }) {
+function Plaintext({ config, ...props }) {
   if (!config.show) return null;
   return (
     <div className="h-max w-[95%] border-darker rounded p-1 overflow-hidden whitespace-break-spaces font-mono relative">
@@ -21,6 +21,7 @@ function Plaintext({ config }) {
             'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
           fontSize: "0.8rem",
         }}
+        {...props}
       />
     </div>
   );
