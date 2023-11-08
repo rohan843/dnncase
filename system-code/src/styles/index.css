@@ -36,6 +36,10 @@ input:focus-visible {
 
 /* Backgrounds */
 
+.background-lightest {
+    background-color: #e5e5e5;
+}
+
 .background-lighter {
     background-color: #dfdfdf;
 }
@@ -46,6 +50,10 @@ input:focus-visible {
 
 .background-dark {
     background-color: #C5C5C5;
+}
+
+.background-slightly-dark {
+    background-color: #a5a5a5;
 }
 
 .background-darker {
@@ -92,6 +100,10 @@ input:focus-visible {
 
 .border-black {
     border: 1px solid black;
+}
+
+.border-charcoal {
+    border: 1px solid rgb(27, 27, 27);
 }
 
 .hover-border-black:hover {
