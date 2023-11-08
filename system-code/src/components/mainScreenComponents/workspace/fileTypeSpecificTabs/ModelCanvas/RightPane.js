@@ -33,7 +33,7 @@ function RightPane({ open, onOpen, onClose }) {
     )) || (
       <ToggleButton
         pointLeft={true}
-        className="absolute top-2 right-2"
+        className="absolute top-2 right-2 opacity-80 hover:opacity-100"
         onClick={onOpen}
       />
     )
