@@ -94,6 +94,10 @@ input:focus-visible {
     border: 1px solid black;
 }
 
+.hover-border-black:hover {
+    border: 1px solid black;
+}
+
 .thicker-border-black {
     border: 2px solid black;
 }
@@ -226,6 +230,10 @@ In other words, use this in place of something like
 
 .thin-inset-box-shadow {
     box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.active-thin-inset-box-shadow:active {
+    box-shadow: inset 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
 }
 
 .thin-box-shadow-right {
