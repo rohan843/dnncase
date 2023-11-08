@@ -11,6 +11,27 @@ const leftPaneConfig = [
     onClick: () => {},
   },
   {
+    componentType: "button",
+    show: true,
+    innerText: "Add a Packer",
+    onClick: () => {},
+  },
+  {
+    componentType: "button",
+    show: true,
+    innerText: "Add a Repeater",
+    onClick: () => {},
+  },
+  {
+    componentType: "button",
+    show: true,
+    innerText: "Activations",
+    onClick: () => {},
+  },
+];
+
+const rightPaneConfig = [
+  {
     componentType: "title",
     show: true,
     innerText: "Conv2D Layer",
@@ -52,24 +73,6 @@ const leftPaneConfig = [
     componentType: "text-area/readonly-markdown",
     show: true,
   },
-  {
-    componentType: "button",
-    show: true,
-    innerText: "Add a Packer",
-    onClick: () => {},
-  },
-  {
-    componentType: "button",
-    show: true,
-    innerText: "Add a Repeater",
-    onClick: () => {},
-  },
-  {
-    componentType: "button",
-    show: true,
-    innerText: "Activations",
-    onClick: () => {},
-  },
 ];
 
 function ModelCanvas() {
@@ -96,6 +99,7 @@ function ModelCanvas() {
         onClose={() => {
           setRightPaneOpen(false);
         }}
+        config={rightPaneConfig}
       />
     </div>
   );
