@@ -41,8 +41,9 @@ const rightPaneConfig = [
     innerText: "Conv2D Layer",
   },
   {
-    componentType: "h1",
+    componentType: "h",
     show: true,
+    level: 1,
     innerText: "Arguments",
   },
   {
@@ -66,8 +67,9 @@ const rightPaneConfig = [
     ],
   },
   {
-    componentType: "h1",
+    componentType: "h",
     show: true,
+    level: 1,
     innerText: "Code Comments",
   },
   {
