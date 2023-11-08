@@ -22,7 +22,10 @@ function RightPane() {
           "stable-scrollbar-gutter style-scrollbar-slightly-rounded"
         )}
       >
-        <ToggleButton pointLeft={false} className="absolute -left-2.5 bottom-[5%]" />
+        <ToggleButton
+          pointLeft={false}
+          className="absolute -left-2.5 bottom-[5%]"
+        />
       </div>
     </div>
   );
