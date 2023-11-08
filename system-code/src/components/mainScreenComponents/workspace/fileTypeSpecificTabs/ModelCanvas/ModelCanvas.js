@@ -87,7 +87,7 @@ const rightPaneConfig = [
     show: true,
     editsEnabled: false,
     innerText:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
+      "Lorem,\n\nipsum dolor sit amet consectetur adipisicing elit. Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
   },
   {
     id: "markdowncodecomment",
