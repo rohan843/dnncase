@@ -77,14 +77,14 @@ const rightPaneConfig = [
         removable: true,
       },
       {
-        keyInnerText: "Demo Parameter 4",
+        keyInnerText: "A very long Demo Parameter 4",
         valueInnerText: 25,
         isValueEditable: false,
         removable: true,
       },
       {
         keyInnerText: "Demo Parameter 5",
-        valueInnerText: 25,
+        valueInnerText: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         isValueEditable: true,
         removable: true,
       },
@@ -101,7 +101,7 @@ const rightPaneConfig = [
         removable: true,
       },
       {
-        keyInnerText: "Demo Parameter 8",
+        keyInnerText: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         valueInnerText: 25,
         isValueEditable: false,
         removable: true,
