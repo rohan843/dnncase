@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import ToggleButton from "./ToggleButton";
 
-function RightPane({ open }) {
+function RightPane({ open, onOpen, onClose }) {
   return (
-    open && (
+    (open && (
       <div
         className={classNames(
           "w-[400px] h-[95%]",
@@ -26,9 +26,16 @@ function RightPane({ open }) {
           <ToggleButton
             pointLeft={false}
             className="absolute -left-2.5 bottom-[5%]"
+            onClick={onClose}
           />
         </div>
       </div>
+    )) || (
+      <ToggleButton
+        pointLeft={true}
+        className="absolute top-2 right-2"
+        onClick={onOpen}
+      />
     )
   );
 }
