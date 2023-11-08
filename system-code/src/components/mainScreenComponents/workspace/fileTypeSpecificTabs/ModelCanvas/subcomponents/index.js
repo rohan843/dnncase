@@ -6,7 +6,7 @@ import KeyValue from "./tables/KeyValue";
 import Markdown from "./textAreas/Markdown";
 import Plaintext from "./textAreas/Plaintext";
 
-export const Subcomponent = {
+export const SubcomponentsIndex = {
   button: Button,
   "hierarchical-element-selector": HierarchicalElementSelector,
   title: Title,
