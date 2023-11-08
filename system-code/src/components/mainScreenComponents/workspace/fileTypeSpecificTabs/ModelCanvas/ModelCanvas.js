@@ -50,7 +50,7 @@ const rightPaneConfig = [
     id: "argumentsheading",
     componentType: "h",
     show: true,
-    level: 1,
+    level: 1, // <1 | 2 | 3>
     innerText: "Arguments",
   },
   {
