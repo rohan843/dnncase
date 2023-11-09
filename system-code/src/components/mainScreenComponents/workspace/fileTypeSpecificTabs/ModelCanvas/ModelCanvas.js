@@ -144,6 +144,10 @@ const rightPaneConfig = [
         removable: true,
       },
     ],
+    enableNewKeyValueInput: true,
+    onNewKeyValueInputSubmit: (key, value) => {
+      alert(`${key}: ${value}`);
+    },
   },
   {
     id: "codecommentsheading",
