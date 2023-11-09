@@ -11,6 +11,7 @@
     "@uiw/react-textarea-code-editor": "^2.1.9",
     "classnames": "^2.3.2",
     "electron": "^27.0.2",
+    "immer": "^10.0.3",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-complex-tree": "^2.2.3",
