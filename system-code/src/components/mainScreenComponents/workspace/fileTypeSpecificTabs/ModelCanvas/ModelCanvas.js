@@ -1,3 +1,5 @@
+// TODO: Make this and all its children stateless. Keep file-specific state in redux instead.
+
 import RightPane from "./RightPane";
 import LeftPane from "./LeftPane";
 import GraphCanvas from "./GraphCanvas";
