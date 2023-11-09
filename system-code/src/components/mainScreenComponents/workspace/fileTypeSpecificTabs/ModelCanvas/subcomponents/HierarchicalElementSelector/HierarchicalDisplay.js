@@ -26,8 +26,7 @@ function HierarchicalDisplay({ onSelect, items }) {
         }
         onCollapseItem={(item) => {
           setExpandedItems((items) => {
-            items = items.filter((idx) => idx !== item.index);
-            console.log(items);
+            return items.filter((idx) => idx !== item.index);
           });
         }}
         renderItemTitle={({ title, item }) => {
