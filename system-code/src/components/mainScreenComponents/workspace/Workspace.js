@@ -1,3 +1,5 @@
+import { MajorEntityIDs } from "../../../constants";
+import useActivatableEntity from "../../../hooks/useActivatableEntity";
 import TabInnerContent from "./TabInnerContent";
 import QuickAddressBar from "./topBars/QuickAddressBar";
 import TopTabBar from "./topBars/TopTabBar";
@@ -9,8 +11,12 @@ const dummyAddressList = [
 ];
 
 function Workspace() {
+  const handleClickCapture = useActivatableEntity(MajorEntityIDs.workspace);
   return (
-    <div className="w-full h-full z-0 flex flex-col">
+    <div
+      className="w-full h-full z-0 flex flex-col"
+      onClickCapture={handleClickCapture}
+    >
       <TopTabBar />
       <QuickAddressBar addressList={dummyAddressList} />
       <TabInnerContent />

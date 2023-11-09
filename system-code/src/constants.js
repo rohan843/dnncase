@@ -20,6 +20,7 @@ export const LogSeverities = {
 };
 
 export const MajorEntityIDs = {
+  base: "base",
   workspace: "workspace",
   terminalArea: "terminalArea",
   leftPane: "leftPane",
