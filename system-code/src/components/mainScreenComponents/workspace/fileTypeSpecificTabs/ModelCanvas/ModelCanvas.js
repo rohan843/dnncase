@@ -72,8 +72,7 @@ const leftPaneConfig = [
       },
     },
     onSelect: (elementID, options) => {
-      console.log(elementID);
-      console.log(options);
+      alert(`${elementID}, ${JSON.stringify(options)}`);
     },
   },
   {
