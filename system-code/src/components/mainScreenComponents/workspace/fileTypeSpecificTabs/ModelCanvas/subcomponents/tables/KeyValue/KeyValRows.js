@@ -9,7 +9,7 @@ function KeyValRows({ config }) {
     );
   });
   return (
-    <div className="w-full h-max border-bottom-darker rounded-b overflow-y-scroll hide-scrollbar">
+    <div className="w-full h-max max-h-[400px] border-bottom-darker rounded-b overflow-y-scroll hide-scrollbar">
       {config.enableNewKeyValueInput && (
         <NewKeyValInput
           onNewKeyValueInputSubmit={config.onNewKeyValueInputSubmit}
