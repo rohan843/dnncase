@@ -1,5 +1,5 @@
-import plusIcon from "../../../../../../../assets/plus.png";
-import newWindowIcon from "../../../../../../../assets/open-in-new-window.png";
+import plusIcon from "../../../../../../../../assets/plus.png";
+import newWindowIcon from "../../../../../../../../assets/open-in-new-window.png";
 
 /**
  * The toolbar that supports actions to data displayed as key-value pairs.
