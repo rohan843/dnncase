@@ -1,6 +1,7 @@
 import HierarchicalDisplay from "./HierarchicalDisplay";
 import TopOptionsBar from "./TopOptionsBar";
 import { useImmer } from "use-immer";
+import { cloneDeep } from "lodash";
 
 function HierarchicalElementSelector({ config }) {
   const initialOptionsState = {};
@@ -20,7 +21,7 @@ function HierarchicalElementSelector({ config }) {
       />
       <HierarchicalDisplay
         onSelect={(elementID) => {
-          config.onSelect(elementID, optionsState);
+          config.onSelect(elementID, cloneDeep(optionsState));
         }}
         items={config.contents}
       />
