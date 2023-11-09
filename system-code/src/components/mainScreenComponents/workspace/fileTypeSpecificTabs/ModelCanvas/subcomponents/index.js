@@ -2,7 +2,7 @@ import Title from "./Title";
 import H1Button from "./H1Button";
 import H from "./H";
 import HierarchicalElementSelector from "./HierarchicalElementSelector";
-import KeyValue from "./tables/KeyValue";
+import KeyValue from "./tables/KeyValue/KeyValue";
 import Markdown from "./textAreas/Markdown";
 import Plaintext from "./textAreas/Plaintext";
 import { ConvLSTM2Dlayer, InputNode, OutputNode } from "./nodes";
