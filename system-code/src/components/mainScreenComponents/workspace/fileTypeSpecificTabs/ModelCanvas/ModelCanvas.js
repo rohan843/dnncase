@@ -151,6 +151,12 @@ const rightPaneConfig = [
     onCancel: () => {
       alert("Cancelled");
     },
+    onAdd: () => {
+      alert("add");
+    },
+    onNewWindow: () => {
+      alert("newWindow");
+    },
   },
   {
     id: "codecommentsheading",
