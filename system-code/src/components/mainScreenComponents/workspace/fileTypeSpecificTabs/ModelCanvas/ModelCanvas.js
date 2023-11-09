@@ -14,7 +14,7 @@ const leftPaneConfig = [
   {
     id: "layerselector",
     componentType: "hierarchical-element-selector",
-    show: false,
+    show: true,
   },
   {
     id: "addapackerbutton",
