@@ -22,6 +22,7 @@ function HierarchicalElementSelector({ config }) {
         onSelect={(elementID) => {
           config.onSelect(elementID, optionsState);
         }}
+        items={config.contents}
       />
     </div>
   );
