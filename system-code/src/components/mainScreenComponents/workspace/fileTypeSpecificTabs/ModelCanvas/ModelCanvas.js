@@ -62,13 +62,13 @@ const rightPaneConfig = [
         keyInnerText: "Demo Parameter 1",
         valueInnerText: 25,
         isValueEditable: true,
-        removable: true,
+        removable: false,
       },
       {
         keyInnerText: "Demo Parameter 2",
         valueInnerText: 25,
         isValueEditable: false,
-        removable: true,
+        removable: false,
       },
       {
         keyInnerText: "Demo Parameter 3",
