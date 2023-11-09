@@ -63,6 +63,9 @@ const rightPaneConfig = [
         valueInnerText: 25,
         isValueEditable: true,
         removable: false,
+        onValueChange: (newValue) => {
+          console.log(newValue);
+        },
       },
       {
         keyInnerText: "Demo Parameter 2",
@@ -78,6 +81,9 @@ const rightPaneConfig = [
         onRemove: () => {
           alert("removed!");
         },
+        onValueChange: (newValue) => {
+          console.log(newValue);
+        },
       },
       {
         keyInnerText: "A very long Demo Parameter 4",
@@ -90,6 +96,9 @@ const rightPaneConfig = [
         valueInnerText: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         isValueEditable: true,
         removable: true,
+        onValueChange: (newValue) => {
+          console.log(newValue);
+        },
       },
       {
         keyInnerText: "Demo Parameter 6",
@@ -102,6 +111,9 @@ const rightPaneConfig = [
         valueInnerText: 25,
         isValueEditable: true,
         removable: true,
+        onValueChange: (newValue) => {
+          console.log(newValue);
+        },
       },
       {
         keyInnerText:
@@ -115,6 +127,9 @@ const rightPaneConfig = [
         valueInnerText: 25,
         isValueEditable: true,
         removable: true,
+        onValueChange: (newValue) => {
+          console.log(newValue);
+        },
       },
       {
         keyInnerText: "Demo Parameter 10",
