@@ -15,6 +15,21 @@ const leftPaneConfig = [
     id: "layerselector",
     componentType: "hierarchical-element-selector",
     show: true,
+    options: [
+      {
+        id: "reusable",
+        label: "Wrap in a reuse block.",
+      },
+      {
+        id: "dummy1",
+        label: "This is a dummy option that I put here.",
+      },
+      {
+        id: "dummy2",
+        label:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui totam numquam sunt a voluptatum deserunt, odit repellat impedit excepturi placeat est praesentium illo, soluta suscipit! Neque modi veniam nesciunt molestias?",
+      },
+    ],
   },
   {
     id: "addapackerbutton",
