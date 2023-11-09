@@ -7,19 +7,7 @@ import { useImmer } from "use-immer";
 function HierarchicalDisplay({ onSelect, items }) {
   const [expandedItems, setExpandedItems] = useImmer([]);
   return (
-    <div className="w-full h-max max-h-[400px] border-bottom-darker rounded-b overflow-y-scroll hide-scrollbar px-1 py-2">
-      {/* <UncontrolledTreeEnvironment
-        dataProvider={
-          new StaticTreeDataProvider(items, (item, data) => ({ ...item, data }))
-        }
-        getItemTitle={(item) => item.data.name}
-        viewState={{}}
-        // renderItemTitle={({ title }) => {
-        //   <span>{title}</span>;
-        // }}
-      >
-        <Tree treeId="tree-1" rootItem="root" treeLabel="Tree Example" />
-      </UncontrolledTreeEnvironment> */}
+    <div className="w-full h-max max-h-[400px] border-bottom-darker rounded-b overflow-y-scroll hide-scrollbar px-1 py-2 select-none">
       <ControlledTreeEnvironment
         items={items}
         getItemTitle={(item) => item.data.name}
