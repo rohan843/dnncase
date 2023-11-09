@@ -30,6 +30,9 @@ const leftPaneConfig = [
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui totam numquam sunt a voluptatum deserunt, odit repellat impedit excepturi placeat est praesentium illo, soluta suscipit! Neque modi veniam nesciunt molestias?",
       },
     ],
+    onSelect: (elementID, options) => {
+      alert(elementID, options.toString());
+    },
   },
   {
     id: "addapackerbutton",

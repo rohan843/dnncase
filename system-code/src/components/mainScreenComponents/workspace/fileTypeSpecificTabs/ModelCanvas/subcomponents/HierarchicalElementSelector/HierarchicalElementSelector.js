@@ -18,7 +18,11 @@ function HierarchicalElementSelector({ config }) {
         optionsState={optionsState}
         setOptionsState={setOptionsState}
       />
-      <HierarchicalDisplay />
+      <HierarchicalDisplay
+        onSelect={(elementID) => {
+          config.onSelect(elementID, optionsState);
+        }}
+      />
     </div>
   );
 }
