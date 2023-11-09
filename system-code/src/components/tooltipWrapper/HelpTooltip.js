@@ -13,7 +13,7 @@ function HelpTooltip({ children, helpText, customDelayMS, ...props }) {
       <Tooltip
         id={id}
         delayShow={customDelayMS || ToolTipDelays.small}
-        className="z-50"
+        className="z-50 font-sans"
         place="bottom"
       />
     </div>

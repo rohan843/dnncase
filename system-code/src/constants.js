@@ -11,6 +11,10 @@ export const TerminalIDs = {
   comments: "commentst",
   logs: "logst",
   validation: "validationt",
+  helper: "helpert",
+  systemTerminal: "systemt",
+  pythonShell: "pythonShellt",
+  citations: "citationst",
 };
 
 export const LogSeverities = {

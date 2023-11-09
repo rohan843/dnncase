@@ -14,6 +14,9 @@ import { createSelector } from "@reduxjs/toolkit";
 import { cloneDeep } from "lodash";
 import { getOnlyArtefactDirs } from "./HierarchicalDirectoryDisplayutils";
 
+/**
+ * @bug There is a bug here that causes a warning to be thrown whenever filesystem pane is opened.
+ */
 function HierarchicalDirectoryDisplay() {
   const dispatch = useDispatch();
 
