@@ -6,7 +6,7 @@ function KeyValue({ config }) {
   return (
     <div className="border-top-darker border-right-darker border-left-darker rounded h-max w-[95%] max-h-[400px] overflow-hidden flex flex-col items-center mb-1">
       <TopToolbar />
-      <KeyValRows content={config.content} />
+      <KeyValRows config={config} />
     </div>
   );
 }
