@@ -22,6 +22,7 @@ function Plaintext({ config, ...props }) {
           fontFamily:
             'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
           fontSize: "0.8rem",
+          color: "black",
         }}
         {...props}
       />
