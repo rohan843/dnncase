@@ -16,7 +16,7 @@ function TopOptionsBar({ options, optionsState, setOptionsState }) {
             });
           }}
           alt=""
-          className="mr-1 h-4 mt-[0.25rem] opacity-50"
+          className="mr-1 h-4 mt-[0.3rem] opacity-50"
         />
         <label className="break-words hyphens">{option.label}</label>
       </div>

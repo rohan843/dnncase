@@ -18,7 +18,7 @@ const leftPaneConfig = [
     options: [
       {
         id: "reusable",
-        label: "Wrap in a reuse block.",
+        label: "apply reuse block.",
       },
       {
         id: "dummy1",
