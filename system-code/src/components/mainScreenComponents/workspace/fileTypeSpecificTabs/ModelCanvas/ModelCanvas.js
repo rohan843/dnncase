@@ -75,6 +75,9 @@ const rightPaneConfig = [
         valueInnerText: 25,
         isValueEditable: true,
         removable: true,
+        onRemove: () => {
+          alert("removed!");
+        },
       },
       {
         keyInnerText: "A very long Demo Parameter 4",
@@ -101,7 +104,8 @@ const rightPaneConfig = [
         removable: true,
       },
       {
-        keyInnerText: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        keyInnerText:
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         valueInnerText: 25,
         isValueEditable: false,
         removable: true,
