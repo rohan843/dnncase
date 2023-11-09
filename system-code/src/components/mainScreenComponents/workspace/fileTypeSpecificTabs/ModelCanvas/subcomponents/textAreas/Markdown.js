@@ -13,23 +13,23 @@ function Markdown({ config, ...props }) {
         className="absolute right-0 top-0 z-10"
         onClick={config.onConvertToPlaintext}
       />
-      {!config.editsEnabled && (
+      {config.editsEnabled && (
         <div className="w-full h-max p-[10px]" {...props}>
           <MarkdownTextDisplay mdString={config.innerText} />
         </div>
       )}
-      {config.editsEnabled && (
+      {!config.editsEnabled && (
         /* TODO: CodeEditor doesn't seem to support classes. Either see their support or report this issue.*/
         <CodeEditor
           value={config.innerText}
           onChange={config.onChange}
           placeholder={null}
-          language="md"
           style={{
             backgroundColor: "transparent",
             fontFamily:
               'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
             fontSize: "0.8rem",
+            color: "black"
           }}
           {...props}
         />
