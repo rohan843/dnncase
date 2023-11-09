@@ -1,3 +1,4 @@
+import HierarchicalDisplay from "./HierarchicalDisplay";
 import TopToolbar from "./TopToolbar";
 
 function HierarchicalElementSelector({ config }) {
@@ -5,8 +6,7 @@ function HierarchicalElementSelector({ config }) {
   return (
     <div className="border-top-darker border-right-darker border-left-darker rounded w-[95%] h-max mb-1">
       <TopToolbar />
-      {/* max-h-[400px] */}
-      HierarchicalElementSelector
+      <HierarchicalDisplay />
     </div>
   );
 }
