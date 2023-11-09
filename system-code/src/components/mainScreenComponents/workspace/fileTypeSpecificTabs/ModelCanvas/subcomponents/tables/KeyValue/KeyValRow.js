@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import removeIcon from "../../../../../../../../assets/remove-key.png";
-import readonlyIcon from "../../../../../../../../assets/readonly.png";
 
 function KeyValRow({ item, light }) {
   if (item.isValueEditable && !item.onValueChange) {
