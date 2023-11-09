@@ -16,14 +16,14 @@ function TopOptionsBar({ options, optionsState, setOptionsState }) {
             });
           }}
           alt=""
-          className="mr-1 h-4 mt-[0.3rem] opacity-50"
+          className="mr-1 h-4 mt-[0.3rem] opacity-50 hover:opacity-60 active:opacity-80 cursor-pointer"
         />
         <label className="break-words hyphens">{option.label}</label>
       </div>
     );
   });
   return (
-    <div className="flex flex-col items-center w-full min-h-7 max-h-32 px-2 py-1 border-bottom-darker rounded-b overflow-x-hidden overflow-y-scroll hide-scrollbar">
+    <div className="select-none flex flex-col items-center w-full min-h-7 max-h-32 px-2 py-1 border-bottom-darker rounded-b overflow-x-hidden overflow-y-scroll hide-scrollbar">
       {renderedOptions}
     </div>
   );
