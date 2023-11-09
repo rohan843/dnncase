@@ -1,7 +1,8 @@
 import classNames from "classnames";
 import { useRef, useState } from "react";
+import removeIcon from "../../../../../../../../assets/remove-key.png";
 
-function NewKeyValInput({ onNewKeyValueInputSubmit }) {
+function NewKeyValInput({ onNewKeyValueInputSubmit, onCancel }) {
   const [inputKey, setInputKey] = useState("");
   const [inputValue, setInputValue] = useState("");
   const formRef = useRef(null);
@@ -51,6 +52,12 @@ function NewKeyValInput({ onNewKeyValueInputSubmit }) {
             autoCorrect="off"
             autoFocus={false}
           />
+          <div
+            className="h-2.5 border-black hover-background-dark cursor-pointer active-thin-inset-box-shadow rounded-[1px] w-auto absolute -left-px -top-px"
+            onClick={onCancel}
+          >
+            <img src={removeIcon} alt="" className="h-full w-auto" />
+          </div>
         </div>
         {/* Value */}
         <div

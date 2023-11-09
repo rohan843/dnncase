@@ -13,6 +13,7 @@ function KeyValRows({ config }) {
       {config.enableNewKeyValueInput && (
         <NewKeyValInput
           onNewKeyValueInputSubmit={config.onNewKeyValueInputSubmit}
+          onCancel={config.onCancel}
         />
       )}
       {contentJSX}

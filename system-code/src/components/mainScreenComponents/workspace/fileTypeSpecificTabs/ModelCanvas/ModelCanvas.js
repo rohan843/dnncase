@@ -148,6 +148,9 @@ const rightPaneConfig = [
     onNewKeyValueInputSubmit: (key, value) => {
       alert(`${key}: ${value}`);
     },
+    onCancel: () => {
+      alert("Cancelled");
+    },
   },
   {
     id: "codecommentsheading",
