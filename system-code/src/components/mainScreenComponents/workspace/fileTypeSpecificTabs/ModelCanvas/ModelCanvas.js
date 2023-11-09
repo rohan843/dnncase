@@ -30,6 +30,47 @@ const leftPaneConfig = [
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui totam numquam sunt a voluptatum deserunt, odit repellat impedit excepturi placeat est praesentium illo, soluta suscipit! Neque modi veniam nesciunt molestias?",
       },
     ],
+    contents: {
+      root: {
+        index: "root",
+        isFolder: true,
+        children: ["word-embeddings", "convolutional"],
+        data: {},
+      },
+      "word-embeddings": {
+        index: "word-embeddings",
+        isFolder: true,
+        children: ["embedding"],
+        data: { name: "Word Embedding" },
+      },
+      embedding: {
+        index: "embedding",
+        isFolder: false,
+        data: {
+          name: "Embedding Layer",
+        },
+      },
+      convolutional: {
+        index: "convolutional",
+        isFolder: true,
+        children: ["conv2d", "deconv2d"],
+        data: { name: "Convolutional Layers" },
+      },
+      conv2d: {
+        index: "conv2d",
+        isFolder: false,
+        data: {
+          name: "Conv2D Layer",
+        },
+      },
+      deconv2d: {
+        index: "deconv2d",
+        isFolder: false,
+        data: {
+          name: "DeConv2D Layer",
+        },
+      },
+    },
     onSelect: (elementID, options) => {
       alert(elementID, options.toString());
     },
