@@ -9,7 +9,7 @@ function CommentNode({
 }) {
   return (
     <div className="w-[353px] h-[185px] overflow-hidden border-darker background-dark rounded-t flex flex-col">
-      {/* Set as TODO flag*/}
+      {/* 'Set as TODO' flag*/}
       <div className="w-full h-[28px] border-bottom-darker flex items-center">
         <div
           className={classNames(
