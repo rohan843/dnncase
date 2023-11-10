@@ -3,11 +3,11 @@ import { Handle, Position } from "reactflow";
 
 const Layer = () => {
   return (
-    <div style={{ padding: "0px 0px 0px 30px" }}>
+    <div className="p-0 pl-[30px]">
       <Handle
         type="target"
         position={Position.Left}
-        style={{ background: "#555" }}
+        className="background-dark border-darker"
       />
       <div style={{ width: "300px", border: "2px solid" }}>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
@@ -29,12 +29,12 @@ const Layer = () => {
       <Handle
         type="source"
         position={Position.Right}
-        style={{ background: "#555" }}
+        className="background-dark border-darker"
       />
       <Handle
         type="source"
         position={Position.Right}
-        style={{ background: "#555" }}
+        className="background-dark border-darker"
       />
     </div>
   );
