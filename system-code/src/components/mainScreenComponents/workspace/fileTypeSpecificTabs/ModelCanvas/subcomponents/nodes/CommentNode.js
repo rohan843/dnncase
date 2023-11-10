@@ -1,7 +1,4 @@
 import CodeEditor from "@uiw/react-textarea-code-editor";
-
-// TODO: Remove margins
-
 import classNames from "classnames";
 
 function CommentNode({
@@ -11,7 +8,7 @@ function CommentNode({
   onCommentChange,
 }) {
   return (
-    <div className="m-2 w-[353px] h-[185px] overflow-hidden border-darker background-dark rounded-t flex flex-col">
+    <div className="w-[353px] h-[185px] overflow-hidden border-darker background-dark rounded-t flex flex-col">
       {/* Set as TODO flag*/}
       <div className="w-full h-[28px] border-bottom-darker flex items-center">
         <div
