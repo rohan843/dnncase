@@ -1,23 +1,40 @@
-import React from "react";
+import layerIcon from "../../../../../../../assets/Fx.png";
 import { Handle, Position } from "reactflow";
 
 const Layer = () => {
+  const name = "Conv2DExtraExtraExtraWide Layer";
+  const activation = "euclidean";
   return (
-    <div className="p-0 pl-[30px]">
-      <Handle
+    <div className="m-2 w-[353px] h-[185px] background-dark border-darker rounded-t">
+      {/* <Handle
         type="target"
         position={Position.Left}
         className="background-dark border-darker"
-      />
-      <div style={{ width: "300px", border: "2px solid" }}>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <h2>ConvLSTM2Dlayer</h2>
-          <div style={{ display: "flex", alignItems: "flex-end" }}>
-            <p style={{ fontSize: "9px" }}>Activation: relu</p>
-          </div>
+      /> */}
+
+      <div className="w-full h-[28px] border-bottom-darker flex flex-row items-center">
+        <img
+          src={layerIcon}
+          alt=""
+          className="h-[20px] w-[20px] mx-[4px] select-none"
+        />
+        <span className="h-full w-[260px] flex items-center pr-2 font-mono select-none">
+          <p className="truncate" title={name}>
+            {name}
+          </p>
+        </span>
+        <div className="w-[65px] pr-1 h-full flex flex-col text-mono select-none">
+          <div className="grow" />
+          <p className="text-[7px] truncate">
+            Activation:{" "}
+            <span className="font-bold font-mono" title={activation}>
+              {activation}
+            </span>
+          </p>
         </div>
       </div>
-      <div className="wrapper-div" style={{ display: "flex" }}>
+
+      {/* <div className="wrapper-div" style={{ display: "flex" }}>
         <div style={{ width: "300px", border: "2px solid", height: "200px" }}>
           Main Area
         </div>
@@ -25,8 +42,8 @@ const Layer = () => {
           <h1 style={{ color: "green", fontSize: "25px" }}>Tr</h1>
           <h1 style={{ color: "red", fontSize: "25px" }}>Pw</h1>
         </div>
-      </div>
-      <Handle
+      </div> */}
+      {/* <Handle
         type="source"
         position={Position.Right}
         className="background-dark border-darker"
@@ -35,7 +52,7 @@ const Layer = () => {
         type="source"
         position={Position.Right}
         className="background-dark border-darker"
-      />
+      /> */}
     </div>
   );
 };
