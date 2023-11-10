@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { Handle, Position } from 'reactflow';
 
 const ConvLSTM2Dlayer = ()=>{
     return <div style={{padding:"0px 0px 0px 30px"}}>
+         <Handle
+            type="target"
+            position={Position.Left}
+            style={{ background: '#555' }}
+        />
         <div style={{width:"300px",border:"2px solid"}}>
             <div style={{display:"flex",justifyContent:"space-around"}}>
                 <h2>ConvLSTM2Dlayer</h2>
@@ -19,6 +25,16 @@ const ConvLSTM2Dlayer = ()=>{
                 <h1 style={{color:"red",fontSize:"25px"}}>Pw</h1>
             </div>
         </div>
+        <Handle
+            type="source"
+            position={Position.Right}
+            style={{ background: '#555' }}
+        />
+        <Handle
+            type="source"
+            position={Position.Right}
+            style={{ background: '#555' }}
+        />
     </div>
 }
 
