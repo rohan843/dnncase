@@ -30,7 +30,7 @@ const Layer = () => {
           className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
         />
         <span
-          className="absolute text-[8px] left-[15px] w-[140px] truncate font-mono"
+          className="absolute text-[8px] left-[15px] max-w-[140px] truncate font-mono"
           title={`i${i} dsg sdg dsg dsg dg dg sdg sdg esrg srd sdr gs`}
         >{`i${i} dsg sdg dsg dsg dg dg sdg sdg esrg srd sdr gs`}</span>
       </div>
@@ -49,9 +49,9 @@ const Layer = () => {
           className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
         />
         <span
-          className="absolute text-[8px] right-[15px] w-[140px] truncate font-mono"
-          title={`o${i} dsg sdg dsg dsg dg dg sdg sdg esrg srd sdr gs`}
-        >{`o${i} dsg sdg dsg dsg dg dg sdg sdg esrg srd sdr gs`}</span>
+          className="absolute text-[8px] right-[15px] max-w-[140px] truncate font-mono"
+          title={`o${i}`}
+        >{`o${i}`}</span>
       </div>
     );
   }
