@@ -11,7 +11,7 @@ const Layer = () => {
   const trained = true;
   const usingPrevWeights = true;
   const numInputNodes = 3;
-  const numOutputNodes = 4;
+  const numOutputNodes = 3;
   if (!trained && usingPrevWeights) {
     console.error(
       "Layer: An untrained layer is specified to use pre-trained weights."
@@ -21,26 +21,38 @@ const Layer = () => {
   const dummyInputHandlesList = [];
   for (let i = 0; i < numInputNodes; i++) {
     dummyInputHandlesList.push(
-      <Handle
-        key={`i${i}`}
-        id={`i${i}`}
-        type="source"
-        position={Position.Left}
-        className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
-      />
+      <div className="relative flex flex-row">
+        <Handle
+          key={`i${i}`}
+          id={`i${i}`}
+          type="source"
+          position={Position.Left}
+          className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
+        />
+        <span
+          className="absolute text-[8px] left-[15px] w-[140px] truncate font-mono"
+          title={`i${i} dsg sdg dsg dsg dg dg sdg sdg esrg srd sdr gs`}
+        >{`i${i} dsg sdg dsg dsg dg dg sdg sdg esrg srd sdr gs`}</span>
+      </div>
     );
   }
 
   const dummyOutputHandlesList = [];
   for (let i = 0; i < numOutputNodes; i++) {
     dummyOutputHandlesList.push(
-      <Handle
-        key={`o${i}`}
-        id={`o${i}`}
-        type="source"
-        position={Position.Right}
-        className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
-      />
+      <div className="relative flex flex-row">
+        <Handle
+          key={`o${i}`}
+          id={`o${i}`}
+          type="source"
+          position={Position.Right}
+          className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
+        />
+        <span
+          className="absolute text-[8px] right-[15px] w-[140px] truncate font-mono"
+          title={`o${i} dsg sdg dsg dsg dg dg sdg sdg esrg srd sdr gs`}
+        >{`o${i} dsg sdg dsg dsg dg dg sdg sdg esrg srd sdr gs`}</span>
+      </div>
     );
   }
 
