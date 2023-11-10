@@ -2,6 +2,7 @@ const winston = require('winston');
 const fs = require('fs');
 const readline = require('readline');
 
+function recentNLogs(n) {
 // Define the log file path
 const logFilePath = 'info.logs';
 
@@ -15,7 +16,7 @@ const customLogStream = new require('stream').Transform({
     recentLogs.push(logEntry);
 
     // Keep only the most recent 10 log entries
-    if (recentLogs.length > 10) {
+    if (n!=-1 && recentLogs.length > n) {
       recentLogs.shift();
     }
 
@@ -52,3 +53,7 @@ readStream.on('close', () => {
 readStream.on('error', (err) => {
   console.error(`Error reading the log file: ${err}`);
 });
+return recentLogs
+}
+
+console.log(recentNLogs(-1));
