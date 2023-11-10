@@ -21,11 +21,10 @@ const Layer = () => {
   const dummyInputHandlesList = [];
   for (let i = 0; i < numInputNodes; i++) {
     dummyInputHandlesList.push(
-      <div className="relative flex flex-row">
+      <div key={`i${i}`} className="relative flex flex-row">
         <Handle
-          key={`i${i}`}
           id={`i${i}`}
-          type="source"
+          type="target"
           position={Position.Left}
           className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
         />
@@ -40,9 +39,8 @@ const Layer = () => {
   const dummyOutputHandlesList = [];
   for (let i = 0; i < numOutputNodes; i++) {
     dummyOutputHandlesList.push(
-      <div className="relative flex flex-row">
+      <div key={`o${i}`} className="relative flex flex-row">
         <Handle
-          key={`o${i}`}
           id={`o${i}`}
           type="source"
           position={Position.Right}
@@ -135,6 +133,7 @@ const Layer = () => {
           {dummyOutputHandlesList}
         </div>
       </div>
+      {/* <Handle id="i0" type="target" */}
     </div>
   );
 };
