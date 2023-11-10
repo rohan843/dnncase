@@ -1,3 +1,5 @@
+// TODO: Add editing facility for labels.
+
 import layerIcon from "../../../../../../../assets/Fx.png";
 import trainedLayerIcon from "../../../../../../../assets/layer-trained.png";
 import untrainedLayerIcon from "../../../../../../../assets/layer-not-trained.png";
