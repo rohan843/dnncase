@@ -110,6 +110,14 @@ input:focus-visible {
     border: 1px solid black;
 }
 
+.active-border-black-else-darker {
+    border: 1px solid #8C8C8C;
+}
+
+.active-border-black-else-darker:active {
+    border: 1px solid black;
+}
+
 .thicker-border-black {
     border: 2px solid black;
 }
