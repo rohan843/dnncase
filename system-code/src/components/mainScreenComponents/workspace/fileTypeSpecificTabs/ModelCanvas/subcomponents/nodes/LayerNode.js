@@ -8,7 +8,7 @@ import { Handle, Position } from "reactflow";
 const Layer = () => {
   const name = "Conv2DExtraExtraExtraWide Layer";
   const activation = "euclidean";
-  const trained = false;
+  const trained = true;
   const usingPrevWeights = true;
   if(!trained && usingPrevWeights) {
     console.error('Layer: An untrained layer is specified to use pre-trained weights.');
