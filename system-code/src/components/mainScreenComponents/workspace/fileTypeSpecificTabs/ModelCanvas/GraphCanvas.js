@@ -11,8 +11,8 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import { Layer } from "./subcomponents/nodes";
 
-const nodeTypes = {
-  selectorNode: Layer,
+const NodeTypes = {
+  LayerNode: Layer,
 };
 
 const initialNodes = [
@@ -20,13 +20,13 @@ const initialNodes = [
     id: "1",
     position: { x: 0, y: 0 },
     data: { label: "1" },
-    type: "selectorNode",
+    type: "LayerNode",
   },
   {
     id: "2",
     position: { x: 0, y: 100 },
     data: { label: "2" },
-    type: "selectorNode",
+    type: "LayerNode",
   },
 ];
 const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
@@ -46,7 +46,7 @@ function GraphCanvas() {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
-        nodeTypes={nodeTypes}
+        nodeTypes={NodeTypes}
         snapToGrid
         snapGrid={[5, 5]}
       >
