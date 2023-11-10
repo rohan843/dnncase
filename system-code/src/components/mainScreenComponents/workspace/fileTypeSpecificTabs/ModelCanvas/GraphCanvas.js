@@ -22,11 +22,27 @@ const initialNodes = [
     data: { label: "1" },
     type: "LayerNode",
   },
+  {
+    id: "2",
+    position: { x: 200, y: 200 },
+    data: { label: "1" },
+    type: "LayerNode",
+  },
 ];
+
+const initialEdges = [{
+  id: 'e2a-3',
+  source: '1',
+  target: '2',
+  sourceHandle: 'o0',
+  targetHandle: 'i0',
+  animated: true,
+  style: { stroke: '#fff' },
+}];
 
 function GraphCanvas() {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges]
