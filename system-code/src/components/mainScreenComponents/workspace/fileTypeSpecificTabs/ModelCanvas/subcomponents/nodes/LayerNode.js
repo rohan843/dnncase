@@ -10,17 +10,13 @@ const Layer = () => {
   const activation = "euclidean";
   const trained = true;
   const usingPrevWeights = true;
-  if(!trained && usingPrevWeights) {
-    console.error('Layer: An untrained layer is specified to use pre-trained weights.');
+  if (!trained && usingPrevWeights) {
+    console.error(
+      "Layer: An untrained layer is specified to use pre-trained weights."
+    );
   }
   return (
     <div className="w-[353px] h-[185px] background-dark border-darker rounded-t">
-      {/* <Handle
-        type="target"
-        position={Position.Left}
-        className="background-dark border-darker"
-      /> */}
-
       {/* Top Bar */}
       <div className="w-full h-[28px] border-bottom-darker flex flex-row items-center">
         <img
@@ -44,7 +40,14 @@ const Layer = () => {
         </div>
       </div>
 
+      {/* Inner Content */}
       <div className="h-[155px] w-full relative">
+        <Handle
+          type="target"
+          position={Position.Left}
+          className="background-dark border-darker absolute top-0"
+        />
+
         <div className="select-none absolute -top-[1px] -right-[23px] w-[23px] h-[42px] border-darker background-dark flex flex-col justify-evenly">
           <img
             src={(trained && trainedLayerIcon) || untrainedLayerIcon}
@@ -63,18 +66,18 @@ const Layer = () => {
             }
           />
         </div>
-      </div>
 
-      {/* <Handle
-        type="source"
-        position={Position.Right}
-        className="background-dark border-darker"
-      />
-      <Handle
-        type="source"
-        position={Position.Right}
-        className="background-dark border-darker"
-      /> */}
+        <Handle
+          type="source"
+          position={Position.Right}
+          className="background-dark border-darker absolute top-0"
+        />
+        <Handle
+          type="source"
+          position={Position.Right}
+          className="background-dark border-darker"
+        />
+      </div>
     </div>
   );
 };
