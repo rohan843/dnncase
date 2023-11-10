@@ -9,10 +9,10 @@ import ReactFlow, {
   BackgroundVariant,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import { ConvLSTM2Dlayer } from "./subcomponents/nodes";
+import { Layer } from "./subcomponents/nodes";
 
 const nodeTypes = {
-  selectorNode: ConvLSTM2Dlayer,
+  selectorNode: Layer,
 };
 
 const initialNodes = [

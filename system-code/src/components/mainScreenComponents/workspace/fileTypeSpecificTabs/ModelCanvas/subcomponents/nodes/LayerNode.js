@@ -1,7 +1,7 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
 
-const ConvLSTM2Dlayer = () => {
+const Layer = () => {
   return (
     <div style={{ padding: "0px 0px 0px 30px" }}>
       <Handle
@@ -40,4 +40,4 @@ const ConvLSTM2Dlayer = () => {
   );
 };
 
-export default ConvLSTM2Dlayer;
+export default Layer;
