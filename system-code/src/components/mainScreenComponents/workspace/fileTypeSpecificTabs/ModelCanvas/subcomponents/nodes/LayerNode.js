@@ -10,13 +10,73 @@ const Layer = () => {
   const activation = "euclidean";
   const trained = true;
   const usingPrevWeights = true;
+  const numInputNodes = 1;
+  const numOutputNodes = 10;
   if (!trained && usingPrevWeights) {
     console.error(
       "Layer: An untrained layer is specified to use pre-trained weights."
     );
   }
+
+  const dummyInputHandlesList = [];
+  for (let i = 0; i < numInputNodes; i++) {
+    dummyInputHandlesList.push(
+      <Handle
+        key={`i${i}`}
+        id={`i${i}`}
+        type="source"
+        position={Position.Left}
+        className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
+      />
+    );
+  }
+
+  const dummyOutputHandlesList = [];
+  for (let i = 0; i < numInputNodes; i++) {
+    dummyOutputHandlesList.push(
+      <Handle
+        key={`o${i}`}
+        id={`o${i}`}
+        type="source"
+        position={Position.Right}
+        className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
+      />
+    );
+  }
+
+  const minimumRequiredContentAreaHeight =
+    Math.max(numInputNodes, numOutputNodes) * 19;
+
   return (
-    <div className="w-[353px] h-[185px] background-dark border-darker rounded-t">
+    <div
+      style={{
+        height: `${minimumRequiredContentAreaHeight + 28}px`,
+        minHeight: `${155 + 28}px`,
+      }}
+      className="w-[353px] background-dark border-darker rounded-t"
+    >
+      {/* Weights Info Box */}
+      <div className="select-none absolute -top-[20px] right-[20px] h-[21px] w-[49px] rounded-t border-darker background-dark flex flex-row justify-evenly items-center">
+        <img
+          src={(trained && trainedLayerIcon) || untrainedLayerIcon}
+          alt=""
+          title={
+            (trained && "This layer is pretrained") ||
+            "This layer is not pretrained"
+          }
+          className="w-[24px] h-[16px]"
+        />
+        <img
+          src={(usingPrevWeights && pretrainedWeightsIcon) || newWeightsIcon}
+          alt=""
+          title={
+            (usingPrevWeights && "This layer is using pre-trained weights") ||
+            "This layer is using newly initialized weights"
+          }
+          className="w-[24px] h-[16px]"
+        />
+      </div>
+
       {/* Top Bar */}
       <div className="w-full h-[28px] border-bottom-darker flex flex-row items-center">
         <img
@@ -41,42 +101,19 @@ const Layer = () => {
       </div>
 
       {/* Inner Content */}
-      <div className="h-[155px] w-full relative">
-        <Handle
-          type="target"
-          position={Position.Left}
-          className="background-dark border-darker absolute top-0"
-        />
-
-        <div className="select-none absolute -top-[1px] -right-[23px] w-[23px] h-[42px] border-darker background-dark flex flex-col justify-evenly">
-          <img
-            src={(trained && trainedLayerIcon) || untrainedLayerIcon}
-            alt=""
-            title={
-              (trained && "This layer is pretrained") ||
-              "This layer is not pretrained"
-            }
-          />
-          <img
-            src={(usingPrevWeights && pretrainedWeightsIcon) || newWeightsIcon}
-            alt=""
-            title={
-              (usingPrevWeights && "This layer is using pre-trained weights") ||
-              "This layer is using newly initialized weights"
-            }
-          />
+      <div
+        style={{ height: `${minimumRequiredContentAreaHeight}px` }}
+        className="w-full relative"
+      >
+        {/* Input Handles */}
+        <div className="absolute -left-[6px] h-max w-[12px] pt-[4px] pb-[2px] flex flex-col justify-evenly">
+          {dummyInputHandlesList}
         </div>
 
-        <Handle
-          type="source"
-          position={Position.Right}
-          className="background-dark border-darker absolute top-0"
-        />
-        <Handle
-          type="source"
-          position={Position.Right}
-          className="background-dark border-darker"
-        />
+        {/* Output Handles */}
+        <div className="absolute -right-[6px] h-max w-[12px] pt-[4px] pb-[2px] flex flex-col justify-evenly">
+          {dummyOutputHandlesList}
+        </div>
       </div>
     </div>
   );
