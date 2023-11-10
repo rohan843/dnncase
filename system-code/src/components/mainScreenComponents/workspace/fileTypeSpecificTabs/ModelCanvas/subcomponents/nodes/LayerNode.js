@@ -10,8 +10,8 @@ const Layer = () => {
   const activation = "euclidean";
   const trained = true;
   const usingPrevWeights = true;
-  const numInputNodes = 1;
-  const numOutputNodes = 10;
+  const numInputNodes = 3;
+  const numOutputNodes = 4;
   if (!trained && usingPrevWeights) {
     console.error(
       "Layer: An untrained layer is specified to use pre-trained weights."
@@ -32,7 +32,7 @@ const Layer = () => {
   }
 
   const dummyOutputHandlesList = [];
-  for (let i = 0; i < numInputNodes; i++) {
+  for (let i = 0; i < numOutputNodes; i++) {
     dummyOutputHandlesList.push(
       <Handle
         key={`o${i}`}
@@ -44,14 +44,16 @@ const Layer = () => {
     );
   }
 
-  const minimumRequiredContentAreaHeight =
-    Math.max(numInputNodes, numOutputNodes) * 19;
+  const minimumRequiredContentAreaHeight = Math.max(
+    Math.max(numInputNodes, numOutputNodes) * 19,
+    // HACK: remove below number to allow fully handle-count based height.
+    155
+  );
 
   return (
     <div
       style={{
         height: `${minimumRequiredContentAreaHeight + 28}px`,
-        minHeight: `${155 + 28}px`,
       }}
       className="w-[353px] background-dark border-darker rounded-t"
     >
@@ -106,12 +108,18 @@ const Layer = () => {
         className="w-full relative"
       >
         {/* Input Handles */}
-        <div className="absolute -left-[6px] h-max w-[12px] pt-[4px] pb-[2px] flex flex-col justify-evenly">
+        <div
+          style={{ minHeight: `${minimumRequiredContentAreaHeight}px` }}
+          className="absolute -left-[6px] h-max w-[12px] pt-[4px] pb-[2px] flex flex-col justify-evenly"
+        >
           {dummyInputHandlesList}
         </div>
 
         {/* Output Handles */}
-        <div className="absolute -right-[6px] h-max w-[12px] pt-[4px] pb-[2px] flex flex-col justify-evenly">
+        <div
+          style={{ minHeight: `${minimumRequiredContentAreaHeight}px` }}
+          className="absolute -right-[6px] h-max w-[12px] pt-[4px] pb-[2px] flex flex-col justify-evenly"
+        >
           {dummyOutputHandlesList}
         </div>
       </div>
