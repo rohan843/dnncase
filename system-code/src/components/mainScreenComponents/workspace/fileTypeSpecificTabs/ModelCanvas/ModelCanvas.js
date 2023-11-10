@@ -55,7 +55,7 @@ const leftPaneConfig = [
       convolutional: {
         index: "convolutional",
         isFolder: true,
-        children: ["conv2d", "deconv2d"],
+        children: ["conv2d", "deconv2d", "alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d"],
         data: { name: "Convolutional Layers" },
       },
       conv2d: {
@@ -70,6 +70,13 @@ const leftPaneConfig = [
         isFolder: false,
         data: {
           name: "DeConv2D Layer",
+        },
+      },
+      alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d: {
+        index: "alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d",
+        isFolder: false,
+        data: {
+          name: "ALongNamedDeconv2DLayerWithASuperLooooongNameDeconv2D Layer",
         },
       },
     },

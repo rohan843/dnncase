@@ -36,12 +36,13 @@ function HierarchicalDisplay({ onSelect, items }) {
                 onClick={() => {
                   onSelect(item.index);
                 }}
+                className="truncate"
               >
                 {title}
               </span>
             );
           } else {
-            return <span>{title}</span>;
+            return <span className="truncate">{title}</span>;
           }
         }}
         renderItemArrow={({ item, context }) =>
