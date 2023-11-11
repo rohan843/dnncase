@@ -13,7 +13,7 @@ const projectContext = require("../../projectUtils/ProjectContext");
  */
 
 /**
- * A function that checks if a provided path is absolute and lies within a provided scope. Throws an error on any validation issues.
+ * A function that checks if a provided path is absolute, lies within a provided scope, and can be used as a path to a file. Throws an error on any validation issues.
  * @param {string} filePath The path to validate.
  * @param {ScopeType} fileScope The scope with respect to which validation must occur.
  *
