@@ -6,6 +6,7 @@ const path = require("path");
 const { Scope } = require("../../constants");
 const fs = require("fs");
 const { globalAppData } = require("../GlobalAppData");
+const projectContext = require("../../projectUtils/ProjectContext");
 
 /**
  * The File class. Objects of this class represent a file on the user's system.
@@ -18,7 +19,7 @@ class File {
       );
     } else if (fileScope === Scope.unbounded) {
       throw UnboundedScopeError(
-        "Unbounded scope provided to File. Only `project` or `global` scopes may be provided."
+        "Unbounded scope provided to File. Only `project` or `global` scopes may be provided. If any file manipulation external to the system is required, `Exporter` class may be used."
       );
     } else if (
       fs.existsSync(filePath) &&
@@ -35,6 +36,15 @@ class File {
         `Provided path: '${filePath}' doesn't lie in global scope.`
       );
     } else if (fileScope === Scope.project) {
+      if (!projectContext.isInitialized) {
+        throw PathError(
+          `A path: ${filePath} with a project scope is provided, but no project is initialized.`
+        );
+      } else if (!projectContext.isPathWithinProjectArea(filePath)) {
+        throw PathError(
+          `Provided path: '${filePath}' doesn't lie in project scope.`
+        );
+      }
     } else {
       throw ScopeError("Invalid scope provided.");
     }
