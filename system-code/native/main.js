@@ -3,6 +3,7 @@ const {
   systemStartupSequence,
 } = require("./systemStartup/systemStartupSequence");
 
+// eslint-disable-next-line no-unused-vars
 const createWindow = () => {
   const win = new BrowserWindow({ frame: false });
   win.maximize();
