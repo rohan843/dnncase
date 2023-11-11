@@ -1,4 +1,4 @@
-const { app } = require("electron");
+const { globalAppData } = require("../fsUtils/GlobalAppData");
 
 /**
  * This is the startup sequence. This function will be called once when the 'ready' event is fired. The basic tasks this function does are:
@@ -10,7 +10,14 @@ const { app } = require("electron");
  *
  */
 function systemStartupSequence() {
-  console.log(app.getPath("appData"));
+  console.log("Initiating system startup...");
+  console.log(`Global Data Directory: ${globalAppData.getDirPath}`);
+  console.log("Checking and initializing global directory if needed...");
+  const wasGlobalDirInitialized = globalAppData.initiateDirectory();
+  if (wasGlobalDirInitialized) {
+    console.log("Global Directory initialized.");
+  }
+  
 }
 
 module.exports = { systemStartupSequence };
