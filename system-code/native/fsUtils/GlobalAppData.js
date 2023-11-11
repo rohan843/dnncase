@@ -2,6 +2,7 @@ const path = require("node:path");
 const fs = require("fs");
 const { app } = require("electron");
 const { appName, cachedPrevSessionConfigName } = require("../constants");
+const checkIfChildPathIsValid = require("./utils/checkIfChildPathIsValid");
 
 /**
  * A class to allow easy management of global storage area of the system.
@@ -61,11 +62,14 @@ class GlobalAppData {
   }
   /**
    * Takes a path string and checks if it lies in the global directory.
-   * @param {string} queryPath 
+   * @param {string} queryPath Must be an absolute path. This is **NOT** validated within this method.
    * @returns {boolean} `true` if path lies in global area, else `false`.
    */
   isPathWithinGlobalArea(queryPath) {
-
+    return checkIfChildPathIsValid({
+      child: queryPath,
+      parent: this.appDataDir,
+    });
   }
 }
 
