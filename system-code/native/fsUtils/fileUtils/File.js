@@ -11,6 +11,7 @@ class File {
     validateScopeBasedAbsoluteFilePath(filePath, fileScope);
     this.__filePath = filePath;
     this.__isBuilt = false;
+    this.__fileData = null;
   }
   /**
    * Checks if the provided path points to an existing file. If not, creates that file.
