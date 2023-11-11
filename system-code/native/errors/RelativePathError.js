@@ -1,4 +1,6 @@
-class RelativePathError extends Error {
+const PathError = require("./PathError");
+
+class RelativePathError extends PathError {
   constructor(message) {
     super(message);
     this.name = "RelativePathError";
