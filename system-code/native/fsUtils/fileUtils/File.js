@@ -9,8 +9,11 @@ const fs = require("fs");
 class File {
   constructor(filePath, fileScope) {
     validateScopeBasedAbsoluteFilePath(filePath, fileScope);
+    /** @private The absolute path to the file. */
     this.__filePath = filePath;
+    /** @private Whether file has been built or not. */
     this.__isBuilt = false;
+    /** @private The contents of the file. Could be string or of some other data type, such as object. */
     this.__fileData = null;
   }
   /**
