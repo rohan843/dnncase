@@ -1,3 +1,5 @@
+// To check for circular dependencies: npx depcruise native
+
 const { app, BrowserWindow } = require("electron");
 const {
   systemStartupSequence,
