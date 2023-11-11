@@ -8,6 +8,18 @@ const fs = require("fs");
 const { globalAppData } = require("../GlobalAppData");
 const projectContext = require("../../projectUtils/ProjectContext");
 
+/**
+ * @typedef {"global" | "project" | "unbounded"} ScopeType
+ */
+
+/**
+ * A function that checks if a provided path is absolute and lies within a provided scope. Throws an error on any validation issues.
+ * @param {string} filePath The path to validate.
+ * @param {ScopeType} fileScope The scope with respect to which validation must occur.
+ *
+ * @throws PathError -> RelativePathError
+ * @throws ScopeError -> UnboundedScopeError
+ */
 function validateScopeBasedAbsoluteFilePath(filePath, fileScope) {
   if (!filePath) {
     throw PathError("No path provided.");
