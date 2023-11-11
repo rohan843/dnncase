@@ -3,7 +3,7 @@ const fs = require("fs");
 const { app } = require("electron");
 const { appName, cachedPrevSessionConfigName, Scope } = require("../constants");
 const checkIfChildPathIsValid = require("./utils/checkIfChildPathIsValid");
-const JSONFile = require("./fileUtils/JSONFile");
+const UnsafeJSONFile = require("./fileUtils/unsafeAPIs/UnsafeJSONFile");
 
 /**
  * A class to allow easy management of global storage area of the system.
@@ -59,7 +59,7 @@ class GlobalAppData {
       pathToCache,
       cachedPrevSessionConfigName
     );
-    const prevSessionFile = new JSONFile(pathToPrevSessionConfig, Scope.global);
+    const prevSessionFile = new UnsafeJSONFile(pathToPrevSessionConfig, Scope.global);
     prevSessionFile.buildSync({});
 
     process.stdout.write("DONE\n");
@@ -83,6 +83,7 @@ class GlobalAppData {
 /**
  * An instantiated object allowing access to the app's global data directory.
  * @global
+ * @satisfies This object is the **ONLY** source of truth for the absolute path to the global directory.
  */
 const globalAppData = new GlobalAppData();
 
