@@ -6,7 +6,6 @@ const path = require("path");
 const { Scope } = require("../../constants");
 const fs = require("fs");
 
-// TODO: These 2 imports facilitate access to functions that ensure the provided path lies in the provided scope. But, they are giving rise to circ. deps. rectify this.
 const { globalAppData } = require("../GlobalAppData");
 const projectContext = require("../../projectUtils/ProjectContext");
 
