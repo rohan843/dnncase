@@ -23,6 +23,10 @@ class ProjectContext {
   }
 }
 
+/**
+ * The project's context will be exposed via this object.
+ * @satisfies This is the **ONLY** source of truth for the current project's directory path, if a project is open.
+ */
 const projectContext = new ProjectContext();
 
 module.exports = projectContext;
