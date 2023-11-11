@@ -13,5 +13,6 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
   // createWindow();
-  systemStartupSequence();
+  const currentProjectPath = systemStartupSequence();
+  console.log(currentProjectPath);
 });
