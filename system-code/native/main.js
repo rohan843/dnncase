@@ -1,4 +1,7 @@
 const { app, BrowserWindow } = require("electron");
+const {
+  systemStartupSequence,
+} = require("./systemStartup/systemStartupSequence");
 
 const createWindow = () => {
   const win = new BrowserWindow({ frame: false });
@@ -9,5 +12,6 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
-  createWindow();
+  // createWindow();
+  systemStartupSequence();
 });
