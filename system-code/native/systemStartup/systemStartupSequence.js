@@ -17,7 +17,8 @@ function systemStartupSequence() {
   if (wasGlobalDirInitialized) {
     console.log("Global Directory initialized.");
   }
-  
+  console.log("Initiating uninitialized Global Directory contents...");
+  globalAppData.initiateDirectoryContents();
 }
 
 module.exports = { systemStartupSequence };

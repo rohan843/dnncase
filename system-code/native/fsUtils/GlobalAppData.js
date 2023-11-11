@@ -30,6 +30,19 @@ class GlobalAppData {
       return false;
     }
   }
+  /**
+   * Initiates the contents of the global directory. The global directory must be initiated beforehand.
+   */
+  initiateDirectoryContents() {
+    const topLevelSubdirs = ["/cache"];
+    for (let topLevelSubdir of topLevelSubdirs) {
+      const fullSubdirPath = path.join(this.appDataDir, topLevelSubdir);
+      if (!fs.existsSync(fullSubdirPath)) {
+        console.log("Initializing", topLevelSubdir);
+        fs.mkdirSync(fullSubdirPath, { recursive: true });
+      }
+    }
+  }
   get getDirPath() {
     return this.appDataDir;
   }
