@@ -59,6 +59,14 @@ class GlobalAppData {
   get getDirPath() {
     return this.appDataDir;
   }
+  /**
+   * Takes a path string and checks if it lies in the global directory.
+   * @param {string} queryPath 
+   * @returns {boolean} `true` if path lies in global area, else `false`.
+   */
+  isPathWithinGlobalArea(queryPath) {
+
+  }
 }
 
 /**
