@@ -1,7 +1,7 @@
 const path = require("node:path");
 const fs = require("fs");
 const { app } = require("electron");
-const { appName } = require("../constants");
+const { appName, cachedPrevSessionConfigName } = require("../constants");
 
 /**
  * A class to allow easy management of global storage area of the system.
@@ -34,14 +34,27 @@ class GlobalAppData {
    * Initiates the contents of the global directory. The global directory must be initiated beforehand.
    */
   initiateDirectoryContents() {
-    const topLevelSubdirs = ["/cache"];
-    for (let topLevelSubdir of topLevelSubdirs) {
-      const fullSubdirPath = path.join(this.appDataDir, topLevelSubdir);
-      if (!fs.existsSync(fullSubdirPath)) {
-        console.log("Initializing", topLevelSubdir);
-        fs.mkdirSync(fullSubdirPath, { recursive: true });
-      }
+    this.__initiateCache();
+  }
+  /**
+   * Initiates the contents of the global cache.
+   * @private This method is private
+   */
+  __initiateCache() {
+    const pathToCache = path.join(this.appDataDir, "/cache");
+    if (!fs.existsSync(pathToCache)) {
+      process.stdout.write("Creating /cache... ");
+      fs.mkdirSync(pathToCache);
+      process.stdout.write("DONE\n");
     }
+    process.stdout.write("Creating cache files... ");
+    const pathToPrevSessionConfig = path.join(
+      pathToCache,
+      cachedPrevSessionConfigName
+    );
+    const prevSessionFD = fs.openSync(pathToPrevSessionConfig, "a");
+    fs.closeSync(prevSessionFD);
+    process.stdout.write("DONE\n");
   }
   get getDirPath() {
     return this.appDataDir;
