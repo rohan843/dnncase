@@ -3,6 +3,7 @@ const fs = require("fs");
 const { app } = require("electron");
 const { appName, cachedPrevSessionConfigName } = require("../constants");
 const checkIfChildPathIsValid = require("./utils/checkIfChildPathIsValid");
+const JSONFile = require("./fileUtils/JSONFile");
 
 /**
  * A class to allow easy management of global storage area of the system.
@@ -42,19 +43,25 @@ class GlobalAppData {
    * @private This method is private
    */
   __initiateCache() {
+    // Creating cache folder.
     const pathToCache = path.join(this.appDataDir, "/cache");
     if (!fs.existsSync(pathToCache)) {
       process.stdout.write("Creating /cache... ");
       fs.mkdirSync(pathToCache);
       process.stdout.write("DONE\n");
     }
+
+    // Creating basic cached files.
     process.stdout.write("Creating cache files... ");
+
+    // 1. Creating cached-prev-session-config.json
     const pathToPrevSessionConfig = path.join(
       pathToCache,
       cachedPrevSessionConfigName
     );
-    const prevSessionFD = fs.openSync(pathToPrevSessionConfig, "a");
-    fs.closeSync(prevSessionFD);
+    const prevSessionFile = new JSONFile(pathToPrevSessionConfig);
+    prevSessionFile.buildSync({});
+
     process.stdout.write("DONE\n");
   }
   get getDirPath() {
