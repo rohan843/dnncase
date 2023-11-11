@@ -1,7 +1,7 @@
 const path = require("node:path");
 const fs = require("fs");
 const { app } = require("electron");
-const { appName, cachedPrevSessionConfigName } = require("../constants");
+const { appName, cachedPrevSessionConfigName, Scope } = require("../constants");
 const checkIfChildPathIsValid = require("./utils/checkIfChildPathIsValid");
 const JSONFile = require("./fileUtils/JSONFile");
 
@@ -59,7 +59,7 @@ class GlobalAppData {
       pathToCache,
       cachedPrevSessionConfigName
     );
-    const prevSessionFile = new JSONFile(pathToPrevSessionConfig);
+    const prevSessionFile = new JSONFile(pathToPrevSessionConfig, Scope.global);
     prevSessionFile.buildSync({});
 
     process.stdout.write("DONE\n");
