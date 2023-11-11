@@ -22,38 +22,38 @@ const projectContext = require("../../projectUtils/ProjectContext");
  */
 function validateScopeBasedAbsoluteFilePath(filePath, fileScope) {
   if (!filePath) {
-    throw PathError("No path provided.");
+    throw new PathError("No path provided.");
   } else if (!path.isAbsolute(filePath)) {
-    throw RelativePathError(
+    throw new RelativePathError(
       `The path: '${filePath}' is relative. Scope-based path resolution is currently disabled. Please provide full path.`
     );
   } else if (fileScope === Scope.unbounded) {
-    throw UnboundedScopeError(
+    throw new UnboundedScopeError(
       "Unbounded scope provided to File. Only `project` or `global` scopes may be provided. If any file manipulation external to the system is required, `Exporter` class may be used."
     );
   } else if (fs.existsSync(filePath) && fs.lstatSync(filePath).isDirectory()) {
-    throw PathError(
+    throw new PathError(
       `Provided path: '${filePath}' to File exists and is a directory.`
     );
   } else if (
     fileScope === Scope.global &&
     !globalAppData.isPathWithinGlobalArea(filePath)
   ) {
-    throw PathError(
+    throw new PathError(
       `Provided path: '${filePath}' doesn't lie in global scope.`
     );
   } else if (fileScope === Scope.project) {
     if (!projectContext.isInitialized) {
-      throw PathError(
+      throw new PathError(
         `A path: ${filePath} with a project scope is provided, but no project is initialized.`
       );
     } else if (!projectContext.isPathWithinProjectArea(filePath)) {
-      throw PathError(
+      throw new PathError(
         `Provided path: '${filePath}' doesn't lie in project scope.`
       );
     }
   } else {
-    throw ScopeError("Invalid scope provided.");
+    throw new ScopeError("Invalid scope provided.");
   }
 }
 
