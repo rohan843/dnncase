@@ -18,6 +18,8 @@ function systemStartupSequence() {
   const wasGlobalDirInitialized = globalAppData.initiateDirectory();
   if (wasGlobalDirInitialized) {
     console.log("Global Directory initialized.");
+  } else if(!globalAppData.isDirectoryInitiated) {
+    console.error("An error occurred during initiating global directory.");
   }
   console.log("Initiating uninitialized Global Directory contents...");
   globalAppData.initiateDirectoryContents();
