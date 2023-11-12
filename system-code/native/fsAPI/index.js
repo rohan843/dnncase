@@ -4,6 +4,7 @@ const GlobalScopedFile = require("./fileAPI/GlobalScopedFile");
 const GlobalScopedJSONFile = require("./fileAPI/GlobalScopedJSONFile");
 const ProjectScopedFile = require("./fileAPI/ProjectScopedFile");
 const ProjectScopedJSONFile = require("./fileAPI/ProjectScopedJSONFile");
+const ExportedFile = require("./fileAPI/ExportedFile");
 const checkIfChildPathIsValid = require("./pathUtils/checkIfChildPathIsValid");
 
 module.exports = {
@@ -14,6 +15,7 @@ module.exports = {
   GlobalScopedJSONFile,
   ProjectScopedFile,
   ProjectScopedJSONFile,
+  ExportedFile,
 
   // Path Utils
   checkIfChildPathIsValid,
