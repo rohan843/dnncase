@@ -113,4 +113,4 @@ class GlobalAppData {
  */
 const globalAppData = new GlobalAppData();
 
-module.exports = { globalAppData };
+module.exports = globalAppData;
