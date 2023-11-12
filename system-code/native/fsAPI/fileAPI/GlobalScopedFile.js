@@ -3,7 +3,7 @@ const { globalAppData } = require("../../GlobalAppData");
 const ScopeError = require("../../errors/ScopeError");
 
 /**
- * This is the GlobalScopedFile class. Its objects allow access to some file in the global project 
+ * This is the GlobalScopedFile class. Its objects allow access to some file in the global 
  * area. This class provides the same methods as the `UnscopedFile`. The only difference is that any 
  * provided path is validated using the `globalAppData` object's `isPathWithinGlobalArea` method to 
  * ensure that the path lies in the global area.
