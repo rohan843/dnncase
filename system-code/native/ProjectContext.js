@@ -1,4 +1,4 @@
-const { checkIfChildPathIsValid } = require("./fsAPI");
+const { checkIfChildPathIsValid } = require("./fsAPI/pathUtils/checkIfChildPathIsValid");
 
 class ProjectContext {
   constructor() {

@@ -2,7 +2,8 @@ const path = require("node:path");
 const fs = require("fs");
 const { app } = require("electron");
 const { appName, cachedPrevSessionConfigName } = require("./constants");
-const { UnscopedJSONFile, checkIfChildPathIsValid } = require("./fsAPI");
+const UnscopedJSONFile = require("./fsAPI/fileAPI/UnscopedJSONFile");
+const checkIfChildPathIsValid = require("./fsAPI/pathUtils/checkIfChildPathIsValid");
 
 /**
  * A class to allow easy management of global storage area of the system.
