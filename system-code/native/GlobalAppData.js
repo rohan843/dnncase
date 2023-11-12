@@ -9,33 +9,56 @@ const { UnscopedJSONFile, checkIfChildPathIsValid } = require("./fsAPI");
  */
 class GlobalAppData {
   constructor() {
-    this.appDataDir = path.join(app.getPath("appData"), appName);
+    // Objects of this class are a source of truth for this path.
+    this.__appDataDir = path.join(app.getPath("appData"), appName);
+    this.__isInitiated = false;
+    this.__areContentsInitiated = false;
   }
+
+  // Initiation Related Methods
+
   /**
-   * Synchronously checks if the global data directory exists.
-   * @returns {boolean} `true` if global directory exists, else `false`;
-   */
-  isDirectoryInitiated() {
-    return fs.existsSync(this.appDataDir);
-  }
-  /**
-   * Initiates the global directory if it already doesn't exist.
-   * @returns {boolean} `true` if directory was initiated, else `false`.
+   * Initiates the global directory if it doesn't already exist. If this method returns `false`,
+   * and the `isDirectoryInitiated` getter also returns false, this means that the directory
+   * previously didn't exist, and during its creation some error occurred.
+   *
+   * **NOTE**: The contents of the global directory are not initiated by calling this method. Use
+   * the `initiateDirectoryContents` method for that purpose, after calling this method.
+   * @returns {boolean} `true` if directory was created, else `false`.
    */
   initiateDirectory() {
-    const directoryAlreadyPresent = fs.existsSync(this.appDataDir);
+    const directoryAlreadyPresent = fs.existsSync(this.__appDataDir);
     if (!directoryAlreadyPresent) {
-      fs.mkdirSync(this.appDataDir);
-      return true;
+      try {
+        fs.mkdirSync(this.__appDataDir);
+        this.__isInitiated = true;
+        return true;
+      } catch (e) {
+        this.__isInitiated = false;
+        return false;
+      }
     } else {
+      this.__isInitiated = true;
       return false;
     }
   }
   /**
-   * Initiates the contents of the global directory. The global directory must be initiated beforehand.
+   * Checks if the global directory is initiated.
+   * @returns {boolean} `true` if global directory exists, else `false`;
+   */
+  get isDirectoryInitiated() {
+    return this.__isInitiated;
+  }
+  /**
+   * Initiates the contents of the global directory. The global directory must be initiated
+   * beforehand.
    */
   initiateDirectoryContents() {
     this.__initiateCache();
+    this.__areContentsInitiated = true;
+  }
+  get areDirectoryContentsInitiated() {
+    return this.__areContentsInitiated;
   }
   /**
    * Initiates the contents of the global cache.
@@ -43,7 +66,7 @@ class GlobalAppData {
    */
   __initiateCache() {
     // Creating cache folder.
-    const pathToCache = path.join(this.appDataDir, "/cache");
+    const pathToCache = path.join(this.__appDataDir, "/cache");
     if (!fs.existsSync(pathToCache)) {
       process.stdout.write("Creating /cache... ");
       fs.mkdirSync(pathToCache);
@@ -63,8 +86,11 @@ class GlobalAppData {
 
     process.stdout.write("DONE\n");
   }
+
+  // Global Scope and Path Related Methods
+
   get getDirPath() {
-    return this.appDataDir;
+    return this.__appDataDir;
   }
   /**
    * Takes a path string and checks if it lies in the global directory.
@@ -74,7 +100,7 @@ class GlobalAppData {
   isPathWithinGlobalArea(queryPath) {
     return checkIfChildPathIsValid({
       child: queryPath,
-      parent: this.appDataDir,
+      parent: this.__appDataDir,
     });
   }
 }
@@ -82,7 +108,7 @@ class GlobalAppData {
 /**
  * An instantiated object allowing access to the app's global data directory.
  * @global
- * @satisfies This object is the **ONLY** source of truth for the absolute path to the global 
+ * @satisfies This object is the **ONLY** source of truth for the absolute path to the global
  * directory.
  */
 const globalAppData = new GlobalAppData();
