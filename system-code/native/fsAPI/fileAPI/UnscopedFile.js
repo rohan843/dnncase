@@ -2,11 +2,13 @@ const fs = require("fs");
 const validateNonScopeBasedAbsoluteFilePath = require("../pathUtils/validateNonScopeBasedAbsoluteFilePath");
 
 /**
- * The UnscopedFile class. Objects of this class represent a file on the user's system **whose path's scope is unbounded**.
+ * The UnscopedFile class. Objects of this class represent a file on the user's system **whose 
+ * path's scope is unbounded**.
  *
  * This must ONLY be used within objects that are sources of truth for one or more paths.
  *
- * **NOTE**: An UnscopedFile object only guarantees the presence of an actual file if either of its build() or buildSync() methods have been called.
+ * **NOTE**: An UnscopedFile object only guarantees the presence of an actual file if either of its 
+ * build() or buildSync() methods have been called.
  */
 class UnscopedFile {
   constructor(filePath) {
