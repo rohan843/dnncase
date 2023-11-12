@@ -1,8 +1,8 @@
-const UnsafeFile = require("./UnsafeFile");
+const UnscopedFile = require("./UnscopedFile");
 const _ = require("lodash");
 const fs = require("fs");
 
-class UnsafeJSONFile extends UnsafeFile {
+class UnscopedJSONFile extends UnscopedFile {
   /**
    * Checks if the provided path points to an existing file. If not, creates that file.
    * @param {(Object | null)} reinitializeIfInvalidSyntax If an object-like, the file contents are parsed and if invalid JSON is found, the whole file is reinitialized to the object provided.
@@ -40,4 +40,4 @@ class UnsafeJSONFile extends UnsafeFile {
   }
 }
 
-module.exports = UnsafeJSONFile;
+module.exports = UnscopedJSONFile;
