@@ -1,13 +1,19 @@
 // To check for circular dependencies: npx depcruise native
 
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const {
   systemStartupSequence,
 } = require("./systemStartup/systemStartupSequence");
 
 // eslint-disable-next-line no-unused-vars
 const createWindow = () => {
-  const win = new BrowserWindow({ frame: false });
+  const win = new BrowserWindow({ 
+    frame: false,
+    webPreferences: {
+      preload: path.join(__dirname, './src/backendUtils/preload.js'),
+      nodeIntegration: true,
+    },
+   });
   win.maximize();
   // TODO: Analyse this for its implications on security.
   win.webContents.session.enableNetworkEmulation({ offline: true });
@@ -15,7 +21,25 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
-  // createWindow();
-  const currentProjectPath = systemStartupSequence();
-  console.log(currentProjectPath);
+  createWindow();
+  //const currentProjectPath = systemStartupSequence();
+  //console.log(currentProjectPath);
+
+  ipcMain.on("minimize",(event,data)=>{
+    console.log(data);
+    window.minimize();
+  });
+
+  ipcMain.on("maximize",(event,data)=>{
+    console.log(data);
+    window.maximize();
+  });
+
+  ipcMain.on("close",(event,data)=>{
+    console.log(data);
+    window.close();
+  });
 });
+
+
+
