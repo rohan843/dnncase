@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 /**
- * The UnscopedFile class. Objects of this class represent a file on the user's system **whose path's scope is unverified**.
+ * The UnscopedFile class. Objects of this class represent a file on the user's system **whose path's scope is unbounded**.
  *
  * This must ONLY be used within objects that are sources of truth for one or more paths.
  *
