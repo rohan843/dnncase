@@ -1,4 +1,4 @@
-const checkIfChildPathIsValid = require("../fsUtils/utils/checkIfChildPathIsValid");
+const { checkIfChildPathIsValid } = require("./fsAPI/pathUtils/checkIfChildPathIsValid");
 
 class ProjectContext {
   constructor() {
@@ -9,7 +9,8 @@ class ProjectContext {
   }
   /**
    * Takes a path string and checks if it lies in the project directory.
-   * @param {string} queryPath Must be an absolute path. This is **NOT** validated within this method.
+   * @param {string} queryPath Must be an absolute path. This is **NOT** validated within this 
+   * method.
    * @returns {boolean} `true` if path lies in project area, else `false`.
    */
   isPathWithinProjectArea(queryPath) {

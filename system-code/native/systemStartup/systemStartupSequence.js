@@ -1,4 +1,4 @@
-const { globalAppData } = require("../fsUtils/GlobalAppData");
+const globalAppData = require("../GlobalAppData");
 
 /**
  * This is the startup sequence. This function will be called once when the 'ready' event is fired. The basic tasks this function does are:

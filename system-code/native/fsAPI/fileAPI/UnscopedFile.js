@@ -1,15 +1,18 @@
 const fs = require("fs");
+const validateNonScopeBasedAbsoluteFilePath = require("../pathUtils/validateNonScopeBasedAbsoluteFilePath");
 
 /**
- * The UnsafeFile class. Objects of this class represent a file on the user's system **whose path's scope is unverified**.
- * 
+ * The UnscopedFile class. Objects of this class represent a file on the user's system **whose 
+ * path's scope is unbounded**.
+ *
  * This must ONLY be used within objects that are sources of truth for one or more paths.
  *
- * **NOTE**: A File object only guarantees the presence of an actual file if either of its build() or buildSync() methods have been called.
+ * **NOTE**: An UnscopedFile object only guarantees the presence of an actual file if either of its 
+ * build() or buildSync() methods have been called.
  */
-class UnsafeFile {
+class UnscopedFile {
   constructor(filePath) {
-    
+    validateNonScopeBasedAbsoluteFilePath(filePath);
     /** @private The absolute path to the file. */
     this.__filePath = filePath;
     /** @private Whether file has been built or not. */
@@ -34,4 +37,4 @@ class UnsafeFile {
   }
 }
 
-module.exports = UnsafeFile;
+module.exports = UnscopedFile;

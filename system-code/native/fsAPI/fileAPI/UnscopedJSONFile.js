@@ -1,8 +1,16 @@
-const File = require("./File");
+const UnscopedFile = require("./UnscopedFile");
 const _ = require("lodash");
 const fs = require("fs");
 
-class JSONFile extends File {
+/**
+ * This is the UnscopedJSONFile class. Its objects allow access to some json file. This class 
+ * inherits from the `UnscopedFile` class but overrides certain methods.
+ * 
+ * This must ONLY be used within objects that are sources of truth for one or more paths.
+ *
+ * @throws {ScopeError}
+ */
+class UnscopedJSONFile extends UnscopedFile {
   /**
    * Checks if the provided path points to an existing file. If not, creates that file.
    * @param {(Object | null)} reinitializeIfInvalidSyntax If an object-like, the file contents are parsed and if invalid JSON is found, the whole file is reinitialized to the object provided.
@@ -40,4 +48,4 @@ class JSONFile extends File {
   }
 }
 
-module.exports = JSONFile;
+module.exports = UnscopedJSONFile;
