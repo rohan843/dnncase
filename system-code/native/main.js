@@ -22,9 +22,9 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
-  createWindow();
-  //const currentProjectPath = systemStartupSequence();
-  //console.log(currentProjectPath);
+  const currentProjectPath = systemStartupSequence();
+  console.log(currentProjectPath);
+  // createWindow();
 
   ipcMain.on("minimize", (event, data) => {
     console.log(data);
