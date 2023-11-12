@@ -3,8 +3,10 @@ const PathError = require("../../errors/PathError");
 const path = require("path");
 const fs = require("fs");
 
+// TODO: Add a check if the path doesn't exist, then any prefix of the path must not be a file.
+
 /**
- * A function that checks if a provided path is absolute, lies within a provided scope, and can be used as a path to a file. Throws an error on any validation issues.
+ * A function that checks if a provided path is absolute and can be used as a path to a file. Throws an error on any validation issues.
  * @param {string} filePath The path to validate.
  *
  * @throws PathError -> RelativePathError
