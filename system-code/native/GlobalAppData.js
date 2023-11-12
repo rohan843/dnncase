@@ -1,9 +1,11 @@
 const path = require("node:path");
 const fs = require("fs");
 const { app } = require("electron");
-const { appName, cachedPrevSessionConfigName } = require("./constants");
+const { appName } = require("./constants");
 const UnscopedJSONFile = require("./fsAPI/fileAPI/UnscopedJSONFile");
 const checkIfChildPathIsValid = require("./fsAPI/pathUtils/checkIfChildPathIsValid");
+
+const cachedPrevSessionConfigName = "cached-prev-session-config.json";
 
 /**
  * A class to allow easy management of global storage area of the system.
@@ -92,7 +94,7 @@ class GlobalAppData {
 
   /**
    * Returns the path to the global directory.
-   * 
+   *
    * @returns {string} The absolute path to the global directory.
    */
   get getDirPath() {
