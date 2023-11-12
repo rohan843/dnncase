@@ -90,6 +90,11 @@ class GlobalAppData {
 
   // Global Scope and Path Related Methods
 
+  /**
+   * Returns the path to the global directory.
+   * 
+   * @returns {string} The absolute path to the global directory.
+   */
   get getDirPath() {
     return this.__appDataDir;
   }
