@@ -104,6 +104,13 @@ const filesystemSlice = createSlice({
     artefactFilterButtonState: {
       justDeactivatedButMouseStillOnElementFlag: false,
     },
+    /**
+     * This is a list that contains what files are currently open. The first element of this list is
+     * to be treated as the currently active file. Each element of this list is an object containing
+     * a `fileIndex` property, that is the index of the file (its full path from project root), and
+     * a `firstOpenedAt` property that is to serve as the position of this file in the list of tabs
+     * that will be displayed on the workspace area.
+     */
     openFiles: [],
   },
   reducers: {
@@ -161,21 +168,21 @@ const filesystemSlice = createSlice({
      */
     addOpenFile(state, action) {
       const idx = findIndex(state.openFiles, (element) => {
-        return element.name === action.payload;
+        return element.fileIndex === action.payload;
       });
       if (idx === -1) {
         state.openFiles.push({
-          name: action.payload,
+          fileIndex: action.payload,
           firstOpenedAt: state.openFiles.length,
         });
       }
     },
     /**
-     * Removes the file whose fileIndex is provided in the payload.
+     * Removes the file whose `fileIndex` is provided in the payload.
      */
     removeOpenFile(state, action) {
       const idx = findIndex(state.openFiles, (element) => {
-        return element.name === action.payload;
+        return element.fileIndex === action.payload;
       });
       if(idx !== -1) {
         const firstOpenedTime = state.openFiles.splice(idx, 1)[0].firstOpenedAt;
@@ -192,10 +199,10 @@ const filesystemSlice = createSlice({
      */
     setActiveFile(state, action) {
       const idx = findIndex(state.openFiles, (element) => {
-        return element.name === action.payload;
+        return element.fileIndex === action.payload;
       });
       const activeFileElement = {
-        name: action.payload,
+        fileIndex: action.payload,
         firstOpenedAt: state.openFiles.length,
       };
       if (idx !== -1) {
