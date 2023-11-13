@@ -118,6 +118,7 @@ const filesystemSlice = createSlice({
      */
     openFiles: [
       { fileIndex: "/Project1/home1/user1/file1.txt", firstOpenedAt: 0 },
+      { fileIndex: "/Project1/home/user1/file3.txt", firstOpenedAt: 1 },
     ],
   },
   reducers: {
