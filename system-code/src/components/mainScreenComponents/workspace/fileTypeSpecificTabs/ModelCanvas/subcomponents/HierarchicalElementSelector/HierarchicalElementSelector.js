@@ -9,7 +9,7 @@ function HierarchicalElementSelector({ config }) {
     initialOptionsState[config.options[i].id] = false;
   }
 
-  // const [optionsState, setOptionsState] = useImmer(initialOptionsState);
+  const [optionsState, setOptionsState] = useImmer(initialOptionsState);
 
   if (!config.show) return false;
   return (
