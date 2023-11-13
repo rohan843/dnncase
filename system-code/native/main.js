@@ -11,7 +11,7 @@ const createWindow = () => {
   const win = new BrowserWindow({
     frame: false,
     webPreferences: {
-      preload: path.join(__dirname, "./src/backendUtils/preload.js"),
+      preload: path.join(__dirname, "../src/backendUtils/preload.js"),
       nodeIntegration: true,
     },
   });
@@ -36,7 +36,7 @@ app.whenReady().then(() => {
     win.maximize();
   });
 
-  ipcMain.on("close", (event, data) => {
+  ipcMain.on("close-window", (event, data) => {
     console.log(data);
     win.close();
   });
