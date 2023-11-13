@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { indexOf } from "lodash";
+import { findIndex } from "lodash";
 
 const filesystemSlice = createSlice({
   name: "filesystem",
@@ -160,34 +160,63 @@ const filesystemSlice = createSlice({
      * Adds a new file to the `openFiles` array but does not set it as active.
      */
     addOpenFile(state, action) {
-      const idx = indexOf(state.openFiles, action.payload);
-      idx === -1 && state.openFiles.push(action.payload);
+      const idx = findIndex(state.openFiles, (element) => {
+        return element.name === action.payload;
+      });
+      if (idx === -1) {
+        state.openFiles.push({
+          name: action.payload,
+          firstOpenedAt: state.openFiles.length,
+        });
+      }
     },
     /**
      * Removes the file whose fileIndex is provided in the payload.
      */
     removeOpenFile(state, action) {
-      state.openFiles = state.openFiles.filter(
-        (fileIdx) => fileIdx !== action.payload
-      );
+      const idx = findIndex(state.openFiles, (element) => {
+        return element.name === action.payload;
+      });
+      if(idx !== -1) {
+        const firstOpenedTime = state.openFiles.splice(idx, 1)[0].firstOpenedAt;
+        state.openFiles.forEach((openFile) => {
+          if (openFile.firstOpenedAt > firstOpenedTime) {
+            openFile.firstOpenedAt--;
+          }
+        });
+      }
     },
     /**
      * Takes the file whose `fileIndex` is provided in the payload, and sets it as active, i.e.,
      * brings it to the front of openFiles array.
      */
     setActiveFile(state, action) {
-      const idx = indexOf(state.openFiles, action.payload);
+      const idx = findIndex(state.openFiles, (element) => {
+        return element.name === action.payload;
+      });
+      const activeFileElement = {
+        name: action.payload,
+        firstOpenedAt: state.openFiles.length,
+      };
       if (idx !== -1) {
-        state.openFiles.splice(idx, 1);
+        activeFileElement.firstOpenedAt = state.openFiles.splice(
+          idx,
+          1
+        )[0].firstOpenedAt;
       }
-      state.openFiles.unshift(action.payload);
+      state.openFiles.unshift(activeFileElement);
     },
     /**
      * Removes the active file (the file at the first index of `openFiles`).
      */
     removeActiveFile(state) {
       if (state.openFiles.length > 0) {
-        state.openFiles.splice(0, 1);
+        const firstOpenedTime = state.openFiles.splice(0, 1)[0].firstOpenedAt;
+        state.openFiles.forEach((openFile) => {
+          if (openFile.firstOpenedAt > firstOpenedTime) {
+            openFile.firstOpenedAt--;
+          }
+        });
       }
     },
   },
