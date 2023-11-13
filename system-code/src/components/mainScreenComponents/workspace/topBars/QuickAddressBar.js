@@ -35,6 +35,7 @@ function QuickAddressBar({ activeFileIndex }) {
         // TODO: Add a click handler.
         onClick={addressComponent.onClick}
         key={idx}
+        title={addressComponent.fileIndex}
       >
         {addressComponent.name}
         {idx < addressList.length - 1 && <span className="px-1">&gt;</span>}
