@@ -46,7 +46,12 @@ const filesystemSlice = createSlice({
       },
       "/Project1/home1/user1/file1.txt": {
         index: "/Project1/home1/user1/file1.txt",
-        data: { name: "file1.txt", folder: false, artefact: false },
+        data: {
+          name: "file1.txt",
+          folder: false,
+          artefact: false,
+          unsaved: true,
+        },
         isFolder: false,
         children: [],
       },
