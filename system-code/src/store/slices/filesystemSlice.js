@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { indexOf } from "lodash";
 
 const filesystemSlice = createSlice({
   name: "filesystem",
@@ -103,6 +104,7 @@ const filesystemSlice = createSlice({
     artefactFilterButtonState: {
       justDeactivatedButMouseStillOnElementFlag: false,
     },
+    openFiles: [],
   },
   reducers: {
     setFsState(state, action) {
@@ -154,10 +156,48 @@ const filesystemSlice = createSlice({
     handleArtefactFilterButtonCaseD(state) {
       state.onlyShowArtefacts = true;
     },
+    /**
+     * Adds a new file to the `openFiles` array but does not set it as active.
+     */
+    addOpenFile(state, action) {
+      const idx = indexOf(state.openFiles, action.payload);
+      idx === -1 && state.openFiles.push(action.payload);
+    },
+    /**
+     * Removes the file whose fileIndex is provided in the payload.
+     */
+    removeOpenFile(state, action) {
+      state.openFiles = state.openFiles.filter(
+        (fileIdx) => fileIdx !== action.payload
+      );
+    },
+    /**
+     * Takes the file whose fileIndex is provided in the payload, and sets it as active, i.e.,
+     * brings it to the front of openFiles array.
+     */
+    setActiveFile(state, action) {
+      const idx = indexOf(state.openFiles, action.payload);
+      if (idx !== -1) {
+        state.openFiles.splice(idx, 1);
+      }
+      state.openFiles.unshift(action.payload);
+    },
+    /**
+     * Removes the active file (the file at the first index of `openFiles`).
+     */
+    removeActiveFile(state) {
+      if (state.openFiles.length > 0) {
+        state.openFiles.splice(0, 1);
+      }
+    },
   },
 });
 
 export const {
+  addOpenFile,
+  removeOpenFile,
+  setActiveFile,
+  removeActiveFile,
   handleArtefactFilterButtonCaseA,
   handleArtefactFilterButtonCaseB,
   handleArtefactFilterButtonCaseC,
