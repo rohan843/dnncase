@@ -51,6 +51,7 @@ const filesystemSlice = createSlice({
           folder: false,
           artefact: false,
           unsaved: true,
+          filetype: "dc",
         },
         isFolder: false,
         children: [],
