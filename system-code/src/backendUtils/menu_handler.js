@@ -1,17 +1,16 @@
-//const {ipcRenderer} = require("electron")
-//import ipcRenderer from Electron
-// import {ipcRenderer} from "electron";
-// export function minimize() {
-//     ipcRenderer.send("minimize","Window minimized");
-// }
+export function windowMinimize() {
+    window.electronAPI.minimizeWindow();
+    alert(window.electronAPI.dataRecieved());
+}
 
-// export function maximized() {
-//     ipcRenderer.send("maximized","Window maximized");
-// }
+export function windowMaximize() {
+    window.electronAPI.maximizeWindow();
+}
 
 export function windowClosed() {
-    // ipcRenderer.send("closed","Window Closed");
     window.electronAPI.closeWindow();
 }
+
+
 
 

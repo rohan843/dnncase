@@ -21,19 +21,25 @@ const createWindow = () => {
   return win;
 };
 
+function data_to_renderer_process(){
+  console.log("Window minimized");
+}
 app.whenReady().then(() => {
   // const currentProjectPath = systemStartupSequence();
   // console.log(currentProjectPath);
   const win = createWindow();
+  ipcMain.handle("alerting",data_to_renderer_process)
+  ipcMain.on("minimize-window", () => {
 
-  ipcMain.on("minimize", (event, data) => {
-    console.log(data);
     win.minimize();
   });
 
-  ipcMain.on("maximize", (event, data) => {
-    console.log(data);
+  ipcMain.on("maximize-window", () => {
+    if(!win.isMaximized()){
     win.maximize();
+    }else {
+      win.unmaximize();
+    }
   });
 
   ipcMain.on("close-window", () => {
