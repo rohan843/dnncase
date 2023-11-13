@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { useImmer } from "use-immer";
 
 function HierarchicalDisplay({ onSelect, items }) {
-  const [expandedItems, setExpandedItems] = useImmer([]);
+  // const [expandedItems, setExpandedItems] = useImmer([]);
   return (
     <div className="w-full h-max max-h-[400px] border-bottom-darker rounded-b overflow-y-scroll hide-scrollbar px-1 py-2 select-none">
       <ControlledTreeEnvironment
