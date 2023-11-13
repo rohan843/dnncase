@@ -12,13 +12,17 @@ function TabsList({ openFiles }) {
   const { fsState } = useSelector((state) => state.filesystem);
   const handleScroll = useHorizontalScrolling(ref);
   const tabsList = cloneDeep(openFiles)
+    .map((elt, idx) => {
+      elt.origArrayIdx = idx;
+      return elt;
+    })
     .sort((a, b) => a.firstOpenedAt - b.firstOpenedAt)
     .map((elt, idx) => {
       return (
         <Tab
           key={elt.fileIndex}
           name={getNameFromFileIndex(elt.fileIndex)}
-          active={idx === 0}
+          active={elt.origArrayIdx === 0}
           unsaved={fsState[elt.fileIndex].unsaved}
           onClose={() => {
             dispatch(removeOpenFile(elt.fileIndex));
