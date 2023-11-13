@@ -12,20 +12,20 @@ const createWindow = () => {
     frame: false,
     webPreferences: {
       preload: path.join(__dirname, "../src/backendUtils/preload.js"),
-      nodeIntegration: true,
     },
   });
   win.maximize();
   // TODO: Analyse this for its implications on security.
   win.webContents.session.enableNetworkEmulation({ offline: true });
   win.loadURL("http://localhost:3000");
+  return win;
 };
 
 app.whenReady().then(() => {
   // const currentProjectPath = systemStartupSequence();
   // console.log(currentProjectPath);
   const win = createWindow();
-  
+
   ipcMain.on("minimize", (event, data) => {
     console.log(data);
     win.minimize();
@@ -36,8 +36,7 @@ app.whenReady().then(() => {
     win.maximize();
   });
 
-  ipcMain.on("close-window", (event, data) => {
-    console.log(data);
+  ipcMain.on("close-window", () => {
     win.close();
   });
 });
