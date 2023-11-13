@@ -21,9 +21,8 @@ function Tab({
         }
       )}
       onClick={onClickToMakeActive}
-      title={fullPathToFile}
     >
-      <FileName name={name} />
+      <FileName name={name} title={fullPathToFile} />
       <div className="h-max w-max flex flex-row items-center px-1">
         <UnsavedFlag show={unsaved} />
         <CloseButton onClick={onClose} />
