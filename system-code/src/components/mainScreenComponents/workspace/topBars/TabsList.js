@@ -26,6 +26,7 @@ function TabsList({ openFiles }) {
           onClickToMakeActive={() => {
             dispatch(setActiveFile(elt.fileIndex));
           }}
+          fullPathToFile={elt.fileIndex}
         />
       );
     });
