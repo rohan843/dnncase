@@ -3,7 +3,6 @@
 import RightPane from "./RightPane";
 import LeftPane from "./LeftPane";
 import GraphCanvas from "./GraphCanvas";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const permissibleFileTypes = {
