@@ -172,7 +172,7 @@ const filesystemSlice = createSlice({
       );
     },
     /**
-     * Takes the file whose fileIndex is provided in the payload, and sets it as active, i.e.,
+     * Takes the file whose `fileIndex` is provided in the payload, and sets it as active, i.e.,
      * brings it to the front of openFiles array.
      */
     setActiveFile(state, action) {
