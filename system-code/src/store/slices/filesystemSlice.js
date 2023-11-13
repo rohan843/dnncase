@@ -111,7 +111,9 @@ const filesystemSlice = createSlice({
      * a `firstOpenedAt` property that is to serve as the position of this file in the list of tabs
      * that will be displayed on the workspace area.
      */
-    openFiles: [],
+    openFiles: [
+      { fileIndex: "/Project1/home1/user1/file1.txt", firstOpenedAt: 0 },
+    ],
   },
   reducers: {
     setFsState(state, action) {
@@ -184,7 +186,7 @@ const filesystemSlice = createSlice({
       const idx = findIndex(state.openFiles, (element) => {
         return element.fileIndex === action.payload;
       });
-      if(idx !== -1) {
+      if (idx !== -1) {
         const firstOpenedTime = state.openFiles.splice(idx, 1)[0].firstOpenedAt;
         state.openFiles.forEach((openFile) => {
           if (openFile.firstOpenedAt > firstOpenedTime) {
