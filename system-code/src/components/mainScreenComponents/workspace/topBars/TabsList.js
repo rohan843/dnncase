@@ -1,12 +1,14 @@
 import { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import useHorizontalScrolling from "../../../../hooks/useHorizontalScroll";
 import Tab from "./Tab Components/Tab";
 import { getNameFromFileIndex } from "../../../../utils/getNameFromFileIndex";
 import { cloneDeep } from "lodash";
+import { removeOpenFile, setActiveFile } from "../../../../store";
 
 function TabsList({ openFiles }) {
   const ref = useRef(null);
+  const dispatch = useDispatch();
   const { fsState } = useSelector((state) => state.filesystem);
   const handleScroll = useHorizontalScrolling(ref);
   const tabsList = cloneDeep(openFiles)
@@ -18,9 +20,12 @@ function TabsList({ openFiles }) {
           name={getNameFromFileIndex(elt.fileIndex)}
           active={idx === 0}
           unsaved={fsState[elt.fileIndex].unsaved}
-          // TODO: Add values for these props
-          onClose={null}
-          onClickToMakeActive={null}
+          onClose={() => {
+            dispatch(removeOpenFile(elt.fileIndex));
+          }}
+          onClickToMakeActive={() => {
+            dispatch(setActiveFile(elt.fileIndex));
+          }}
         />
       );
     });
