@@ -24,20 +24,20 @@ const createWindow = () => {
 app.whenReady().then(() => {
   // const currentProjectPath = systemStartupSequence();
   // console.log(currentProjectPath);
-  createWindow();
-
+  const win = createWindow();
+  
   ipcMain.on("minimize", (event, data) => {
     console.log(data);
-    window.minimize();
+    win.minimize();
   });
 
   ipcMain.on("maximize", (event, data) => {
     console.log(data);
-    window.maximize();
+    win.maximize();
   });
 
   ipcMain.on("close", (event, data) => {
     console.log(data);
-    window.close();
+    win.close();
   });
 });
