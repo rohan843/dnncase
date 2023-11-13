@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { indexOf } from "lodash";
+import { findIndex } from "lodash";
 
 const filesystemSlice = createSlice({
   name: "filesystem",
@@ -46,7 +46,13 @@ const filesystemSlice = createSlice({
       },
       "/Project1/home1/user1/file1.txt": {
         index: "/Project1/home1/user1/file1.txt",
-        data: { name: "file1.txt", folder: false, artefact: false },
+        data: {
+          name: "file1.txt",
+          folder: false,
+          artefact: false,
+          unsaved: true,
+          filetype: "dc",
+        },
         isFolder: false,
         children: [],
       },
@@ -104,7 +110,17 @@ const filesystemSlice = createSlice({
     artefactFilterButtonState: {
       justDeactivatedButMouseStillOnElementFlag: false,
     },
-    openFiles: [],
+    /**
+     * This is a list that contains what files are currently open. The first element of this list is
+     * to be treated as the currently active file. Each element of this list is an object containing
+     * a `fileIndex` property, that is the index of the file (its full path from project root), and
+     * a `firstOpenedAt` property that is to serve as the position of this file in the list of tabs
+     * that will be displayed on the workspace area.
+     */
+    openFiles: [
+      { fileIndex: "/Project1/home1/user1/file1.txt", firstOpenedAt: 0 },
+      { fileIndex: "/Project1/home/user1/file3.txt", firstOpenedAt: 1 },
+    ],
   },
   reducers: {
     setFsState(state, action) {
@@ -160,34 +176,63 @@ const filesystemSlice = createSlice({
      * Adds a new file to the `openFiles` array but does not set it as active.
      */
     addOpenFile(state, action) {
-      const idx = indexOf(state.openFiles, action.payload);
-      idx === -1 && state.openFiles.push(action.payload);
+      const idx = findIndex(state.openFiles, (element) => {
+        return element.fileIndex === action.payload;
+      });
+      if (idx === -1) {
+        state.openFiles.push({
+          fileIndex: action.payload,
+          firstOpenedAt: state.openFiles.length,
+        });
+      }
     },
     /**
-     * Removes the file whose fileIndex is provided in the payload.
+     * Removes the file whose `fileIndex` is provided in the payload.
      */
     removeOpenFile(state, action) {
-      state.openFiles = state.openFiles.filter(
-        (fileIdx) => fileIdx !== action.payload
-      );
+      const idx = findIndex(state.openFiles, (element) => {
+        return element.fileIndex === action.payload;
+      });
+      if (idx !== -1) {
+        const firstOpenedTime = state.openFiles.splice(idx, 1)[0].firstOpenedAt;
+        state.openFiles.forEach((openFile) => {
+          if (openFile.firstOpenedAt > firstOpenedTime) {
+            openFile.firstOpenedAt--;
+          }
+        });
+      }
     },
     /**
      * Takes the file whose `fileIndex` is provided in the payload, and sets it as active, i.e.,
      * brings it to the front of openFiles array.
      */
     setActiveFile(state, action) {
-      const idx = indexOf(state.openFiles, action.payload);
+      const idx = findIndex(state.openFiles, (element) => {
+        return element.fileIndex === action.payload;
+      });
+      const activeFileElement = {
+        fileIndex: action.payload,
+        firstOpenedAt: state.openFiles.length,
+      };
       if (idx !== -1) {
-        state.openFiles.splice(idx, 1);
+        activeFileElement.firstOpenedAt = state.openFiles.splice(
+          idx,
+          1
+        )[0].firstOpenedAt;
       }
-      state.openFiles.unshift(action.payload);
+      state.openFiles.unshift(activeFileElement);
     },
     /**
      * Removes the active file (the file at the first index of `openFiles`).
      */
     removeActiveFile(state) {
       if (state.openFiles.length > 0) {
-        state.openFiles.splice(0, 1);
+        const firstOpenedTime = state.openFiles.splice(0, 1)[0].firstOpenedAt;
+        state.openFiles.forEach((openFile) => {
+          if (openFile.firstOpenedAt > firstOpenedTime) {
+            openFile.firstOpenedAt--;
+          }
+        });
       }
     },
   },

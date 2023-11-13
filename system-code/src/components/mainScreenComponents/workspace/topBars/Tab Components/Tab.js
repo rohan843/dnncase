@@ -3,7 +3,14 @@ import CloseButton from "./CloseButton";
 import FileName from "./FileName";
 import UnsavedFlag from "./UnsavedFlag";
 
-function Tab({ active, name, unsaved, onClose, onClickToMakeActive }) {
+function Tab({
+  active,
+  name,
+  unsaved,
+  onClose,
+  onClickToMakeActive,
+  fullPathToFile,
+}) {
   return (
     <div
       className={classNames(
@@ -15,7 +22,7 @@ function Tab({ active, name, unsaved, onClose, onClickToMakeActive }) {
       )}
       onClick={onClickToMakeActive}
     >
-      <FileName name={name} />
+      <FileName name={name} title={fullPathToFile} />
       <div className="h-max w-max flex flex-row items-center px-1">
         <UnsavedFlag show={unsaved} />
         <CloseButton onClick={onClose} />
