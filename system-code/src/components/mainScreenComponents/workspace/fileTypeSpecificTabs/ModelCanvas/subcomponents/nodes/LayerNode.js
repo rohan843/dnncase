@@ -7,7 +7,7 @@ import pretrainedWeightsIcon from "../../../../../../../assets/layer-prev-weight
 import newWeightsIcon from "../../../../../../../assets/layer-new-weights.png";
 import { Handle, Position } from "reactflow";
 
-const Layer = () => {
+const LayerNode = () => {
   const name = "Conv2DExtraExtraExtraWide Layer";
   const activation = "euclidean";
   const trained = true;
@@ -140,4 +140,4 @@ const Layer = () => {
   );
 };
 
-export default Layer;
+export default LayerNode;
