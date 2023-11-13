@@ -17,7 +17,7 @@ function TabsList({ openFiles }) {
       return elt;
     })
     .sort((a, b) => a.firstOpenedAt - b.firstOpenedAt)
-    .map((elt, idx) => {
+    .map((elt) => {
       return (
         <Tab
           key={elt.fileIndex}
