@@ -1,5 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
+  addOpenFile,
+  removeOpenFile,
+  setActiveFile,
+  removeActiveFile,
   handleArtefactFilterButtonCaseA,
   handleArtefactFilterButtonCaseB,
   handleArtefactFilterButtonCaseC,
@@ -63,6 +67,10 @@ export {
   store,
 
   // filesystemSlice
+  addOpenFile,
+  removeOpenFile,
+  setActiveFile,
+  removeActiveFile,
   handleArtefactFilterButtonCaseA,
   handleArtefactFilterButtonCaseB,
   handleArtefactFilterButtonCaseC,

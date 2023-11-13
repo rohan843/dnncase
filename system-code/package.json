@@ -32,7 +32,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron-dev": "electron --trace-warnings ."
+    "electron-dev": "electron --trace-warnings .",
+    "createdoc": "jsdoc src -r -d docs"
   },
   "eslintConfig": {
     "extends": [
