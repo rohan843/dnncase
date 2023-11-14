@@ -79,57 +79,58 @@ function ModelCanvas({ activeFileIndex }) {
           contents={
             // TODO: Get this from an artefactSlice.
             {
-            root: {
-              index: "root",
-              isFolder: true,
-              children: ["word-embeddings", "convolutional"],
-              data: {},
-            },
-            "word-embeddings": {
-              index: "word-embeddings",
-              isFolder: true,
-              children: ["embedding"],
-              data: { name: "Word Embedding" },
-            },
-            embedding: {
-              index: "embedding",
-              isFolder: false,
-              data: {
-                name: "Embedding Layer",
+              root: {
+                index: "root",
+                isFolder: true,
+                children: ["word-embeddings", "convolutional"],
+                data: {},
               },
-            },
-            convolutional: {
-              index: "convolutional",
-              isFolder: true,
-              children: [
-                "conv2d",
-                "deconv2d",
-                "alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d",
-              ],
-              data: { name: "Convolutional Layers" },
-            },
-            conv2d: {
-              index: "conv2d",
-              isFolder: false,
-              data: {
-                name: "Conv2D Layer",
+              "word-embeddings": {
+                index: "word-embeddings",
+                isFolder: true,
+                children: ["embedding"],
+                data: { name: "Word Embedding" },
               },
-            },
-            deconv2d: {
-              index: "deconv2d",
-              isFolder: false,
-              data: {
-                name: "DeConv2D Layer",
+              embedding: {
+                index: "embedding",
+                isFolder: false,
+                data: {
+                  name: "Embedding Layer",
+                },
               },
-            },
-            alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d: {
-              index: "alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d",
-              isFolder: false,
-              data: {
-                name: "ALongNamedDeconv2DLayerWithASuperLooooongNameDeconv2D Layer",
+              convolutional: {
+                index: "convolutional",
+                isFolder: true,
+                children: [
+                  "conv2d",
+                  "deconv2d",
+                  "alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d",
+                ],
+                data: { name: "Convolutional Layers" },
               },
-            },
-          }}
+              conv2d: {
+                index: "conv2d",
+                isFolder: false,
+                data: {
+                  name: "Conv2D Layer",
+                },
+              },
+              deconv2d: {
+                index: "deconv2d",
+                isFolder: false,
+                data: {
+                  name: "DeConv2D Layer",
+                },
+              },
+              alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d: {
+                index: "alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d",
+                isFolder: false,
+                data: {
+                  name: "ALongNamedDeconv2DLayerWithASuperLooooongNameDeconv2D Layer",
+                },
+              },
+            }
+          }
           onSelect={(elementID, options) => {
             alert(`${elementID}, ${JSON.stringify(options)}`);
           }}
@@ -268,21 +269,49 @@ function ModelCanvas({ activeFileIndex }) {
         />
         <H show level={1} innerText="Code Comments" />
         <Plaintext
-          show
-          innerText={
-            "Lorem,\n\nipsum dolor sit amet consectetur adipisicing elit. Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?"
-          }
-          onChange={() => {}}
-          onConvertToMarkdown={() => {}}
+          show={config.rightPane.comment.type === "plain"}
+          innerText={config.rightPane.comment.text}
+          onChange={(newValue) => {
+            dispatch(
+              setValueAtPath({
+                fileIndex: activeFileIndex,
+                path: ["rightPane", "comment", "text"],
+                value: newValue,
+              })
+            );
+          }}
+          onConvertToMarkdown={() => {
+            dispatch(
+              setValueAtPath({
+                fileIndex: activeFileIndex,
+                path: ["rightPane", "comment", "type"],
+                value: "markdown",
+              })
+            );
+          }}
         />
         <Markdown
-          show
-          editsEnabled={false}
-          innerText={
-            "# Dummy Text\nLorem, [ipsum]() dolor _sit_ **amet** consectetur adipisicing elit.\n>Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?"
-          }
-          onChange={() => {}}
-          onConvertToPlaintext={() => {}}
+          show={config.rightPane.comment.type === "markdown"}
+          editsEnabled={config.rightPane.comment.markdownEditsEnabled}
+          innerText={config.rightPane.comment.text}
+          onChange={(newValue) => {
+            dispatch(
+              setValueAtPath({
+                fileIndex: activeFileIndex,
+                path: ["rightPane", "comment", "text"],
+                value: newValue,
+              })
+            );
+          }}
+          onConvertToPlaintext={() => {
+            dispatch(
+              setValueAtPath({
+                fileIndex: activeFileIndex,
+                path: ["rightPane", "comment", "type"],
+                value: "plain",
+              })
+            );
+          }}
         />
       </RightPane>
     </div>

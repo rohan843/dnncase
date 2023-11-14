@@ -12,21 +12,29 @@ const viewConfigSlice = createSlice({
           show: true,
         },
       },
+      rightPane: {
+        comment: {
+          text: "# Dummy Text\nLorem, [ipsum]() dolor _sit_ **amet** consectetur adipisicing elit.\n>Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
+          type: "plain",
+          markdownEditsEnabled: true
+        },
+      },
     },
   },
   reducers: {
     /**
      * Takes an action with a payload containing a fileIndex, a path in its config object (from the
-     * config object's root, _not_ the slice's root) as per the format given 
+     * config object's root, _not_ the slice's root) as per the format given
      * [here](https://lodash.com/docs/4.17.15#set) and a value. The value is assigned at the
      * specified path.
      */
     setValueAtPath(state, action) {
-      state[action.payload.fileIndex] && set(
-        state[action.payload.fileIndex],
-        action.payload.path,
-        action.payload.value
-      );
+      state[action.payload.fileIndex] &&
+        set(
+          state[action.payload.fileIndex],
+          action.payload.path,
+          action.payload.value
+        );
     },
     /**
      * Writes a fileIndex's config to the state. This will typically be called when initializing the
