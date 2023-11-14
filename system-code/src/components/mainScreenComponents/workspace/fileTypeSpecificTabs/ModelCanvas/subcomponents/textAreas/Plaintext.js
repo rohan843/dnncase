@@ -4,7 +4,7 @@ import CodeEditor from "@uiw/react-textarea-code-editor";
 import MarkdownEnableButton from "./MarkdownEnableButton";
 
 /**
- *
+ * A component to allow displaying an editable plaintext comment.
  * @param {Object} param0
  * @param {boolean} param0.show If true, the component will return JSX, else it will return `null`.
  * @param {() => void} param0.onConvertToMarkdown A callback to run when the comment is converted
