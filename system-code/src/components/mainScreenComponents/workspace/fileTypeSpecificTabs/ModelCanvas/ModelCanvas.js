@@ -4,7 +4,7 @@ import RightPane from "./RightPane";
 import LeftPane from "./LeftPane";
 import GraphCanvas from "./GraphCanvas";
 import { useDispatch, useSelector } from "react-redux";
-import { setValueAtPath } from "../../../../../store";
+import { setValueAtPath, setValuesAtPaths } from "../../../../../store";
 import {
   H1Button,
   HierarchicalElementSelector,
@@ -282,10 +282,18 @@ function ModelCanvas({ activeFileIndex }) {
           }}
           onConvertToMarkdown={() => {
             dispatch(
-              setValueAtPath({
+              setValuesAtPaths({
                 fileIndex: activeFileIndex,
-                path: ["rightPane", "comment", "type"],
-                value: "markdown",
+                editPoints: [
+                  {
+                    path: ["rightPane", "comment", "type"],
+                    value: "markdown",
+                  },
+                  {
+                    path: ["rightPane", "comment", "markdownEditsEnabled"],
+                    value: false,
+                  },
+                ],
               })
             );
           }}
@@ -314,10 +322,18 @@ function ModelCanvas({ activeFileIndex }) {
           }}
           onConvertToPlaintext={() => {
             dispatch(
-              setValueAtPath({
+              setValuesAtPaths({
                 fileIndex: activeFileIndex,
-                path: ["rightPane", "comment", "type"],
-                value: "plain",
+                editPoints: [
+                  {
+                    path: ["rightPane", "comment", "type"],
+                    value: "plain",
+                  },
+                  {
+                    path: ["rightPane", "comment", "markdownEditsEnabled"],
+                    value: false,
+                  },
+                ],
               })
             );
           }}
