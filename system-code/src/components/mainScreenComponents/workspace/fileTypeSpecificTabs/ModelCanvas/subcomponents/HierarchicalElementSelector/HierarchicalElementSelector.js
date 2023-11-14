@@ -3,27 +3,27 @@ import TopOptionsBar from "./TopOptionsBar";
 import { useImmer } from "use-immer";
 import { cloneDeep } from "lodash";
 
-function HierarchicalElementSelector({ config }) {
+function HierarchicalElementSelector({ options, show, onSelect, contents }) {
   const initialOptionsState = {};
-  for (let i = 0; i < config.options.length; i++) {
-    initialOptionsState[config.options[i].id] = false;
+  for (let i = 0; i < options.length; i++) {
+    initialOptionsState[options[i].id] = false;
   }
 
   const [optionsState, setOptionsState] = useImmer(initialOptionsState);
 
-  if (!config.show) return false;
+  if (!show) return false;
   return (
     <div className="border-top-darker border-right-darker border-left-darker rounded w-[95%] h-max mb-1">
       <TopOptionsBar
-        options={config.options}
+        options={options}
         optionsState={optionsState}
         setOptionsState={setOptionsState}
       />
       <HierarchicalDisplay
         onSelect={(elementID) => {
-          config.onSelect(elementID, cloneDeep(optionsState));
+          onSelect(elementID, cloneDeep(optionsState));
         }}
-        items={config.contents}
+        items={contents}
       />
     </div>
   );
