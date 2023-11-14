@@ -2,7 +2,7 @@ import classNames from "classnames";
 import mdIcon from "../../../../../../../assets/md.png";
 import ToolTipWrapper from "../../../../../../tooltipWrapper/ToolTipWrapper";
 
-function MarkdownEnableButton({ enabled, className, onClick }) {
+function MarkdownButtons({ enabled, className, onClick }) {
   return (
     <ToolTipWrapper
       helpText={
@@ -24,4 +24,4 @@ function MarkdownEnableButton({ enabled, className, onClick }) {
   );
 }
 
-export default MarkdownEnableButton;
+export default MarkdownButtons;
