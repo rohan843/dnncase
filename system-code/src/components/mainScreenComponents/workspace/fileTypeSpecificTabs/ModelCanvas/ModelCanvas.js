@@ -4,7 +4,7 @@ import RightPane from "./RightPane";
 import LeftPane from "./LeftPane";
 import GraphCanvas from "./GraphCanvas";
 import { useDispatch, useSelector } from "react-redux";
-import { applyConfigModifier } from "../../../../../store";
+import { setValueAtPath } from "../../../../../store";
 import {
   H1Button,
   HierarchicalElementSelector,
@@ -37,44 +37,48 @@ function ModelCanvas({ activeFileIndex }) {
         open={config.leftPaneOpen}
         onOpen={() => {
           dispatch(
-            applyConfigModifier({
+            setValueAtPath({
               fileIndex: activeFileIndex,
-              modifier: (config) => {
-                config.leftPaneOpen = true;
-              },
+              path: ["leftPaneOpen"],
+              value: true,
             })
           );
         }}
         onClose={() => {
           dispatch(
-            applyConfigModifier({
+            setValueAtPath({
               fileIndex: activeFileIndex,
-              modifier: (config) => {
-                config.leftPaneOpen = false;
-              },
+              path: ["leftPaneOpen"],
+              value: false,
             })
           );
         }}
       >
-        <H1Button show innerText="Layers" onClick={() => {}} />
-        <HierarchicalElementSelector
+        <H1Button
           show
+          innerText="Layers"
+          onClick={() => {
+            // toggle config.lefPane.layerSelector.show
+            dispatch(
+              setValueAtPath({
+                fileIndex: activeFileIndex,
+                path: ["leftPane", "layerSelector", "show"],
+                value: !config.leftPane.layerSelector.show,
+              })
+            );
+          }}
+        />
+        <HierarchicalElementSelector
+          show={config.leftPane.layerSelector.show}
           options={[
             {
               id: "reusable",
-              label: "apply reuse block.",
-            },
-            {
-              id: "dummy1",
-              label: "This is a dummy option that I put here.",
-            },
-            {
-              id: "dummy2",
-              label:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui totam numquam sunt a voluptatum deserunt, odit repellat impedit excepturi placeat est praesentium illo, soluta suscipit! Neque modi veniam nesciunt molestias?",
+              label: "apply reuse block",
             },
           ]}
-          contents={{
+          contents={
+            // TODO: Get this from an artefactSlice.
+            {
             root: {
               index: "root",
               isFolder: true,
@@ -138,21 +142,19 @@ function ModelCanvas({ activeFileIndex }) {
         open={config.rightPaneOpen}
         onOpen={() => {
           dispatch(
-            applyConfigModifier({
+            setValueAtPath({
               fileIndex: activeFileIndex,
-              modifier: (config) => {
-                config.rightPaneOpen = true;
-              },
+              path: ["rightPaneOpen"],
+              value: true,
             })
           );
         }}
         onClose={() => {
           dispatch(
-            applyConfigModifier({
+            setValueAtPath({
               fileIndex: activeFileIndex,
-              modifier: (config) => {
-                config.rightPaneOpen = false;
-              },
+              path: ["rightPaneOpen"],
+              value: false,
             })
           );
         }}
@@ -173,7 +175,8 @@ function ModelCanvas({ activeFileIndex }) {
             },
             {
               keyInnerText: "Demo Parameter 2",
-              valueInnerText: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa',
+              valueInnerText:
+                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa",
               isValueEditable: false,
               removable: false,
             },
