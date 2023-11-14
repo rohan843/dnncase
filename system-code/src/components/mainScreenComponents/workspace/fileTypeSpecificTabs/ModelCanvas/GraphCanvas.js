@@ -41,7 +41,7 @@ const initialEdges = [
  * Used to display nodes on an infinite canvas.
  * @param {Object} param0
  * @param {{
- * nodeTypeName: JSX.Element
+ * nodeTypeName: ({}) => JSX.Element
  * }} param0.NodeTypes An object containing different types of nodes keyed by their string type.
  */
 function GraphCanvas({ NodeTypes }) {
