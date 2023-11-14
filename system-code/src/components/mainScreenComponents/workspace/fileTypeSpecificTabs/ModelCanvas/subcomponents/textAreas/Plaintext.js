@@ -3,19 +3,25 @@
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import MarkdownEnableButton from "./MarkdownEnableButton";
 
-function Plaintext({ config, ...props }) {
-  if (!config.show) return null;
+function Plaintext({
+  show,
+  onConvertToMarkdown,
+  innerText,
+  onChange,
+  ...props
+}) {
+  if (!show) return null;
   return (
     <div className="h-max w-[95%] border-darker rounded p-1 mb-2 overflow-hidden whitespace-break-spaces font-mono relative">
       <MarkdownEnableButton
         enabled={false}
         className="absolute right-0 top-0 z-10"
-        onClick={config.onConvertToMarkdown}
+        onClick={onConvertToMarkdown}
       />
       {/* TODO: CodeEditor doesn't seem to support classes. Either see their support or report this issue.*/}
       <CodeEditor
-        value={config.innerText}
-        onChange={config.onChange}
+        value={innerText}
+        onChange={onChange}
         placeholder={null}
         style={{
           backgroundColor: "transparent",
