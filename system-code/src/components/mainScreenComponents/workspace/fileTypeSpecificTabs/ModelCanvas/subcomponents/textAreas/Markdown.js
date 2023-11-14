@@ -1,7 +1,5 @@
-// TODO: Add a method to run an 'onEditsEnable' method.
-
 import CodeEditor from "@uiw/react-textarea-code-editor";
-import MarkdownEnableButton from "./MarkdownEnableButton";
+import MarkdownButtons from "./MarkdownButtons";
 import MarkdownTextDisplay from "../../../../../../utils/MarkdownTextDisplay";
 
 /**
@@ -12,6 +10,7 @@ import MarkdownTextDisplay from "../../../../../../utils/MarkdownTextDisplay";
  * comment to a plaintext comment.
  * @param {boolean} param0.editsEnabled If true, users will be shown an editable interface. Else,
  * text styled as markdown will be displayed.
+ * @param {() => void} param0.onEditsToggle A callback to run when the user toggles editability.
  * @param {string} param0.innerText The comment string to display.
  * @param {(newValue: string) => void} param0.onChange This function is fired when the comment is
  * changed. The new value of comment text is passed as the only argument.
@@ -21,6 +20,7 @@ function Markdown({
   show,
   onConvertToPlaintext,
   editsEnabled,
+  onEditsToggle,
   innerText,
   onChange,
   ...props
@@ -28,8 +28,12 @@ function Markdown({
   if (!show) return null;
   return (
     <div className="h-max w-[95%] border-darker rounded p-1 mb-2 overflow-hidden whitespace-break-spaces font-mono relative">
-      <MarkdownEnableButton
+      <MarkdownButtons
         enabled={true}
+        editsEnabled={editsEnabled}
+        onEditsToggle={() => {
+          onEditsToggle && onEditsToggle();
+        }}
         className="absolute right-0 top-0 z-10"
         onClick={() => {
           onConvertToPlaintext && onConvertToPlaintext();
@@ -46,6 +50,11 @@ function Markdown({
           value={innerText}
           onChange={(e) => {
             onChange && onChange(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onEditsToggle && onEditsToggle();
+            }
           }}
           placeholder={null}
           style={{
