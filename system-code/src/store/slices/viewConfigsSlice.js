@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { set } from "lodash";
 
 const viewConfigSlice = createSlice({
   name: "viewConfig",
@@ -6,18 +7,26 @@ const viewConfigSlice = createSlice({
     "/Project1/home1/user1/file1.txt": {
       leftPaneOpen: false,
       rightPaneOpen: false,
+      leftPane: {
+        layerSelector: {
+          show: true,
+        },
+      },
     },
   },
   reducers: {
     /**
-     * Takes in an action that contains in its payload a modifier function and a file index. The
-     * modifier is run with the config of the fileIndex specified as the only input. It must mutably
-     * change the config state passed to it. Its return value is discarded.
-     *
-     * **NOTE**: Ensure that the config exists _before_ dispatching an action for this reducer.
+     * Takes an action with a payload containing a fileIndex, a path in its config object (from the
+     * config object's root, _not_ the slice's root) as per the format given 
+     * [here](https://lodash.com/docs/4.17.15#set) and a value. The value is assigned at the
+     * specified path.
      */
-    applyConfigModifier(state, action) {
-      action.payload.modifier(state[action.payload.fileIndex]);
+    setValueAtPath(state, action) {
+      state[action.payload.fileIndex] && set(
+        state[action.payload.fileIndex],
+        action.payload.path,
+        action.payload.value
+      );
     },
     /**
      * Writes a fileIndex's config to the state. This will typically be called when initializing the
@@ -30,4 +39,4 @@ const viewConfigSlice = createSlice({
 });
 
 export const viewConfigReducer = viewConfigSlice.reducer;
-export const { setConfig, applyConfigModifier } = viewConfigSlice.actions;
+export const { setConfig, setValueAtPath } = viewConfigSlice.actions;
