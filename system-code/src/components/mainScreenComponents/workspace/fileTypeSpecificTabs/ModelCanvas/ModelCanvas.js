@@ -173,7 +173,7 @@ function ModelCanvas({ activeFileIndex }) {
             },
             {
               keyInnerText: "Demo Parameter 2",
-              valueInnerText: 25,
+              valueInnerText: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa',
               isValueEditable: false,
               removable: false,
             },
