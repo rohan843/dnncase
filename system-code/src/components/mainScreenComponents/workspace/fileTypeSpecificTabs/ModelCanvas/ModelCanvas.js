@@ -32,7 +32,7 @@ function ModelCanvas({ activeFileIndex }) {
 
   return (
     <div className="h-full w-full background-lighter relative overflow-hidden">
-      {/* <GraphCanvas /> */}
+      <GraphCanvas />
       <LeftPane
         open={config.leftPaneOpen}
         onOpen={() => {
@@ -160,7 +160,10 @@ function ModelCanvas({ activeFileIndex }) {
           );
         }}
       >
+        {/* Title */}
         <Title show innerText="Conv2D Layer" />
+
+        {/* Arguments Table */}
         <H show level={1} innerText="Arguments" />
         <KeyValue
           show
@@ -267,6 +270,8 @@ function ModelCanvas({ activeFileIndex }) {
             alert("newWindow");
           }}
         />
+
+        {/* Code Comments */}
         <H show level={1} innerText="Code Comments" />
         <Plaintext
           show={config.rightPane.comment.type === "plain"}
