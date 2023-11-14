@@ -2,10 +2,11 @@ import { useRef } from "react";
 import useHorizontalScrolling from "../../../../../../hooks/useHorizontalScroll";
 
 /**
- * A component to display a heading (level 1) that is also a button. 
- * @param {boolean} show If true, the component will return JSX, else it will return `null`.
- * @param {Function} onClick This function is triggered when the button is clicked.
- * @param {string} innerText The text to display within the button.
+ * A component to display a heading (level 1) that is also a button.
+ * @param {Object} param0
+ * @param {boolean} param0.show If true, the component will return JSX, else it will return `null`.
+ * @param {Function} param0.onClick This function is triggered when the button is clicked.
+ * @param {string} param0.innerText The text to display within the button.
  */
 function H1Button({ show, onClick, innerText }) {
   const ref = useRef(null);
