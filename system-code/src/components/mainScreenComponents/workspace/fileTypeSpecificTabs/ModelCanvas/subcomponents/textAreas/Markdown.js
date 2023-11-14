@@ -51,11 +51,6 @@ function Markdown({
           onChange={(e) => {
             onChange && onChange(e.target.value);
           }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              onEditsToggle && onEditsToggle();
-            }
-          }}
           placeholder={null}
           style={{
             backgroundColor: "transparent",
