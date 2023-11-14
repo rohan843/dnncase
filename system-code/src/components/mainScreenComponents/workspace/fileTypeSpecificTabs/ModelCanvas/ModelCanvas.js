@@ -293,6 +293,15 @@ function ModelCanvas({ activeFileIndex }) {
         <Markdown
           show={config.rightPane.comment.type === "markdown"}
           editsEnabled={config.rightPane.comment.markdownEditsEnabled}
+          onEditsToggle={() => {
+            dispatch(
+              setValueAtPath({
+                fileIndex: activeFileIndex,
+                path: ["rightPane", "comment", "markdownEditsEnabled"],
+                value: !config.rightPane.comment.markdownEditsEnabled,
+              })
+            );
+          }}
           innerText={config.rightPane.comment.text}
           onChange={(newValue) => {
             dispatch(
