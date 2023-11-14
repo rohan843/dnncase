@@ -1,7 +1,7 @@
 // TODO: Add config based inputs for all possible props.
 
 import CodeEditor from "@uiw/react-textarea-code-editor";
-import MarkdownEnableButton from "./MarkdownEnableButton";
+import MarkdownButtons from "./MarkdownButtons";
 
 /**
  * A component to allow displaying an editable plaintext comment.
@@ -24,7 +24,7 @@ function Plaintext({
   if (!show) return null;
   return (
     <div className="h-max w-[95%] border-darker rounded p-1 mb-2 overflow-hidden whitespace-break-spaces font-mono relative">
-      <MarkdownEnableButton
+      <MarkdownButtons
         enabled={false}
         className="absolute right-0 top-0 z-10"
         onClick={() => {
