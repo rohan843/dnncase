@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import ToggleButton from "./ToggleButton";
-import ConfigBasedSubcomponentDisplay from "./ConfigBasedSubcomponentDisplay";
+import SubcomponentDisplay from "./SubcomponentDisplay";
 
 function LeftPane({ open, onOpen, onClose, children }) {
   return (
@@ -29,9 +29,9 @@ function LeftPane({ open, onOpen, onClose, children }) {
             className="absolute -right-2.5 bottom-[5%]"
             onClick={onClose}
           />
-          <ConfigBasedSubcomponentDisplay>
+          <SubcomponentDisplay>
             {children}
-          </ConfigBasedSubcomponentDisplay>
+          </SubcomponentDisplay>
         </div>
       </div>
     )) || (
