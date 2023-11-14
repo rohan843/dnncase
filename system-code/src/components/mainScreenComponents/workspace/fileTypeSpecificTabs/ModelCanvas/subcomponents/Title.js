@@ -3,8 +3,9 @@ import useHorizontalScrolling from "../../../../../../hooks/useHorizontalScroll"
 
 /**
  * A component to display a title.
- * @param {boolean} show If true, the component will return JSX, else it will return `null`.
- * @param {string} innerText The title to display. Text is not auto-capitalized.
+ * @param {Object} param0
+ * @param {boolean} param0.show If true, the component will return JSX, else it will return `null`.
+ * @param {string} param0.innerText The title to display. Text is not auto-capitalized.
  */
 function Title({ show, innerText }) {
   const ref = useRef(null);
