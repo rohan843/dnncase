@@ -34,7 +34,7 @@ function Markdown({
         onEditsToggle={() => {
           onEditsToggle && onEditsToggle();
         }}
-        className="absolute right-0 top-0 z-10"
+        className="absolute right-0 top-px z-10"
         onClick={() => {
           onConvertToPlaintext && onConvertToPlaintext();
         }}
