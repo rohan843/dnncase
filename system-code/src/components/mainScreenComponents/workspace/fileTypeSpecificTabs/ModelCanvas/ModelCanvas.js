@@ -14,6 +14,23 @@ import {
   Plaintext,
   Markdown,
 } from "./subcomponents";
+import {
+  LayerNode,
+  InputNode,
+  OutputNode,
+  UnpackerNode,
+  PackerNode,
+  CommentNode,
+} from "./subcomponents/nodes";
+
+const NodeTypes = {
+  LayerNode,
+  InputNode,
+  OutputNode,
+  UnpackerNode,
+  PackerNode,
+  CommentNode,
+};
 
 const permissibleFileTypes = {
   dc: true,
@@ -32,7 +49,7 @@ function ModelCanvas({ activeFileIndex }) {
 
   return (
     <div className="h-full w-full background-lighter relative overflow-hidden">
-      <GraphCanvas />
+      <GraphCanvas NodeTypes={NodeTypes} />
       <LeftPane
         open={config.leftPaneOpen}
         onOpen={() => {

@@ -9,23 +9,6 @@ import ReactFlow, {
   BackgroundVariant,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import {
-  LayerNode,
-  InputNode,
-  OutputNode,
-  UnpackerNode,
-  PackerNode,
-  CommentNode,
-} from "./subcomponents/nodes";
-
-const NodeTypes = {
-  LayerNode,
-  InputNode,
-  OutputNode,
-  UnpackerNode,
-  PackerNode,
-  CommentNode,
-};
 
 const initialNodes = [
   {
@@ -42,17 +25,26 @@ const initialNodes = [
   },
 ];
 
-const initialEdges = [{
-  id: 'e2a-3',
-  source: '1',
-  target: '2',
-  sourceHandle: 'o0',
-  targetHandle: 'i0',
-  animated: true,
-  style: { stroke: '#fff' },
-}];
+const initialEdges = [
+  {
+    id: "e2a-3",
+    source: "1",
+    target: "2",
+    sourceHandle: "o0",
+    targetHandle: "i0",
+    animated: true,
+    style: { stroke: "#fff" },
+  },
+];
 
-function GraphCanvas() {
+/**
+ * Used to display nodes on an infinite canvas.
+ * @param {Object} param0
+ * @param {{
+ * nodeTypeName: JSX.Element
+ * }} param0.NodeTypes An object containing different types of nodes keyed by their string type.
+ */
+function GraphCanvas({ NodeTypes }) {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const onConnect = useCallback(
