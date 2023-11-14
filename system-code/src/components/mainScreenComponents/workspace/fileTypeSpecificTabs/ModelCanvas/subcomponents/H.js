@@ -4,6 +4,10 @@ import classNames from "classnames";
 
 /**
  * This is the 'heading' subcomponent. It can display headings at 3 different levels - 1, 2, and 3.
+ * @param {Object} param0
+ * @param {boolean} param0.show If true, the component will return JSX, else it will return `null`.
+ * @param {(1|2|3)} param0.level The level of the heading.
+ * @param {string} param0.innerText The text to display within the heading.
  */
 function H({ show, level, innerText }) {
   const ref = useRef(null);
