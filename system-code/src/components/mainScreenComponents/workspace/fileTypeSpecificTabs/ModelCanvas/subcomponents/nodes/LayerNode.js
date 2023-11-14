@@ -7,13 +7,22 @@ import pretrainedWeightsIcon from "../../../../../../../assets/layer-prev-weight
 import newWeightsIcon from "../../../../../../../assets/layer-new-weights.png";
 import { Handle, Position } from "reactflow";
 
-const LayerNode = () => {
-  const name = "Conv2DExtraExtraExtraWide Layer";
-  const activation = "euclidean";
-  const trained = true;
-  const usingPrevWeights = true;
-  const numInputNodes = 3;
-  const numOutputNodes = 3;
+const LayerNode = ({
+  data: {
+    name,
+    activation,
+    trained,
+    usingPrevWeights,
+    numInputNodes,
+    numOutputNodes,
+  },
+}) => {
+  // const name = "Conv2DExtraExtraExtraWide Layer";
+  // const activation = "euclidean";
+  // const trained = true;
+  // const usingPrevWeights = true;
+  // const numInputNodes = 3;
+  // const numOutputNodes = 3;
   if (!trained && usingPrevWeights) {
     console.error(
       "Layer: An untrained layer is specified to use pre-trained weights."
