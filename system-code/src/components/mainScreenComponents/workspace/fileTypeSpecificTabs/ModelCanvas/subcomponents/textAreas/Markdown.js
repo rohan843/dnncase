@@ -15,7 +15,7 @@ import MarkdownTextDisplay from "../../../../../../utils/MarkdownTextDisplay";
  * @param {string} param0.innerText The comment string to display.
  * @param {(newValue: string) => void} param0.onChange This function is fired when the comment is
  * changed. The new value of comment text is passed as the only argument.
- * @param {any[]} param0.props Any other props.
+ * @param {Object} param0.props Any other props.
  */
 function Markdown({
   show,
