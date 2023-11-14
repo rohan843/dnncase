@@ -3,6 +3,17 @@
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import MarkdownEnableButton from "./MarkdownEnableButton";
 
+/**
+ *
+ * @param {Object} param0
+ * @param {boolean} param0.show If true, the component will return JSX, else it will return `null`.
+ * @param {() => void} param0.onConvertToMarkdown A callback to run when the comment is converted
+ * into markdown.
+ * @param {string} param0.innerText The comment string to display.
+ * @param {(newValue: string) => void} param0.onChange This function is fired when the comment is 
+ * changed. The new value of comment text is passed as the only argument.
+ * @param {any[]} param0.props Any other props.
+ */
 function Plaintext({
   show,
   onConvertToMarkdown,
@@ -16,12 +27,16 @@ function Plaintext({
       <MarkdownEnableButton
         enabled={false}
         className="absolute right-0 top-0 z-10"
-        onClick={onConvertToMarkdown}
+        onClick={() => {
+          onConvertToMarkdown();
+        }}
       />
       {/* TODO: CodeEditor doesn't seem to support classes. Either see their support or report this issue.*/}
       <CodeEditor
         value={innerText}
-        onChange={onChange}
+        onChange={(e) => {
+          onChange(e.target.value);
+        }}
         placeholder={null}
         style={{
           backgroundColor: "transparent",
