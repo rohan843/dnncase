@@ -55,6 +55,7 @@ import {
   viewConfigReducer,
   setConfig,
   setValueAtPath,
+  setValuesAtPaths,
 } from "./slices/viewConfigsSlice";
 
 const store = configureStore({
@@ -121,4 +122,5 @@ export {
   // viewConfigSlice
   setConfig,
   setValueAtPath,
+  setValuesAtPaths,
 };
