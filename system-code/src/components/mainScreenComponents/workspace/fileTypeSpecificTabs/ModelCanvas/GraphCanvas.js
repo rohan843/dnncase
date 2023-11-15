@@ -7,6 +7,7 @@ import ReactFlow, {
   useEdgesState,
   useNodesState,
   BackgroundVariant,
+  useOnViewportChange,
 } from "reactflow";
 import "reactflow/dist/style.css";
 
@@ -92,6 +93,16 @@ const initialEdges = [
   },
 ];
 
+function ViewportChangeLogger() {
+  useOnViewportChange({
+    onStart: (viewport) => console.log('start', viewport),
+    onChange: (viewport) => console.log('change', viewport),
+    onEnd: (viewport) => console.log('end', viewport),
+  });
+ 
+  return null;
+}
+
 /**
  * Used to display nodes on an infinite canvas.
  * @param {Object} param0
@@ -143,6 +154,7 @@ function GraphCanvas({ NodeTypes }) {
           color="#aaa"
           variant={BackgroundVariant.Lines}
         />
+        <ViewportChangeLogger />
       </ReactFlow>
     </div>
   );
