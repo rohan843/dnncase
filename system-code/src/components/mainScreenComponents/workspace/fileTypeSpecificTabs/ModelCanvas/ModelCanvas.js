@@ -98,7 +98,7 @@ const initialEdges = [
     target: "1",
     targetHandle: "i0",
     animated: true,
-    style: { stroke: "#fff" },
+    style: { stroke: "#fff", strokeWidth: 1.5 },
   },
   {
     id: "e2",
@@ -106,7 +106,7 @@ const initialEdges = [
     target: "4",
     sourceHandle: "o0",
     animated: true,
-    style: { stroke: "#fff" },
+    style: { stroke: "#fff", strokeWidth: 1.5 },
   },
   {
     id: "e3",
@@ -115,7 +115,7 @@ const initialEdges = [
     sourceHandle: "o0",
     targetHandle: "i0",
     animated: true,
-    style: { stroke: "#fff" },
+    style: { stroke: "#fff", strokeWidth: 1.5 },
   },
 ];
 
