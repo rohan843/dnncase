@@ -156,7 +156,6 @@ function applyChanges(changes, elements) {
   }, initElements);
 }
 
-
 /**
  * Used to display nodes on an infinite canvas.
  * @param {Object} param0
