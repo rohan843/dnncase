@@ -23,6 +23,7 @@ const createWindow = () => {
 
 function data_to_renderer_process(){
   console.log("Window minimized");
+  return 'asdf';
 }
 app.whenReady().then(() => {
   // const currentProjectPath = systemStartupSequence();
