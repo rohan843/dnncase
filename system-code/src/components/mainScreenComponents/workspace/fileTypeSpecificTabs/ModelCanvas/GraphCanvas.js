@@ -14,20 +14,66 @@ const initialNodes = [
   {
     id: "1",
     position: { x: 100, y: 100 },
-    data: { label: "1" },
+    data: {
+      name: "Conv2D Layer",
+      activation: "relu",
+      trained: false,
+      usingPrevWeights: false,
+      numInputNodes: 1,
+      numOutputNodes: 1,
+    },
     type: "LayerNode",
   },
   {
     id: "2",
     position: { x: 200, y: 200 },
-    data: { label: "1" },
+    data: {
+      name: "Conv2D Layer",
+      activation: "relu",
+      trained: false,
+      usingPrevWeights: false,
+      numInputNodes: 1,
+      numOutputNodes: 1,
+    },
     type: "LayerNode",
+  },
+  {
+    id: "3",
+    position: { x: 0, y: 0 },
+    data: {
+      inputShape: "[26, 26]",
+    },
+    type: "InputNode",
+  },
+  {
+    id: "4",
+    position: { x: 300, y: 100 },
+    data: {
+      outputShape: "[1]",
+    },
+    type: "OutputNode",
   },
 ];
 
 const initialEdges = [
   {
-    id: "e2a-3",
+    id: "e1",
+    source: "3",
+    target: "1",
+    targetHandle: "i0",
+    animated: true,
+    style: { stroke: "#fff" },
+  },
+  {
+    id: "e2",
+    source: "2",
+    target: "4",
+    sourceHandle: "o0",
+    animated: true,
+    style: { stroke: "#fff" },
+  },
+  {
+    id: "e3",
     source: "1",
     target: "2",
     sourceHandle: "o0",
