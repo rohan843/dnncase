@@ -6,7 +6,7 @@ import classNames from "classnames";
  * @param {Object} param0
  * @param {Object} param0.data
  * @param {boolean} param0.data.isCommentTODO If true, the `todo` flag is shown.
- * @param {() => void} param0.data.onToggleTODOStatus A callback that is called when a user toggles 
+ * @param {() => void} param0.data.onToggleTODOStatus A callback that is called when a user toggles
  * the todo status.
  * @param {string} param0.data.commentText The text of the comment.
  * @param {(newValue: string) => void} param0.data.onCommentChange A callback called when a user
