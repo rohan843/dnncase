@@ -1,6 +1,6 @@
-export function windowMinimize() {
+export async function windowMinimize() {
     window.electronAPI.minimizeWindow();
-    alert(window.electronAPI.dataRecieved());
+    alert(await window.electronAPI.dataRecieved());
 }
 
 export function windowMaximize() {

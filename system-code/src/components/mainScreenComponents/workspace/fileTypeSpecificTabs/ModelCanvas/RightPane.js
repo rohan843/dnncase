@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import ToggleButton from "./ToggleButton";
-import ConfigBasedSubcomponentDisplay from "./ConfigBasedSubcomponentDisplay";
+import SubcomponentDisplay from "./SubcomponentDisplay";
 
-function RightPane({ open, onOpen, onClose, config }) {
+function RightPane({ open, onOpen, onClose, children }) {
   return (
     (open && (
       <div
@@ -29,7 +29,9 @@ function RightPane({ open, onOpen, onClose, config }) {
             className="absolute -left-2.5 bottom-[5%]"
             onClick={onClose}
           />
-          <ConfigBasedSubcomponentDisplay config={config} />
+          <SubcomponentDisplay>
+            {children}
+          </SubcomponentDisplay>
         </div>
       </div>
     )) || (

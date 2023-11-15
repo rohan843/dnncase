@@ -1,10 +1,16 @@
 import { useRef } from "react";
 import useHorizontalScrolling from "../../../../../../hooks/useHorizontalScroll";
 
-function Title({ config }) {
+/**
+ * A component to display a title.
+ * @param {Object} param0
+ * @param {boolean} param0.show If true, the component will return JSX, else it will return `null`.
+ * @param {string} param0.innerText The title to display. Text is not auto-capitalized.
+ */
+function Title({ show, innerText }) {
   const ref = useRef(null);
   const scrollHandler = useHorizontalScrolling(ref);
-  if (!config.show) return null;
+  if (!show) return null;
   return (
     <div
       ref={ref}
@@ -12,7 +18,7 @@ function Title({ config }) {
       onWheel={scrollHandler}
     >
       <span className="h-full grow"></span>
-      <span className="px-1.5">{config.innerText}</span>
+      <span className="px-1.5">{innerText}</span>
       <span className="h-full grow"></span>
     </div>
   );

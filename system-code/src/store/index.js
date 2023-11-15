@@ -51,6 +51,12 @@ import {
   activeElementReducer,
   setActiveElementTo,
 } from "./slices/activeElementSlice";
+import {
+  viewConfigReducer,
+  setConfig,
+  setValueAtPath,
+  setValuesAtPaths,
+} from "./slices/viewConfigsSlice";
 
 const store = configureStore({
   reducer: {
@@ -60,6 +66,7 @@ const store = configureStore({
     validationTerminal: validationTerminalReducer,
     commentsTerminal: commentsTerminalReducer,
     activeElement: activeElementReducer,
+    viewConfig: viewConfigReducer,
   },
 });
 
@@ -111,4 +118,9 @@ export {
 
   // activeElementSlice
   setActiveElementTo,
+
+  // viewConfigSlice
+  setConfig,
+  setValueAtPath,
+  setValuesAtPaths,
 };

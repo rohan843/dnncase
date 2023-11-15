@@ -48,7 +48,9 @@ function KeyValRow({ item, light }) {
             type="text"
             id={item.keyInnerText}
             value={item.valueInnerText}
-            onChange={item.onValueChange}
+            onChange={(e) => {
+              item.onValueChange(e.target.value);
+            }}
             placeholder="none"
             className="h-max w-full bg-transparent text-center"
             autoCapitalize="off"

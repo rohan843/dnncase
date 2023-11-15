@@ -7,40 +7,110 @@ import ReactFlow, {
   useEdgesState,
   useNodesState,
   BackgroundVariant,
+  useOnViewportChange,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import { Layer } from "./subcomponents/nodes";
-
-const NodeTypes = {
-  LayerNode: Layer,
-};
 
 const initialNodes = [
   {
     id: "1",
     position: { x: 100, y: 100 },
-    data: { label: "1" },
+    data: {
+      name: "Conv2D Layer",
+      activation: "relu",
+      trained: false,
+      usingPrevWeights: false,
+      numInputNodes: 1,
+      numOutputNodes: 1,
+    },
     type: "LayerNode",
   },
   {
     id: "2",
     position: { x: 200, y: 200 },
-    data: { label: "1" },
+    data: {
+      name: "Conv2D Layer",
+      activation: "relu",
+      trained: false,
+      usingPrevWeights: false,
+      numInputNodes: 1,
+      numOutputNodes: 1,
+    },
     type: "LayerNode",
+  },
+  {
+    id: "3",
+    position: { x: 0, y: 0 },
+    data: {
+      inputShape: "[26, 26]",
+    },
+    type: "InputNode",
+  },
+  {
+    id: "4",
+    position: { x: 300, y: 100 },
+    data: {
+      outputShape: "[1]",
+    },
+    type: "OutputNode",
+  },
+  {
+    id: "5",
+    position: { x: 0, y: 0 },
+    data: {
+      commentText:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptates enim dolore eligendi cum aperiam iste fugit impedit qui cupiditate eius reprehenderit iusto ratione delectus, quam mollitia assumenda obcaecati rerum.",
+    },
+    type: "CommentNode",
   },
 ];
 
-const initialEdges = [{
-  id: 'e2a-3',
-  source: '1',
-  target: '2',
-  sourceHandle: 'o0',
-  targetHandle: 'i0',
-  animated: true,
-  style: { stroke: '#fff' },
-}];
+const initialEdges = [
+  {
+    id: "e1",
+    source: "3",
+    target: "1",
+    targetHandle: "i0",
+    animated: true,
+    style: { stroke: "#fff" },
+  },
+  {
+    id: "e2",
+    source: "2",
+    target: "4",
+    sourceHandle: "o0",
+    animated: true,
+    style: { stroke: "#fff" },
+  },
+  {
+    id: "e3",
+    source: "1",
+    target: "2",
+    sourceHandle: "o0",
+    targetHandle: "i0",
+    animated: true,
+    style: { stroke: "#fff" },
+  },
+];
 
-function GraphCanvas() {
+function ViewportChangeLogger() {
+  useOnViewportChange({
+    onStart: (viewport) => console.log('start', viewport),
+    onChange: (viewport) => console.log('change', viewport),
+    onEnd: (viewport) => console.log('end', viewport),
+  });
+ 
+  return null;
+}
+
+/**
+ * Used to display nodes on an infinite canvas.
+ * @param {Object} param0
+ * @param {{
+ * nodeTypeName: ({}) => JSX.Element
+ * }} param0.NodeTypes An object containing different types of nodes keyed by their string type.
+ */
+function GraphCanvas({ NodeTypes }) {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const onConnect = useCallback(
@@ -52,9 +122,18 @@ function GraphCanvas() {
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
+        onNodesChange={(p) => {
+          console.log(p);
+          onNodesChange(p);
+        }}
+        onEdgesChange={(p) => {
+          console.log(p);
+          onEdgesChange(p);
+        }}
+        onConnect={(p) => {
+          console.log(p);
+          onConnect(p);
+        }}
         nodeTypes={NodeTypes}
         snapToGrid
         snapGrid={[5, 5]}
@@ -75,6 +154,7 @@ function GraphCanvas() {
           color="#aaa"
           variant={BackgroundVariant.Lines}
         />
+        <ViewportChangeLogger />
       </ReactFlow>
     </div>
   );
