@@ -39,11 +39,9 @@ function GraphCanvas({
         nodes={nodes}
         edges={edges}
         onNodesChange={(p) => {
-          console.log(p);
           onNodesChange(p);
         }}
         onEdgesChange={(p) => {
-          console.log(p);
           onEdgesChange(p);
         }}
         onConnect={(newEdgeData) => {
