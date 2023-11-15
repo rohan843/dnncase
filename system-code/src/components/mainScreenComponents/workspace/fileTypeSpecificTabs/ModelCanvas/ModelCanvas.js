@@ -257,16 +257,12 @@ function ModelCanvas({ activeFileIndex }) {
   }
 
   const [nodes, setNodes] = useState(initialNodes);
-  const onNodesChange = useCallback(
-    (changes) => setNodes((items) => applyChanges(changes, items)),
-    []
-  );
+  const onNodesChange = (changes) =>
+    setNodes((items) => applyChanges(changes, items));
 
   const [edges, setEdges] = useState(initialEdges);
-  const onEdgesChange = useCallback(
-    (changes) => setEdges((items) => applyChanges(changes, items)),
-    []
-  );
+  const onEdgesChange = (changes) =>
+    setEdges((items) => applyChanges(changes, items));
 
   const onEdgeCreation = (newEdgeData) =>
     setEdges([
