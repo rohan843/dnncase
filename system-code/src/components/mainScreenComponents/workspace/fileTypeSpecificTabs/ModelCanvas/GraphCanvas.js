@@ -17,6 +17,28 @@ function ViewportChangeLogger({ onViewportChange }) {
   return null;
 }
 
+function ConnectionLine({ fromX, fromY, toX, toY }) {
+  return (
+    <g>
+      <path
+        fill="none"
+        stroke="#fff"
+        strokeWidth={1.5}
+        className="animated"
+        d={`M${fromX},${fromY} C ${fromX} ${toY} ${fromX} ${toY} ${toX},${toY}`}
+      />
+      <circle
+        cx={toX}
+        cy={toY}
+        fill="#00000000"
+        r={3}
+        stroke="#fff"
+        strokeWidth={1.5}
+      />
+    </g>
+  );
+}
+
 /**
  * Takes in a react-flow style list of changes. And a list of elements (nodes or edges). Applies the
  * changes to the elements and returns the result. Note that the returned result is a _completely
@@ -208,6 +230,7 @@ function GraphCanvas({
         nodeTypes={NodeTypes}
         snapToGrid
         snapGrid={[5, 5]}
+        connectionLineComponent={ConnectionLine}
       >
         <Controls className="opacity-60 hover:opacity-100 bg-white" />
         <MiniMap pannable zoomable className="opacity-80 hover:opacity-100" />
