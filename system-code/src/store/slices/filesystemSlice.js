@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { findIndex } from "lodash";
+import { findIndex, set } from "lodash";
 
 const filesystemSlice = createSlice({
   name: "filesystem",
@@ -52,6 +52,86 @@ const filesystemSlice = createSlice({
           artefact: false,
           unsaved: true,
           filetype: "dc",
+          nodes: [
+            {
+              id: "1",
+              position: { x: 100, y: 100 },
+              data: {
+                name: "Conv2D Layer",
+                activation: "relu",
+                trained: false,
+                usingPrevWeights: false,
+                numInputNodes: 1,
+                numOutputNodes: 1,
+              },
+              type: "LayerNode",
+            },
+            {
+              id: "2",
+              position: { x: 200, y: 200 },
+              data: {
+                name: "Conv2D Layer",
+                activation: "relu",
+                trained: false,
+                usingPrevWeights: false,
+                numInputNodes: 1,
+                numOutputNodes: 1,
+              },
+              type: "LayerNode",
+            },
+            {
+              id: "3",
+              position: { x: 0, y: 0 },
+              data: {
+                inputShape: "[26, 26]",
+              },
+              type: "InputNode",
+            },
+            {
+              id: "4",
+              position: { x: 300, y: 100 },
+              data: {
+                outputShape: "[1]",
+              },
+              type: "OutputNode",
+            },
+            {
+              id: "5",
+              position: { x: 0, y: 0 },
+              data: {
+                commentText:
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptates enim dolore eligendi cum aperiam iste fugit impedit qui cupiditate eius reprehenderit iusto ratione delectus, quam mollitia assumenda obcaecati rerum.",
+              },
+              type: "CommentNode",
+            },
+          ],
+          edges: [
+            {
+              id: "e1",
+              source: "3",
+              target: "1",
+              targetHandle: "i0",
+              animated: true,
+              style: { stroke: "#fff", strokeWidth: 1.5 },
+            },
+            {
+              id: "e2",
+              source: "2",
+              target: "4",
+              sourceHandle: "o0",
+              animated: true,
+              style: { stroke: "#fff", strokeWidth: 1.5 },
+            },
+            {
+              id: "e3",
+              source: "1",
+              target: "2",
+              sourceHandle: "o0",
+              targetHandle: "i0",
+              animated: true,
+              style: { stroke: "#fff", strokeWidth: 1.5 },
+            },
+          ],
         },
         isFolder: false,
         children: [],
@@ -235,6 +315,13 @@ const filesystemSlice = createSlice({
         });
       }
     },
+    setValue(state, action) {
+      set(
+        state.fsState[action.payload.fileIndex],
+        action.payload.path,
+        action.payload.value
+      );
+    },
   },
 });
 
@@ -257,5 +344,6 @@ export const {
   setSelectedItems,
   setFocusedItem,
   setFsState,
+  setValue,
 } = filesystemSlice.actions;
 export const filesystemReducer = filesystemSlice.reducer;
