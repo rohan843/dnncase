@@ -16,7 +16,7 @@ function CommentNode({
   data: { isCommentTODO, onToggleTODOStatus, commentText, onCommentChange },
 }) {
   return (
-    <div className="w-[353px] h-[185px] overflow-hidden border-darker background-dark rounded-t flex flex-col">
+    <div className="w-[200px] h-[155px] overflow-hidden border-darker background-dark rounded-t flex flex-col">
       {/* 'Set as TODO' flag*/}
       <div className="w-full h-[28px] border-bottom-darker flex items-center">
         <div
@@ -36,7 +36,7 @@ function CommentNode({
         </div>
       </div>
       {/* Comment area */}
-      <div className="w-full h-[157px] overflow-x-hidden overflow-y-scroll style-scrollbar-slightly-rounded nodrag">
+      <div className="w-full h-[127px] overflow-x-hidden overflow-y-scroll style-scrollbar-slightly-rounded nodrag">
         {/* TODO: CodeEditor doesn't seem to support classes. Either see their support or report this issue.*/}
         <CodeEditor
           value={commentText}
