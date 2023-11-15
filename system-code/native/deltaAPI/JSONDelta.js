@@ -14,3 +14,5 @@ class JSONDelta {
     this.timestamp = timestamp;
   }
 }
+
+module.exports = JSONDelta;
