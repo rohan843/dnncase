@@ -22,6 +22,8 @@ import {
   PackerNode,
   CommentNode,
 } from "./subcomponents/nodes";
+import { addEdge, useEdgesState, useNodesState } from "reactflow";
+import { useCallback } from "react";
 
 const NodeTypes = {
   LayerNode,
@@ -36,6 +38,88 @@ const permissibleFileTypes = {
   dc: true,
 };
 
+const initialNodes = [
+  {
+    id: "1",
+    position: { x: 100, y: 100 },
+    data: {
+      name: "Conv2D Layer",
+      activation: "relu",
+      trained: false,
+      usingPrevWeights: false,
+      numInputNodes: 1,
+      numOutputNodes: 1,
+    },
+    type: "LayerNode",
+  },
+  {
+    id: "2",
+    position: { x: 200, y: 200 },
+    data: {
+      name: "Conv2D Layer",
+      activation: "relu",
+      trained: false,
+      usingPrevWeights: false,
+      numInputNodes: 1,
+      numOutputNodes: 1,
+    },
+    type: "LayerNode",
+  },
+  {
+    id: "3",
+    position: { x: 0, y: 0 },
+    data: {
+      inputShape: "[26, 26]",
+    },
+    type: "InputNode",
+  },
+  {
+    id: "4",
+    position: { x: 300, y: 100 },
+    data: {
+      outputShape: "[1]",
+    },
+    type: "OutputNode",
+  },
+  {
+    id: "5",
+    position: { x: 0, y: 0 },
+    data: {
+      commentText:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptates enim dolore eligendi cum aperiam iste fugit impedit qui cupiditate eius reprehenderit iusto ratione delectus, quam mollitia assumenda obcaecati rerum.",
+    },
+    type: "CommentNode",
+  },
+];
+
+const initialEdges = [
+  {
+    id: "e1",
+    source: "3",
+    target: "1",
+    targetHandle: "i0",
+    animated: true,
+    style: { stroke: "#fff" },
+  },
+  {
+    id: "e2",
+    source: "2",
+    target: "4",
+    sourceHandle: "o0",
+    animated: true,
+    style: { stroke: "#fff" },
+  },
+  {
+    id: "e3",
+    source: "1",
+    target: "2",
+    sourceHandle: "o0",
+    targetHandle: "i0",
+    animated: true,
+    style: { stroke: "#fff" },
+  },
+];
+
 function ModelCanvas({ activeFileIndex }) {
   const dispatch = useDispatch();
   const activeFileType = useSelector(
@@ -45,11 +129,33 @@ function ModelCanvas({ activeFileIndex }) {
   if (!config) {
     // TODO: Add code here to setup config to a value from backend (default config for this file type).
   }
+
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const onConnect = useCallback(
+    (params) =>
+      setEdges((eds) =>
+        addEdge(params, eds).map((edge) => {
+          edge.animated = true;
+          edge.style = { stroke: "#fff" };
+          return edge;
+        })
+      ),
+    [setEdges]
+  );
+
   if (!permissibleFileTypes[activeFileType]) return null;
 
   return (
     <div className="h-full w-full background-lighter relative overflow-hidden">
-      <GraphCanvas NodeTypes={NodeTypes} />
+      <GraphCanvas
+        NodeTypes={NodeTypes}
+        edges={edges}
+        nodes={nodes}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+      />
       <LeftPane
         open={config.leftPaneOpen}
         onOpen={() => {

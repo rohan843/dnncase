@@ -11,88 +11,6 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 
-const initialNodes = [
-  {
-    id: "1",
-    position: { x: 100, y: 100 },
-    data: {
-      name: "Conv2D Layer",
-      activation: "relu",
-      trained: false,
-      usingPrevWeights: false,
-      numInputNodes: 1,
-      numOutputNodes: 1,
-    },
-    type: "LayerNode",
-  },
-  {
-    id: "2",
-    position: { x: 200, y: 200 },
-    data: {
-      name: "Conv2D Layer",
-      activation: "relu",
-      trained: false,
-      usingPrevWeights: false,
-      numInputNodes: 1,
-      numOutputNodes: 1,
-    },
-    type: "LayerNode",
-  },
-  {
-    id: "3",
-    position: { x: 0, y: 0 },
-    data: {
-      inputShape: "[26, 26]",
-    },
-    type: "InputNode",
-  },
-  {
-    id: "4",
-    position: { x: 300, y: 100 },
-    data: {
-      outputShape: "[1]",
-    },
-    type: "OutputNode",
-  },
-  {
-    id: "5",
-    position: { x: 0, y: 0 },
-    data: {
-      commentText:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptates enim dolore eligendi cum aperiam iste fugit impedit qui cupiditate eius reprehenderit iusto ratione delectus, quam mollitia assumenda obcaecati rerum.",
-    },
-    type: "CommentNode",
-  },
-];
-
-const initialEdges = [
-  {
-    id: "e1",
-    source: "3",
-    target: "1",
-    targetHandle: "i0",
-    animated: true,
-    style: { stroke: "#fff" },
-  },
-  {
-    id: "e2",
-    source: "2",
-    target: "4",
-    sourceHandle: "o0",
-    animated: true,
-    style: { stroke: "#fff" },
-  },
-  {
-    id: "e3",
-    source: "1",
-    target: "2",
-    sourceHandle: "o0",
-    targetHandle: "i0",
-    animated: true,
-    style: { stroke: "#fff" },
-  },
-];
-
 function ViewportChangeLogger({ onViewportChange }) {
   useOnViewportChange({
     onEnd: (viewport) => {
@@ -112,21 +30,13 @@ function ViewportChangeLogger({ onViewportChange }) {
  */
 function GraphCanvas({
   NodeTypes,
-  onNodeRemove,
-  onEdgeRemove,
-  onNodeMove,
-  onEdgeMove,
-  onEdgeCreate,
+  nodes,
+  edges,
+  onNodesChange,
+  onEdgesChange,
+  onConnect,
   onViewportChange,
-  // nodes,
-  // edges,
 }) {
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    [setEdges]
-  );
   return (
     <div className="h-full w-full">
       <ReactFlow
