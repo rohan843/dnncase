@@ -4,6 +4,8 @@ import ReactFlow, {
   Background,
   BackgroundVariant,
   useOnViewportChange,
+  getSimpleBezierPath,
+  Position,
 } from "reactflow";
 import "reactflow/dist/style.css";
 
@@ -25,7 +27,16 @@ function ConnectionLine({ fromX, fromY, toX, toY }) {
         stroke="#fff"
         strokeWidth={1.5}
         className="animated"
-        d={`M${fromX},${fromY} C ${fromX} ${toY} ${fromX} ${toY} ${toX},${toY}`}
+        d={
+          getSimpleBezierPath({
+            sourceX: fromX,
+            sourceY: fromY,
+            sourcePosition: Position.Right,
+            targetX: toX,
+            targetY: toY,
+            targetPosition: Position.Left,
+          })[0]
+        }
       />
       <circle
         cx={toX}
