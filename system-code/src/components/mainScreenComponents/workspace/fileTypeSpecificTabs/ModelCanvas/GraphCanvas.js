@@ -93,13 +93,13 @@ const initialEdges = [
   },
 ];
 
-function ViewportChangeLogger() {
+function ViewportChangeLogger({ onViewportChange }) {
   useOnViewportChange({
-    onStart: (viewport) => console.log('start', viewport),
-    onChange: (viewport) => console.log('change', viewport),
-    onEnd: (viewport) => console.log('end', viewport),
+    onEnd: (viewport) => {
+      onViewportChange && onViewportChange(viewport);
+    },
   });
- 
+
   return null;
 }
 
@@ -110,7 +110,17 @@ function ViewportChangeLogger() {
  * nodeTypeName: ({}) => JSX.Element
  * }} param0.NodeTypes An object containing different types of nodes keyed by their string type.
  */
-function GraphCanvas({ NodeTypes }) {
+function GraphCanvas({
+  NodeTypes,
+  onNodeRemove,
+  onEdgeRemove,
+  onNodeMove,
+  onEdgeMove,
+  onEdgeCreate,
+  onViewportChange,
+  // nodes,
+  // edges,
+}) {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const onConnect = useCallback(
@@ -154,7 +164,7 @@ function GraphCanvas({ NodeTypes }) {
           color="#aaa"
           variant={BackgroundVariant.Lines}
         />
-        <ViewportChangeLogger />
+        <ViewportChangeLogger onViewportChange={onViewportChange} />
       </ReactFlow>
     </div>
   );
