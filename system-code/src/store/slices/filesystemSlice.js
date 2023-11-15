@@ -315,7 +315,7 @@ const filesystemSlice = createSlice({
         });
       }
     },
-    setValue(state, action) {
+    setFileValue(state, action) {
       set(
         state.fsState[action.payload.fileIndex],
         action.payload.path,
@@ -344,6 +344,6 @@ export const {
   setSelectedItems,
   setFocusedItem,
   setFsState,
-  setValue,
+  setFileValue,
 } = filesystemSlice.actions;
 export const filesystemReducer = filesystemSlice.reducer;

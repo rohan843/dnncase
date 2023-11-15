@@ -19,7 +19,7 @@ import {
   setSelectedItems,
   setFocusedItem,
   setFsState,
-  setValue
+  setFileValue
 } from "./slices/filesystemSlice";
 import {
   mainScreenReducer,
@@ -55,8 +55,8 @@ import {
 import {
   viewConfigReducer,
   setConfig,
-  setValueAtPath,
-  setValuesAtPaths,
+  setFileValueAtPath,
+  setFileValuesAtPaths,
 } from "./slices/viewConfigsSlice";
 
 const store = configureStore({
@@ -93,7 +93,7 @@ export {
   setSelectedItems,
   setFocusedItem,
   setFsState,
-  setValue,
+  setFileValue,
 
   // mainScreenSlice
   removeLeftPane,
@@ -123,6 +123,6 @@ export {
 
   // viewConfigSlice
   setConfig,
-  setValueAtPath,
-  setValuesAtPaths,
+  setFileValueAtPath,
+  setFileValuesAtPaths,
 };
