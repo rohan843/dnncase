@@ -6,6 +6,7 @@ import untrainedLayerIcon from "../../../../../../../assets/layer-not-trained.pn
 import pretrainedWeightsIcon from "../../../../../../../assets/layer-prev-weights.png";
 import newWeightsIcon from "../../../../../../../assets/layer-new-weights.png";
 import { Handle, Position } from "reactflow";
+import classNames from "classnames";
 
 const LayerNode = ({
   data: {
@@ -16,13 +17,8 @@ const LayerNode = ({
     numInputNodes,
     numOutputNodes,
   },
+  selected,
 }) => {
-  // const name = "Conv2DExtraExtraExtraWide Layer";
-  // const activation = "euclidean";
-  // const trained = true;
-  // const usingPrevWeights = true;
-  // const numInputNodes = 3;
-  // const numOutputNodes = 3;
   if (!trained && usingPrevWeights) {
     console.error(
       "Layer: An untrained layer is specified to use pre-trained weights."
@@ -76,7 +72,10 @@ const LayerNode = ({
       style={{
         height: `${minimumRequiredContentAreaHeight + 28}px`,
       }}
-      className="w-[353px] background-dark border-darker rounded-t"
+      className={classNames(
+        "w-[353px] background-dark border-darker rounded-t",
+        { "outline-2 outline-cyan-600": selected }
+      )}
     >
       {/* Weights Info Box */}
       <div className="select-none absolute -top-[20px] right-[20px] h-[21px] w-[49px] rounded-t border-darker background-dark flex flex-row justify-evenly items-center">
