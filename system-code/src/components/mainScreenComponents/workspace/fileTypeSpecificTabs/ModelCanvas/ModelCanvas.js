@@ -22,7 +22,8 @@ import {
   PackerNode,
   CommentNode,
 } from "./subcomponents/nodes";
-import { useEdgesState, useNodesState } from "reactflow";
+import { includes } from "lodash";
+import { useCallback, useState } from "react";
 
 const NodeTypes = {
   LayerNode,
@@ -119,6 +120,132 @@ const initialEdges = [
   },
 ];
 
+function handleParentExpand(res, updateItem) {
+  const parent = res.find((e) => e.id === updateItem.parentNode);
+
+  if (parent) {
+    const extendWidth = updateItem.position.x + updateItem.width - parent.width;
+    const extendHeight =
+      updateItem.position.y + updateItem.height - parent.height;
+
+    if (
+      extendWidth > 0 ||
+      extendHeight > 0 ||
+      updateItem.position.x < 0 ||
+      updateItem.position.y < 0
+    ) {
+      parent.style = { ...parent.style } || {};
+
+      parent.style.width = parent.style.width ?? parent.width;
+      parent.style.height = parent.style.height ?? parent.height;
+
+      if (extendWidth > 0) {
+        parent.style.width += extendWidth;
+      }
+
+      if (extendHeight > 0) {
+        parent.style.height += extendHeight;
+      }
+
+      if (updateItem.position.x < 0) {
+        const xDiff = Math.abs(updateItem.position.x);
+        parent.position.x = parent.position.x - xDiff;
+        parent.style.width += xDiff;
+        updateItem.position.x = 0;
+      }
+
+      if (updateItem.position.y < 0) {
+        const yDiff = Math.abs(updateItem.position.y);
+        parent.position.y = parent.position.y - yDiff;
+        parent.style.height += yDiff;
+        updateItem.position.y = 0;
+      }
+
+      parent.width = parent.style.width;
+      parent.height = parent.style.height;
+    }
+  }
+}
+
+function applyChanges(changes, elements) {
+  // we need this hack to handle the setNodes and setEdges function of the useReactFlow hook for controlled flows
+  if (changes.some((c) => c.type === "reset")) {
+    return changes.filter((c) => c.type === "reset").map((c) => c.item);
+  }
+  const initElements = changes
+    .filter((c) => c.type === "add")
+    .map((c) => c.item);
+
+  return elements.reduce((res, item) => {
+    const currentChanges = changes.filter((c) => c.id === item.id);
+
+    if (currentChanges.length === 0) {
+      res.push(item);
+      return res;
+    }
+
+    const updateItem = { ...item };
+
+    for (const currentChange of currentChanges) {
+      if (currentChange) {
+        switch (currentChange.type) {
+          case "select": {
+            updateItem.selected = currentChange.selected;
+            break;
+          }
+          case "position": {
+            if (typeof currentChange.position !== "undefined") {
+              updateItem.position = currentChange.position;
+            }
+
+            if (typeof currentChange.positionAbsolute !== "undefined") {
+              updateItem.positionAbsolute = currentChange.positionAbsolute;
+            }
+
+            if (typeof currentChange.dragging !== "undefined") {
+              updateItem.dragging = currentChange.dragging;
+            }
+
+            if (updateItem.expandParent) {
+              handleParentExpand(res, updateItem);
+            }
+            break;
+          }
+          case "dimensions": {
+            if (typeof currentChange.dimensions !== "undefined") {
+              updateItem.width = currentChange.dimensions.width;
+              updateItem.height = currentChange.dimensions.height;
+            }
+
+            if (typeof currentChange.updateStyle !== "undefined") {
+              updateItem.style = {
+                ...(updateItem.style || {}),
+                ...currentChange.dimensions,
+              };
+            }
+
+            if (typeof currentChange.resizing === "boolean") {
+              updateItem.resizing = currentChange.resizing;
+            }
+
+            if (updateItem.expandParent) {
+              handleParentExpand(res, updateItem);
+            }
+            break;
+          }
+          case "remove": {
+            return res;
+          }
+          default:
+        }
+      }
+    }
+
+    res.push(updateItem);
+    return res;
+  }, initElements);
+}
+
 function ModelCanvas({ activeFileIndex }) {
   const dispatch = useDispatch();
   const activeFileType = useSelector(
@@ -129,18 +256,27 @@ function ModelCanvas({ activeFileIndex }) {
     // TODO: Add code here to setup config to a value from backend (default config for this file type).
   }
 
-  // eslint-disable-next-line no-unused-vars
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const onEdgeCreation = (params) =>
-    setEdges((edges) => [
+  const [nodes, setNodes] = useState(initialNodes);
+  const onNodesChange = useCallback(
+    (changes) => setNodes((items) => applyChanges(changes, items)),
+    []
+  );
+
+  const [edges, setEdges] = useState(initialEdges);
+  const onEdgesChange = useCallback(
+    (changes) => setEdges((items) => applyChanges(changes, items)),
+    []
+  );
+
+  const onEdgeCreation = (newEdgeData) =>
+    setEdges([
       ...edges,
       {
-        id: `e${edges.length}`,
-        source: params.source,
-        sourceHandle: params.sourceHandle,
-        target: params.target,
-        targetHandle: params.targetHandle,
+        id: `e${Date.now()}`,
+        source: newEdgeData.source,
+        sourceHandle: newEdgeData.sourceHandle,
+        target: newEdgeData.target,
+        targetHandle: newEdgeData.targetHandle,
         animated: true,
         style: { stroke: "#fff" },
       },
