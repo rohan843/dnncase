@@ -111,9 +111,18 @@ function GraphCanvas({ NodeTypes }) {
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
+        onNodesChange={(p) => {
+          console.log(p);
+          onNodesChange(p);
+        }}
+        onEdgesChange={(p) => {
+          console.log(p);
+          onEdgesChange(p);
+        }}
+        onConnect={(p) => {
+          console.log(p);
+          onConnect(p);
+        }}
         nodeTypes={NodeTypes}
         snapToGrid
         snapGrid={[5, 5]}
