@@ -1,4 +1,4 @@
-import { Handle } from "reactflow";
+import { Handle, Position } from "reactflow";
 
 const InputNode = ({ data: { inputShape } }) => {
   return (
@@ -13,7 +13,7 @@ const InputNode = ({ data: { inputShape } }) => {
       >
         <div style={{ padding: "10px" }}>Input Node</div>
         <div style={{ padding: "10px" }}>{inputShape}</div>
-        <Handle type="source" />
+        <Handle type="source" position={Position.Right} />
       </div>
     </div>
   );
