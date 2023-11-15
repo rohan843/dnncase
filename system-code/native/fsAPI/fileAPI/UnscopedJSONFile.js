@@ -46,6 +46,9 @@ class UnscopedJSONFile extends UnscopedFile {
       fs.writeFileSync(this.__filePath, this.__fileData);
     }
   }
+  applyJSONDelta(delta) {
+    // TODO
+  }
 }
 
 module.exports = UnscopedJSONFile;
