@@ -1,11 +1,7 @@
-import { useCallback } from "react";
 import ReactFlow, {
   MiniMap,
   Controls,
   Background,
-  addEdge,
-  useEdgesState,
-  useNodesState,
   BackgroundVariant,
   useOnViewportChange,
 } from "reactflow";
@@ -34,7 +30,7 @@ function GraphCanvas({
   edges,
   onNodesChange,
   onEdgesChange,
-  onConnect,
+  onEdgeCreation,
   onViewportChange,
 }) {
   return (
@@ -50,9 +46,8 @@ function GraphCanvas({
           console.log(p);
           onEdgesChange(p);
         }}
-        onConnect={(p) => {
-          console.log(p);
-          onConnect(p);
+        onConnect={(newEdgeData) => {
+          onEdgeCreation(newEdgeData);
         }}
         nodeTypes={NodeTypes}
         snapToGrid
