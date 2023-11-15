@@ -22,8 +22,7 @@ import {
   PackerNode,
   CommentNode,
 } from "./subcomponents/nodes";
-import { addEdge, useEdgesState, useNodesState } from "reactflow";
-import { useCallback } from "react";
+import { useEdgesState, useNodesState } from "reactflow";
 
 const NodeTypes = {
   LayerNode,
@@ -130,19 +129,22 @@ function ModelCanvas({ activeFileIndex }) {
     // TODO: Add code here to setup config to a value from backend (default config for this file type).
   }
 
+  // eslint-disable-next-line no-unused-vars
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const onConnect = useCallback(
-    (params) =>
-      setEdges((eds) =>
-        addEdge(params, eds).map((edge) => {
-          edge.animated = true;
-          edge.style = { stroke: "#fff" };
-          return edge;
-        })
-      ),
-    [setEdges]
-  );
+  const onEdgeCreation = (params) =>
+    setEdges((edges) => [
+      ...edges,
+      {
+        id: `e${edges.length}`,
+        source: params.source,
+        sourceHandle: params.sourceHandle,
+        target: params.target,
+        targetHandle: params.targetHandle,
+        animated: true,
+        style: { stroke: "#fff" },
+      },
+    ]);
 
   if (!permissibleFileTypes[activeFileType]) return null;
 
@@ -154,7 +156,7 @@ function ModelCanvas({ activeFileIndex }) {
         nodes={nodes}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
+        onEdgeCreation={onEdgeCreation}
       />
       <LeftPane
         open={config.leftPaneOpen}
