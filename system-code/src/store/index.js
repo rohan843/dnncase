@@ -19,6 +19,7 @@ import {
   setSelectedItems,
   setFocusedItem,
   setFsState,
+  setValue
 } from "./slices/filesystemSlice";
 import {
   mainScreenReducer,
@@ -92,6 +93,7 @@ export {
   setSelectedItems,
   setFocusedItem,
   setFsState,
+  setValue,
 
   // mainScreenSlice
   removeLeftPane,
