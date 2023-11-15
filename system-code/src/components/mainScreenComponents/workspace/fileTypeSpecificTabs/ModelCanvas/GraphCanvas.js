@@ -53,6 +53,15 @@ const initialNodes = [
     },
     type: "OutputNode",
   },
+  {
+    id: "5",
+    position: { x: 0, y: 0 },
+    data: {
+      commentText:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptates enim dolore eligendi cum aperiam iste fugit impedit qui cupiditate eius reprehenderit iusto ratione delectus, quam mollitia assumenda obcaecati rerum.",
+    },
+    type: "CommentNode",
+  },
 ];
 
 const initialEdges = [
