@@ -11,6 +11,11 @@ const fs = require("fs");
  * @throws {ScopeError}
  */
 class UnscopedJSONFile extends UnscopedFile {
+  constructor(...params) {
+    super(...params);
+    // TODO
+    this.__configData = {};
+  }
   /**
    * Checks if the provided path points to an existing file. If not, creates that file.
    * @param {(Object | null)} reinitializeIfInvalidSyntax If an object-like, the file contents are parsed and if invalid JSON is found, the whole file is reinitialized to the object provided.
