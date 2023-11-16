@@ -63,7 +63,7 @@ const filesystemSlice = createSlice({
                 usingPrevWeights: false,
 
                 // hyperparams
-                hyperparams: [{ activation: "relu" }],
+                hyperparams: [{ id: "activation", value: "relu" }],
 
                 // comment related info
                 commentText:
@@ -90,7 +90,7 @@ const filesystemSlice = createSlice({
                 usingPrevWeights: false,
 
                 // hyperparams
-                hyperparams: [{ activation: "relu" }],
+                hyperparams: [{ id: "activation", value: "relu" }],
 
                 // comment related info
                 commentText:
@@ -112,7 +112,7 @@ const filesystemSlice = createSlice({
               position: { x: 0, y: 0 },
               data: {
                 // hyperparams
-                hyperparams: [{ inputShape: [26, 26] }],
+                hyperparams: [{ id: "inputShape", value: [26, 26] }],
 
                 // comment related info
                 commentText:
@@ -129,7 +129,7 @@ const filesystemSlice = createSlice({
               position: { x: 300, y: 100 },
               data: {
                 // hyperparams
-                hyperparams: [{ outputShape: [1] }],
+                hyperparams: [{ id: "outputShape", value: [1] }],
 
                 // comment related info
                 commentText:
