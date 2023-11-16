@@ -73,8 +73,11 @@ const LayerNode = ({
         height: `${minimumRequiredContentAreaHeight + 28}px`,
       }}
       className={classNames(
-        "w-[353px] background-dark border-darker rounded-t",
-        { "outline-2 outline-cyan-600": selected }
+        "w-[353px] background-dark rounded-t",
+        {
+          "border-black": selected,
+          "border-darker": !selected
+        },
       )}
     >
       {/* Weights Info Box */}
