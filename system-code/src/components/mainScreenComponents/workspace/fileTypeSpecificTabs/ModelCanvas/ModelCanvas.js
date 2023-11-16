@@ -1,4 +1,4 @@
-// TODO: Make this and all its children stateless. Keep file-specific state in redux instead.
+// TODO: convert nodes/edges arrays to objects.
 
 import RightPane from "./RightPane";
 import LeftPane from "./LeftPane";
@@ -26,6 +26,7 @@ import {
   PackerNode,
   CommentNode,
 } from "./subcomponents/nodes";
+import { findIndex } from "lodash";
 
 const NodeTypes = {
   LayerNode,
@@ -62,6 +63,8 @@ function ModelCanvas({ activeFileIndex }) {
     // TODO: Add code here to setup config to a value from backend (default config for this file type).
   }
 
+  if (!permissibleFileTypes[activeFileType]) return null;
+
   const setNodes = (newNodes) => {
     dispatch(
       setFileValue({
@@ -96,7 +99,169 @@ function ModelCanvas({ activeFileIndex }) {
       },
     ]);
 
-  if (!permissibleFileTypes[activeFileType]) return null;
+  // Right Pane Contents
+  const activeNodeID = config.activeNodeID;
+  const activeNodeIndex = findIndex(nodes, (node) => node.id === activeNodeID);
+  const activeNode = nodes[activeNodeIndex];
+  function getRightPaneContents(node, fileType) {
+    if (!node) {
+      return <Title show innerText={`${fileType.toUpperCase()} File`} />;
+    } else if (node.type === "LayerNode") {
+      return (
+        <>
+          {/* Title */}
+          <Title show innerText={node.data.name} />
+
+          {/* Arguments Table */}
+          <H show level={1} innerText="Arguments" />
+          <KeyValue
+            show
+            content={node.data.hyperparams.map(({ id, value }, ind) => {
+              return {
+                keyInnerText: id,
+                valueInnerText: value,
+                isValueEditable: true,
+                onValueChange: (newValue) => {
+                  console.log(newValue);
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: [
+                        "data",
+                        "nodes",
+                        activeNodeIndex,
+                        "hyperparams",
+                        ind,
+                        "value",
+                      ],
+                      value: newValue,
+                    })
+                  );
+                },
+              };
+            })}
+            enableNewKeyValueInput
+            onNewKeyValueInputSubmit={(key, value) => {
+              alert(`${key}: ${value}`);
+            }}
+            onCancel={() => {
+              alert("Cancelled");
+            }}
+            onAdd={() => {
+              alert("add");
+            }}
+            onNewWindow={() => {
+              alert("newWindow");
+            }}
+          />
+
+          {/* Code Comments */}
+          <H show level={1} innerText="Code Comments" />
+          <Plaintext
+            show={node.data.commentType === "plain"}
+            innerText={node.data.commentText}
+            onChange={(newValue) => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentText",
+                  ],
+                  value: newValue,
+                })
+              );
+            }}
+            onConvertToMarkdown={() => {
+              dispatch(
+                setValuesAtPaths({
+                  fileIndex: activeFileIndex,
+                  editPoints: [
+                    {
+                      path: ["rightPane", "comment", "markdownEditsEnabled"],
+                      value: false,
+                    },
+                  ],
+                })
+              );
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentType",
+                  ],
+                  value: "markdown",
+                })
+              );
+            }}
+          />
+          <Markdown
+            show={node.data.commentType === "markdown"}
+            editsEnabled={config.rightPane.comment.markdownEditsEnabled}
+            onEditsToggle={() => {
+              dispatch(
+                setValueAtPath({
+                  fileIndex: activeFileIndex,
+                  path: ["rightPane", "comment", "markdownEditsEnabled"],
+                  value: !config.rightPane.comment.markdownEditsEnabled,
+                })
+              );
+            }}
+            innerText={node.data.commentText}
+            onChange={(newValue) => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentText",
+                  ],
+                  value: newValue,
+                })
+              );
+            }}
+            onConvertToPlaintext={() => {
+              dispatch(
+                setValuesAtPaths({
+                  fileIndex: activeFileIndex,
+                  editPoints: [
+                    {
+                      path: ["rightPane", "comment", "markdownEditsEnabled"],
+                      value: false,
+                    },
+                  ],
+                })
+              );
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentType",
+                  ],
+                  value: "plain",
+                })
+              );
+            }}
+          />
+        </>
+      );
+    }
+  }
+  const rightPaneContents = getRightPaneContents(activeNode, activeFileType);
 
   return (
     <div className="h-full w-full background-lighter relative overflow-hidden">
@@ -235,189 +400,7 @@ function ModelCanvas({ activeFileIndex }) {
           );
         }}
       >
-        {/* Title */}
-        <Title show innerText="Conv2D Layer" />
-
-        {/* Arguments Table */}
-        <H show level={1} innerText="Arguments" />
-        <KeyValue
-          show
-          content={[
-            {
-              keyInnerText: "Demo Parameter 1",
-              valueInnerText: 25,
-              isValueEditable: true,
-              removable: false,
-              onValueChange: (newValue) => {
-                console.log(newValue);
-              },
-            },
-            {
-              keyInnerText: "Demo Parameter 2",
-              valueInnerText:
-                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa",
-              isValueEditable: false,
-              removable: false,
-            },
-            {
-              keyInnerText: "Demo Parameter 3",
-              valueInnerText: 25,
-              isValueEditable: true,
-              removable: true,
-              onRemove: () => {
-                alert("removed!");
-              },
-              onValueChange: (newValue) => {
-                console.log(newValue);
-              },
-            },
-            {
-              keyInnerText: "A very long Demo Parameter 4",
-              valueInnerText: 25,
-              isValueEditable: false,
-              removable: true,
-            },
-            {
-              keyInnerText: "Demo Parameter 5",
-              valueInnerText:
-                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-              isValueEditable: true,
-              removable: true,
-              onValueChange: (newValue) => {
-                console.log(newValue);
-              },
-            },
-            {
-              keyInnerText: "Demo Parameter 6",
-              valueInnerText: 25,
-              isValueEditable: false,
-              removable: true,
-            },
-            {
-              keyInnerText: "Demo Parameter 7",
-              valueInnerText: 25,
-              isValueEditable: true,
-              removable: true,
-              onValueChange: (newValue) => {
-                console.log(newValue);
-              },
-            },
-            {
-              keyInnerText:
-                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-              valueInnerText: 25,
-              isValueEditable: false,
-              removable: true,
-            },
-            {
-              keyInnerText: "Demo Parameter 9",
-              valueInnerText: 25,
-              isValueEditable: true,
-              removable: true,
-              onValueChange: (newValue) => {
-                console.log(newValue);
-              },
-            },
-            {
-              keyInnerText: "Demo Parameter 10",
-              valueInnerText: 25,
-              isValueEditable: false,
-              removable: true,
-            },
-            {
-              keyInnerText: "Demo Parameter 11",
-              valueInnerText: 25,
-              isValueEditable: false,
-              removable: true,
-            },
-          ]}
-          enableNewKeyValueInput
-          onNewKeyValueInputSubmit={(key, value) => {
-            alert(`${key}: ${value}`);
-          }}
-          onCancel={() => {
-            alert("Cancelled");
-          }}
-          onAdd={() => {
-            alert("add");
-          }}
-          onNewWindow={() => {
-            alert("newWindow");
-          }}
-        />
-
-        {/* Code Comments */}
-        <H show level={1} innerText="Code Comments" />
-        <Plaintext
-          show={config.rightPane.comment.type === "plain"}
-          innerText={config.rightPane.comment.text}
-          onChange={(newValue) => {
-            dispatch(
-              setValueAtPath({
-                fileIndex: activeFileIndex,
-                path: ["rightPane", "comment", "text"],
-                value: newValue,
-              })
-            );
-          }}
-          onConvertToMarkdown={() => {
-            dispatch(
-              setValuesAtPaths({
-                fileIndex: activeFileIndex,
-                editPoints: [
-                  {
-                    path: ["rightPane", "comment", "type"],
-                    value: "markdown",
-                  },
-                  {
-                    path: ["rightPane", "comment", "markdownEditsEnabled"],
-                    value: false,
-                  },
-                ],
-              })
-            );
-          }}
-        />
-        <Markdown
-          show={config.rightPane.comment.type === "markdown"}
-          editsEnabled={config.rightPane.comment.markdownEditsEnabled}
-          onEditsToggle={() => {
-            dispatch(
-              setValueAtPath({
-                fileIndex: activeFileIndex,
-                path: ["rightPane", "comment", "markdownEditsEnabled"],
-                value: !config.rightPane.comment.markdownEditsEnabled,
-              })
-            );
-          }}
-          innerText={config.rightPane.comment.text}
-          onChange={(newValue) => {
-            dispatch(
-              setValueAtPath({
-                fileIndex: activeFileIndex,
-                path: ["rightPane", "comment", "text"],
-                value: newValue,
-              })
-            );
-          }}
-          onConvertToPlaintext={() => {
-            dispatch(
-              setValuesAtPaths({
-                fileIndex: activeFileIndex,
-                editPoints: [
-                  {
-                    path: ["rightPane", "comment", "type"],
-                    value: "plain",
-                  },
-                  {
-                    path: ["rightPane", "comment", "markdownEditsEnabled"],
-                    value: false,
-                  },
-                ],
-              })
-            );
-          }}
-        />
+        {rightPaneContents}
       </RightPane>
     </div>
   );
