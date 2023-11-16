@@ -11,11 +11,11 @@ import classNames from "classnames";
 const LayerNode = ({
   data: {
     name,
-    activation,
     trained,
     usingPrevWeights,
-    numInputNodes,
-    numOutputNodes,
+    hyperparams,
+    inputHandles,
+    outputHandles,
   },
   selected,
 }) => {
@@ -25,44 +25,55 @@ const LayerNode = ({
     );
   }
 
-  const dummyInputHandlesList = [];
-  for (let i = 0; i < numInputNodes; i++) {
-    dummyInputHandlesList.push(
-      <div key={`i${i}`} className="relative flex flex-row">
+  let activation = "none";
+  for (let hp of hyperparams) {
+    if (hp.id === "activation") {
+      activation = hp.value;
+    }
+  }
+
+  const inputHandlesList = [];
+  for (let inputHandle of inputHandles) {
+    inputHandlesList.push(
+      <div key={inputHandle} className="relative flex flex-row">
         <Handle
-          id={`i${i}`}
+          id={inputHandle}
           type="target"
           position={Position.Left}
           className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
         />
         <span
           className="absolute text-[8px] left-[15px] max-w-[140px] truncate font-mono"
-          title={`i${i} dsg sdg dsg dsg dg dg sdg sdg esrg srd sdr gs`}
-        >{`i${i} dsg sdg dsg dsg dg dg sdg sdg esrg srd sdr gs`}</span>
+          title={inputHandle}
+        >
+          {inputHandle}
+        </span>
       </div>
     );
   }
 
-  const dummyOutputHandlesList = [];
-  for (let i = 0; i < numOutputNodes; i++) {
-    dummyOutputHandlesList.push(
-      <div key={`o${i}`} className="relative flex flex-row">
+  const outputHandlesList = [];
+  for (let outputHandle of outputHandles) {
+    outputHandlesList.push(
+      <div key={outputHandle} className="relative flex flex-row">
         <Handle
-          id={`o${i}`}
+          id={outputHandle}
           type="source"
           position={Position.Right}
           className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
         />
         <span
           className="absolute text-[8px] right-[15px] max-w-[140px] truncate font-mono"
-          title={`o${i}`}
-        >{`o${i}`}</span>
+          title={outputHandle}
+        >
+          {outputHandle}
+        </span>
       </div>
     );
   }
 
   const minimumRequiredContentAreaHeight = Math.max(
-    Math.max(numInputNodes, numOutputNodes) * 19,
+    Math.max(inputHandles.length, outputHandles.length) * 19,
     // HACK: remove below number to allow fully handle-count based height.
     155
   );
@@ -72,13 +83,10 @@ const LayerNode = ({
       style={{
         height: `${minimumRequiredContentAreaHeight + 28}px`,
       }}
-      className={classNames(
-        "w-[353px] background-dark rounded-t",
-        {
-          "border-black": selected,
-          "border-darker": !selected
-        },
-      )}
+      className={classNames("w-[353px] background-dark rounded-t", {
+        "border-black": selected,
+        "border-darker": !selected,
+      })}
     >
       {/* Weights Info Box */}
       <div className="select-none absolute -top-[20px] right-[20px] h-[21px] w-[49px] rounded-t border-darker background-dark flex flex-row justify-evenly items-center">
@@ -135,7 +143,7 @@ const LayerNode = ({
           style={{ minHeight: `${minimumRequiredContentAreaHeight}px` }}
           className="absolute -left-[6px] h-max w-[12px] pt-[4px] pb-[2px] flex flex-col justify-evenly"
         >
-          {dummyInputHandlesList}
+          {inputHandlesList}
         </div>
 
         {/* Output Handles */}
@@ -143,7 +151,7 @@ const LayerNode = ({
           style={{ minHeight: `${minimumRequiredContentAreaHeight}px` }}
           className="absolute -right-[6px] h-max w-[12px] pt-[4px] pb-[2px] flex flex-col justify-evenly"
         >
-          {dummyOutputHandlesList}
+          {outputHandlesList}
         </div>
       </div>
       {/* <Handle id="i0" type="target" */}
