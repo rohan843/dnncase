@@ -17,7 +17,7 @@ const file = {
       },
       data: {
         artefactID: String,
-        hyperparams: [{ hyperparamName: String }],
+        hyperparams: [{ id: String, value: String }],
         commentText: String,
         commentType: "plain" | "markdown",
         isTODO: Boolean,
