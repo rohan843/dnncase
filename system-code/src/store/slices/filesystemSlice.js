@@ -57,12 +57,26 @@ const filesystemSlice = createSlice({
               id: "1",
               position: { x: 100, y: 100 },
               data: {
+                // These are derived from `artefactID`.
                 name: "Conv2D Layer",
-                activation: "relu",
                 trained: false,
                 usingPrevWeights: false,
-                numInputNodes: 1,
-                numOutputNodes: 1,
+
+                // hyperparams
+                hyperparams: [{ activation: "relu" }],
+
+                // comment related info
+                commentText:
+                  "# Dummy Text\nLorem, [ipsum]() dolor _sit_ **amet** consectetur adipisicing elit.\n>Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
+                commentType: "plain",
+
+                // handle related info
+                inputHandles: ["in"],
+                outputHandles: ["out"],
+
+                // Reuse info
+                reusable: false,
+                reuseCount: undefined,
               },
               type: "LayerNode",
             },

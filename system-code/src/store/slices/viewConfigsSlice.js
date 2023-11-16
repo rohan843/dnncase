@@ -7,6 +7,7 @@ const viewConfigSlice = createSlice({
     "/Project1/home1/user1/file1.txt": {
       leftPaneOpen: false,
       rightPaneOpen: false,
+      activeNodeID: "1",
       leftPane: {
         layerSelector: {
           show: true,
@@ -14,8 +15,6 @@ const viewConfigSlice = createSlice({
       },
       rightPane: {
         comment: {
-          text: "# Dummy Text\nLorem, [ipsum]() dolor _sit_ **amet** consectetur adipisicing elit.\n>Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
-          type: "plain",
           markdownEditsEnabled: true,
         },
       },
@@ -37,19 +36,15 @@ const viewConfigSlice = createSlice({
         );
     },
     /**
-     * Takes an action with a payload containing a fileIndex and a list called `editPoints` 
-     * of objects containing a path in its config object (from the config object's root, _not_ the 
-     * slice's root) as per the format given [here](https://lodash.com/docs/4.17.15#set) and a 
+     * Takes an action with a payload containing a fileIndex and a list called `editPoints`
+     * of objects containing a path in its config object (from the config object's root, _not_ the
+     * slice's root) as per the format given [here](https://lodash.com/docs/4.17.15#set) and a
      * value. The value is assigned at the specified path for each object.
      */
     setValuesAtPaths(state, action) {
       if (!state[action.payload.fileIndex]) return;
       for (let editPoint of action.payload.editPoints) {
-        set(
-          state[action.payload.fileIndex],
-          editPoint.path,
-          editPoint.value
-        );
+        set(state[action.payload.fileIndex], editPoint.path, editPoint.value);
       }
     },
     /**
@@ -63,4 +58,5 @@ const viewConfigSlice = createSlice({
 });
 
 export const viewConfigReducer = viewConfigSlice.reducer;
-export const { setConfig, setValueAtPath, setValuesAtPaths } = viewConfigSlice.actions;
+export const { setConfig, setValueAtPath, setValuesAtPaths } =
+  viewConfigSlice.actions;
