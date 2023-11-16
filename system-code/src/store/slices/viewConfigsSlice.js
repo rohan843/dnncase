@@ -15,7 +15,7 @@ const viewConfigSlice = createSlice({
       },
       rightPane: {
         comment: {
-          markdownEditsEnabled: true,
+          markdownEditsEnabled: false,
         },
       },
     },
