@@ -26,6 +26,8 @@ const file = {
         outputHandles: [
           String, // IDs
         ],
+        reusable: Boolean,
+        reuseCount: Number,
       },
       type: String,
     },
