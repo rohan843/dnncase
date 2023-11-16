@@ -14,9 +14,18 @@ import classNames from "classnames";
  */
 function CommentNode({
   data: { isCommentTODO, onToggleTODOStatus, commentText, onCommentChange },
+  selected,
 }) {
   return (
-    <div className="w-[200px] h-[155px] overflow-hidden border-darker background-dark rounded-t flex flex-col">
+    <div
+      className={classNames(
+        "w-[200px] h-[155px] overflow-hidden border-darker background-dark rounded-t flex flex-col",
+        {
+          "border-black": selected,
+          "border-darker": !selected,
+        }
+      )}
+    >
       {/* 'Set as TODO' flag*/}
       <div className="w-full h-[28px] border-bottom-darker flex items-center">
         <div

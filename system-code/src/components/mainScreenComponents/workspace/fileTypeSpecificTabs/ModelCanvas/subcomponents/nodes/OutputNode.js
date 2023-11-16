@@ -1,6 +1,7 @@
+import classNames from "classnames";
 import { Handle, Position } from "reactflow";
 
-const OutputNode = ({ data: { outputShape } }) => {
+const OutputNode = ({ data: { outputShape }, selected }) => {
   return (
     <div>
       <div
@@ -10,6 +11,10 @@ const OutputNode = ({ data: { outputShape } }) => {
           height: "100px",
           borderRadius: "100px 0px 0px 100px",
         }}
+        className={classNames({
+          "border-black": selected,
+          "border-darker": !selected,
+        })}
       >
         <div style={{ padding: "10px" }}>Output Node</div>
         <div style={{ padding: "10px" }}>{outputShape}</div>
