@@ -46,7 +46,15 @@ function ModelCanvas({ activeFileIndex }) {
     return {
       activeFileType: store.filesystem.fsState[activeFileIndex].data.filetype,
       nodes: store.filesystem.fsState[activeFileIndex].data.nodes,
-      edges: store.filesystem.fsState[activeFileIndex].data.edges,
+      edges: store.filesystem.fsState[activeFileIndex].data.edges.map(
+        (edge) => {
+          return {
+            ...edge,
+            animated: true,
+            style: { stroke: "#fff", strokeWidth: 1.5 },
+          };
+        }
+      ),
     };
   });
   const config = useSelector((store) => store.viewConfig[activeFileIndex]);
