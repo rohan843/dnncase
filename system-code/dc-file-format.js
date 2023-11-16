@@ -20,6 +20,7 @@ const file = {
         hyperparams: [{ hyperparamName: String }],
         commentText: String,
         commentType: "plain" | "markdown",
+        isTODO: Boolean,
         inputHandles: [
           String, // IDs
         ],

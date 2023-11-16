@@ -84,12 +84,26 @@ const filesystemSlice = createSlice({
               id: "2",
               position: { x: 200, y: 200 },
               data: {
+                // These are derived from `artefactID`.
                 name: "Conv2D Layer",
-                activation: "relu",
                 trained: false,
                 usingPrevWeights: false,
-                numInputNodes: 1,
-                numOutputNodes: 1,
+
+                // hyperparams
+                hyperparams: [{ activation: "relu" }],
+
+                // comment related info
+                commentText:
+                  "# Dummy Text\nLorem, [ipsum]() dolor _sit_ **amet** consectetur adipisicing elit.\n>Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
+                commentType: "plain",
+
+                // handle related info
+                inputHandles: ["in"],
+                outputHandles: ["out"],
+
+                // Reuse info
+                reusable: false,
+                reuseCount: undefined,
               },
               type: "LayerNode",
             },
@@ -97,7 +111,16 @@ const filesystemSlice = createSlice({
               id: "3",
               position: { x: 0, y: 0 },
               data: {
-                inputShape: "[26, 26]",
+                // hyperparams
+                hyperparams: [{ inputShape: [26, 26] }],
+
+                // comment related info
+                commentText:
+                  "# Dummy Text\nLorem, [ipsum]() dolor _sit_ **amet** consectetur adipisicing elit.\n>Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
+                commentType: "plain",
+
+                // handle related info
+                outputHandles: ["in"],
               },
               type: "InputNode",
             },
@@ -105,7 +128,16 @@ const filesystemSlice = createSlice({
               id: "4",
               position: { x: 300, y: 100 },
               data: {
-                outputShape: "[1]",
+                // hyperparams
+                hyperparams: [{ outputShape: [1] }],
+
+                // comment related info
+                commentText:
+                  "# Dummy Text\nLorem, [ipsum]() dolor _sit_ **amet** consectetur adipisicing elit.\n>Atque illum dolorum velit magni eos expedita tempore culpa libero dolore. Sunt fugit porro ducimus aperiam. Modi aliquid sequi odit possimus tempora?",
+                commentType: "plain",
+
+                // handle related info
+                inputHandles: ["out"],
               },
               type: "OutputNode",
             },
@@ -113,6 +145,7 @@ const filesystemSlice = createSlice({
               id: "5",
               position: { x: 0, y: 0 },
               data: {
+                isTODO: true,
                 commentText:
                   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptates enim dolore eligendi cum aperiam iste fugit impedit qui cupiditate eius reprehenderit iusto ratione delectus, quam mollitia assumenda obcaecati rerum.",
               },
