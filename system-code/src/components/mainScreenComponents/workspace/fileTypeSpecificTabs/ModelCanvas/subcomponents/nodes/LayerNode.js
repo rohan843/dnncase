@@ -16,6 +16,8 @@ const LayerNode = ({
     hyperparams,
     inputHandles,
     outputHandles,
+    onActivate,
+    onActivateAndShowInPane,
   },
   selected,
 }) => {
@@ -87,6 +89,12 @@ const LayerNode = ({
         "border-black": selected,
         "border-darker": !selected,
       })}
+      onClick={() => {
+        onActivate && onActivate();
+      }}
+      onDoubleClick={() => {
+        onActivateAndShowInPane && onActivateAndShowInPane();
+      }}
     >
       {/* Weights Info Box */}
       <div className="select-none absolute -top-[20px] right-[20px] h-[21px] w-[49px] rounded-t border-darker background-dark flex flex-row justify-evenly items-center">

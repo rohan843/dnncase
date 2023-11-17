@@ -2,13 +2,24 @@ import classNames from "classnames";
 import { find } from "lodash";
 import { Handle, Position } from "reactflow";
 
-const InputNode = ({ data: { hyperparams }, selected }) => {
+const InputNode = ({
+  data: { hyperparams, onActivate, onActivateAndShowInPane },
+  selected,
+}) => {
   const inputShape = find(
     hyperparams,
     (hyperparam) => hyperparam.id === "inputShape"
   ).value;
   return (
-    <div style={{ padding: "0px 0px 0px 30px" }}>
+    <div
+      style={{ padding: "0px 0px 0px 30px" }}
+      onClick={() => {
+        onActivate && onActivate();
+      }}
+      onDoubleClick={() => {
+        onActivateAndShowInPane && onActivateAndShowInPane();
+      }}
+    >
       <div
         style={{
           width: "200px",
