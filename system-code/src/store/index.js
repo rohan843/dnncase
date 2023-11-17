@@ -19,7 +19,7 @@ import {
   setSelectedItems,
   setFocusedItem,
   setFsState,
-  setFileValue
+  setFileValue,
 } from "./slices/filesystemSlice";
 import {
   mainScreenReducer,
@@ -58,6 +58,7 @@ import {
   setValueAtPath,
   setValuesAtPaths,
 } from "./slices/viewConfigsSlice";
+import { artefactsReducer } from "./slices/artefactsSlice";
 
 const store = configureStore({
   reducer: {
@@ -68,6 +69,7 @@ const store = configureStore({
     commentsTerminal: commentsTerminalReducer,
     activeElement: activeElementReducer,
     viewConfig: viewConfigReducer,
+    artefacts: artefactsReducer
   },
 });
 
@@ -125,4 +127,7 @@ export {
   setConfig,
   setValueAtPath,
   setValuesAtPaths,
+
+  // artefactsSlice
+  artefactsReducer,
 };
