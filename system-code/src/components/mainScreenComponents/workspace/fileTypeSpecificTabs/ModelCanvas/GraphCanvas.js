@@ -24,7 +24,7 @@ function ConnectionLine({ fromX, fromY, toX, toY }) {
     <g>
       <path
         fill="none"
-        stroke="#fff"
+        stroke="#000"
         strokeWidth={1.5}
         className="animated"
         d={
@@ -43,7 +43,7 @@ function ConnectionLine({ fromX, fromY, toX, toY }) {
         cy={toY}
         fill="#00000000"
         r={3}
-        stroke="#fff"
+        stroke="#000"
         strokeWidth={1.5}
       />
     </g>

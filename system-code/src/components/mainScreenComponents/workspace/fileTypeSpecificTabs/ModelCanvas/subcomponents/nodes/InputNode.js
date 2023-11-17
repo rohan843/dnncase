@@ -1,7 +1,12 @@
 import classNames from "classnames";
+import { find } from "lodash";
 import { Handle, Position } from "reactflow";
 
-const InputNode = ({ data: { inputShape }, selected }) => {
+const InputNode = ({ data: { hyperparams }, selected }) => {
+  const inputShape = find(
+    hyperparams,
+    (hyperparam) => hyperparam.id === "inputShape"
+  ).value;
   return (
     <div style={{ padding: "0px 0px 0px 30px" }}>
       <div
@@ -17,7 +22,7 @@ const InputNode = ({ data: { inputShape }, selected }) => {
         })}
       >
         <div style={{ padding: "10px" }}>Input Node</div>
-        <div style={{ padding: "10px" }}>{inputShape}</div>
+        <div style={{ padding: "10px" }}>{JSON.stringify(inputShape)}</div>
         <Handle type="source" position={Position.Right} />
       </div>
     </div>

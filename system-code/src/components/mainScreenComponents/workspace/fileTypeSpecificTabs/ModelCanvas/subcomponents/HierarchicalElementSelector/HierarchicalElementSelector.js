@@ -12,7 +12,7 @@ import { cloneDeep } from "lodash";
  * }]} param0.options A list of boolean options to be shown as checkboxes.
  * @param {boolean} param0.show If true, the component will return JSX, else it will return `null`.
  * @param {(elementID: string, options: { optionID: boolean }) => void} param0.onSelect This
- * function will be called when an item is selected. It will be passed the ID (index) of the item 
+ * function will be called when an item is selected. It will be passed the ID (index) of the item
  * along with an object containing the ids of various options in it, describing what options user
  * chose.
  * @param {[{
@@ -41,6 +41,11 @@ function HierarchicalElementSelector({ options, show, onSelect, contents }) {
       <HierarchicalDisplay
         onSelect={(elementID) => {
           onSelect(elementID, cloneDeep(optionsState));
+          setOptionsState((prevState) => {
+            for (let key of Object.keys(prevState)) {
+              prevState[key] = false;
+            }
+          });
         }}
         items={contents}
       />

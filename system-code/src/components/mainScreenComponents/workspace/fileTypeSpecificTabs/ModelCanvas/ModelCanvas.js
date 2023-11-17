@@ -26,7 +26,7 @@ import {
   PackerNode,
   CommentNode,
 } from "./subcomponents/nodes";
-import { findIndex } from "lodash";
+import { cloneDeep, findIndex } from "lodash";
 
 const NodeTypes = {
   LayerNode,
@@ -41,6 +41,54 @@ const permissibleFileTypes = {
   dc: true,
 };
 
+function getHierarchicalLayersFormat(storedLayerFormat) {
+  const layerSubcats = new Set();
+  for (let layer of Object.keys(storedLayerFormat)) {
+    layerSubcats.add(storedLayerFormat[layer].subcategorization);
+  }
+  const arrayOfLayerSubcats = Array.from(layerSubcats);
+  const res = {
+    root: {
+      index: "root",
+      isFolder: true,
+      children: arrayOfLayerSubcats,
+      data: {},
+    },
+  };
+  for (let subCat of layerSubcats) {
+    res[subCat] = {
+      index: subCat,
+      isFolder: true,
+      children: Object.keys(storedLayerFormat).filter(
+        (layerIndex) =>
+          storedLayerFormat[layerIndex].subcategorization === subCat
+      ),
+      data: { name: subCat },
+    };
+  }
+  for (let layer of Object.keys(storedLayerFormat)) {
+    res[layer] = {
+      index: layer,
+      isFolder: false,
+      data: {
+        name: storedLayerFormat[layer].displayName,
+      },
+    };
+  }
+  return res;
+}
+
+function getNodeId(...prefixes) {
+  /**
+   * This is the numeric suffix associated with this ID. As to why the mod is done with the number,
+   * currently the choice of the divisor was arbitrary. A mod was required to prevent identification
+   * of the time a node got created.
+   */
+  const numericID = Date.now() % 10007;
+  prefixes.push(numericID);
+  return prefixes.join("_");
+}
+
 function ModelCanvas({ activeFileIndex }) {
   const dispatch = useDispatch();
   const { activeFileType, nodes, edges } = useSelector((store) => {
@@ -52,15 +100,19 @@ function ModelCanvas({ activeFileIndex }) {
           return {
             ...edge,
             animated: true,
-            style: { stroke: "#fff", strokeWidth: 1.5 },
+            style: { stroke: "#000", strokeWidth: 1.5 },
           };
         }
       ),
     };
   });
   const config = useSelector((store) => store.viewConfig[activeFileIndex]);
+  const currentViewport = config.graphCanvas.viewport;
+  const layers = useSelector((store) => store.artefacts.layers);
+  const hierarchicalLayersFormat = getHierarchicalLayersFormat(layers);
   if (!config) {
     // TODO: Add code here to setup config to a value from backend (default config for this file type).
+    // https://tushar-balar-27618.medium.com/how-to-use-async-await-in-the-functional-component-react-js-15d0fa9137d3
   }
 
   if (!permissibleFileTypes[activeFileType]) return null;
@@ -94,8 +146,6 @@ function ModelCanvas({ activeFileIndex }) {
         sourceHandle: newEdgeData.sourceHandle,
         target: newEdgeData.target,
         targetHandle: newEdgeData.targetHandle,
-        animated: true,
-        style: { stroke: "#fff" },
       },
     ]);
 
@@ -130,6 +180,7 @@ function ModelCanvas({ activeFileIndex }) {
                         "data",
                         "nodes",
                         activeNodeIndex,
+                        "data",
                         "hyperparams",
                         ind,
                         "value",
@@ -268,10 +319,67 @@ function ModelCanvas({ activeFileIndex }) {
       <GraphCanvas
         NodeTypes={NodeTypes}
         edges={edges}
-        nodes={nodes}
-        onNodesChange={(newNodes) => setNodes(newNodes)}
+        nodes={nodes.map((node) => {
+          if (node.type === "CommentNode") {
+            const deepCopyOfNode = cloneDeep(node);
+            deepCopyOfNode.data.onToggleTODOStatus = () => {
+              const currentNodeID = deepCopyOfNode.id;
+              const newNodes = nodes.map((node) => {
+                if (node.id !== currentNodeID) {
+                  return node;
+                } else {
+                  const newNode = cloneDeep(node);
+                  newNode.data.isCommentTODO = !node.data.isCommentTODO;
+                  if (
+                    newNode.data.isCommentTODO &&
+                    !newNode.data.commentText.startsWith("TODO: ")
+                  ) {
+                    newNode.data.commentText =
+                      "TODO: " + newNode.data.commentText;
+                  }
+                  return newNode;
+                }
+              });
+              setNodes(newNodes);
+            };
+            deepCopyOfNode.data.onCommentChange = (newCommentValue) => {
+              const currentNodeID = deepCopyOfNode.id;
+              const newNodes = nodes.map((node) => {
+                if (node.id !== currentNodeID) {
+                  return node;
+                } else {
+                  const newNode = cloneDeep(node);
+                  newNode.data.commentText = newCommentValue;
+                  return newNode;
+                }
+              });
+              setNodes(newNodes);
+            };
+            return deepCopyOfNode;
+          } else {
+            return node;
+          }
+        })}
+        onNodesChange={(newNodes) =>
+          setNodes(
+            newNodes.map((node) => {
+              delete node.data.onToggleTODOStatus;
+              delete node.data.onCommentChange;
+              return node;
+            })
+          )
+        }
         onEdgesChange={(newEdges) => setEdges(newEdges)}
         onEdgeCreation={onEdgeCreation}
+        onViewportChange={(viewport) => {
+          dispatch(
+            setValueAtPath({
+              fileIndex: activeFileIndex,
+              path: ["graphCanvas", "viewport"],
+              value: viewport,
+            })
+          );
+        }}
       />
       <LeftPane
         open={config.leftPaneOpen}
@@ -298,7 +406,6 @@ function ModelCanvas({ activeFileIndex }) {
           show
           innerText="Layers"
           onClick={() => {
-            // toggle config.lefPane.layerSelector.show
             dispatch(
               setValueAtPath({
                 fileIndex: activeFileIndex,
@@ -316,68 +423,94 @@ function ModelCanvas({ activeFileIndex }) {
               label: "apply reuse block",
             },
           ]}
-          contents={
-            // TODO: Get this from an artefactSlice.
-            {
-              root: {
-                index: "root",
-                isFolder: true,
-                children: ["word-embeddings", "convolutional"],
-                data: {},
-              },
-              "word-embeddings": {
-                index: "word-embeddings",
-                isFolder: true,
-                children: ["embedding"],
-                data: { name: "Word Embedding" },
-              },
-              embedding: {
-                index: "embedding",
-                isFolder: false,
-                data: {
-                  name: "Embedding Layer",
-                },
-              },
-              convolutional: {
-                index: "convolutional",
-                isFolder: true,
-                children: [
-                  "conv2d",
-                  "deconv2d",
-                  "alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d",
-                ],
-                data: { name: "Convolutional Layers" },
-              },
-              conv2d: {
-                index: "conv2d",
-                isFolder: false,
-                data: {
-                  name: "Conv2D Layer",
-                },
-              },
-              deconv2d: {
-                index: "deconv2d",
-                isFolder: false,
-                data: {
-                  name: "DeConv2D Layer",
-                },
-              },
-              alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d: {
-                index: "alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d",
-                isFolder: false,
-                data: {
-                  name: "ALongNamedDeconv2DLayerWithASuperLooooongNameDeconv2D Layer",
-                },
-              },
-            }
-          }
+          contents={hierarchicalLayersFormat}
           onSelect={(elementID, options) => {
-            alert(`${elementID}, ${JSON.stringify(options)}`);
+            if (!options.reusable) {
+              setNodes([
+                ...nodes,
+                {
+                  id: getNodeId("LayerNode", elementID),
+                  position: currentViewport,
+                  type: "LayerNode",
+                  data: {
+                    name: layers[elementID].displayName,
+                    trained: false,
+                    usingPrevWeights: false,
+                    hyperparams: layers[elementID].defaultHyperparams,
+                    commentText: "",
+                    commentType: "plain",
+                    reuseCount: 0,
+                    inputHandles: layers[elementID].defaultInputHandles,
+                    outputHandles: layers[elementID].defaultOutputHandles,
+                  },
+                },
+              ]);
+            } else {
+              // TODO: add reusability.
+            }
+          }}
+        />
+        <H1Button
+          show
+          innerText="Add an Input"
+          onClick={() => {
+            setNodes([
+              ...nodes,
+              {
+                id: getNodeId("InputNode"),
+                position: currentViewport,
+                type: "InputNode",
+                data: {
+                  hyperparams: [{ id: "inputShape", value: null }],
+                  commentText: "",
+                  commentType: "plain",
+                  outputHandles: ["in"],
+                },
+              },
+            ]);
+          }}
+        />
+        <H1Button
+          show
+          innerText="Add an Output"
+          onClick={() => {
+            setNodes([
+              ...nodes,
+              {
+                id: getNodeId("OutputNode"),
+                position: currentViewport,
+                type: "OutputNode",
+                data: {
+                  hyperparams: [{ id: "outputShape", value: null }],
+                  commentText: "",
+                  commentType: "plain",
+                  outputHandles: ["out"],
+                },
+              },
+            ]);
           }}
         />
         <H1Button show innerText="Add a Packer" onClick={() => {}} />
-        <H1Button show innerText="Add a Repeater" onClick={() => {}} />
-        <H1Button show innerText="Activations" onClick={() => {}} />
+        <H1Button show innerText="Add an Unpacker" onClick={() => {}} />
+        <H1Button
+          show
+          innerText="Add a Comment"
+          onClick={() => {
+            const currentNodeID = getNodeId("CommentNode");
+            setNodes([
+              ...nodes,
+              {
+                id: currentNodeID,
+                position: currentViewport,
+                data: {
+                  isCommentTODO: false,
+                  commentText: "",
+                },
+                type: "CommentNode",
+              },
+            ]);
+          }}
+        />
       </LeftPane>
       <RightPane
         open={config.rightPaneOpen}

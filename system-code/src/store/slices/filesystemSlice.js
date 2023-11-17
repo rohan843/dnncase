@@ -75,8 +75,7 @@ const filesystemSlice = createSlice({
                 outputHandles: ["out"],
 
                 // Reuse info
-                reusable: false,
-                reuseCount: undefined,
+                reuseCount: 0,
               },
               type: "LayerNode",
             },
@@ -145,7 +144,7 @@ const filesystemSlice = createSlice({
               id: "5",
               position: { x: 0, y: 0 },
               data: {
-                isTODO: true,
+                isCommentTODO: true,
                 commentText:
                   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptates enim dolore eligendi cum aperiam iste fugit impedit qui cupiditate eius reprehenderit iusto ratione delectus, quam mollitia assumenda obcaecati rerum.",
               },
