@@ -45,6 +45,8 @@ const artefactsSlice = createSlice({
             value: "False",
           },
         ],
+        defaultInputHandles: ["in"],
+        defaultOutputHandles: ["out"],
       },
       conv2D: {
         displayName: "Conv2D",
