@@ -140,17 +140,22 @@ function ModelCanvas({ activeFileIndex }) {
     );
   };
 
-  const onEdgeCreation = (newEdgeData) =>
-    setEdges([
-      ...edges,
-      {
-        id: `e${Date.now()}`,
-        source: newEdgeData.source,
-        sourceHandle: newEdgeData.sourceHandle,
-        target: newEdgeData.target,
-        targetHandle: newEdgeData.targetHandle,
-      },
-    ]);
+  const onEdgeCreation = (newEdgeData) => {
+    const targetNode = newEdgeData.target;
+    const targetNodeHandle = newEdgeData.targetHandle;
+    const id = `${targetNode}_${targetNodeHandle}`;
+    findIndex(edges, (edge) => edge.id === id) === -1 &&
+      setEdges([
+        ...edges,
+        {
+          id,
+          source: newEdgeData.source,
+          sourceHandle: newEdgeData.sourceHandle,
+          target: newEdgeData.target,
+          targetHandle: newEdgeData.targetHandle,
+        },
+      ]);
+  };
 
   // Right Pane Contents
   const activeNodeID = config.activeNodeID;
