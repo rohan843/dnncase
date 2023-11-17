@@ -26,7 +26,7 @@ import {
   PackerNode,
   CommentNode,
 } from "./subcomponents/nodes";
-import { findIndex } from "lodash";
+import { cloneDeep, findIndex } from "lodash";
 
 const NodeTypes = {
   LayerNode,
@@ -319,8 +319,56 @@ function ModelCanvas({ activeFileIndex }) {
       <GraphCanvas
         NodeTypes={NodeTypes}
         edges={edges}
-        nodes={nodes}
-        onNodesChange={(newNodes) => setNodes(newNodes)}
+        nodes={nodes.map((node) => {
+          if (node.type === "CommentNode") {
+            const deepCopyOfNode = cloneDeep(node);
+            deepCopyOfNode.data.onToggleTODOStatus = () => {
+              const currentNodeID = deepCopyOfNode.id;
+              const newNodes = nodes.map((node) => {
+                if (node.id !== currentNodeID) {
+                  return node;
+                } else {
+                  const newNode = cloneDeep(node);
+                  newNode.data.isCommentTODO = !node.data.isCommentTODO;
+                  if (
+                    newNode.data.isCommentTODO &&
+                    !newNode.data.commentText.startsWith("TODO: ")
+                  ) {
+                    newNode.data.commentText =
+                      "TODO: " + newNode.data.commentText;
+                  }
+                  return newNode;
+                }
+              });
+              setNodes(newNodes);
+            };
+            deepCopyOfNode.data.onCommentChange = (newCommentValue) => {
+              const currentNodeID = deepCopyOfNode.id;
+              const newNodes = nodes.map((node) => {
+                if (node.id !== currentNodeID) {
+                  return node;
+                } else {
+                  const newNode = cloneDeep(node);
+                  newNode.data.commentText = newCommentValue;
+                  return newNode;
+                }
+              });
+              setNodes(newNodes);
+            };
+            return deepCopyOfNode;
+          } else {
+            return node;
+          }
+        })}
+        onNodesChange={(newNodes) =>
+          setNodes(
+            newNodes.map((node) => {
+              delete node.data.onToggleTODOStatus;
+              delete node.data.onCommentChange;
+              return node;
+            })
+          )
+        }
         onEdgesChange={(newEdges) => setEdges(newEdges)}
         onEdgeCreation={onEdgeCreation}
         onViewportChange={(viewport) => {
