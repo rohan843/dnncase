@@ -75,8 +75,7 @@ const filesystemSlice = createSlice({
                 outputHandles: ["out"],
 
                 // Reuse info
-                reusable: false,
-                reuseCount: undefined,
+                reuseCount: 0,
               },
               type: "LayerNode",
             },
