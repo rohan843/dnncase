@@ -91,29 +91,33 @@ function getNodeId(...prefixes) {
 
 function ModelCanvas({ activeFileIndex }) {
   const dispatch = useDispatch();
-  const { activeFileType, nodes, edges } = useSelector((store) => {
-    return {
-      activeFileType: store.filesystem.fsState[activeFileIndex].data.filetype,
-      nodes: store.filesystem.fsState[activeFileIndex].data.nodes,
-      edges: store.filesystem.fsState[activeFileIndex].data.edges.map(
-        (edge) => {
-          return {
-            ...edge,
-            animated: true,
-            style: { stroke: "#000", strokeWidth: 1.5 },
-          };
-        }
-      ),
-    };
-  });
-  const config = useSelector((store) => store.viewConfig[activeFileIndex]);
-  const currentViewport = config.graphCanvas.viewport;
+
+  // Load slices.
+  const fileData = useSelector(
+    (store) => store.filesystem.fsState[activeFileIndex]
+  );
   const layers = useSelector((store) => store.artefacts.layers);
-  const hierarchicalLayersFormat = getHierarchicalLayersFormat(layers);
+  const config = useSelector((store) => store.viewConfig[activeFileIndex]);
+
   if (!config) {
     // TODO: Add code here to setup config to a value from backend (default config for this file type).
     // https://tushar-balar-27618.medium.com/how-to-use-async-await-in-the-functional-component-react-js-15d0fa9137d3
   }
+
+  const { activeFileType, nodes, edges } = {
+    activeFileType: fileData.data.filetype,
+    nodes: fileData.data.nodes,
+    edges: fileData.data.edges.map((edge) => {
+      return {
+        ...edge,
+        animated: true,
+        style: { stroke: "#000", strokeWidth: 1.5 },
+      };
+    }),
+  };
+  const currentViewport = config.graphCanvas.viewport;
+
+  const hierarchicalLayersFormat = getHierarchicalLayersFormat(layers);
 
   if (!permissibleFileTypes[activeFileType]) return null;
 
