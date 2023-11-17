@@ -78,6 +78,17 @@ function getHierarchicalLayersFormat(storedLayerFormat) {
   return res;
 }
 
+function getNodeId(...prefixes) {
+  /**
+   * This is the numeric suffix associated with this ID. As to why the mod is done with the number,
+   * currently the choice of the divisor was arbitrary. A mod was required to prevent identification
+   * of the time a node got created.
+   */
+  const numericID = Date.now() % 10007;
+  prefixes.push(numericID);
+  return prefixes.join("_");
+}
+
 function ModelCanvas({ activeFileIndex }) {
   const dispatch = useDispatch();
   const { activeFileType, nodes, edges } = useSelector((store) => {
@@ -306,6 +317,21 @@ function ModelCanvas({ activeFileIndex }) {
 
   return (
     <div className="h-full w-full background-lighter relative overflow-hidden">
+      {/* 
+      
+      onToggleTODOStatus: () => {
+                    const newNodes = nodes.map((node) => {
+                      if (node.id !== currentNodeID) {
+                        return node;
+                      } else {
+                        node.isCommentTODO = !node.isCommentTODO;
+                        return node;
+                      }
+                    });
+                    setNodes(newNodes);
+                  }
+
+      */}
       <GraphCanvas
         NodeTypes={NodeTypes}
         edges={edges}
@@ -370,11 +396,67 @@ function ModelCanvas({ activeFileIndex }) {
             alert(`${elementID}, ${JSON.stringify(options)}`);
           }}
         />
-        <H1Button show innerText="Add an Input" onClick={() => {}} />
-        <H1Button show innerText="Add an Output" onClick={() => {}} />
+        <H1Button
+          show
+          innerText="Add an Input"
+          onClick={() => {
+            setNodes([
+              ...nodes,
+              {
+                id: getNodeId("InputNode"),
+                position: currentViewport,
+                type: "InputNode",
+                data: {
+                  hyperparams: [{ id: "inputShape", value: null }],
+                  commentText: "",
+                  commentType: "plain",
+                  outputHandles: ["in"],
+                },
+              },
+            ]);
+          }}
+        />
+        <H1Button
+          show
+          innerText="Add an Output"
+          onClick={() => {
+            setNodes([
+              ...nodes,
+              {
+                id: getNodeId("OutputNode"),
+                position: currentViewport,
+                type: "OutputNode",
+                data: {
+                  hyperparams: [{ id: "outputShape", value: null }],
+                  commentText: "",
+                  commentType: "plain",
+                  outputHandles: ["out"],
+                },
+              },
+            ]);
+          }}
+        />
         <H1Button show innerText="Add a Packer" onClick={() => {}} />
         <H1Button show innerText="Add an Unpacker" onClick={() => {}} />
-        <H1Button show innerText="Add a Comment" onClick={() => {}} />
+        <H1Button
+          show
+          innerText="Add a Comment"
+          onClick={() => {
+            const currentNodeID = getNodeId("CommentNode");
+            setNodes([
+              ...nodes,
+              {
+                id: currentNodeID,
+                position: currentViewport,
+                data: {
+                  isCommentTODO: false,
+                  commentText: "",
+                },
+                type: "CommentNode",
+              },
+            ]);
+          }}
+        />
       </LeftPane>
       <RightPane
         open={config.rightPaneOpen}
