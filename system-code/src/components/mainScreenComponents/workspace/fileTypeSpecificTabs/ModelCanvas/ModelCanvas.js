@@ -191,15 +191,71 @@ function ModelCanvas({ activeFileIndex }) {
                 },
               };
             })}
-            enableNewKeyValueInput
+            enableNewKeyValueInput={
+              config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput
+            }
             onNewKeyValueInputSubmit={(key, value) => {
-              alert(`${key}: ${value}`);
+              const keyIndex = findIndex(
+                node.data.hyperparams,
+                (hp) => hp.id === key
+              );
+              const deepCopyOfNode = cloneDeep(node);
+              if (keyIndex !== -1) {
+                // The key already existed as a hyperparam.
+                deepCopyOfNode.data.hyperparams[keyIndex].value = value;
+              } else {
+                deepCopyOfNode.data.hyperparams.push({
+                  id: key,
+                  value,
+                });
+              }
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: ["data", "nodes", activeNodeIndex],
+                  value: deepCopyOfNode,
+                })
+              );
+              dispatch(
+                setValueAtPath({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "rightPane",
+                    "hyperparamKeyValueInput",
+                    "enableNewKeyValueInput",
+                  ],
+                  value: false,
+                })
+              );
             }}
             onCancel={() => {
-              alert("Cancelled");
+              config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
+                dispatch(
+                  setValueAtPath({
+                    fileIndex: activeFileIndex,
+                    path: [
+                      "rightPane",
+                      "hyperparamKeyValueInput",
+                      "enableNewKeyValueInput",
+                    ],
+                    value: false,
+                  })
+                );
             }}
             onAdd={() => {
-              alert("add");
+              !config.rightPane.hyperparamKeyValueInput
+                .enableNewKeyValueInput &&
+                dispatch(
+                  setValueAtPath({
+                    fileIndex: activeFileIndex,
+                    path: [
+                      "rightPane",
+                      "hyperparamKeyValueInput",
+                      "enableNewKeyValueInput",
+                    ],
+                    value: true,
+                  })
+                );
             }}
             onNewWindow={() => {
               alert("newWindow");
