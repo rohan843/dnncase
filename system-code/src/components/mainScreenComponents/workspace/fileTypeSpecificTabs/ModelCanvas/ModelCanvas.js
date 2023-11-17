@@ -348,7 +348,6 @@ function ModelCanvas({ activeFileIndex }) {
           show
           innerText="Layers"
           onClick={() => {
-            // toggle config.lefPane.layerSelector.show
             dispatch(
               setValueAtPath({
                 fileIndex: activeFileIndex,
