@@ -140,6 +140,7 @@ function ModelCanvas({ activeFileIndex }) {
     );
   };
 
+  // Each target node + target handle combination can only have a single incoming edge.
   const onEdgeCreation = (newEdgeData) => {
     const targetNode = newEdgeData.target;
     const targetNodeHandle = newEdgeData.targetHandle;
