@@ -1,0 +1,20 @@
+{
+  "node":[
+    {
+      "data": {
+        "artefactID":"Conv2D"
+    }
+  },
+  {
+    "data": {
+      "artefactID":"Lstm"
+  }
+},
+{
+  "data": {
+    "artefactID":"RELU"
+}
+}
+  ]
+}
+
