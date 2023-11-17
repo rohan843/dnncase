@@ -7,16 +7,12 @@ const viewConfigSlice = createSlice({
     "/Project1/home1/user1/file1.txt": {
       leftPaneOpen: false,
       rightPaneOpen: false,
-      activeNodeID: "1",
+      activeNodeID: null,
       leftPane: {
         layerSelector: {
           show: true,
         },
       },
-      rightPane: {
-        comment: {
-          markdownEditsEnabled: false,
-        },
       },
       graphCanvas: {
         viewport: { x: 0, y: 0, zoom: 1 },
