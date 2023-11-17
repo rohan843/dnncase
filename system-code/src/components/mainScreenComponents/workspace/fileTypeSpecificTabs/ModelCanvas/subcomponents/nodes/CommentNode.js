@@ -13,7 +13,14 @@ import classNames from "classnames";
  * edits a comment.
  */
 function CommentNode({
-  data: { isCommentTODO, onToggleTODOStatus, commentText, onCommentChange },
+  data: {
+    isCommentTODO,
+    onToggleTODOStatus,
+    commentText,
+    onCommentChange,
+    onActivate,
+    onActivateAndShowInPane,
+  },
   selected,
 }) {
   return (
@@ -25,6 +32,12 @@ function CommentNode({
           "border-darker": !selected,
         }
       )}
+      onClick={() => {
+        onActivate && onActivate();
+      }}
+      onDoubleClick={() => {
+        onActivateAndShowInPane && onActivateAndShowInPane();
+      }}
     >
       {/* 'Set as TODO' flag*/}
       <div className="w-full h-[28px] border-bottom-darker flex items-center">
