@@ -99,7 +99,7 @@ function ModelCanvas({ activeFileIndex }) {
   const layers = useSelector((store) => store.artefacts.layers);
   const config = useSelector((store) => store.viewConfig[activeFileIndex]);
 
-  if (!config) {
+  if (!config || !fileData || !layers) {
     // TODO: Add code here to setup config to a value from backend (default config for this file type).
     // https://tushar-balar-27618.medium.com/how-to-use-async-await-in-the-functional-component-react-js-15d0fa9137d3
   }
