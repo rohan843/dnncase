@@ -316,21 +316,6 @@ function ModelCanvas({ activeFileIndex }) {
 
   return (
     <div className="h-full w-full background-lighter relative overflow-hidden">
-      {/* 
-      
-      onToggleTODOStatus: () => {
-                    const newNodes = nodes.map((node) => {
-                      if (node.id !== currentNodeID) {
-                        return node;
-                      } else {
-                        node.isCommentTODO = !node.isCommentTODO;
-                        return node;
-                      }
-                    });
-                    setNodes(newNodes);
-                  }
-
-      */}
       <GraphCanvas
         NodeTypes={NodeTypes}
         edges={edges}
