@@ -290,6 +290,10 @@ In other words, use this in place of something like
     color: #585858;
 }
 
+.placeholder-light::placeholder {
+    color: #e4e4e4;
+}
+
 .user-command-placeholder-style:focus::placeholder {
     color: transparent;
 }

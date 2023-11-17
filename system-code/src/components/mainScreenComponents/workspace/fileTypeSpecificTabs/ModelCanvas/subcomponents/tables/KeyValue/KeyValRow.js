@@ -51,8 +51,10 @@ function KeyValRow({ item, light }) {
             onChange={(e) => {
               item.onValueChange(e.target.value);
             }}
-            placeholder="none"
-            className="h-max w-full bg-transparent text-center"
+            placeholder="None"
+            className={classNames("h-max w-full bg-transparent text-center", {
+              "placeholder-light": !light,
+            })}
             autoCapitalize="off"
             autoComplete="off"
             spellCheck={false}
