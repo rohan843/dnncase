@@ -36,7 +36,7 @@ function HierarchicalDisplay({ onSelect, items }) {
                 onClick={() => {
                   onSelect(item.index);
                 }}
-                className="truncate"
+                className="truncate grow"
               >
                 {title}
               </span>
