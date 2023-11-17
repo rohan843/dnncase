@@ -69,6 +69,8 @@ const artefactsSlice = createSlice({
             value: "valid",
           },
         ],
+        defaultInputHandles: ["in"],
+        defaultOutputHandles: ["out"],
       },
     },
   },
