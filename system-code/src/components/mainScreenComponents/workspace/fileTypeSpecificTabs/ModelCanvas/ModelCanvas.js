@@ -228,17 +228,6 @@ function ModelCanvas({ activeFileIndex }) {
             }}
             onConvertToMarkdown={() => {
               dispatch(
-                setValuesAtPaths({
-                  fileIndex: activeFileIndex,
-                  editPoints: [
-                    {
-                      path: ["rightPane", "comment", "markdownEditsEnabled"],
-                      value: false,
-                    },
-                  ],
-                })
-              );
-              dispatch(
                 setFileValue({
                   fileIndex: activeFileIndex,
                   path: [
@@ -255,16 +244,6 @@ function ModelCanvas({ activeFileIndex }) {
           />
           <Markdown
             show={node.data.commentType === "markdown"}
-            editsEnabled={config.rightPane.comment.markdownEditsEnabled}
-            onEditsToggle={() => {
-              dispatch(
-                setValueAtPath({
-                  fileIndex: activeFileIndex,
-                  path: ["rightPane", "comment", "markdownEditsEnabled"],
-                  value: !config.rightPane.comment.markdownEditsEnabled,
-                })
-              );
-            }}
             innerText={node.data.commentText}
             onChange={(newValue) => {
               dispatch(
@@ -282,17 +261,6 @@ function ModelCanvas({ activeFileIndex }) {
               );
             }}
             onConvertToPlaintext={() => {
-              dispatch(
-                setValuesAtPaths({
-                  fileIndex: activeFileIndex,
-                  editPoints: [
-                    {
-                      path: ["rightPane", "comment", "markdownEditsEnabled"],
-                      value: false,
-                    },
-                  ],
-                })
-              );
               dispatch(
                 setFileValue({
                   fileIndex: activeFileIndex,
