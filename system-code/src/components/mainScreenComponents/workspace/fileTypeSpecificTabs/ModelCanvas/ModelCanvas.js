@@ -320,8 +320,34 @@ function ModelCanvas({ activeFileIndex }) {
         NodeTypes={NodeTypes}
         edges={edges}
         nodes={nodes.map((node) => {
-          if (node.type === "CommentNode") {
-            const deepCopyOfNode = cloneDeep(node);
+          const deepCopyOfNode = cloneDeep(node);
+          deepCopyOfNode.data.onActivate = () => {
+            dispatch(
+              setValueAtPath({
+                fileIndex: activeFileIndex,
+                path: ["activeNodeID"],
+                value: deepCopyOfNode.id,
+              })
+            );
+          };
+          deepCopyOfNode.data.onActivateAndShowInPane = () => {
+            dispatch(
+              setValuesAtPaths({
+                fileIndex: activeFileIndex,
+                editPoints: [
+                  {
+                    path: ["activeNodeID"],
+                    value: deepCopyOfNode.id,
+                  },
+                  {
+                    path: ["rightPaneOpen"],
+                    value: true,
+                  },
+                ],
+              })
+            );
+          };
+          if (deepCopyOfNode.type === "CommentNode") {
             deepCopyOfNode.data.onToggleTODOStatus = () => {
               const currentNodeID = deepCopyOfNode.id;
               const newNodes = nodes.map((node) => {
@@ -355,14 +381,14 @@ function ModelCanvas({ activeFileIndex }) {
               });
               setNodes(newNodes);
             };
-            return deepCopyOfNode;
-          } else {
-            return node;
           }
+          return deepCopyOfNode;
         })}
         onNodesChange={(newNodes) =>
           setNodes(
             newNodes.map((node) => {
+              delete node.data.onActivate;
+              delete node.data.onActivateAndShowInPane;
               delete node.data.onToggleTODOStatus;
               delete node.data.onCommentChange;
               return node;
