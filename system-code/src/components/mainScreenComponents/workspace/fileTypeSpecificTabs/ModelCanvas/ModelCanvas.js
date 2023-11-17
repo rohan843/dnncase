@@ -104,22 +104,21 @@ function ModelCanvas({ activeFileIndex }) {
     // https://tushar-balar-27618.medium.com/how-to-use-async-await-in-the-functional-component-react-js-15d0fa9137d3
   }
 
-  const { activeFileType, nodes, edges } = {
-    activeFileType: fileData.data.filetype,
-    nodes: fileData.data.nodes,
-    edges: fileData.data.edges.map((edge) => {
-      return {
-        ...edge,
-        animated: true,
-        style: { stroke: "#000", strokeWidth: 1.5 },
-      };
-    }),
-  };
+  const activeFileType = fileData.data.filetype;
+  if (!permissibleFileTypes[activeFileType]) return null;
+
+  const nodes = fileData.data.nodes;
+  const edges = fileData.data.edges.map((edge) => {
+    return {
+      ...edge,
+      animated: true,
+      style: { stroke: "#000", strokeWidth: 1.5 },
+    };
+  });
+
   const currentViewport = config.graphCanvas.viewport;
 
   const hierarchicalLayersFormat = getHierarchicalLayersFormat(layers);
-
-  if (!permissibleFileTypes[activeFileType]) return null;
 
   const setNodes = (newNodes) => {
     dispatch(
