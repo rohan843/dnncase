@@ -108,9 +108,8 @@ function ModelCanvas({ activeFileIndex }) {
   });
   const config = useSelector((store) => store.viewConfig[activeFileIndex]);
   const currentViewport = config.graphCanvas.viewport;
-  const layers = getHierarchicalLayersFormat(
-    useSelector((store) => store.artefacts.layers)
-  );
+  const layers = useSelector((store) => store.artefacts.layers);
+  const hierarchicalLayersFormat = getHierarchicalLayersFormat(layers);
   if (!config) {
     // TODO: Add code here to setup config to a value from backend (default config for this file type).
     // https://tushar-balar-27618.medium.com/how-to-use-async-await-in-the-functional-component-react-js-15d0fa9137d3
@@ -391,9 +390,31 @@ function ModelCanvas({ activeFileIndex }) {
               label: "apply reuse block",
             },
           ]}
-          contents={layers}
+          contents={hierarchicalLayersFormat}
           onSelect={(elementID, options) => {
-            alert(`${elementID}, ${JSON.stringify(options)}`);
+            if (!options.reusable) {
+              setNodes([
+                ...nodes,
+                {
+                  id: getNodeId("LayerNode", elementID),
+                  position: currentViewport,
+                  type: "LayerNode",
+                  data: {
+                    name: layers[elementID].displayName,
+                    trained: false,
+                    usingPrevWeights: false,
+                    hyperparams: layers[elementID].defaultHyperparams,
+                    commentText: "",
+                    commentType: "plain",
+                    reuseCount: 0,
+                    inputHandles: layers[elementID].defaultInputHandles,
+                    outputHandles: layers[elementID].defaultOutputHandles,
+                  },
+                },
+              ]);
+            } else {
+              // TODO: add reusability.
+            }
           }}
         />
         <H1Button
