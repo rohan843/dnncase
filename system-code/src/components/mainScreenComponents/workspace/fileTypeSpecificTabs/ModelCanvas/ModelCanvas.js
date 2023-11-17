@@ -96,6 +96,7 @@ function ModelCanvas({ activeFileIndex }) {
     };
   });
   const config = useSelector((store) => store.viewConfig[activeFileIndex]);
+  const currentViewport = config.graphCanvas.viewport;
   const layers = getHierarchicalLayersFormat(
     useSelector((store) => store.artefacts.layers)
   );
@@ -312,6 +313,15 @@ function ModelCanvas({ activeFileIndex }) {
         onNodesChange={(newNodes) => setNodes(newNodes)}
         onEdgesChange={(newEdges) => setEdges(newEdges)}
         onEdgeCreation={onEdgeCreation}
+        onViewportChange={(viewport) => {
+          dispatch(
+            setValueAtPath({
+              fileIndex: activeFileIndex,
+              path: ["graphCanvas", "viewport"],
+              value: viewport,
+            })
+          );
+        }}
       />
       <LeftPane
         open={config.leftPaneOpen}
@@ -356,56 +366,7 @@ function ModelCanvas({ activeFileIndex }) {
               label: "apply reuse block",
             },
           ]}
-          contents={
-            layers
-            // // TODO: Get this from an artefactSlice.
-            // {
-            //   "word-embeddings": {
-            //     index: "word-embeddings",
-            //     isFolder: true,
-            //     children: ["embedding"],
-            //     data: { name: "Word Embedding" },
-            //   },
-            //   embedding: {
-            //     index: "embedding",
-            //     isFolder: false,
-            //     data: {
-            //       name: "Embedding Layer",
-            //     },
-            //   },
-            //   convolutional: {
-            //     index: "convolutional",
-            //     isFolder: true,
-            //     children: [
-            //       "conv2d",
-            //       "deconv2d",
-            //       "alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d",
-            //     ],
-            //     data: { name: "Convolutional Layers" },
-            //   },
-            //   conv2d: {
-            //     index: "conv2d",
-            //     isFolder: false,
-            //     data: {
-            //       name: "Conv2D Layer",
-            //     },
-            //   },
-            //   deconv2d: {
-            //     index: "deconv2d",
-            //     isFolder: false,
-            //     data: {
-            //       name: "DeConv2D Layer",
-            //     },
-            //   },
-            //   alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d: {
-            //     index: "alongnameddeconv2dlayerwithasuperlooooongnamedeconv2d",
-            //     isFolder: false,
-            //     data: {
-            //       name: "ALongNamedDeconv2DLayerWithASuperLooooongNameDeconv2D Layer",
-            //     },
-            //   },
-            // }
-          }
+          contents={layers}
           onSelect={(elementID, options) => {
             alert(`${elementID}, ${JSON.stringify(options)}`);
           }}
