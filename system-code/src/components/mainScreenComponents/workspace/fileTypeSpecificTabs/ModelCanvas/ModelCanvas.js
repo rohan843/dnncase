@@ -144,6 +144,7 @@ function ModelCanvas({ activeFileIndex }) {
   const onEdgeCreation = (newEdgeData) => {
     const targetNode = newEdgeData.target;
     const targetNodeHandle = newEdgeData.targetHandle;
+    // Edge ID only depends on the target.
     const id = `${targetNode}_${targetNodeHandle}`;
     findIndex(edges, (edge) => edge.id === id) === -1 &&
       setEdges([
