@@ -1,6 +1,7 @@
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import MarkdownButtons from "./MarkdownButtons";
 import MarkdownTextDisplay from "../../../../../../utils/MarkdownTextDisplay";
+import { useState } from "react";
 
 /**
  * A component to display a comment styled as a markdown string.
@@ -19,12 +20,11 @@ import MarkdownTextDisplay from "../../../../../../utils/MarkdownTextDisplay";
 function Markdown({
   show,
   onConvertToPlaintext,
-  editsEnabled,
-  onEditsToggle,
   innerText,
   onChange,
   ...props
 }) {
+  const [editsEnabled, setEditsEnabled] = useState(false);
   if (!show) return null;
   return (
     <div className="h-max w-[95%] border-darker rounded p-1 mb-2 overflow-hidden whitespace-break-spaces font-mono relative">
@@ -32,7 +32,7 @@ function Markdown({
         enabled={true}
         editsEnabled={editsEnabled}
         onEditsToggle={() => {
-          onEditsToggle && onEditsToggle();
+          setEditsEnabled(!editsEnabled);
         }}
         className="absolute right-0 top-px z-10"
         onClick={() => {
