@@ -1,0 +1,17 @@
+from keras.layer import InputLayer
+from keras.layer import Conv2DLayer
+from keras.layer import Layer01
+from keras.layer import Layer02
+from keras.layer import Concatenate
+from keras.layer import Output
+t1=InputLayer()
+t2=InputLayer()
+/**This is convolutional layer*/
+t3,t4,t5=Conv2DLayer([object Object])(t1,t2)
+/**This is a generic layer*/
+t6=Layer01([object Object])(t3,t4)
+/**This is layer 2*/
+t7=Layer02([object Object])(t5)
+/**It is used to concatenate the inputs*/
+t8=Concatenate([object Object])(t6,t7)
+Model(inputs=t1,t2, outputs=t8)

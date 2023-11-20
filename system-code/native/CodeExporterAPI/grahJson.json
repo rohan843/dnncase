@@ -1,20 +1,168 @@
 {
-  "node":[
+  "edges": [
     {
-      "data": {
-        "artefactID":"Conv2D"
+      "id": "e1",
+      "source": "IP01",
+      "target": "Conv01",
+      "sourceHandle": "0",
+      "targetHandle": "0"
+    },
+    {
+      "id": "e2",
+      "source": "IP02",
+      "target": "Conv01",
+      "sourceHandle": "0",
+      "targetHandle": "1"
+    },
+    {
+      "id": "e3",
+      "source": "Conv01",
+      "target": "Layer01",
+      "sourceHandle": "0",
+      "targetHandle": "0"
+    },
+    {
+      "id": "e4",
+      "source": "Conv01",
+      "target": "Layer01",
+      "sourceHandle": "0",
+      "targetHandle": "1"
+    },
+    {
+      "id": "e5",
+      "source": "Conv01",
+      "target": "Layer02",
+      "sourceHandle": "1",
+      "targetHandle": "0"
+    },
+    {
+      "id": "e6",
+      "source": "Layer01",
+      "target": "Concate01",
+      "sourceHandle": "0",
+      "targetHandle": "0"
+    },
+    {
+      "id": "e7",
+      "source": "Layer02",
+      "target": "Concate01",
+      "sourceHandle": "0",
+      "targetHandle": "1"
+    },
+    {
+      "id": "e8",
+      "source": "Concate01",
+      "target": "OP01",
+      "sourceHandle": "0",
+      "targetHandle": "0"
     }
-  },
-  {
-    "data": {
-      "artefactID":"Lstm"
-  }
-},
-{
-  "data": {
-    "artefactID":"RELU"
-}
-}
+
+  ],
+  "nodes": [
+    {
+      "id": "IP01",
+      "data": {
+        "artefactID": "InputLayer",
+        "hyperparams": [{ "key":"a", "val":"b" }],
+        "commentText": "String",
+        "commentType": "plain",
+        "isTODO": "Boolean",
+        "inputHandles": [],
+        "outputHandles": ["0"],
+        "reusable": "Boolean",
+        "reuseCount": "Number"
+      },
+      "type":"InputNode"
+    },
+    {
+      "id": "IP02",
+      "data": {
+        "artefactID": "InputLayer",
+        "hyperparams": [{ "key":"c", "val":"d" },{}],
+        "commentText": "String",
+        "commentType": "plain",
+        "isTODO": "Boolean",
+        "inputHandles": [],
+        "outputHandles": ["0"],
+        "reusable": "Boolean",
+        "reuseCount": "Number"
+      },
+      "type":"InputNode"
+    },
+    {
+      "id": "Conv01",
+      "data": {
+        "artefactID": "Conv2DLayer",
+        "hyperparams": [{ "key":"c", "val":"d" }],
+        "commentText": "This is convolutional layer",
+        "commentType": "plain",
+        "isTODO": "Boolean",
+        "inputHandles": ["0","1"],
+        "outputHandles": ["0","1"],
+        "reusable": "Boolean",
+        "reuseCount": "Number"
+      },
+      "type":"LayerNode"
+    },
+    {
+      "id": "Layer01",
+      "data": {
+        "artefactID": "Layer01",
+        "hyperparams": [{ "key":"c", "val":"d" }],
+        "commentText": "This is a generic layer",
+        "commentType": "plain",
+        "isTODO": "Boolean",
+        "inputHandles": ["0","1"],
+        "outputHandles": ["0"],
+        "reusable": "Boolean",
+        "reuseCount": "Number"
+      },
+      "type":"LayerNode"
+    },
+    {
+      "id": "Layer02",
+      "data": {
+        "artefactID": "Layer02",
+        "hyperparams": [{ "key":"c", "val":"d" }],
+        "commentText": "This is layer 2",
+        "commentType": "plain",
+        "isTODO": "Boolean",
+        "inputHandles": ["0"],
+        "outputHandles": ["0"],
+        "reusable": "Boolean",
+        "reuseCount": "Number"
+      },
+      "type":"LayerNode"
+    },
+    {
+      "id": "Concate01",
+      "data": {
+        "artefactID": "Concatenate",
+        "hyperparams": [{ "key":"c", "val":"d" }],
+        "commentText": "It is used to concatenate the inputs",
+        "commentType": "plain",
+        "isTODO": "Boolean",
+        "inputHandles": ["0","1"],
+        "outputHandles": ["0"],
+        "reusable": "Boolean",
+        "reuseCount": "Number"
+      },
+      "type":"LayerNode"
+    },
+    {
+      "id": "OP01",
+      "data": {
+        "artefactID": "Output",
+        "hyperparams": [{ "key":"c", "val":"d" }],
+        "commentText": "Gives the final output",
+        "commentType": "plain",
+        "isTODO": "Boolean",
+        "inputHandles": ["0"],
+        "outputHandles": [],
+        "reusable": "Boolean",
+        "reuseCount": "Number"
+      },
+      "type":"OutputNode"
+    }
   ]
 }
-
