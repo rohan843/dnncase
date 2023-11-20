@@ -242,6 +242,7 @@ function GraphCanvas({
         snapToGrid
         snapGrid={[5, 5]}
         connectionLineComponent={ConnectionLine}
+        minZoom={0.1}
         // TODO: Enable these when reactflow v12 is released (ref. https://github.com/xyflow/xyflow/blob/v11/README.md#-upcoming-changes)
         // viewport={{ x: 0, y: 0, zoom: 1 }}
         // onViewportChange={(v) => {
