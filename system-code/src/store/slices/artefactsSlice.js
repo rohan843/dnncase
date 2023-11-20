@@ -50,7 +50,7 @@ const artefactsSlice = createSlice({
       },
       conv2D: {
         displayName: "Conv2D",
-        subcategorization: "Convolutional Layers",
+        subcategorization: "Convolutional",
         defaultHyperparams: [
           {
             id: "filters",
@@ -67,6 +67,10 @@ const artefactsSlice = createSlice({
           {
             id: "padding",
             value: "valid",
+          },
+          {
+            id: "activation",
+            value: "relu",
           },
         ],
         defaultInputHandles: ["in"],
