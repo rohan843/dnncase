@@ -151,6 +151,26 @@ const artefactsSlice = createSlice({
         defaultInputHandles: ["inSignal"],
         defaultOutputHandles: ["outSignal"],
       },
+      maxPooling2D: {
+        displayName: "MaxPooling2D",
+        subcategorization: "Pooling",
+        defaultHyperparams: [
+          {
+            id: "pool_size",
+            value: "(2, 2)",
+          },
+          {
+            id: "strides",
+            value: null,
+          },
+          {
+            id: "padding",
+            value: "valid",
+          },
+        ],
+        defaultInputHandles: ["inSignal"],
+        defaultOutputHandles: ["outSignal"],
+      },
       conv2DTranspose: {
         displayName: "Conv2DTranspose",
         subcategorization: "Convolutional",
