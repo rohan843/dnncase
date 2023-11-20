@@ -171,6 +171,18 @@ const artefactsSlice = createSlice({
         defaultInputHandles: ["inSignal"],
         defaultOutputHandles: ["outSignal"],
       },
+      upSampling2D: {
+        displayName: "UpSampling2D",
+        subcategorization: "Sampling",
+        defaultHyperparams: [
+          {
+            id: "size",
+            value: "(2, 2)",
+          },
+        ],
+        defaultInputHandles: ["inSignal"],
+        defaultOutputHandles: ["outSignal"],
+      },
       conv2DTranspose: {
         displayName: "Conv2DTranspose",
         subcategorization: "Convolutional",
