@@ -4,7 +4,9 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const {
   systemStartupSequence,
 } = require("./systemStartup/systemStartupSequence");
+const { getCodeFrom } = require("./CodeExporterAPI");
 const path = require("path");
+const saveFile = require("./saveFile");
 
 // eslint-disable-next-line no-unused-vars
 const createWindow = () => {
@@ -21,29 +23,33 @@ const createWindow = () => {
   return win;
 };
 
-function data_to_renderer_process(){
+function data_to_renderer_process() {
   console.log("Window minimized");
-  return 'asdf';
+  return "asdf";
 }
 app.whenReady().then(() => {
   // const currentProjectPath = systemStartupSequence();
   // console.log(currentProjectPath);
   const win = createWindow();
-  ipcMain.handle("alerting",data_to_renderer_process)
+  ipcMain.handle("alerting", data_to_renderer_process);
   ipcMain.on("minimize-window", () => {
-
     win.minimize();
   });
 
   ipcMain.on("maximize-window", () => {
-    if(!win.isMaximized()){
-    win.maximize();
-    }else {
+    if (!win.isMaximized()) {
+      win.maximize();
+    } else {
       win.unmaximize();
     }
   });
 
   ipcMain.on("close-window", () => {
     win.close();
+  });
+
+  ipcMain.on("generate-code", (_event, graphData) => {
+    const code = getCodeFrom(graphData);
+    saveFile(code, "dnn_code.py");
   });
 });

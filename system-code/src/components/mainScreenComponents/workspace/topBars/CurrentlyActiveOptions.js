@@ -7,7 +7,10 @@ function CurrentlyActiveOptions({ activeFileIndex }) {
   );
   return (
     <div className="h-full w-max flex items-center px-2">
-      <DCOptions activeFileType={activeFileType} />
+      <DCOptions
+        activeFileType={activeFileType}
+        activeFileIndex={activeFileIndex}
+      />
     </div>
   );
 }

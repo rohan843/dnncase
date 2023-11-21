@@ -910,8 +910,46 @@ function ModelCanvas({ activeFileIndex }) {
             ]);
           }}
         />
-        <H1Button show innerText="Add a Packer" onClick={() => {}} />
-        <H1Button show innerText="Add an Unpacker" onClick={() => {}} />
+        <H1Button
+          show
+          innerText="Add a Packer"
+          onClick={() => {
+            setNodes([
+              ...nodes,
+              {
+                id: getNodeId("PackerNode"),
+                position: currentViewport,
+                type: "PackerNode",
+                data: {
+                  hyperparams: [{ id: "packingCount", value: 2 }],
+                  commentText: "",
+                  commentType: "plain",
+                  inputHandles: ["i0", "i1"],
+                },
+              },
+            ]);
+          }}
+        />
+        <H1Button
+          show
+          innerText="Add an Unpacker"
+          onClick={() => {
+            setNodes([
+              ...nodes,
+              {
+                id: getNodeId("UnpackerNode"),
+                position: currentViewport,
+                type: "UnpackerNode",
+                data: {
+                  hyperparams: [{ id: "unpackingCount", value: 2 }],
+                  commentText: "",
+                  commentType: "plain",
+                  outputHandles: ["o0", "o1"],
+                },
+              },
+            ]);
+          }}
+        />
         <H1Button
           show
           innerText="Add a Comment"

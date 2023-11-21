@@ -23,7 +23,6 @@ const InputNode = ({
       <div
         style={{
           width: "200px",
-          border: "2px solid",
           height: "100px",
           borderRadius: "0px 100px 100px 0px",
         }}
