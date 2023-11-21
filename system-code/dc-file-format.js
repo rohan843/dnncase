@@ -27,10 +27,8 @@ const node = {
   commentText: "comment",
 
   // if type === "PackerNode"
-  hyperparams: [{ id: "packingCount", value: 3 }],
   inputHandles: [],
 
   // if type === "UnpackerNode"
-  hyperparams: [{ id: "unpackingCount", value: 3 }],
   outputHandles: [],
 };
