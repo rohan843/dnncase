@@ -1,0 +1,21 @@
+// Packer
+t4 = (t1, t2, t3)
+
+// Unpacker
+t8, t9, t10 = t7
+
+// Layer
+t3 = Layer(activation="relu")(t1, t2)
+
+// Reuse
+l1 = Layer(activation="relu")
+t3 = l1(t1, t2)
+
+// Input
+t1 = Input(input_shape=(26,26))
+
+getPrintedValue(val){
+    if(!val) return val;
+    if(val[0] is alphabet) return "'" + val + "'";
+    return val;
+}
