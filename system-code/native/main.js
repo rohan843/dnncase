@@ -48,7 +48,7 @@ app.whenReady().then(() => {
     win.close();
   });
 
-  ipcMain.on("generate-code", (graphData) => {
+  ipcMain.on("generate-code", (_event, graphData) => {
     const code = getCodeFrom(graphData);
     saveFile(code, "dnn_code.py");
   });
