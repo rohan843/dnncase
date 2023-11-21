@@ -6,7 +6,7 @@ import { Handle, Position } from "reactflow";
 const ReuseNode = ({ obj }) => {
   return (
     <div className="background-dark border-darker flex justify-around items-center w-[450px] h-[200px]">
-      {inputHandlesList}
+      {/* {inputHandlesList} */}
       <div className="flex items-center" style={{padding:"5px"}}>
         <img src={Packer} alt="Packer" className="w-[100px] h-[100px]" />
       </div>
