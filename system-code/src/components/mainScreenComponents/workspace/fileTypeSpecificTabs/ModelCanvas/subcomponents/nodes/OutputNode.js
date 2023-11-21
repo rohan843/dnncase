@@ -14,7 +14,6 @@ const OutputNode = ({
     <div
       style={{
         width: "200px",
-        border: "2px solid",
         height: "100px",
         borderRadius: "100px 0px 0px 100px",
         textAlign: "right",
