@@ -4,6 +4,7 @@ import OutputNode from "./OutputNode";
 import UnpackerNode from "./UnpackerNode";
 import PackerNode from "./PackerNode";
 import CommentNode from "./CommentNode";
+import ReuseNode from "./ReuseNode";
 
 export {
   LayerNode,
@@ -12,4 +13,5 @@ export {
   UnpackerNode,
   PackerNode,
   CommentNode,
+  ReuseNode
 };

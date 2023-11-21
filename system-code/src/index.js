@@ -9,8 +9,10 @@ import "react-tooltip/dist/react-tooltip.css";
 import "react-complex-tree/lib/style-modern.css";
 
 import "./styles/unreset.scss";
+import { ReuseNode } from "./components/mainScreenComponents/workspace/fileTypeSpecificTabs/ModelCanvas/subcomponents/nodes";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
