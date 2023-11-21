@@ -30,6 +30,7 @@ const InputNode = ({
         className={classNames({
           "border-black": selected,
           "border-darker": !selected,
+          "background-dark": true,
         })}
       >
         <div style={{ padding: "10px" }}>Input Node</div>

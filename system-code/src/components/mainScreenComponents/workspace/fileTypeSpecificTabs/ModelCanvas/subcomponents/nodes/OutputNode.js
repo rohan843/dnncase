@@ -17,10 +17,12 @@ const OutputNode = ({
         border: "2px solid",
         height: "100px",
         borderRadius: "100px 0px 0px 100px",
+        textAlign: "right",
       }}
       className={classNames({
         "border-black": selected,
         "border-darker": !selected,
+        "background-dark": true,
       })}
       onClick={() => {
         onActivate && onActivate();
