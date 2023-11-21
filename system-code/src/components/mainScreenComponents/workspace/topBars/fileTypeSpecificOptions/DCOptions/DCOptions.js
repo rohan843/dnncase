@@ -4,7 +4,7 @@ const permissibleFileTypes = {
   dc: true,
 };
 
-function DCOptions({ activeFileType }) {
+function DCOptions({ activeFileType, activeFileIndex }) {
   if (!permissibleFileTypes[activeFileType]) return null;
   return (
     <div className="h-full w-max flex items-center">
