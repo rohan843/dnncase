@@ -111,7 +111,7 @@ const filesystemSlice = createSlice({
               position: { x: 0, y: 0 },
               data: {
                 // hyperparams
-                hyperparams: [{ id: "inputShape", value: [26, 26] }],
+                hyperparams: [{ id: "input_shape", value: "(26, 26)" }],
 
                 // comment related info
                 commentText:
