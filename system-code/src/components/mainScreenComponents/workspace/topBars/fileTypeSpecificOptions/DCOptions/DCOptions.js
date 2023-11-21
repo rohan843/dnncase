@@ -9,7 +9,11 @@ function DCOptions({ activeFileType }) {
   return (
     <div className="h-full w-max flex items-center">
       {/* TODO: Generate python code on click here */}
-      <PythonCodeGenButton onPythonCodeGen={() => {}} />
+      <PythonCodeGenButton
+        onPythonCodeGen={() => {
+          window.electronAPI.exportCode({});
+        }}
+      />
     </div>
   );
 }
