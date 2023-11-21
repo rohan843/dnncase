@@ -1,5 +1,5 @@
 function getCodeFrom(graphData) {
-  return "the code string will be here";
+  return JSON.stringify(graphData);
 }
 
 module.exports = {
