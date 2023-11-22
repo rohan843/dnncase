@@ -51,7 +51,7 @@ function getBackendFormatGraphData(nodes, edges) {
       }
       return res;
     });
-  return { newNodes, edges };
+  return { nodes: newNodes, edges };
 }
 
 function DCOptions({ activeFileType, activeFileIndex }) {
