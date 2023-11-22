@@ -862,11 +862,32 @@ function ModelCanvas({ activeFileIndex }) {
                     reuseCount: 0,
                     inputHandles: layers[elementID].defaultInputHandles,
                     outputHandles: layers[elementID].defaultOutputHandles,
+                    elementID,
                   },
                 },
               ]);
             } else {
               // TODO: add reusability.
+              setNodes([
+                ...nodes,
+                {
+                  id: getNodeId("ReuseNode", elementID),
+                  position: currentViewport,
+                  type: "ReuseNode",
+                  data: {
+                    name: layers[elementID].displayName,
+                    trained: false,
+                    usingPrevWeights: false,
+                    hyperparams: layers[elementID].defaultHyperparams,
+                    commentText: "",
+                    commentType: "plain",
+                    reuseCount: 2,
+                    inputHandles: layers[elementID].defaultInputHandles,
+                    outputHandles: layers[elementID].defaultOutputHandles,
+                    elementID,
+                  },
+                },
+              ]);
             }
           }}
         />
