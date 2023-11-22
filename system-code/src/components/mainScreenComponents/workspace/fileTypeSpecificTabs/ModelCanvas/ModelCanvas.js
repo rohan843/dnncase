@@ -881,7 +881,7 @@ function ModelCanvas({ activeFileIndex }) {
                 position: currentViewport,
                 type: "InputNode",
                 data: {
-                  hyperparams: [{ id: "inputShape", value: null }],
+                  hyperparams: [{ id: "input_shape", value: null }],
                   commentText: "",
                   commentType: "plain",
                   outputHandles: ["in"],
