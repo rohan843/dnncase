@@ -8,7 +8,7 @@ const InputNode = ({
 }) => {
   const inputShape = find(
     hyperparams,
-    (hyperparam) => hyperparam.id === "inputShape"
+    (hyperparam) => hyperparam.id === "input_shape"
   ).value;
   return (
     <div
