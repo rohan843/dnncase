@@ -36,13 +36,13 @@ function getBackendFormatGraphData(nodes, edges) {
     } else if (node.type === "PackerNode") {
       res.inputHandles = Array.from(
         Array(
-          find(node.hyperparams, (hp) => hp.id === "packingCount").value
+          find(node.data.hyperparams, (hp) => hp.id === "packingCount").value
         ).keys()
       ).map((key) => key.toString());
     } else if (node.type === "UnpackerNode") {
       res.outputHandles = Array.from(
         Array(
-          find(node.hyperparams, (hp) => hp.id === "unpackingCount").value
+          find(node.data.hyperparams, (hp) => hp.id === "unpackingCount").value
         ).keys()
       ).map((key) => key.toString());
     }
