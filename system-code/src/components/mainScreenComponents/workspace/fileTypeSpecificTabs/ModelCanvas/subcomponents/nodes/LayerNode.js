@@ -8,6 +8,14 @@ import newWeightsIcon from "../../../../../../../assets/layer-new-weights.png";
 import { Handle, Position } from "reactflow";
 import classNames from "classnames";
 
+const Div = ({ children, ...props }) => {
+  return (
+    <div {...props}>
+      {children}
+    </div>
+  );
+};
+
 const LayerNode = ({
   data: {
     name,
@@ -20,7 +28,12 @@ const LayerNode = ({
     onActivateAndShowInPane,
   },
   selected,
+  handlesDisabled,
 }) => {
+  let HandleComponent = Handle;
+  if (handlesDisabled) {
+    HandleComponent = Div;
+  }
   if (!trained && usingPrevWeights) {
     console.error(
       "Layer: An untrained layer is specified to use pre-trained weights."
@@ -38,7 +51,7 @@ const LayerNode = ({
   for (let inputHandle of inputHandles) {
     inputHandlesList.push(
       <div key={inputHandle} className="relative flex flex-row">
-        <Handle
+        <HandleComponent
           id={inputHandle}
           type="target"
           position={Position.Left}
@@ -58,7 +71,7 @@ const LayerNode = ({
   for (let outputHandle of outputHandles) {
     outputHandlesList.push(
       <div key={outputHandle} className="relative flex flex-row">
-        <Handle
+        <HandleComponent
           id={outputHandle}
           type="source"
           position={Position.Right}
@@ -162,7 +175,7 @@ const LayerNode = ({
           {outputHandlesList}
         </div>
       </div>
-      {/* <Handle id="i0" type="target" */}
+      {/* <HandleComponent id="i0" type="target" */}
     </div>
   );
 };
