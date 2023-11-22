@@ -5,6 +5,14 @@ const permissibleFileTypes = {
   dc: true,
 };
 
+function getBackendFormatGraphData(nodes, edges) {
+  const newNodes = nodes.map((node) => {
+    // TODO: Finish this.
+    return node;
+  });
+  return { newNodes, edges };
+}
+
 function DCOptions({ activeFileType, activeFileIndex }) {
   const fileData = useSelector(
     (store) => store.filesystem.fsState[activeFileIndex]
@@ -16,7 +24,9 @@ function DCOptions({ activeFileType, activeFileIndex }) {
     <div className="h-full w-max flex items-center">
       <PythonCodeGenButton
         onPythonCodeGen={() => {
-          window.electronAPI.exportCode({ nodes, edges });
+          window.electronAPI.exportCode(
+            getBackendFormatGraphData(nodes, edges)
+          );
         }}
       />
     </div>
