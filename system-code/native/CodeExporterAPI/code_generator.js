@@ -1,6 +1,6 @@
 const jsonObject = require("./reuse_test");
-const fs = require("fs");
-const artifact = require("./artifacts_test");
+// const fs = require("fs");
+// const artifact = require("./artifacts_test");
 
 var str = "";
 // Importing layer used
@@ -19,7 +19,7 @@ const out_list = [];
 const adjList = new Map();
 let global_cnt = 1;
 let reuse_cnt=1;
-function getCodeFrom() {
+function getCodeFrom(graphData) {
   for (const layer of jsonObject.nodes) {
     if (!layer_list.includes(layer.layerName)) {
       var imp = "";
@@ -105,9 +105,13 @@ function getCodeFrom() {
         sourceMap.set(layer.sourceHandle, [target_list]);
       }
     } else {
+      if(node.get(layer.source)[0]=="InputNode"){
+        adjList.set(layer.source,target_list);
+      }else {
       submap.set(layer.sourceHandle, []);
       submap.get(layer.sourceHandle).push(target_list);
       adjList.set(layer.source, submap);
+      }
     }
     //console.log(adjList);
   }
@@ -126,8 +130,8 @@ function getCodeFrom() {
     console.log(code_gen);
     //fs.write("code_generated.txt",code_gen);
     dfs(
-      adjList.get(inpt_layers[i]).get("0")[0][0], // target id
-      adjList.get(inpt_layers[i]).get("0")[0][1], // target handle
+      adjList.get(inpt_layers[i])[0], // target id
+      adjList.get(inpt_layers[i])[1], // target handle
       temp
     );
     //console.log(adjList)
@@ -137,7 +141,7 @@ function getCodeFrom() {
   str = str.concat(op);
   return str;
 }
-console.log(getCodeFrom());
+//console.log(getCodeFrom());
 function dfs(node_id, node_idx, curr_inp) {
   //console.log("hello" + node_id);
   //console.log(node.get(node_id))
@@ -148,6 +152,7 @@ function dfs(node_id, node_idx, curr_inp) {
   }
   
   if (node.get(node_id)[0] == "ReuseNode") {
+      var comment = "```" + node.get(node_id)[3] + "```\n";
       if(!resuse_node.has(node_id)){
         var reuse_temp = temp_var_reuse();
         resuse_node.set(node_id,reuse_temp);
