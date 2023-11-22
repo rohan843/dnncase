@@ -32,7 +32,7 @@ const OutputNode = ({
     >
       <div style={{ padding: "10px" }}>Output Node</div>
       <div style={{ padding: "10px" }}>{JSON.stringify(outputShape)}</div>
-      <Handle type="target" position={Position.Left} />
+      <Handle type="target" id="in" position={Position.Left} />
     </div>
   );
 };
