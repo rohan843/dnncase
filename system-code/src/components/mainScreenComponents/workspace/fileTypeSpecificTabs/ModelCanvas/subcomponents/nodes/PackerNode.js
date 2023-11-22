@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React from "react";
+import unPacker from "../../../../../../../assets/unpacker.png";
 
 const PackerNode = ({ selected }) => {
   return (
@@ -16,9 +17,13 @@ const PackerNode = ({ selected }) => {
         className={classNames({
           "border-black": selected,
           "border-darker": !selected,
+          "background-dark":true,
+          "border-darker":true,
         })}
       >
-        <div style={{ margin: "auto" }}>Add image</div>
+        <div style={{ margin: "auto" }}>
+        <img src={unPacker} alt="Packer" className="w-[50px] h-[50px]" />
+          </div>
       </div>
     </div>
   );
