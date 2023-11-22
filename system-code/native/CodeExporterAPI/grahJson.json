@@ -59,110 +59,67 @@
 
   ],
   "nodes": [
-    {
+      {
       "id": "IP01",
-      "data": {
-        "artefactID": "InputLayer",
-        "hyperparams": [{ "key":"a", "val":"b" }],
-        "commentText": "String",
-        "commentType": "plain",
-        "isTODO": "Boolean",
-        "inputHandles": [],
-        "outputHandles": ["0"],
-        "reusable": "Boolean",
-        "reuseCount": "Number"
-      },
-      "type":"InputNode"
-    },
+      "type":"InputNode",
+      "hyperparams": [{ "id":"input_shape", "value":"(26,26)" }],
+      "commentText": "String"
+      }    
+    ,
     {
       "id": "IP02",
-      "data": {
-        "artefactID": "InputLayer",
-        "hyperparams": [{ "key":"c", "val":"d" },{}],
-        "commentText": "String",
-        "commentType": "plain",
-        "isTODO": "Boolean",
-        "inputHandles": [],
-        "outputHandles": ["0"],
-        "reusable": "Boolean",
-        "reuseCount": "Number"
-      },
-      "type":"InputNode"
+      "type":"InputNode",
+      "hyperparams": [{ "id":"c", "value":"d" }],
+      "commentText": "String"
+        
     },
     {
       "id": "Conv01",
-      "data": {
-        "artefactID": "Conv2DLayer",
-        "hyperparams": [{ "key":"c", "val":"d" }],
-        "commentText": "This is convolutional layer",
-        "commentType": "plain",
-        "isTODO": "Boolean",
-        "inputHandles": ["0","1"],
-        "outputHandles": ["0","1"],
-        "reusable": "Boolean",
-        "reuseCount": "Number"
-      },
-      "type":"LayerNode"
+      "type":"ReuseNode",
+      "layerName": "Conv2D",
+      "hyperparams": [{ "id":"c", "value":"d" }],
+      "commentText": "This is convolutional layer",
+      "inputHandles": ["0","1"],
+      "outputHandles": ["0","1"]  
+      
     },
     {
       "id": "Layer01",
-      "data": {
-        "artefactID": "Layer01",
-        "hyperparams": [{ "key":"c", "val":"d" }],
-        "commentText": "This is a generic layer",
-        "commentType": "plain",
-        "isTODO": "Boolean",
-        "inputHandles": ["0","1"],
-        "outputHandles": ["0"],
-        "reusable": "Boolean",
-        "reuseCount": "Number"
-      },
-      "type":"LayerNode"
+      "type":"LayerNode",
+      "layerName": "Layer01",
+      "hyperparams": [{ "id":"c", "value":"d" }],
+      "commentText": "This is a generic layer",
+      "inputHandles": ["0","1"],
+      "outputHandles": ["0"]
+              
     },
     {
       "id": "Layer02",
-      "data": {
-        "artefactID": "Layer02",
-        "hyperparams": [{ "key":"c", "val":"d" }],
-        "commentText": "This is layer 2",
-        "commentType": "plain",
-        "isTODO": "Boolean",
-        "inputHandles": ["0"],
-        "outputHandles": ["0"],
-        "reusable": "Boolean",
-        "reuseCount": "Number"
-      },
-      "type":"LayerNode"
+      "type":"LayerNode",
+      "layerName":"Layer02",
+      "hyperparams": [{ "id":"c", "value":"d" }],
+      "commentText": "This is layer 2",
+      "inputHandles": ["0"],
+      "outputHandles": ["0"]
+            
+      
     },
     {
       "id": "Concate01",
-      "data": {
-        "artefactID": "Concatenate",
-        "hyperparams": [{ "key":"c", "val":"d" }],
-        "commentText": "It is used to concatenate the inputs",
-        "commentType": "plain",
-        "isTODO": "Boolean",
-        "inputHandles": ["0","1"],
-        "outputHandles": ["0"],
-        "reusable": "Boolean",
-        "reuseCount": "Number"
-      },
-      "type":"LayerNode"
+      "type":"LayerNode",
+      "layerName":"Concatenate",
+      "hyperparams": [{ "id":"c", "value":"d" }],
+      "commentText": "It is used to concatenate the inputs",
+      "inputHandles": ["0","1"],
+      "outputHandles": ["0"]
+          
     },
+    
     {
       "id": "OP01",
-      "data": {
-        "artefactID": "Output",
-        "hyperparams": [{ "key":"c", "val":"d" }],
-        "commentText": "Gives the final output",
-        "commentType": "plain",
-        "isTODO": "Boolean",
-        "inputHandles": ["0"],
-        "outputHandles": [],
-        "reusable": "Boolean",
-        "reuseCount": "Number"
-      },
-      "type":"OutputNode"
+      "type":"OutputNode",
+      "commentText": "Gives the final output"
+           
     }
   ]
 }
