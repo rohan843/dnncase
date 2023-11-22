@@ -166,6 +166,7 @@ function ModelCanvas({ activeFileIndex }) {
   const activeNodeIndex = findIndex(nodes, (node) => node.id === activeNodeID);
   const activeNode = nodes[activeNodeIndex];
   function getRightPaneContents(node, fileType) {
+    // TODO: Packer, Unpacker
     if (!node) {
       return <Title show innerText={`${fileType.toUpperCase()} File`} />;
     } else if (node.type === "LayerNode") {
@@ -346,11 +347,222 @@ function ModelCanvas({ activeFileIndex }) {
           />
         </>
       );
+    } else if (node.type === "ReuseNode") {
+      return (
+        <>
+          {/* Title */}
+          <Title show innerText={node.data.name} />
+
+          {/* Arguments Table */}
+          <H show level={1} innerText="Arguments" />
+          <KeyValue
+            show
+            content={node.data.hyperparams.map(({ id, value }, ind) => {
+              return {
+                keyInnerText: id,
+                valueInnerText: value,
+                isValueEditable: true,
+                onValueChange: (newValue) => {
+                  console.log(newValue);
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: [
+                        "data",
+                        "nodes",
+                        activeNodeIndex,
+                        "data",
+                        "hyperparams",
+                        ind,
+                        "value",
+                      ],
+                      value: newValue,
+                    })
+                  );
+                },
+              };
+            })}
+            enableNewKeyValueInput={
+              config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput
+            }
+            onNewKeyValueInputSubmit={(key, value) => {
+              const keyIndex = findIndex(
+                node.data.hyperparams,
+                (hp) => hp.id === key
+              );
+              const deepCopyOfNode = cloneDeep(node);
+              if (keyIndex !== -1) {
+                // The key already existed as a hyperparam.
+                deepCopyOfNode.data.hyperparams[keyIndex].value = value;
+              } else {
+                deepCopyOfNode.data.hyperparams.push({
+                  id: key,
+                  value,
+                });
+              }
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: ["data", "nodes", activeNodeIndex],
+                  value: deepCopyOfNode,
+                })
+              );
+              dispatch(
+                setValueAtPath({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "rightPane",
+                    "hyperparamKeyValueInput",
+                    "enableNewKeyValueInput",
+                  ],
+                  value: false,
+                })
+              );
+            }}
+            onCancel={() => {
+              config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
+                dispatch(
+                  setValueAtPath({
+                    fileIndex: activeFileIndex,
+                    path: [
+                      "rightPane",
+                      "hyperparamKeyValueInput",
+                      "enableNewKeyValueInput",
+                    ],
+                    value: false,
+                  })
+                );
+            }}
+            onAdd={() => {
+              !config.rightPane.hyperparamKeyValueInput
+                .enableNewKeyValueInput &&
+                dispatch(
+                  setValueAtPath({
+                    fileIndex: activeFileIndex,
+                    path: [
+                      "rightPane",
+                      "hyperparamKeyValueInput",
+                      "enableNewKeyValueInput",
+                    ],
+                    value: true,
+                  })
+                );
+            }}
+            onNewWindow={() => {
+              alert("newWindow");
+            }}
+          />
+
+          {/* Reuse Count */}
+          <H1Button
+            show
+            onClick={() => {
+              const deepCopyOfNode = cloneDeep(node);
+              deepCopyOfNode.data.reuseCount++;
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: ["data", "nodes", activeNodeIndex],
+                  value: deepCopyOfNode,
+                })
+              );
+            }}
+            innerText="Increase Reuse Count"
+          />
+          <H1Button
+            show={node.data.reuseCount > 2}
+            onClick={() => {
+              const deepCopyOfNode = cloneDeep(node);
+              deepCopyOfNode.data.reuseCount--;
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: ["data", "nodes", activeNodeIndex],
+                  value: deepCopyOfNode,
+                })
+              );
+            }}
+            innerText="Decrease Reuse Count"
+          />
+
+          {/* Code Comments */}
+          <H show level={1} innerText="Code Comments" />
+          <Plaintext
+            show={node.data.commentType === "plain"}
+            innerText={node.data.commentText}
+            onChange={(newValue) => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentText",
+                  ],
+                  value: newValue,
+                })
+              );
+            }}
+            onConvertToMarkdown={() => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentType",
+                  ],
+                  value: "markdown",
+                })
+              );
+            }}
+          />
+          <Markdown
+            show={node.data.commentType === "markdown"}
+            innerText={node.data.commentText}
+            onChange={(newValue) => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentText",
+                  ],
+                  value: newValue,
+                })
+              );
+            }}
+            onConvertToPlaintext={() => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentType",
+                  ],
+                  value: "plain",
+                })
+              );
+            }}
+          />
+        </>
+      );
     } else if (node.type === "InputNode") {
       return (
         <>
           {/* Title */}
           <Title show innerText="Input" />
+          <Title show innerText={`${node.id}`} />
 
           {/* Arguments Table */}
           <H show level={1} innerText="Arguments" />
@@ -704,6 +916,362 @@ function ModelCanvas({ activeFileIndex }) {
       );
     } else if (node.type === "CommentNode") {
       return <Title show innerText="Comment" />;
+    } else if (node.type === "PackerNode") {
+      return (
+        <>
+          {/* Title */}
+          <Title show innerText="Output" />
+
+          {/* Arguments Table */}
+          <H show level={1} innerText="Arguments" />
+          <KeyValue
+            show
+            content={node.data.hyperparams.map(({ id, value }, ind) => {
+              return {
+                keyInnerText: id,
+                valueInnerText: value,
+                isValueEditable: true,
+                onValueChange: (newValue) => {
+                  console.log(newValue);
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: [
+                        "data",
+                        "nodes",
+                        activeNodeIndex,
+                        "data",
+                        "hyperparams",
+                        ind,
+                        "value",
+                      ],
+                      value: newValue,
+                    })
+                  );
+                },
+              };
+            })}
+            enableNewKeyValueInput={
+              config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput
+            }
+            onNewKeyValueInputSubmit={(key, value) => {
+              const keyIndex = findIndex(
+                node.data.hyperparams,
+                (hp) => hp.id === key
+              );
+              const deepCopyOfNode = cloneDeep(node);
+              if (keyIndex !== -1) {
+                // The key already existed as a hyperparam.
+                deepCopyOfNode.data.hyperparams[keyIndex].value = value;
+              } else {
+                deepCopyOfNode.data.hyperparams.push({
+                  id: key,
+                  value,
+                });
+              }
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: ["data", "nodes", activeNodeIndex],
+                  value: deepCopyOfNode,
+                })
+              );
+              dispatch(
+                setValueAtPath({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "rightPane",
+                    "hyperparamKeyValueInput",
+                    "enableNewKeyValueInput",
+                  ],
+                  value: false,
+                })
+              );
+            }}
+            onCancel={() => {
+              config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
+                dispatch(
+                  setValueAtPath({
+                    fileIndex: activeFileIndex,
+                    path: [
+                      "rightPane",
+                      "hyperparamKeyValueInput",
+                      "enableNewKeyValueInput",
+                    ],
+                    value: false,
+                  })
+                );
+            }}
+            onAdd={() => {
+              !config.rightPane.hyperparamKeyValueInput
+                .enableNewKeyValueInput &&
+                dispatch(
+                  setValueAtPath({
+                    fileIndex: activeFileIndex,
+                    path: [
+                      "rightPane",
+                      "hyperparamKeyValueInput",
+                      "enableNewKeyValueInput",
+                    ],
+                    value: true,
+                  })
+                );
+            }}
+            onNewWindow={() => {
+              alert("newWindow");
+            }}
+          />
+
+          {/* Code Comments */}
+          <H show level={1} innerText="Code Comments" />
+          <Plaintext
+            show={node.data.commentType === "plain"}
+            innerText={node.data.commentText}
+            onChange={(newValue) => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentText",
+                  ],
+                  value: newValue,
+                })
+              );
+            }}
+            onConvertToMarkdown={() => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentType",
+                  ],
+                  value: "markdown",
+                })
+              );
+            }}
+          />
+          <Markdown
+            show={node.data.commentType === "markdown"}
+            innerText={node.data.commentText}
+            onChange={(newValue) => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentText",
+                  ],
+                  value: newValue,
+                })
+              );
+            }}
+            onConvertToPlaintext={() => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentType",
+                  ],
+                  value: "plain",
+                })
+              );
+            }}
+          />
+        </>
+      );
+    } else if (node.type === "UnpackerNode") {
+      return (
+        <>
+          {/* Title */}
+          <Title show innerText="Output" />
+
+          {/* Arguments Table */}
+          <H show level={1} innerText="Arguments" />
+          <KeyValue
+            show
+            content={node.data.hyperparams.map(({ id, value }, ind) => {
+              return {
+                keyInnerText: id,
+                valueInnerText: value,
+                isValueEditable: true,
+                onValueChange: (newValue) => {
+                  console.log(newValue);
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: [
+                        "data",
+                        "nodes",
+                        activeNodeIndex,
+                        "data",
+                        "hyperparams",
+                        ind,
+                        "value",
+                      ],
+                      value: newValue,
+                    })
+                  );
+                },
+              };
+            })}
+            enableNewKeyValueInput={
+              config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput
+            }
+            onNewKeyValueInputSubmit={(key, value) => {
+              const keyIndex = findIndex(
+                node.data.hyperparams,
+                (hp) => hp.id === key
+              );
+              const deepCopyOfNode = cloneDeep(node);
+              if (keyIndex !== -1) {
+                // The key already existed as a hyperparam.
+                deepCopyOfNode.data.hyperparams[keyIndex].value = value;
+              } else {
+                deepCopyOfNode.data.hyperparams.push({
+                  id: key,
+                  value,
+                });
+              }
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: ["data", "nodes", activeNodeIndex],
+                  value: deepCopyOfNode,
+                })
+              );
+              dispatch(
+                setValueAtPath({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "rightPane",
+                    "hyperparamKeyValueInput",
+                    "enableNewKeyValueInput",
+                  ],
+                  value: false,
+                })
+              );
+            }}
+            onCancel={() => {
+              config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
+                dispatch(
+                  setValueAtPath({
+                    fileIndex: activeFileIndex,
+                    path: [
+                      "rightPane",
+                      "hyperparamKeyValueInput",
+                      "enableNewKeyValueInput",
+                    ],
+                    value: false,
+                  })
+                );
+            }}
+            onAdd={() => {
+              !config.rightPane.hyperparamKeyValueInput
+                .enableNewKeyValueInput &&
+                dispatch(
+                  setValueAtPath({
+                    fileIndex: activeFileIndex,
+                    path: [
+                      "rightPane",
+                      "hyperparamKeyValueInput",
+                      "enableNewKeyValueInput",
+                    ],
+                    value: true,
+                  })
+                );
+            }}
+            onNewWindow={() => {
+              alert("newWindow");
+            }}
+          />
+
+          {/* Code Comments */}
+          <H show level={1} innerText="Code Comments" />
+          <Plaintext
+            show={node.data.commentType === "plain"}
+            innerText={node.data.commentText}
+            onChange={(newValue) => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentText",
+                  ],
+                  value: newValue,
+                })
+              );
+            }}
+            onConvertToMarkdown={() => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentType",
+                  ],
+                  value: "markdown",
+                })
+              );
+            }}
+          />
+          <Markdown
+            show={node.data.commentType === "markdown"}
+            innerText={node.data.commentText}
+            onChange={(newValue) => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentText",
+                  ],
+                  value: newValue,
+                })
+              );
+            }}
+            onConvertToPlaintext={() => {
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "commentType",
+                  ],
+                  value: "plain",
+                })
+              );
+            }}
+          />
+        </>
+      );
     }
   }
   const rightPaneContents = getRightPaneContents(activeNode, activeFileType);
@@ -862,11 +1430,31 @@ function ModelCanvas({ activeFileIndex }) {
                     reuseCount: 0,
                     inputHandles: layers[elementID].defaultInputHandles,
                     outputHandles: layers[elementID].defaultOutputHandles,
+                    elementID,
                   },
                 },
               ]);
             } else {
-              // TODO: add reusability.
+              setNodes([
+                ...nodes,
+                {
+                  id: getNodeId("ReuseNode", elementID),
+                  position: currentViewport,
+                  type: "ReuseNode",
+                  data: {
+                    name: layers[elementID].displayName,
+                    trained: false,
+                    usingPrevWeights: false,
+                    hyperparams: layers[elementID].defaultHyperparams,
+                    commentText: "",
+                    commentType: "plain",
+                    reuseCount: 2,
+                    inputHandles: layers[elementID].defaultInputHandles,
+                    outputHandles: layers[elementID].defaultOutputHandles,
+                    elementID,
+                  },
+                },
+              ]);
             }
           }}
         />
@@ -924,7 +1512,6 @@ function ModelCanvas({ activeFileIndex }) {
                   hyperparams: [{ id: "packingCount", value: 2 }],
                   commentText: "",
                   commentType: "plain",
-                  inputHandles: ["i0", "i1"],
                 },
               },
             ]);

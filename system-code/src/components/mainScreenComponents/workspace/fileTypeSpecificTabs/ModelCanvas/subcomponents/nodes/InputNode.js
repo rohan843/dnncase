@@ -34,7 +34,7 @@ const InputNode = ({
       >
         <div style={{ padding: "10px" }}>Input Node</div>
         <div style={{ padding: "10px" }}>{JSON.stringify(inputShape)}</div>
-        <Handle type="source" position={Position.Right} />
+        <Handle type="source" id="out" position={Position.Right} />
       </div>
     </div>
   );
