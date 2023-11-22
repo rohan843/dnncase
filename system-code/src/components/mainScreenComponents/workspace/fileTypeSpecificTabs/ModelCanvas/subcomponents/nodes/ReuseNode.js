@@ -8,6 +8,9 @@ const ReuseNode = (nodeData) => {
   const reuseCount = nodeData.data.reuseCount;
   const minimumRequiredContentAreaHeight = Math.max(reuseCount * 19, 250);
 
+  const onActivate = nodeData.data.onActivate;
+  const onActivateAndShowInPane = nodeData.data.onActivateAndShowInPane;
+
   const inputHandlesList = [];
   for (let i = 0; i < reuseCount; i++) {
     inputHandlesList.push(
@@ -59,6 +62,12 @@ const ReuseNode = (nodeData) => {
       )}
       style={{
         height: `${minimumRequiredContentAreaHeight + 28}px`,
+      }}
+      onClick={() => {
+        onActivate && onActivate();
+      }}
+      onDoubleClick={() => {
+        onActivateAndShowInPane && onActivateAndShowInPane();
       }}
     >
       <div className="flex items-center" style={{ padding: "5px" }}>

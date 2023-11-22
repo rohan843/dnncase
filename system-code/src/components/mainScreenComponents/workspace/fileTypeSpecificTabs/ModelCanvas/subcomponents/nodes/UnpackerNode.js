@@ -3,7 +3,10 @@ import Packer from "../../../../../../../assets/packer.png";
 import { find } from "lodash";
 import { Handle, Position } from "reactflow";
 
-const UnpackerNode = ({ selected, data: { hyperparams } }) => {
+const UnpackerNode = ({
+  selected,
+  data: { hyperparams, onActivateAndShowInPane, onActivate },
+}) => {
   const unpackingCount = find(
     hyperparams,
     (hp) => hp.id === "unpackingCount"
@@ -66,6 +69,12 @@ const UnpackerNode = ({ selected, data: { hyperparams } }) => {
           "border-darker": !selected,
           "background-dark": true,
         })}
+        onClick={() => {
+          onActivate && onActivate();
+        }}
+        onDoubleClick={() => {
+          onActivateAndShowInPane && onActivateAndShowInPane();
+        }}
       >
         <div style={{ margin: "auto" }}>
           <img src={Packer} alt="Packer" className="w-[50px] h-auto" />
