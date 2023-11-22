@@ -7,8 +7,17 @@ const permissibleFileTypes = {
 
 function getBackendFormatGraphData(nodes, edges) {
   const newNodes = nodes.map((node) => {
-    // TODO: Finish this.
-    return node;
+    const res = {};
+    res.id = node.id;
+    res.type = node.type;
+    if (node.type === "LayerNode") {
+    } else if (node.type === "ReuseNode") {
+    } else if (node.type === "InputNode") {
+    } else if (node.type === "OutputNode") {
+    } else if (node.type === "PackerNode") {
+    } else if (node.type === "UnpackerNode") {
+    }
+    return res;
   });
   return { newNodes, edges };
 }
