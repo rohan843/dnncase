@@ -20,12 +20,12 @@ const UnpackerNode = ({
       <div key={i.toString()} className="relative flex flex-row">
         <Handle
           id={i.toString()}
-          type="target"
+          type="source"
           position={Position.Right}
           className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
         />
         <span
-          className="absolute text-[8px] left-[15px] max-w-[140px] truncate font-mono"
+          className="absolute text-[8px] right-[15px] max-w-[140px] truncate font-mono"
           title={i.toString()}
         >
           {i.toString()}
@@ -40,12 +40,12 @@ const UnpackerNode = ({
       <div key={i.toString()} className="relative flex flex-row">
         <Handle
           id={i.toString()}
-          type="source"
+          type="target"
           position={Position.Left}
           className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
         />
         <span
-          className="absolute text-[8px] right-[15px] max-w-[140px] truncate font-mono"
+          className="absolute text-[8px] left-[15px] max-w-[140px] truncate font-mono"
           title={i.toString()}
         >
           {i.toString()}
