@@ -945,7 +945,6 @@ function ModelCanvas({ activeFileIndex }) {
                   hyperparams: [{ id: "packingCount", value: 2 }],
                   commentText: "",
                   commentType: "plain",
-                  inputHandles: ["i0", "i1"],
                 },
               },
             ]);
