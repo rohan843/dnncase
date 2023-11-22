@@ -6,15 +6,60 @@ import { Handle, Position } from "reactflow";
 
 const ReuseNode = (nodeData) => {
   const reuseCount = nodeData.data.reuseCount;
+  const minimumRequiredContentAreaHeight = Math.max(reuseCount * 19, 250);
+
+  const inputHandlesList = [];
+  for (let i = 0; i < reuseCount; i++) {
+    inputHandlesList.push(
+      <div key={i.toString()} className="relative flex flex-row">
+        <Handle
+          id={i.toString()}
+          type="target"
+          position={Position.Left}
+          className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
+        />
+        <span
+          className="absolute text-[8px] left-[15px] max-w-[140px] truncate font-mono"
+          title={i.toString()}
+        >
+          {i.toString()}
+        </span>
+      </div>
+    );
+  }
+
+  const outputHandlesList = [];
+  for (let i = 0; i < reuseCount; i++) {
+    outputHandlesList.push(
+      <div key={i.toString()} className="relative flex flex-row">
+        <Handle
+          id={i.toString()}
+          type="source"
+          position={Position.Right}
+          className="!static background-dark border-darker w-[12px] h-[8px] my-[5px] rounded-none"
+        />
+        <span
+          className="absolute text-[8px] right-[15px] max-w-[140px] truncate font-mono"
+          title={i.toString()}
+        >
+          {i.toString()}
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div
       className={classNames(
-        "bg-transparent flex justify-around items-center rounded w-[600px] h-[250px]",
+        "bg-transparent flex justify-around items-center rounded w-[600px]",
         {
           "border-darker": !nodeData.selected,
           "border-black": nodeData.selected,
         }
       )}
+      style={{
+        height: `${minimumRequiredContentAreaHeight + 28}px`,
+      }}
     >
       <div className="flex items-center" style={{ padding: "5px" }}>
         <img src={Packer} alt="Packer" className="w-[50px] h-auto" />
@@ -23,8 +68,20 @@ const ReuseNode = (nodeData) => {
       <div className="flex items-center" style={{ padding: "5px" }}>
         <img src={unPacker} alt="Packer" className="w-[50px] h-auto" />
       </div>
-      <Handle position={Position.Left} type="target" id="0"/>
-      <Handle position={Position.Right} type="source" id="0"/>
+      {/* Input Handles */}
+      <div
+        style={{ minHeight: `${minimumRequiredContentAreaHeight}px` }}
+        className="absolute -left-[6px] h-max w-[12px] pt-[4px] pb-[2px] flex flex-col justify-evenly"
+      >
+        {inputHandlesList}
+      </div>
+      {/* Output Handles */}
+      <div
+        style={{ minHeight: `${minimumRequiredContentAreaHeight}px` }}
+        className="absolute -right-[6px] h-max w-[12px] pt-[4px] pb-[2px] flex flex-col justify-evenly"
+      >
+        {outputHandlesList}
+      </div>
     </div>
   );
 };
