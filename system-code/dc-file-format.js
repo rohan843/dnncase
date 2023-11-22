@@ -1,36 +1,34 @@
-const file = {
-  edges: [
-    {
-      id: String,
-      source: String,
-      target: String,
-      sourceHandle: String,
-      targetHandle: String,
-    },
-  ],
-  nodes: [
-    {
-      id: String,
-      position: {
-        x: Number,
-        y: Number,
-      },
-      data: {
-        artefactID: String,
-        hyperparams: [{ id: String, value: String }],
-        commentText: String,
-        commentType: "plain" | "markdown",
-        isTODO: Boolean,
-        inputHandles: [
-          String, // IDs
-        ],
-        outputHandles: [
-          String, // IDs
-        ],
-        reusable: Boolean,
-        reuseCount: Number,
-      },
-      type: String,
-    },
-  ],
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-dupe-keys */
+const node = {
+  id: "nodeID",
+  type: "nodeType",
+
+  // if type === "LayerNode"
+  layerName: "Layer",
+  hyperparams: [{ id: "activation", value: "relu" }],
+  commentText: "comment",
+  inputHandles: [],
+  outputHandles: [],
+
+  // if type === "ReuseNode"
+  layerName: "Layer",
+  hyperparams: [{ id: "activation", value: "relu" }],
+  commentText: "comment",
+  inputHandles: [],
+  outputHandles: [],
+  reuseCount: 2,
+
+  // if type === "InputNode"
+  hyperparams: [{ id: "input_shape", value: "(26, 26)" }],
+  commentText: "comment",
+
+  // if type === "OutputNode"
+  commentText: "comment",
+
+  // if type === "PackerNode"
+  inputHandles: [],
+
+  // if type === "UnpackerNode"
+  outputHandles: [],
 };
