@@ -20,6 +20,7 @@ const adjList = new Map();
 let global_cnt = 1;
 let reuse_cnt=1;
 function getCodeFrom(jsonObject) {
+  console.log(jsonObject);
   for (const layer of jsonObject.nodes) {
     if (!layer_list.includes(layer.layerName)) {
       var imp = "";
