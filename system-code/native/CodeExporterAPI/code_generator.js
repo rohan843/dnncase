@@ -142,7 +142,7 @@ function getCodeFrom(jsonObject) {
   str = str.concat(op);
   return str;
 }
-console.log(getCodeFrom());
+//console.log(getCodeFrom());
 function dfs(node_id, node_idx, curr_inp) {
   //console.log("hello" + node_id);
   //console.log(node.get(node_id))
