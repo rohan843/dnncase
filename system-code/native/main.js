@@ -4,7 +4,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const {
   systemStartupSequence,
 } = require("./systemStartup/systemStartupSequence");
-const { getCodeFrom } = require("./CodeExporterAPI");
+const { getCodeFrom } = require("./CodeExporterAPI/code_generator");
 const path = require("path");
 const saveFile = require("./saveFile");
 
