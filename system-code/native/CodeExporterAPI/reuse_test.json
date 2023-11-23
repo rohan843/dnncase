@@ -65,7 +65,7 @@
         "id": "3",
         "type":"LayerNode",
         "layerName": "Sub",
-        "hyperparams": [{ "id":"c", "value":"d" }],
+        "hyperparams": [{ "id":"c", "value":null }],
         "commentText": "This is a generic layer",
         "inputHandles": ["0","1"],
         "outputHandles": ["0"]

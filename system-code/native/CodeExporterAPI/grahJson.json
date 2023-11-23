@@ -108,7 +108,7 @@
       "id": "Concate01",
       "type":"LayerNode",
       "layerName":"Concatenate",
-      "hyperparams": [{ "id":"c", "value":"d" }],
+      "hyperparams": [{ "id":"c", "value":null }],
       "commentText": "It is used to concatenate the inputs",
       "inputHandles": ["0","1"],
       "outputHandles": ["0"]

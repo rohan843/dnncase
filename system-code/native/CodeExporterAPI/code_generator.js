@@ -1,4 +1,4 @@
-const jsonObject = require("./reuse_test");
+//const jsonObject = require("./reuse_test");
 // const fs = require("fs");
 // const artifact = require("./artifacts_test");
 
@@ -19,7 +19,7 @@ const out_list = [];
 const adjList = new Map();
 let global_cnt = 1;
 let reuse_cnt=1;
-function getCodeFrom(graphData) {
+function getCodeFrom(jsonObject) {
   for (const layer of jsonObject.nodes) {
     if (!layer_list.includes(layer.layerName)) {
       var imp = "";
@@ -141,7 +141,7 @@ function getCodeFrom(graphData) {
   str = str.concat(op);
   return str;
 }
-//console.log(getCodeFrom());
+console.log(getCodeFrom());
 function dfs(node_id, node_idx, curr_inp) {
   //console.log("hello" + node_id);
   //console.log(node.get(node_id))
@@ -293,7 +293,7 @@ function printHyperparams(node_id) {
   hyperparams.forEach((items) => {
     const id = items.id;
     let value = items.value;
-
+    if(value!=null){
     if (value[0] >= "0" && value[0] <= "9") {
       value = parseInt(value);
     } else if (
@@ -302,10 +302,10 @@ function printHyperparams(node_id) {
     ) {
       value = "'" + value + "'";
     }
-
+    
     var abc = id + "=" + value + ",";
     hypram= hypram.concat(abc);
-   
+  }
   });
 
   hypram = hypram.slice(0, -1);
