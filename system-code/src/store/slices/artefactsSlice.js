@@ -120,7 +120,7 @@ const artefactsSlice = createSlice({
             value: -1,
           },
         ],
-        defaultInputHandles: ["inSignal"],
+        defaultInputHandles: ["inSignal1","inSignal2"],
         defaultOutputHandles: ["outSignal"],
       },
       dropout: {

@@ -3,8 +3,8 @@
 // const artifact = require("./artifacts_test");
 
 function getCodeFrom(jsonObject) {
-  var str = "";
-  var tf = "Import tensorflow as tf\n"
+  let str = "";
+  let tf = "from tensorflow import keras\n"
   str = str.concat(tf);
   
   // Importing layer used
@@ -27,7 +27,7 @@ function getCodeFrom(jsonObject) {
   console.log(jsonObject);
   for (const layer of jsonObject.nodes) {
     if (!layer_list.includes(layer.layerName)) {
-      var imp = "";
+      let imp = "";
       if (layer.type == "LayerNode" || layer.type == "ReuseNode") {
         imp = "from keras.layer import " + layer.layerName + "\n";
         str = str.concat(imp);
@@ -40,7 +40,8 @@ function getCodeFrom(jsonObject) {
       }
     }
   }
-
+  imp = "from keras import Model\n";
+  str = str.concat(imp);
   for (const layer of jsonObject.nodes) {
     if (layer.type == "InputNode") {
       inpt_layers.push(layer.id);
@@ -95,14 +96,15 @@ function getCodeFrom(jsonObject) {
       nde_out_list.set(layer.id, []);
     }
   }
+
   console.log(inpt_layers);
   console.log(nde_inpt_list);
 
   for (const layer of jsonObject.edges) {
     const submap = new Map(); // for storing sourceHandles
     const target_list = [];
-    var targetHandle = 0;
-    var sourceHandle=0;
+    let targetHandle = 0;
+    let sourceHandle=0;
     if (
       node.get(layer.target)[0] == "LayerNode"
     ) {
@@ -113,6 +115,7 @@ function getCodeFrom(jsonObject) {
       
     } else if (node.get(layer.target)[0] == "PackerNode") {
       targetHandle = node.get(layer.target)[1].indexOf(layer.targetHandle);
+      //console.log()
       console.log(node.get(layer.target)[0]+" "+layer.targetHandle+" "+ node.get(layer.target)[1])
     }
 
@@ -157,11 +160,11 @@ function getCodeFrom(jsonObject) {
   const ipList = [];
 
   for (let i = 0; i < inpt_layers.length; i++) {
-    var temp = temp_var();
+    let temp = temp_var();
     ipList.push(temp);
     //console.log(node.get(inpt_layers[i]));
     const hyperparam = printHyperparams(inpt_layers[i]);
-    var code_gen = temp + "= Input" + "(" + hyperparam + ")\n";
+    let code_gen = temp + "= Input" + "(" + hyperparam + ")\n";
     str = str.concat(code_gen);
     console.log(code_gen);
     //fs.write("code_generated.txt",code_gen);
@@ -172,8 +175,8 @@ function getCodeFrom(jsonObject) {
     );
     //console.log(adjList)
   }
-  var op =
-    "model_output(inputs= (" + ipList + ") , outputs= (" + out_list + "))\n";
+  let op =
+    "model = Model(inputs= (" + ipList + ") , outputs= (" + out_list + "))\n";
   str = str.concat(op);
   return str;
 
@@ -189,15 +192,15 @@ function getCodeFrom(jsonObject) {
 
     if (node.get(node_id)[0] == "ReuseNode") {
       console.log("reuse node started")
-      var comment = "```" + node.get(node_id)[3] + "```\n";
+      let comment = "```" + node.get(node_id)[3] + "```\n";
       if(comment.length>7){
-        str.concat(comment);
+        str=str.concat(comment);
       }
       if (!resuse_node.has(node_id)) {
-        var reuse_temp = temp_var_reuse();
+        let reuse_temp = temp_var_reuse();
         resuse_node.set(node_id, reuse_temp);
-        var hyperparam = printHyperparams(node_id);
-        var code_gen =
+        let hyperparam = printHyperparams(node_id);
+        let code_gen =
           reuse_temp + "=" + node.get(node_id)[1] + "(" + hyperparam + ")\n";
         console.log(code_gen);
         str = str.concat(code_gen);
@@ -207,7 +210,7 @@ function getCodeFrom(jsonObject) {
       for (let i = 1; i <= node_inp.get(node_id); i++) {
         unpacker_list.push(temp_var());
       }
-      var temp_str = unpacker_list + "=" + "(" + curr_inp + ")\n";
+      let temp_str = unpacker_list + "=" + "(" + curr_inp + ")\n";
       console.log(temp_str);
       str = str.concat(temp_str);
 
@@ -216,7 +219,7 @@ function getCodeFrom(jsonObject) {
       for (let i = 1; i <= node_out.get(node_id); i++) {
         packer_list.push(temp_var());
       }
-      var temp_str1 =
+      let temp_str1 =
         packer_list +
         "=" +
         resuse_node.get(node_id) +
@@ -227,9 +230,9 @@ function getCodeFrom(jsonObject) {
       str = str.concat(temp_str1);
 
       // packer output
-      var temp = temp_var();
+      let temp = temp_var();
 
-      var temp_str2 = temp + "=" + "(" + packer_list + ")\n";
+      let temp_str2 = temp + "=" + "(" + packer_list + ")\n";
       console.log(temp_str2);
       str = str.concat(temp_str2);
        console.log("putting temp ti adjlist");
@@ -251,7 +254,7 @@ function getCodeFrom(jsonObject) {
     console.log(
       node_id + "  " + node_idx + " " + nde_inpt_list.get(node_id)[0]
     );
-    var cnt = node_inp.get(node_id) - 1;
+    let cnt = node_inp.get(node_id) - 1;
     node_inp.set(node_id, cnt);
 
     // checking if all inpts are there for a particular layer
@@ -261,21 +264,34 @@ function getCodeFrom(jsonObject) {
       for (let i = 0; i < keyIterator.length; i++) {
         const targetArray = adjList.get(node_id).get(keyIterator[i]);
         for (let i = 0; i < targetArray.length; i++) {
-          var temp = temp_var();
+          let temp = temp_var();
           nde_out_list.get(node_id).push(temp);
           targetArray[i].push(temp);
         }
       }
 
       if (node.get(node_id)[0] == "LayerNode") {
-        var comment = "```" + node.get(node_id)[3] + "```\n";
+        let comment = "```" + node.get(node_id)[3] + "```\n";
         if(comment.length>7){
           console.log("hello"+ "  "+ comment.length);
         str = str.concat(comment);
         }
-        var hyperparam = printHyperparams(node_id);
-
-        var code_gen =
+        let hyperparam = printHyperparams(node_id);
+        if(node.get(node_id)[1]=='Concatenate'){
+          let code_gen =
+          nde_out_list.get(node_id) +
+          "=" +
+          node.get(node_id)[1] +
+          "([" +
+          hyperparam +
+          "])" +
+          "(" +
+          nde_inpt_list.get(node_id) +
+          ")\n";
+          console.log(code_gen);
+        str = str.concat(code_gen);
+        }else{
+          let code_gen =
           nde_out_list.get(node_id) +
           "=" +
           node.get(node_id)[1] +
@@ -287,8 +303,10 @@ function getCodeFrom(jsonObject) {
           ")\n";
           console.log(code_gen);
         str = str.concat(code_gen);
+        }
+        
       } else if (node.get(node_id)[0] == "PackerNode") {
-        var code_gen =
+        let code_gen =
           nde_out_list.get(node_id) +
           "=" +
           "(" +
@@ -297,7 +315,7 @@ function getCodeFrom(jsonObject) {
           console.log(code_gen);
         str = str.concat(code_gen);
       } else if (node.get(node_id)[0] == "UnpackerNode") {
-        var code_gen =
+        let code_gen =
           nde_out_list.get(node_id) +
           "=" +
           "(" +
@@ -308,7 +326,7 @@ function getCodeFrom(jsonObject) {
       }
 
       //console.log(comment);
-      var output_idx = adjList.get(node_id);
+      let output_idx = adjList.get(node_id);
       for (const [key, value] of output_idx) {
         for (let i = 0; i < value.length; i++) {
           dfs(value[i][0], value[i][1], value[i][2]);
@@ -320,14 +338,14 @@ function getCodeFrom(jsonObject) {
   }
 
   function temp_var() {
-    var str = "t" + global_cnt;
+    let str = "t" + global_cnt;
     global_cnt++;
 
     return str;
   }
 
   function temp_var_reuse() {
-    var str = "l" + reuse_cnt;
+    let str = "l" + reuse_cnt;
     reuse_cnt++;
 
     return str;
@@ -344,7 +362,7 @@ function getCodeFrom(jsonObject) {
       hyperparams = node.get(node_id)[2];
     }
     //console.log(hyperparams);
-    var hypram = "";
+    let hypram = "";
     hyperparams.forEach((items) => {
       const id = items.id;
       let value = items.value;
@@ -358,7 +376,7 @@ function getCodeFrom(jsonObject) {
           value = "'" + value + "'";
         }
 
-        var abc = id + "=" + value + ",";
+        let abc = id + "=" + value + ",";
         hypram = hypram.concat(abc);
       }
     });
