@@ -29,12 +29,12 @@ function getCodeFrom(jsonObject) {
     if (!layer_list.includes(layer.layerName)) {
       let imp = "";
       if (layer.type == "LayerNode" || layer.type == "ReuseNode") {
-        imp = "from keras.layer import " + layer.layerName + "\n";
+        imp = "from keras.layers import " + layer.layerName + "\n";
         str = str.concat(imp);
         layer_list.push(layer.layerName);
       }
       if (layer.type == "InputNode") {
-        imp = "from keras.layer import Input" + "\n";
+        imp = "from keras.layers import Input" + "\n";
         str = str.concat(imp);
         layer_list.push(layer.layerName);
       }
@@ -192,7 +192,7 @@ function getCodeFrom(jsonObject) {
 
     if (node.get(node_id)[0] == "ReuseNode") {
       console.log("reuse node started")
-      let comment = "```" + node.get(node_id)[3] + "```\n";
+      let comment = "'''" + node.get(node_id)[3] + "'''\n";
       if(comment.length>7){
         str=str.concat(comment);
       }
@@ -271,7 +271,7 @@ function getCodeFrom(jsonObject) {
       }
 
       if (node.get(node_id)[0] == "LayerNode") {
-        let comment = "```" + node.get(node_id)[3] + "```\n";
+        let comment = "'''" + node.get(node_id)[3] + "'''\n";
         if(comment.length>7){
           console.log("hello"+ "  "+ comment.length);
         str = str.concat(comment);

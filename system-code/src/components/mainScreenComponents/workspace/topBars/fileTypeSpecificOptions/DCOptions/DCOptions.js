@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import PythonCodeGenButton from "./PythonCodeGenButton";
-import { cloneDeep, find } from "lodash";
+import { cloneDeep, find, findIndex } from "lodash";
 
 const permissibleFileTypes = {
   dc: true,
@@ -32,10 +32,10 @@ function getBackendFormatGraphData(nodes, edges) {
         res.reuseCount = node.data.reuseCount;
       } else if (node.type === "InputNode") {
         res.hyperparams = cloneDeep(node.data.hyperparams);
-        let shape = find(
-          res.hyperparams,
-          (hp) => hp.id === "input_shape"
-        ).value;
+        let i = findIndex(res.hyperparams,(hp) => hp.id === "input_shape");
+        let shape = res.hyperparams[i].value;
+        //res.hyperparams= res.hyperparams.splice(i,1);
+        res.hyperparams=[]
         res.hyperparams.push({
           id: "shape",
           value: shape,
