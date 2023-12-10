@@ -1,0 +1,15 @@
+{
+  "short_name": "DNNCASE",
+  "name": "DNNCASE",
+  "icons": [
+    {
+      "src": "Logo.png",
+      "type": "image/png",
+      "sizes": "400x375"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

@@ -1,0 +1,83 @@
+{
+    "edges": [
+      {
+        "id": "0",
+        "source": "0",
+        "target": "2",
+        "sourceHandle": "0",
+        "targetHandle": "0"
+      },
+      {
+        "id": "1",
+        "source": "1",
+        "target": "2",
+        "sourceHandle": "0",
+        "targetHandle": "1"
+      },
+      {
+        "id": "2",
+        "source": "2",
+        "target": "3",
+        "sourceHandle": "0",
+        "targetHandle": "0"
+      },
+      {
+        "id": "3",
+        "source": "2",
+        "target": "3",
+        "sourceHandle": "1",
+        "targetHandle": "1"
+      },
+      {
+        "id": "4",
+        "source": "3",
+        "target": "4",
+        "sourceHandle": "0",
+        "targetHandle": "0"
+      }        
+    ],
+    "nodes": [
+        {
+        "id": "0",
+        "type":"InputNode",
+        "hyperparams": [{ "id":"input_shape", "value":"(26,26)" }],
+        "commentText": "String"
+        }    
+      ,
+      {
+        "id": "1",
+        "type":"InputNode",
+        "hyperparams": [{ "id":"c", "value":"d" }],
+        "commentText": "String"
+          
+      },
+      {
+        "id": "2",
+        "type":"ReuseNode",
+        "layerName": "Conv2D",
+        "hyperparams": [{ "id":"c", "value":"d" }],
+        "commentText": "This is convolutional layer",
+        "inputHandles": ["0"],
+        "outputHandles": ["0"]  
+        
+      },
+      {
+        "id": "3",
+        "type":"LayerNode",
+        "layerName": "Sub",
+        "hyperparams": [{ "id":"c", "value":null }],
+        "commentText": "This is a generic layer",
+        "inputHandles": ["0","1"],
+        "outputHandles": ["0"]
+                
+      },
+           
+      {
+        "id": "4",
+        "type":"OutputNode",
+        "commentText": "Gives the final output"
+             
+      }
+    ]
+  }
+  

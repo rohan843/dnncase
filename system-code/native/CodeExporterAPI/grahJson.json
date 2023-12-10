@@ -1,0 +1,125 @@
+{
+  "edges": [
+    {
+      "id": "e1",
+      "source": "IP01",
+      "target": "Conv01",
+      "sourceHandle": "0",
+      "targetHandle": "0"
+    },
+    {
+      "id": "e2",
+      "source": "IP02",
+      "target": "Conv01",
+      "sourceHandle": "0",
+      "targetHandle": "1"
+    },
+    {
+      "id": "e3",
+      "source": "Conv01",
+      "target": "Layer01",
+      "sourceHandle": "0",
+      "targetHandle": "0"
+    },
+    {
+      "id": "e4",
+      "source": "Conv01",
+      "target": "Layer01",
+      "sourceHandle": "0",
+      "targetHandle": "1"
+    },
+    {
+      "id": "e5",
+      "source": "Conv01",
+      "target": "Layer02",
+      "sourceHandle": "1",
+      "targetHandle": "0"
+    },
+    {
+      "id": "e6",
+      "source": "Layer01",
+      "target": "Concate01",
+      "sourceHandle": "0",
+      "targetHandle": "0"
+    },
+    {
+      "id": "e7",
+      "source": "Layer02",
+      "target": "Concate01",
+      "sourceHandle": "0",
+      "targetHandle": "1"
+    },
+    {
+      "id": "e8",
+      "source": "Concate01",
+      "target": "OP01",
+      "sourceHandle": "0",
+      "targetHandle": "0"
+    }
+
+  ],
+  "nodes": [
+      {
+      "id": "IP01",
+      "type":"InputNode",
+      "hyperparams": [{ "id":"input_shape", "value":"(26,26)" }],
+      "commentText": "String"
+      }    
+    ,
+    {
+      "id": "IP02",
+      "type":"InputNode",
+      "hyperparams": [{ "id":"c", "value":"d" }],
+      "commentText": "String"
+        
+    },
+    {
+      "id": "Conv01",
+      "type":"ReuseNode",
+      "layerName": "Conv2D",
+      "hyperparams": [{ "id":"c", "value":"d" }],
+      "commentText": "This is convolutional layer",
+      "inputHandles": ["0","1"],
+      "outputHandles": ["0","1"]  
+      
+    },
+    {
+      "id": "Layer01",
+      "type":"LayerNode",
+      "layerName": "Layer01",
+      "hyperparams": [{ "id":"c", "value":"d" }],
+      "commentText": "This is a generic layer",
+      "inputHandles": ["0","1"],
+      "outputHandles": ["0"]
+              
+    },
+    {
+      "id": "Layer02",
+      "type":"LayerNode",
+      "layerName":"Layer02",
+      "hyperparams": [{ "id":"c", "value":"d" }],
+      "commentText": "This is layer 2",
+      "inputHandles": ["0"],
+      "outputHandles": ["0"]
+            
+      
+    },
+    {
+      "id": "Concate01",
+      "type":"LayerNode",
+      "layerName":"Concatenate",
+      "hyperparams": [{ "id":"c", "value":null }],
+      "commentText": "It is used to concatenate the inputs",
+      "inputHandles": ["0","1"],
+      "outputHandles": ["0"]
+          
+    },
+    
+    {
+      "id": "OP01",
+      "type":"OutputNode",
+      "commentText": "Gives the final output"
+           
+    }
+  ]
+}
