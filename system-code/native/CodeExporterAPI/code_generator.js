@@ -282,12 +282,12 @@ function getCodeFrom(jsonObject) {
           nde_out_list.get(node_id) +
           "=" +
           node.get(node_id)[1] +
-          "([" +
-          hyperparam +
-          "])" +
           "(" +
+          hyperparam +
+          ")" +
+          "([" +
           nde_inpt_list.get(node_id) +
-          ")\n";
+          "])\n";
           console.log(code_gen);
         str = str.concat(code_gen);
         }else{
