@@ -1,9 +1,58 @@
-<mxfile host="Electron" modified="2024-01-21T15:13:43.706Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.8.2 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="z4KqlAOkypc4nHXYhg-1" version="21.8.2" type="device">
+<mxfile host="Electron" modified="2024-01-22T18:25:53.167Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.8.2 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="O10CU8KoxxsEb4iA0Zzq" version="21.8.2" type="device">
   <diagram name="Page-1" id="nIpjQOiBv5imTvQujfP3">
-    <mxGraphModel dx="1036" dy="606" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="778" dy="460" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="iULWq3CGBZhYbpZMc_o--1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="eY1lrGhFP2gL3qBAUL6P-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="240.19047619047615" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="eY1lrGhFP2gL3qBAUL6P-1" target="iULWq3CGBZhYbpZMc_o--3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="eY1lrGhFP2gL3qBAUL6P-1" target="iULWq3CGBZhYbpZMc_o--5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eY1lrGhFP2gL3qBAUL6P-1" value="Input" style="triangle;whiteSpace=wrap;html=1;align=left;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
+          <mxGeometry x="200" y="200" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--2" value="t1" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;autosize=1;fontFamily=Lucida Console;" vertex="1" parent="1">
+          <mxGeometry x="290" y="210" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--3" value="Name: some_input" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="180" y="160" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--5" value="Type: Config" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="180" y="290" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--7" value="t1 = artefactInputs.getConfig().get(some_input)" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;autosize=1;fontFamily=Lucida Console;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="400" y="225" width="360" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="iULWq3CGBZhYbpZMc_o--8" target="iULWq3CGBZhYbpZMc_o--9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="iULWq3CGBZhYbpZMc_o--8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200.0000000000001" y="439.9999999999999" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--8" value="Output" style="triangle;whiteSpace=wrap;html=1;direction=west;align=right;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" vertex="1" parent="1">
+          <mxGeometry x="290" y="400" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--9" value="Name: some_output" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="270" y="360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--13" value="t1" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;autosize=1;fontFamily=Lucida Console;" vertex="1" parent="1">
+          <mxGeometry x="220" y="410" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--15" value="&lt;b&gt;Note&lt;/b&gt;: Input is segregated into config and payload at the time of entry into the artefact. An artefact itself has nothing to do with the segregation of its input. Similarly, an artefact doesn&#39;t segregate its output." style="text;html=1;strokeColor=#36393d;fillColor=#ffff88;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fixedWidth=1;autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="150" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="iULWq3CGBZhYbpZMc_o--19" value="artefactOutputs.set(some_output, t1)" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;autosize=1;fontFamily=Lucida Console;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="400" y="425" width="280" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
