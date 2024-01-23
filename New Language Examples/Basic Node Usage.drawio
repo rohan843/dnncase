@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-01-23T12:33:21.348Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.8.2 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="VLg5y0Umq_fRRAO1O1iw" version="21.8.2" type="device">
+<mxfile host="Electron" modified="2024-01-23T12:43:22.614Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.8.2 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="o2fhrldzqi6AG9HaRNmt" version="21.8.2" type="device">
   <diagram name="Page-1" id="nIpjQOiBv5imTvQujfP3">
-    <mxGraphModel dx="1000" dy="591" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1050" dy="621" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -105,6 +105,52 @@
         </mxCell>
         <mxCell id="KYDXhJNtzKRblSfzjD3v-3" value="An import must be applied to the file to provide objects such as NamedContainer to be accessible in the generated program." style="text;html=1;strokeColor=#36393d;fillColor=#ffff88;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fixedWidth=1;autosize=1;" vertex="1" parent="1">
           <mxGeometry x="1080" y="630" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="KYDXhJNtzKRblSfzjD3v-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="1005.1904761904761" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=76.5909090909091;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="KYDXhJNtzKRblSfzjD3v-4" target="KYDXhJNtzKRblSfzjD3v-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-4" value="Data Variable (in)" style="shape=display;whiteSpace=wrap;html=1;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;size=0.2727272727272727;" vertex="1" parent="1">
+          <mxGeometry x="260" y="980" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-6" value="Name: var_name" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="290" y="910" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-12" value="Code is not generated for this node. It serves as the starting point of a data edge, essentially &quot;extending&quot; the edge that enters it." style="text;html=1;strokeColor=#36393d;fillColor=#ffff88;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fixedWidth=1;autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="975" width="290" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="KYDXhJNtzKRblSfzjD3v-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="1134.7142857142856" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=76.5909090909091;exitDy=50;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="KYDXhJNtzKRblSfzjD3v-13" target="KYDXhJNtzKRblSfzjD3v-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-13" value="Data Variable (out)" style="shape=display;whiteSpace=wrap;html=1;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;size=0.2727272727272727;direction=west;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1110" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-15" value="Name: var_name" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="190" y="1060" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-17" value="t1" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;autosize=1;fontFamily=Lucida Console;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="200" y="975" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-18" value="t1" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;autosize=1;fontFamily=Lucida Console;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="340" y="1105" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-19" value="Code is not generated for this node. It serves as the ending point of a data edge, essentially emitting whatever went inside the &lt;i&gt;in&lt;/i&gt;&amp;nbsp;variable node of the same name.." style="text;html=1;strokeColor=#36393d;fillColor=#ffff88;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fixedWidth=1;autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="435" y="1100" width="290" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-20" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="820" y="920" width="20" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="KYDXhJNtzKRblSfzjD3v-21" value="These 2 serve as a shorthand for creating data edges. They are not essential for any task, but serve as cleaning up the canvas a bit." style="text;html=1;strokeColor=#36393d;fillColor=#ffff88;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fixedWidth=1;autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="890" y="1025" width="230" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
