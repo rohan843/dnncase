@@ -1,5 +1,5 @@
-import TopologicalScheduler
-import Graph
+from TopologicalScheduler import TopologicalScheduler
+from Graph import Graph
 
 
 def assign_if_else_ids(graph: Graph, scheduler: TopologicalScheduler) -> int:
