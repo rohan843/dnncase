@@ -14,4 +14,4 @@ def assign_if_else_ids(graph: Graph, scheduler: TopologicalScheduler) -> int:
     Returns:
         int: An error code. 0 if the ID assignment was successful.
     """
-    nextN
+    next_node = scheduler.get_next_node()
