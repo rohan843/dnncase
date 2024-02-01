@@ -2,7 +2,7 @@ import TopologicalScheduler
 import Graph
 
 
-def assignIfElseIDs(graph: Graph, scheduler: TopologicalScheduler) -> int:
+def assign_if_else_ids(graph: Graph, scheduler: TopologicalScheduler) -> int:
     """
     This function traverses the graph and assigns to each node a conditional ID. It also matches an
     If/Else node to its corresponding End If node(s).
@@ -14,4 +14,4 @@ def assignIfElseIDs(graph: Graph, scheduler: TopologicalScheduler) -> int:
     Returns:
         int: An error code. 0 if the ID assignment was successful.
     """
-    
+    nextN
