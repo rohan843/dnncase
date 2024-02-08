@@ -40,7 +40,7 @@ function getCodeFrom(jsonObject) {
       }
     }
   }
-  imp = "from keras import Model\n";
+  let imp = "from keras import Model\n";
   str = str.concat(imp);
   for (const layer of jsonObject.nodes) {
     if (layer.type == "InputNode") {
