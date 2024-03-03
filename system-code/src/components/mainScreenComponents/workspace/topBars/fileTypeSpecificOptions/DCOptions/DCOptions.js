@@ -472,7 +472,7 @@ function DCOptions({ activeFileType, activeFileIndex }) {
       <PythonCodeGenButton
         onPythonCodeGen={() => {
           const code = getCodeFrom(getBackendFormatGraphData(nodes, edges));
-          download("dnn_code.py", code);
+          download("dnn_code.txt", code);
         }}
       />
     </div>
