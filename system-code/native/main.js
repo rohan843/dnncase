@@ -19,7 +19,7 @@ const createWindow = () => {
   win.maximize();
   // TODO: Analyse this for its implications on security.
   win.webContents.session.enableNetworkEmulation({ offline: true });
-  win.loadURL("http://localhost:3000");
+  win.loadURL("https://dnncase.netlify.app/");
   return win;
 };
 

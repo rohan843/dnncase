@@ -1418,7 +1418,11 @@ function ModelCanvas({ activeFileIndex }) {
                 ...nodes,
                 {
                   id: getNodeId("LayerNode", elementID),
-                  position: currentViewport,
+                  position: {
+                    x: -currentViewport.x,
+                    y: -currentViewport.y,
+                    zoom: currentViewport.zoom,
+                  },
                   type: "LayerNode",
                   data: {
                     name: layers[elementID].displayName,
@@ -1439,7 +1443,11 @@ function ModelCanvas({ activeFileIndex }) {
                 ...nodes,
                 {
                   id: getNodeId("ReuseNode", elementID),
-                  position: currentViewport,
+                  position: {
+                    x: -currentViewport.x,
+                    y: -currentViewport.y,
+                    zoom: currentViewport.zoom,
+                  },
                   type: "ReuseNode",
                   data: {
                     name: layers[elementID].displayName,
