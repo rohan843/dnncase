@@ -3,10 +3,11 @@ import MainScreen from "./components/mainScreenComponents/MainScreen";
 import BottomBar from "./components/bottomBarComponents/BottomBar";
 import { MajorEntityIDs } from "./constants";
 import useActivatableEntity from "./hooks/useActivatableEntity";
+import NamedPackerNode from "./components/mainScreenComponents/workspace/fileTypeSpecificTabs/ModelCanvas/subcomponents/nodes/NamedPackerNode";
 
 function App() {
   const handleClickCapture = useActivatableEntity(MajorEntityIDs.base);
-  // TODO: return <NewNode></NewNode>
+  return <NamedPackerNode />;
   return (
     <div
       className="h-full w-screen background-light"
