@@ -6,6 +6,7 @@ import useActivatableEntity from "./hooks/useActivatableEntity";
 
 function App() {
   const handleClickCapture = useActivatableEntity(MajorEntityIDs.base);
+  // TODO: return <NewNode></NewNode>
   return (
     <div
       className="h-full w-screen background-light"
