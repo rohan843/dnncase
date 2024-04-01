@@ -151,7 +151,10 @@ function ModelCanvas({ activeFileIndex }) {
     const targetNode = newEdgeData.target;
     const targetNodeHandle = newEdgeData.targetHandle;
     // Edge ID only depends on the target.
-    const id = `${targetNode}_${targetNodeHandle}`;
+    let id = `${targetNode}_${targetNodeHandle}`;
+    if (targetNodeHandle === "multi-in") {
+      id += `+${Date.now() % 10007}`;
+    }
     findIndex(edges, (edge) => edge.id === id) === -1 &&
       setEdges([
         ...edges,
