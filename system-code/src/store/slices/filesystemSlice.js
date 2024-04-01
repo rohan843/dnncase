@@ -52,7 +52,38 @@ const filesystemSlice = createSlice({
           artefact: false,
           unsaved: true,
           filetype: "dc",
-          nodes: [],
+          nodes: [
+            {
+              id: "1",
+              position: {
+                x: 100,
+                y: 100,
+                zoom: 1,
+              },
+              type: "NamedUnpackerNode",
+              data: {},
+            },
+            {
+              id: "3",
+              position: {
+                x: 100,
+                y: 100,
+                zoom: 1,
+              },
+              type: "NamedPackerNode",
+              data: {},
+            },
+            {
+              id: "2",
+              position: {
+                x: 200,
+                y: 100,
+                zoom: 1,
+              },
+              type: "NamedUnpackerNode",
+              data: {},
+            },
+          ],
           edges: [],
         },
         isFolder: false,

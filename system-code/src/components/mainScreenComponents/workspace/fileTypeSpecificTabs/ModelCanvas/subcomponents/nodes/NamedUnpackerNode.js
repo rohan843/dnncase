@@ -1,8 +1,8 @@
 import { Handle, Position } from "reactflow";
 
-function NamedPackerNode() {
+function NamedUnpackerNode() {
   return (
-    <div className="h-[40px] w-[40px] rounded-r-full border-black bg-gray-400">
+    <div className="h-[40px] w-[40px] rounded-l-full border-black bg-gray-400">
       <Handle
         className="w-[10px] h-[5px] border-black rounded-none bg-gray-600"
         position={Position.Left}
@@ -19,4 +19,4 @@ function NamedPackerNode() {
   );
 }
 
-export default NamedPackerNode;
+export default NamedUnpackerNode;

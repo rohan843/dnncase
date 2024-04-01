@@ -26,6 +26,8 @@ import {
   PackerNode,
   CommentNode,
   ReuseNode,
+  NamedPackerNode,
+  NamedUnpackerNode,
 } from "./subcomponents/nodes";
 import { cloneDeep, findIndex } from "lodash";
 
@@ -37,6 +39,8 @@ const NodeTypes = {
   PackerNode,
   CommentNode,
   ReuseNode,
+  NamedPackerNode,
+  NamedUnpackerNode,
 };
 
 const permissibleFileTypes = {
