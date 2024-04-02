@@ -2,6 +2,7 @@ import TopBar from "./components/topBarComponents/TopBar";
 import MainScreen from "./components/mainScreenComponents/MainScreen";
 import BottomBar from "./components/bottomBarComponents/BottomBar";
 import DataVariableIn from "./components/mainScreenComponents/workspace/fileTypeSpecificTabs/ModelCanvas/subcomponents/nodes/DataVariable.js";
+import DataVariableOut from "./components/mainScreenComponents/workspace/fileTypeSpecificTabs/ModelCanvas/subcomponents/nodes/DataVariableOutput.js";
 import { MajorEntityIDs } from "./constants";
 import useActivatableEntity from "./hooks/useActivatableEntity";
 import Input from "./components/mainScreenComponents/workspace/fileTypeSpecificTabs/ModelCanvas/subcomponents/nodes/Input.js";
@@ -20,7 +21,7 @@ function App() {
       {/* <TopBar />
       <MainScreen />
       <BottomBar /> */}
-      <DataVariableIn content="hp_units"></DataVariableIn>
+      <DataVariableOut content="hp_units"></DataVariableOut>
 
     </div>
   );
