@@ -297,3 +297,60 @@ In other words, use this in place of something like
 .user-command-placeholder-style:focus::placeholder {
     color: transparent;
 }
+
+.input {
+    width: 0px;
+    height: 0px;
+    border-style: inset;
+    border-width: 0 100px 173.2px 100px;
+    border-color: transparent transparent #888a8d transparent;
+    float: left;
+    transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform:rotate(90deg);
+  }
+  
+  .input p {
+    text-align: center;
+    top: 68px;
+    left: -18px;
+    position: relative;
+    width: 93px;
+    height: 93px;
+    margin: 0px;
+    transform: rotate(-90deg);
+    font-size:x-large;
+    color: black;
+  }
+
+  .output {
+    margin-top: 100px;
+    width: 0px;
+    height: 0px;
+    border-style: inset;
+    border-width: 0 100px 173.2px 100px;
+    border-color: transparent transparent #888a8d transparent;
+    float: left;
+    transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform:rotate(-90deg);
+  }
+  
+  .output p {
+    text-align: center;
+    top: 68px;
+    left: -68px;
+    position: relative;
+    width: 93px;
+    height: 93px;
+    margin: 0px;
+    transform: rotate(90deg);
+    font-size:x-large;
+    color: black;
+  }
