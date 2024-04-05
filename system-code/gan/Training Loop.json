@@ -1,0 +1,48 @@
+{
+    "artefactMetadata": {
+        "name": "Training Loop",
+        "artefactType": "TrainingLoopArtefact"
+    },
+    "nodes": [
+        {
+            "id": "1",
+            "type": "FunctionNode",
+            "subtype": "ImportedArtefact",
+            "sourceArtefact": "Constants"
+        },
+        {
+            "id": "2",
+            "type": "DataVariableNode",
+            "subtype": "Input",
+            "name": "epochs"
+        },
+        {
+            "id": "3",
+            "type": "DataVariableNode",
+            "subtype": "Input",
+            "name": "epochs"
+        },
+        {
+            "id": "4",
+            "type": "Loop",
+            "subtype": "RepeatLoop",
+            "innerArtefact": "tmp1"
+        }
+    ],
+    "edges": [
+        {
+            "label": "EPOCHS",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "2",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "3",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "4",
+            "targetNodeHandleID": "iterationCount"
+        }
+    ]
+}
