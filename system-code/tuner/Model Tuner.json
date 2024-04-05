@@ -1,0 +1,8 @@
+{
+    "artefactMetadata": {
+        "name": "Model Tuner",
+        "artefactType": "ModelTunerArtefact"
+    },
+    "nodes": [],
+    "edges": []
+}

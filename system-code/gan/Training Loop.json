@@ -6,26 +6,26 @@
     "nodes": [
         {
             "id": "1",
-            "type": "FunctionNode",
-            "subtype": "ImportedArtefact",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "ImportedArtefact",
             "sourceArtefact": "Constants"
         },
         {
             "id": "2",
-            "type": "DataVariableNode",
-            "subtype": "Input",
+            "nodeType": "DataVariableNode",
+            "nodeSubtype": "Input",
             "name": "epochs"
         },
         {
             "id": "3",
-            "type": "DataVariableNode",
-            "subtype": "Input",
+            "nodeType": "DataVariableNode",
+            "nodeSubtype": "Input",
             "name": "epochs"
         },
         {
             "id": "4",
-            "type": "Loop",
-            "subtype": "RepeatLoop",
+            "nodeType": "Loop",
+            "nodeSubtype": "RepeatLoop",
             "innerArtefact": "tmp1"
         }
     ],
