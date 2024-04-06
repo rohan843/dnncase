@@ -1,0 +1,55 @@
+{
+    "artefactMetadata": {
+        "name": "tmp1",
+        "artefactType": "ArtefactType"
+    },
+    "nodes": [
+        {
+            "id": "1",
+            "nodeType": "InputNode",
+            "nodeSubtype": "hp_units"
+            
+        }, 
+        {
+            "id": "2",
+            "nodeType": "InputNode",
+            "name": "payload"
+            
+        },
+         {
+            "id": "3",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "CreateAndApplyDenseLayer"
+            
+        },
+        {
+            "id": "4",
+            "nodeType": "OutputNode",
+            "name": "Payload"
+            
+        }
+    ],
+    "edges": [
+        {
+            "label": "",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "2",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "3",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "4",
+            "targetNodeHandleID": "in"
+        }
+    ]
+}

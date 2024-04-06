@@ -1,0 +1,181 @@
+{
+    "artefactMetadata": {
+        "name": "Classifier Model",
+        "artefactType": "ModelArchitectureType"
+    },
+    "nodes": [
+        {
+            "id": "1",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "GetTunableInt"
+            
+        },
+        {
+            "id": "2",
+            "nodeType": "DataVariableNode",
+            "nodeSubtype": "Input",
+            "name": "hp_units"
+        },
+        {
+            "id": "3",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "GetTunableInt"
+            
+        },
+        {
+            "id": "4",
+            "nodeType": "DataVariableNode",
+            "nodeSubtype": "Input",
+            "name": "hp_layers"
+        },
+        {
+            "id": "5",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "Input"
+            
+        }
+        ,
+        {
+            "id": "6",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "Flatten"
+        },
+        {
+            "id": "7",
+            "nodeType": "DataVariableNode",
+            "nodeSubtype": "Output",
+            "name": "hp_units"
+        },
+        {
+            "id": "8",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "CreateAndApplyDenseLayer"
+            
+        },
+        {
+            "id": "9",
+            "nodeType": "DataVariableNode",
+            "nodeSubtype": "Output",
+            "name": "hp_units"
+        },
+        {
+            "id": "10",
+            "nodeType": "PackerNode",
+            "nodeSubtype": "NamedPacker"
+            
+        },
+        {
+            "id": "11",
+            "nodeType": "DataVariableNode",
+            "nodeSubtype": "Output",
+            "name": "hp_units"
+        },
+        {
+            "id": "12",
+            "nodeType": "Loop",
+            "nodeSubtype": "RepeatLoopNode",
+            "innerArtefact": "tmp1"
+        },
+        {
+            "id": "13",
+            "nodeType": "UnpackerNode",
+            "nodeSubtype": "NamedUnpacker"
+        },
+        {
+            "id": "14",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "CreateAndApplyDenseLayer"
+        },
+        {
+            "id": "15",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "Output"
+        }
+    ],
+    "edges": [
+        {
+            "label": "",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "2",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "3",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "4",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "5",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "6",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "7",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "8",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "6",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "8",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "hp_units",
+            "sourceNodeID": "9",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "10",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "payload",
+            "sourceNodeID": "8",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "10",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "10",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "12",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "11",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "12",
+            "targetNodeHandleID": "iterationCount"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "12",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "13",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "payload",
+            "sourceNodeID": "13",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "14",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "14",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "15",
+            "targetNodeHandleID": "in"
+        }
+    ]
+}
