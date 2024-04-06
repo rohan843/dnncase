@@ -3,6 +3,71 @@
         "name": "Model Tuner",
         "artefactType": "ModelTunerArtefact"
     },
-    "nodes": [],
-    "edges": []
+    "nodes": [
+        {
+            "id": "1",
+            "nodeType": "CallBackNode",
+            "nodeSubtype": "CompiledClassifierModel",
+            "sourceArtefact":"ModelArchitectureType"
+    
+            
+        }, 
+        {
+            "id": "2",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "GetBestModelAfterTuning"
+            
+        },
+         {
+            "id": "3",
+            "nodeType": "OutputNode",
+            "name": "model"
+            
+        },
+        {
+            "id": "4",
+            "nodeType": "FunctionNode",
+            "nodeSubtype":"MNISTDataLoader",
+            "sourceArtefact":"DataLoaderType"
+            
+        }
+        ,
+        {
+            "id": "5",
+            "nodeType": "PackerNode",
+            "nodeSubtype":"NamedPacker"
+            
+        }
+       
+    ],
+    "edges": [
+        {
+            "label": "build_model",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "2",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "2",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "4",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "5",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "5",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "2",
+            "targetNodeHandleID": "in"
+        }
+    ]
 }

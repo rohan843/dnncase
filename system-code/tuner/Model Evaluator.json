@@ -1,0 +1,46 @@
+{
+    "artefactMetadata": {
+        "name": "Model Evaluator",
+        "artefactType": "ModelEvaluatorArtefact"
+    },
+    "nodes": [
+        {
+            "id": "1",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "ModelTuner",
+            "sourceArtefact":"ModelTunerArtefact"
+    
+            
+        }, 
+        {
+            "id": "2",
+            "nodeType": "FunctionNode",
+            "nodeSubtype":"MNISTDataLoader",
+            "sourceArtefact":"DataLoaderType"
+            
+        },
+         {
+            "id": "3",
+            "nodeType": "FunctionNode",
+            "nodeSubtype":"EvaluateModelOnDataAndPrintResult"
+            
+        }
+       
+    ],
+    "edges": [
+        {
+            "label": "",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "2",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in"
+        }
+    ]
+}

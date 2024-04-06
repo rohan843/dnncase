@@ -1,0 +1,100 @@
+{
+    "artefactMetadata": {
+        "name": "MNSIT Data Loader",
+        "artefactType": "DataLoaderType"
+    },
+    "nodes": [
+        {
+            "id": "1",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "LoadKerasDataset"
+            
+        }, 
+        {
+            "id": "2",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "DivideBy"
+            
+        },
+         {
+            "id": "3",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "DivideBy"
+            
+        },
+        {
+            "id": "4",
+            "nodeType": "OutputNode",
+            "name": "x_train"
+            
+        }
+        ,
+        {
+            "id": "5",
+            "nodeType": "OutputNode",
+            "name": "x_test"
+            
+        }
+        ,
+        {
+            "id": "6",
+            "nodeType": "OutputNode",
+            "name": "y_train"
+            
+        }
+        ,
+        {
+            "id": "7",
+            "nodeType": "OutputNode",
+            "name": "y_test"
+            
+        }
+    ],
+    "edges": [
+        {
+            "label": "x_train",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "2",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "x_test",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "y_train",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "6",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "y_test",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "7",
+            "targetNodeHandleID": "in"
+        }
+        ,
+        {
+            "label": "",
+            "sourceNodeID": "2",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "4",
+            "targetNodeHandleID": "in"
+        }
+        ,
+        {
+            "label": "",
+            "sourceNodeID": "3",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "5",
+            "targetNodeHandleID": "in"
+        }
+        
+    ]
+}
