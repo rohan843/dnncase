@@ -1,0 +1,93 @@
+{
+    "artefactMetadata": {
+        "name": "Discriminator Loss",
+        "artefactType": "LossFunctionArtefact"
+    },
+    "nodes": [
+        {
+            "id": "1",
+            "nodeType": "Input",
+            "name": "Real Output"
+        },
+        {
+            "id": "2",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "GetOnesLikeTensor"
+        },
+        {
+            "id": "3",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "GetBinaryCrossEntropy"
+        },
+        {
+            "id": "4",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "Add"
+        },
+        {
+            "id": "5",
+            "nodeType": "Output",
+            "name": "loss"
+        },
+        {
+            "id": "6",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "GetZeroesLikeTensor"
+        },
+        {
+            "id": "7",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "GetBinaryCrossEntropy"
+        },
+        {
+            "id": "8",
+            "nodeType": "Input",
+            "name": "Fake Output"
+        }
+    ],
+    "edges": [
+        {
+            "label": "",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "2",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in2"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "2",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in1"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "3",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "4",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "2",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "2",
+            "targetNodeHandleID": "in"
+        },
+        "..."
+    ]
+}
