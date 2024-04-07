@@ -1,0 +1,102 @@
+{
+    "artefactMetadata": {
+        "name": "Compiled Classifier Model",
+        "artefactType": "ModelArchitectureType"
+    },
+    "nodes": [
+        {
+            "id": "1",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "ClassiferModel",
+            "sourceArtefact":"ClassiferModelArtefact"
+        },
+        {
+            "id": "2",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "RawData"
+        },
+        {
+            "id": "3",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "GetTunableFromList"
+            
+        },
+        {
+            "id": "4",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "RawData"
+        },
+        {
+            "id": "5",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "RawData"            
+        }
+        ,
+        {
+            "id": "6",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "GenerateAdamOptimizer"
+        },
+        {
+            "id": "7",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "CompileModel"
+        },
+        {
+            "id": "8",
+            "nodeType": "OutputNode",
+            "name": "CompiledModel"            
+        }
+    ],
+    "edges": [
+        {
+            "label": "",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "7",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "2",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "3",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "6",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "4",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "7",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "6",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "7",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "6",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "7",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "7",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "8",
+            "targetNodeHandleID": "in"
+        }
+    ]
+}
