@@ -134,7 +134,7 @@ function HierarchicalDirectoryDisplay() {
           </div>
         )}
       >
-        <Tree treeId="fs-tree" rootItem="/Project1" treeLabel="Tree Example" />
+        <Tree treeId="fs-tree" rootItem="/Demo Project" treeLabel="Tree Example" />
       </ControlledTreeEnvironment>
     </div>
   );

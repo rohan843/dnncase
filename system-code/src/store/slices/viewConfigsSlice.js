@@ -4,7 +4,7 @@ import { set } from "lodash";
 const viewConfigSlice = createSlice({
   name: "viewConfig",
   initialState: {
-    "/Project1/home1/user1/file1.txt": {
+    "/Demo Project/custom/main.dc": {
       leftPaneOpen: false,
       rightPaneOpen: false,
       activeNodeID: null,
