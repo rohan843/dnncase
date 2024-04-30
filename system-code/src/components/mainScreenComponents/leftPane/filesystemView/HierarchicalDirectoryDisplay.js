@@ -10,6 +10,7 @@ import {
   addExpandedItem,
   setSelectedItems,
   setFocusedItem,
+  setActiveFile,
 } from "../../../../store";
 import { createSelector } from "@reduxjs/toolkit";
 import { cloneDeep } from "lodash";
@@ -104,7 +105,12 @@ function HierarchicalDirectoryDisplay() {
                 "flex flex-row h-7 items-center mb-1 pb-1 cursor-pointer hover-background-dark rounded mt-px"
               )}
             >
-              <div className="flex flex-row h-full items-center grow">
+              <div
+                className="flex flex-row h-full items-center grow"
+                onClick={() => {
+                  !item.isFolder && dispatch(setActiveFile(item.index));
+                }}
+              >
                 {arrow}
                 {title}
               </div>
@@ -134,7 +140,11 @@ function HierarchicalDirectoryDisplay() {
           </div>
         )}
       >
-        <Tree treeId="fs-tree" rootItem="/Demo Project" treeLabel="Tree Example" />
+        <Tree
+          treeId="fs-tree"
+          rootItem="/Demo Project"
+          treeLabel="Tree Example"
+        />
       </ControlledTreeEnvironment>
     </div>
   );

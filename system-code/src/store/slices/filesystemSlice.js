@@ -12,7 +12,11 @@ const filesystemSlice = createSlice({
         index: "/Demo Project",
         data: { name: "Demo Project", folder: true, artefact: false },
         isFolder: true,
-        children: ["/Demo Project/gan", "/Demo Project/tuner", "/Demo Project/custom"],
+        children: [
+          "/Demo Project/gan",
+          "/Demo Project/tuner",
+          "/Demo Project/custom",
+        ],
       },
       "/Demo Project/gan": {
         index: "/Demo Project/gan",
@@ -33,7 +37,7 @@ const filesystemSlice = createSlice({
         children: ["/Demo Project/custom/main.dc"],
       },
       "/Demo Project/custom/main.dc": {
-        index: "/Demo Project/home1/user1/main.dc",
+        index: "/Demo Project/custom/main.dc",
         data: {
           name: "main.dc",
           folder: false,
@@ -92,7 +96,9 @@ const filesystemSlice = createSlice({
      * a `firstOpenedAt` property that is to serve as the position of this file in the list of tabs
      * that will be displayed on the workspace area.
      */
-    openFiles: [{ fileIndex: "/Demo Project/custom/main.dc", firstOpenedAt: 0 }],
+    openFiles: [
+      { fileIndex: "/Demo Project/custom/main.dc", firstOpenedAt: 0 },
+    ],
   },
   reducers: {
     setFsState(state, action) {
@@ -176,7 +182,8 @@ const filesystemSlice = createSlice({
     },
     /**
      * Takes the file whose `fileIndex` is provided in the payload, and sets it as active, i.e.,
-     * brings it to the front of openFiles array.
+     * brings it to the front of openFiles array. The provided file need not already be opened. In
+     * that case, the file will be prepended to the openFiles array.
      */
     setActiveFile(state, action) {
       const idx = findIndex(state.openFiles, (element) => {
