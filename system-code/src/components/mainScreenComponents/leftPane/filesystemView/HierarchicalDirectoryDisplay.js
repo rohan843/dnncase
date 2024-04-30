@@ -2,6 +2,7 @@ import { ControlledTreeEnvironment, Tree } from "react-complex-tree";
 import openDropdownIcon from "../../../../assets/hierarchy-dropdown-open.png";
 import closedDropdownIcon from "../../../../assets/hierarchy-dropdown-close.png";
 import fileIcon from "../../../../assets/file.png";
+import newFileIcon from "../../../../assets/new-file.png";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -94,7 +95,7 @@ function HierarchicalDirectoryDisplay() {
             </div>
           )
         }
-        renderItem={({ title, arrow, depth, context, children }) => (
+        renderItem={({ title, arrow, depth, context, children, item }) => (
           <div {...context.itemContainerWithChildrenProps} className="">
             <div
               {...context.itemContainerWithoutChildrenProps}
@@ -103,8 +104,21 @@ function HierarchicalDirectoryDisplay() {
                 "flex flex-row h-7 items-center mb-1 pb-1 cursor-pointer hover-background-dark rounded mt-px"
               )}
             >
-              {arrow}
-              {title}
+              <div className="flex flex-row h-full items-center grow">
+                {arrow}
+                {title}
+              </div>
+              {item.isFolder && (
+                <img
+                  src={newFileIcon}
+                  alt=""
+                  className="h-full p-1 opacity-50 hover:opacity-100"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // TODO: Add new file when this button clicked.
+                  }}
+                />
+              )}
             </div>
             <div className="ml-1.5 border-left-darker pl-2">{children}</div>
           </div>
