@@ -4,50 +4,42 @@ import { findIndex, set } from "lodash";
 const filesystemSlice = createSlice({
   name: "filesystem",
   initialState: {
-    root: "Project1", // Name of the entry in fsState with the index as rootIndex.
-    rootIndex: "/Project1",
+    root: "Demo Project", // Name of the entry in fsState with the index as rootIndex.
+    rootIndex: "/Demo Project",
     // For an algo to get this, refer -> https://colab.research.google.com/drive/15wcb00OYHopah1twNGtBIeydOMb6ydic?usp=sharing
     fsState: {
-      "/Project1": {
-        index: "/Project1",
-        data: { name: "Project1", folder: true, artefact: false },
+      "/Demo Project": {
+        index: "/Demo Project",
+        data: { name: "Demo Project", folder: true, artefact: false },
         isFolder: true,
-        children: ["/Project1/bin", "/Project1/home1", "/Project1/home"],
+        children: [
+          "/Demo Project/gan",
+          "/Demo Project/tuner",
+          "/Demo Project/custom",
+        ],
       },
-      "/Project1/bin": {
-        index: "/Project1/bin",
-        data: { name: "bin", folder: true, artefact: true },
-        isFolder: true,
-        children: ["/Project1/bin/ls", "/Project1/bin/mkdir"],
-      },
-      "/Project1/bin/ls": {
-        index: "/Project1/bin/ls",
-        data: { name: "ls", folder: true, artefact: false },
+      "/Demo Project/gan": {
+        index: "/Demo Project/gan",
+        data: { name: "gan", folder: true, artefact: true },
         isFolder: true,
         children: [],
       },
-      "/Project1/bin/mkdir": {
-        index: "/Project1/bin/mkdir",
-        data: { name: "mkdir", folder: true, artefact: false },
+      "/Demo Project/tuner": {
+        index: "/Demo Project/tuner",
+        data: { name: "tuner", folder: true, artefact: true },
         isFolder: true,
         children: [],
       },
-      "/Project1/home1": {
-        index: "/Project1/home1",
-        data: { name: "home1", folder: true, artefact: false },
+      "/Demo Project/custom": {
+        index: "/Demo Project/custom",
+        data: { name: "custom", folder: true, artefact: true },
         isFolder: true,
-        children: ["/Project1/home1/user1", "/Project1/home1/user2"],
+        children: ["/Demo Project/custom/main.dc"],
       },
-      "/Project1/home1/user1": {
-        index: "/Project1/home1/user1",
-        data: { name: "user1", folder: true, artefact: false },
-        isFolder: true,
-        children: ["/Project1/home1/user1/file1.txt"],
-      },
-      "/Project1/home1/user1/file1.txt": {
-        index: "/Project1/home1/user1/file1.txt",
+      "/Demo Project/custom/main.dc": {
+        index: "/Demo Project/custom/main.dc",
         data: {
-          name: "file1.txt",
+          name: "main.dc",
           folder: false,
           artefact: false,
           unsaved: true,
@@ -89,52 +81,6 @@ const filesystemSlice = createSlice({
         isFolder: false,
         children: [],
       },
-      "/Project1/home1/user2": {
-        index: "/Project1/home1/user2",
-        data: { name: "user2", folder: true, artefact: false },
-        isFolder: true,
-        children: [],
-      },
-      "/Project1/home": {
-        index: "/Project1/home",
-        data: { name: "home", folder: true, artefact: false },
-        isFolder: true,
-        children: ["/Project1/home/user1", "/Project1/home/user2"],
-      },
-      "/Project1/home/user1": {
-        index: "/Project1/home/user1",
-        data: { name: "user1", folder: true, artefact: false },
-        isFolder: true,
-        children: [
-          "/Project1/home/user1/file1.txt",
-          "/Project1/home/user1/file2.txt",
-          "/Project1/home/user1/file3.txt",
-        ],
-      },
-      "/Project1/home/user1/file1.txt": {
-        index: "/Project1/home/user1/file1.txt",
-        data: { name: "file1.txt", folder: false, artefact: true },
-        isFolder: false,
-        children: [],
-      },
-      "/Project1/home/user1/file2.txt": {
-        index: "/Project1/home/user1/file2.txt",
-        data: { name: "file2.txt", folder: false, artefact: false },
-        isFolder: false,
-        children: [],
-      },
-      "/Project1/home/user1/file3.txt": {
-        index: "/Project1/home/user1/file3.txt",
-        data: { name: "file3.txt", folder: false, artefact: false },
-        isFolder: false,
-        children: [],
-      },
-      "/Project1/home/user2": {
-        index: "/Project1/home/user2",
-        data: { name: "user2", folder: true, artefact: false },
-        isFolder: true,
-        children: [],
-      },
     },
     focusedItem: null,
     selectedItems: [],
@@ -151,8 +97,7 @@ const filesystemSlice = createSlice({
      * that will be displayed on the workspace area.
      */
     openFiles: [
-      { fileIndex: "/Project1/home1/user1/file1.txt", firstOpenedAt: 0 },
-      { fileIndex: "/Project1/home/user1/file3.txt", firstOpenedAt: 1 },
+      { fileIndex: "/Demo Project/custom/main.dc", firstOpenedAt: 0 },
     ],
   },
   reducers: {
@@ -237,7 +182,8 @@ const filesystemSlice = createSlice({
     },
     /**
      * Takes the file whose `fileIndex` is provided in the payload, and sets it as active, i.e.,
-     * brings it to the front of openFiles array.
+     * brings it to the front of openFiles array. The provided file need not already be opened. In
+     * that case, the file will be prepended to the openFiles array.
      */
     setActiveFile(state, action) {
       const idx = findIndex(state.openFiles, (element) => {
