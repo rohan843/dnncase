@@ -7,7 +7,7 @@ function FilesystemTopBar() {
     <div className="flex flex-row items-center justify-between w-full h-8 border-bottom-darker select-none">
       <div className="flex flex-row items-center h-full">
         <ProjectIcon />
-        <ProjectTitle title="Project1" />
+        <ProjectTitle title="Demo Project" />
       </div>
       <ProjectButtons />
     </div>
