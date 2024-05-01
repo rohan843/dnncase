@@ -18,10 +18,10 @@ function App() {
       className="h-full w-screen background-light"
       onClickCapture={handleClickCapture}
     >
-      {/* <TopBar />
+      <TopBar />
       <MainScreen />
-      <BottomBar /> */}
-      <DataVariableOut content="hp_units"></DataVariableOut>
+      <BottomBar />
+      {/* <DataVariableOut content="hp_units"></DataVariableOut> */}
 
     </div>
   );
