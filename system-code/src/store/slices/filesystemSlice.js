@@ -277,7 +277,7 @@ const filesystemSlice = createSlice({
           artefact: false,
           unsaved: true,
           filetype: "dc",
-          artefacttype: "ModelClassifierType",
+          artefacttype: "ModelCompilerType",
           nodes: [],
           edges: [],
         },
@@ -334,9 +334,9 @@ const filesystemSlice = createSlice({
         data: { name: "custom", folder: true, artefact: true },
         isFolder: true,
         children: [
+          "/Demo Project/custom/ClassifierModel.dc",
+          "/Demo Project/custom/CompiledModel.dc",
           "/Demo Project/custom/main.dc",
-          "/Demo Project/custom/secondary.dc",
-          "/Demo Project/custom/tertiary.dc",
         ],
       },
       "/Demo Project/custom/main.dc": {
@@ -347,6 +347,7 @@ const filesystemSlice = createSlice({
           artefact: false,
           unsaved: true,
           filetype: "dc",
+          artefacttype: "ArtefactType",
           nodes: [
             {
               id: "1",
@@ -384,14 +385,15 @@ const filesystemSlice = createSlice({
         isFolder: false,
         children: [],
       },
-      "/Demo Project/custom/secondary.dc": {
-        index: "/Demo Project/custom/secondary.dc",
+      "/Demo Project/custom/CompiledModel.dc": {
+        index: "/Demo Project/custom/CompiledModel.dc",
         data: {
-          name: "secondary.dc",
+          name: "CompiledModel.dc",
           folder: false,
           artefact: false,
           unsaved: true,
           filetype: "dc",
+          artefacttype: "ModelCompilerType",
           nodes: [
             {
               id: "1",
@@ -409,14 +411,15 @@ const filesystemSlice = createSlice({
         isFolder: false,
         children: [],
       },
-      "/Demo Project/custom/tertiary.dc": {
-        index: "/Demo Project/custom/tertiary.dc",
+      "/Demo Project/custom/ClassifierModel.dc": {
+        index: "/Demo Project/custom/ClassifierModel.dc",
         data: {
-          name: "tertiary.dc",
+          name: "ClassifierModel.dc",
           folder: false,
           artefact: false,
           unsaved: true,
           filetype: "dc",
+          artefacttype: "ModelArchitectureType",
           nodes: [],
           edges: [],
         },
