@@ -4,288 +4,6 @@ const jsonObject={
     "artefacts": [
         {
     "artefactMetadata": {
-        "name": "Compiled Classifier Model",
-        "artefactType": "ModelArchitectureType"
-    },
-    "nodes": [
-        {
-            "id": "1",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "ClassiferModel",
-            "sourceArtefact":"ClassifierModelArtefact"
-        },
-        {
-            "id": "2",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "RawData"
-        },
-        {
-            "id": "3",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "GetTunableFromList"
-            
-        },
-        {
-            "id": "4",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "RawData"
-        },
-        {
-            "id": "5",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "RawData"            
-        }
-        ,
-        {
-            "id": "6",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "GenerateAdamOptimizer"
-        },
-        {
-            "id": "7",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "CompileModel"
-        },
-        {
-            "id": "8",
-            "nodeType": "OutputNode",
-            "name": "CompiledModel"            
-        }
-    ],
-    "edges": [
-        {
-            "label": "",
-            "sourceNodeID": "1",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "7",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "2",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "3",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "3",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "6",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "4",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "7",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "5",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "7",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "6",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "7",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "7",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "8",
-            "targetNodeHandleID": "in"
-        }
-    ]
-},
-{
-    "artefactMetadata": {
-        "name": "ClassifierModelArtefact",
-        "artefactType": "ModelArchitectureType"
-    },
-    "nodes": [
-        {
-            "id": "1",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "GetTunableInt"
-            
-        },
-        {
-            "id": "2",
-            "nodeType": "DataVariableNode",
-            "nodeSubtype": "Input",
-            "name": "hp_units"
-        },
-        {
-            "id": "3",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "GetTunableInt"
-            
-        },
-        {
-            "id": "4",
-            "nodeType": "DataVariableNode",
-            "nodeSubtype": "Input",
-            "name": "hp_layers"
-        },
-        {
-            "id": "5",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "Input"
-            
-        }
-        ,
-        {
-            "id": "6",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "Flatten"
-        },
-        {
-            "id": "7",
-            "nodeType": "DataVariableNode",
-            "nodeSubtype": "Output",
-            "name": "hp_units"
-        },
-        {
-            "id": "8",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "CreateAndApplyDenseLayer"
-            
-        },
-        {
-            "id": "9",
-            "nodeType": "DataVariableNode",
-            "nodeSubtype": "Output",
-            "name": "hp_units"
-        },
-        {
-            "id": "10",
-            "nodeType": "PackerNode",
-            "nodeSubtype": "NamedPacker"
-            
-        },
-        {
-            "id": "11",
-            "nodeType": "DataVariableNode",
-            "nodeSubtype": "Output",
-            "name": "hp_units"
-        },
-        {
-            "id": "12",
-            "nodeType": "Loop",
-            "nodeSubtype": "RepeatLoopNode",
-            "innerArtefact": "tmp1"
-        },
-        {
-            "id": "13",
-            "nodeType": "UnpackerNode",
-            "nodeSubtype": "NamedUnpacker"
-        },
-        {
-            "id": "14",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "CreateAndApplyDenseLayer"
-        },
-        {
-            "id": "15",
-            "nodeType": "FunctionNode",
-            "nodeSubtype": "Output"
-        }
-    ],
-    "edges": [
-        {
-            "label": "",
-            "sourceNodeID": "1",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "2",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "3",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "4",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "5",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "6",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "7",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "8",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "6",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "8",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "hp_units",
-            "sourceNodeID": "9",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "10",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "payload",
-            "sourceNodeID": "8",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "10",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "10",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "12",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "11",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "12",
-            "targetNodeHandleID": "iterationCount"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "12",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "13",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "payload",
-            "sourceNodeID": "13",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "14",
-            "targetNodeHandleID": "in"
-        },
-        {
-            "label": "",
-            "sourceNodeID": "14",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "15",
-            "targetNodeHandleID": "in"
-        }
-    ]
-},{
-    "artefactMetadata": {
         "name": "tmp1",
         "artefactType": "ArtefactType"
     },
@@ -570,13 +288,13 @@ function generateCode(jsonObject) {
     // console.log(artefactIdMapping)
     // console.log(nodeOutputEdgeMap)
     // console.log(nodeInputEdgeMap)
-    console.log(artefactOutDegreeCnt)
+    // console.log(artefactOutDegreeCnt)
     //Creating a DAG for the artefacts
 
     const graph = new Map();
     createGraph(jsonObject,artefactIdMapping,graph);
 
-   //console.log(graph);
+  // console.log(graph);
 
    // Now we start topological sorting
 
@@ -592,11 +310,21 @@ function generateCode(jsonObject) {
         dfs(key,graph,stack,visited);
    }
 
-   const artefactOrder=[];
+   const artefactOrder=[0];
    while(stack.length>0){
     artefactOrder.push(stack.pop());
    }
+   //console.log(artefactOrder)
+   for(let i=0;i<artefactOrder.length;i++){
+      for(const [key,value] of nodeInputEdgeMap.get(artefactOrder[i])){
+         if(value.length===0){
+            //outdegreeCnt=artefactOutDegreeCnt.get(artefactOrder[i])
+            code_gen_dfs(artefactOrder[i],key,"",idToArtefact,artefactNodesInfo,nodeOutputEdgeMap,nodeInputEdgeMap,nodeInputList,1)
+        }
+    }
+   }
 
+   console.log(gen_code)
    //console.log(artefactOrder);
 
 
@@ -607,12 +335,13 @@ function code_gen_dfs(artefact_id,curr_node_id,edge_variable,idToArtefact,artefa
      if(outDegCnt==0){
         return;
      }
-     if(nodeInputEdgeMap.get(curr_node_id).length>0){
+     if(nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length>0){
         nodeInputList.get(artefact_id).get(curr_node_id).push(edge_variable)
      }
-     if(nodeInputEdgeMap.get(curr_node_id).length === nodeInputList.get(artefact_id).get(curr_node_id)){
+     console.log("hello1")
+     if(nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length === nodeInputList.get(artefact_id).get(curr_node_id)){
         // generate code
-
+        console.log("hello1")
         let nodeType = artefactNodesInfo.get(artefact_id).get(curr_node_id)[0]
         let nodeSubtype = artefactNodesInfo.get(artefact_id).get(curr_node_id)[1]
 
@@ -641,7 +370,8 @@ function code_gen_dfs(artefact_id,curr_node_id,edge_variable,idToArtefact,artefa
 
 
             }else{
-                outDegCnt--;
+                console.log("hello1")
+                //outDegCnt--;
                 return
             }
         
