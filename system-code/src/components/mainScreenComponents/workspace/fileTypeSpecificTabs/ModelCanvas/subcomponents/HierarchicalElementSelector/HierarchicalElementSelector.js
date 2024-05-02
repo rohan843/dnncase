@@ -1,5 +1,4 @@
 import HierarchicalDisplay from "./HierarchicalDisplay";
-import TopOptionsBar from "./TopOptionsBar";
 import { useImmer } from "use-immer";
 import { cloneDeep } from "lodash";
 
@@ -33,11 +32,11 @@ function HierarchicalElementSelector({ options, show, onSelect, contents }) {
   if (!show) return null;
   return (
     <div className="border-top-darker border-right-darker border-left-darker rounded w-[95%] h-max mb-1">
-      <TopOptionsBar
+      {/* <TopOptionsBar
         options={options}
         optionsState={optionsState}
         setOptionsState={setOptionsState}
-      />
+      /> */}
       <HierarchicalDisplay
         onSelect={(elementID) => {
           onSelect(elementID, cloneDeep(optionsState));

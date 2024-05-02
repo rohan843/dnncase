@@ -6,8 +6,8 @@ import GraphCanvas from "./GraphCanvas";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import {
-  setValueAtPath,
-  setValuesAtPaths,
+  setActiveFileConfigValue,
+  setActiveFileConfigValues,
   setFileValue,
 } from "../../../../../store";
 import {
@@ -101,7 +101,7 @@ function ModelCanvas({ activeFileIndex }) {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const [newEdgesData, setNewEdgesData] = useState({});
 
@@ -118,7 +118,8 @@ function ModelCanvas({ activeFileIndex }) {
     (store) => store.filesystem.fsState[activeFileIndex]
   );
   const layers = useSelector((store) => store.artefacts.layers);
-  const config = useSelector((store) => store.viewConfig[activeFileIndex]);
+
+  const config = useSelector((store) => store.filesystem.openFiles)[0].config;
 
   if (!config || !fileData || !layers) {
     // TODO: Add code here to setup config to a value from backend (default config for this file type).
@@ -126,6 +127,7 @@ function ModelCanvas({ activeFileIndex }) {
   }
 
   const activeFileType = fileData.data.filetype;
+  const activeArtefactType = fileData.data.artefacttype;
   if (!permissibleFileTypes[activeFileType]) return null;
 
   const nodes = fileData.data.nodes;
@@ -163,11 +165,11 @@ function ModelCanvas({ activeFileIndex }) {
 
   function openModal(newEdgeData) {
     setModalIsOpen(true);
-    setNewEdgesData(newEdgesData=>({
-      ...newEdgeData
+    setNewEdgesData((newEdgesData) => ({
+      ...newEdgeData,
     }));
   }
-  
+
   function closeModal() {
     setModalIsOpen(false);
     onEdgeCreation(newEdgesData);
@@ -191,7 +193,7 @@ function ModelCanvas({ activeFileIndex }) {
           sourceHandle: newEdgeData.sourceHandle,
           target: newEdgeData.target,
           targetHandle: newEdgeData.targetHandle,
-          label:inputValue
+          label: inputValue,
         },
       ]);
   };
@@ -200,10 +202,10 @@ function ModelCanvas({ activeFileIndex }) {
   const activeNodeID = config.activeNodeID;
   const activeNodeIndex = findIndex(nodes, (node) => node.id === activeNodeID);
   const activeNode = nodes[activeNodeIndex];
-  function getRightPaneContents(node, fileType) {
+  function getRightPaneContents(node, artefactType) {
     // TODO: Packer, Unpacker
     if (!node) {
-      return <Title show innerText={`${fileType.toUpperCase()} File`} />;
+      return <Title show innerText={`${artefactType} File`} />;
     } else if (node.type === "LayerNode") {
       return (
         <>
@@ -265,7 +267,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -279,7 +281,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -294,7 +296,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -443,7 +445,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -457,7 +459,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -472,7 +474,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -654,7 +656,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -668,7 +670,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -683,7 +685,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -832,7 +834,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -846,7 +848,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -861,7 +863,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -1012,7 +1014,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -1026,7 +1028,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -1041,7 +1043,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -1190,7 +1192,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -1204,7 +1206,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -1219,7 +1221,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -1309,7 +1311,10 @@ function ModelCanvas({ activeFileIndex }) {
       );
     }
   }
-  const rightPaneContents = getRightPaneContents(activeNode, activeFileType);
+  const rightPaneContents = getRightPaneContents(
+    activeNode,
+    activeArtefactType || activeFileType
+  );
 
   return (
     <div className="h-full w-full background-lighter relative overflow-hidden">
@@ -1320,7 +1325,7 @@ function ModelCanvas({ activeFileIndex }) {
           const deepCopyOfNode = cloneDeep(node);
           deepCopyOfNode.data.onActivate = () => {
             dispatch(
-              setValueAtPath({
+              setActiveFileConfigValue({
                 fileIndex: activeFileIndex,
                 path: ["activeNodeID"],
                 value: deepCopyOfNode.id,
@@ -1329,7 +1334,7 @@ function ModelCanvas({ activeFileIndex }) {
           };
           deepCopyOfNode.data.onActivateAndShowInPane = () => {
             dispatch(
-              setValuesAtPaths({
+              setActiveFileConfigValues({
                 fileIndex: activeFileIndex,
                 editPoints: [
                   {
@@ -1396,7 +1401,7 @@ function ModelCanvas({ activeFileIndex }) {
         onEdgeCreation={openModal}
         onViewportChange={(viewport) => {
           dispatch(
-            setValueAtPath({
+            setActiveFileConfigValue({
               fileIndex: activeFileIndex,
               path: ["graphCanvas", "viewport"],
               value: viewport,
@@ -1408,7 +1413,7 @@ function ModelCanvas({ activeFileIndex }) {
         open={config.leftPaneOpen}
         onOpen={() => {
           dispatch(
-            setValueAtPath({
+            setActiveFileConfigValue({
               fileIndex: activeFileIndex,
               path: ["leftPaneOpen"],
               value: true,
@@ -1417,7 +1422,7 @@ function ModelCanvas({ activeFileIndex }) {
         }}
         onClose={() => {
           dispatch(
-            setValueAtPath({
+            setActiveFileConfigValue({
               fileIndex: activeFileIndex,
               path: ["leftPaneOpen"],
               value: false,
@@ -1430,7 +1435,7 @@ function ModelCanvas({ activeFileIndex }) {
           innerText="Layers"
           onClick={() => {
             dispatch(
-              setValueAtPath({
+              setActiveFileConfigValue({
                 fileIndex: activeFileIndex,
                 path: ["leftPane", "layerSelector", "show"],
                 value: !config.leftPane.layerSelector.show,
@@ -1543,14 +1548,14 @@ function ModelCanvas({ activeFileIndex }) {
         />
         <H1Button
           show
-          innerText="Add a Packer"
+          innerText="Add a Named Packer"
           onClick={() => {
             setNodes([
               ...nodes,
               {
                 id: getNodeId("PackerNode"),
                 position: currentViewport,
-                type: "PackerNode",
+                type: "NamedPackerNode",
                 data: {
                   hyperparams: [{ id: "packingCount", value: 2 }],
                   commentText: "",
@@ -1562,14 +1567,14 @@ function ModelCanvas({ activeFileIndex }) {
         />
         <H1Button
           show
-          innerText="Add an Unpacker"
+          innerText="Add an Named Unpacker"
           onClick={() => {
             setNodes([
               ...nodes,
               {
                 id: getNodeId("UnpackerNode"),
                 position: currentViewport,
-                type: "UnpackerNode",
+                type: "NamedUnpackerNode",
                 data: {
                   hyperparams: [{ id: "unpackingCount", value: 2 }],
                   commentText: "",
@@ -1604,7 +1609,7 @@ function ModelCanvas({ activeFileIndex }) {
         open={config.rightPaneOpen}
         onOpen={() => {
           dispatch(
-            setValueAtPath({
+            setActiveFileConfigValue({
               fileIndex: activeFileIndex,
               path: ["rightPaneOpen"],
               value: true,
@@ -1613,7 +1618,7 @@ function ModelCanvas({ activeFileIndex }) {
         }}
         onClose={() => {
           dispatch(
-            setValueAtPath({
+            setActiveFileConfigValue({
               fileIndex: activeFileIndex,
               path: ["rightPaneOpen"],
               value: false,
@@ -1626,19 +1631,19 @@ function ModelCanvas({ activeFileIndex }) {
       <div className="modal" id="modal">
         {modalIsOpen && (
           <div className="modal-overlay">
-          <div className="modal-content">
-            <h2>Enter Edge Label</h2>
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              placeholder="Enter edge label"
-            />
-            <button onClick={handleSubmit}>OK</button>
+            <div className="modal-content">
+              <h2>Enter Edge Label</h2>
+              <input
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+                placeholder="Enter edge label"
+              />
+              <button onClick={handleSubmit}>OK</button>
+            </div>
           </div>
-        </div>
         )}
-    </div>
+      </div>
     </div>
   );
 }
