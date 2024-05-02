@@ -14,6 +14,8 @@ function App() {
       <TopBar />
       <MainScreen />
       <BottomBar />
+      {/* <DataVariableOut content="hp_units"></DataVariableOut> */}
+
     </div>
   );
 }
