@@ -1,5 +1,4 @@
 import HierarchicalDisplay from "./HierarchicalDisplay";
-import TopOptionsBar from "./TopOptionsBar";
 import { useImmer } from "use-immer";
 import { cloneDeep } from "lodash";
 

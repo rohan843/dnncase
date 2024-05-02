@@ -237,7 +237,6 @@ const filesystemSlice = createSlice({
      * that case, the file will be prepended to the openFiles array.
      */
     setActiveFile(state, action) {
-      // TODO
       const idx = findIndex(state.openFiles, (element) => {
         return element.fileIndex === action.payload;
       });
