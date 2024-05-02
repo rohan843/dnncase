@@ -1,6 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { findIndex, set } from "lodash";
 
+function getDefaultFileConfigForType(filetype) {
+  if (filetype === "dc") {
+    return {
+      leftPaneOpen: false,
+      rightPaneOpen: false,
+      activeNodeID: null,
+      leftPane: {
+        layerSelector: {
+          show: true,
+        },
+      },
+      rightPane: {
+        hyperparamKeyValueInput: {
+          enableNewKeyValueInput: false,
+        },
+      },
+      graphCanvas: {
+        viewport: { x: 0, y: 0, zoom: 1 },
+      },
+    };
+  } else {
+    return {};
+  }
+}
+
 const filesystemSlice = createSlice({
   name: "filesystem",
   initialState: {
@@ -97,7 +122,28 @@ const filesystemSlice = createSlice({
      * that will be displayed on the workspace area.
      */
     openFiles: [
-      { fileIndex: "/Demo Project/custom/main.dc", firstOpenedAt: 0 },
+      {
+        fileIndex: "/Demo Project/custom/main.dc",
+        firstOpenedAt: 0,
+        config: {
+          leftPaneOpen: false,
+          rightPaneOpen: false,
+          activeNodeID: null,
+          leftPane: {
+            layerSelector: {
+              show: true,
+            },
+          },
+          rightPane: {
+            hyperparamKeyValueInput: {
+              enableNewKeyValueInput: false,
+            },
+          },
+          graphCanvas: {
+            viewport: { x: 0, y: 0, zoom: 1 },
+          },
+        },
+      },
     ],
   },
   reducers: {
@@ -158,9 +204,14 @@ const filesystemSlice = createSlice({
         return element.fileIndex === action.payload;
       });
       if (idx === -1) {
+        const fileIndex = action.payload;
+        let config = getDefaultFileConfigForType(
+          state.fsState[fileIndex].data.filetype
+        );
         state.openFiles.push({
-          fileIndex: action.payload,
+          fileIndex,
           firstOpenedAt: state.openFiles.length,
+          config,
         });
       }
     },
@@ -186,18 +237,19 @@ const filesystemSlice = createSlice({
      * that case, the file will be prepended to the openFiles array.
      */
     setActiveFile(state, action) {
+      // TODO
       const idx = findIndex(state.openFiles, (element) => {
         return element.fileIndex === action.payload;
       });
       const activeFileElement = {
         fileIndex: action.payload,
         firstOpenedAt: state.openFiles.length,
+        config: getDefaultFileConfigForType("dc"),
       };
       if (idx !== -1) {
-        activeFileElement.firstOpenedAt = state.openFiles.splice(
-          idx,
-          1
-        )[0].firstOpenedAt;
+        const prevElement = state.openFiles.splice(idx, 1)[0];
+        activeFileElement.firstOpenedAt = prevElement.firstOpenedAt;
+        activeFileElement.config = prevElement.config;
       }
       state.openFiles.unshift(activeFileElement);
     },
@@ -220,6 +272,14 @@ const filesystemSlice = createSlice({
         action.payload.path,
         action.payload.value
       );
+    },
+    setActiveFileConfigValue(state, action) {
+      set(state.openFiles[0].config, action.payload.path, action.payload.value);
+    },
+    setActiveFileConfigValues(state, action) {
+      for (let editPoint of action.payload.editPoints) {
+        set(state.openFiles[0].config, editPoint.path, editPoint.value);
+      }
     },
   },
 });
@@ -244,5 +304,7 @@ export const {
   setFocusedItem,
   setFsState,
   setFileValue,
+  setActiveFileConfigValue,
+  setActiveFileConfigValues,
 } = filesystemSlice.actions;
 export const filesystemReducer = filesystemSlice.reducer;

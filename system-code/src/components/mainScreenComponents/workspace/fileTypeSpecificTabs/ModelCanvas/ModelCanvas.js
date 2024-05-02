@@ -5,8 +5,8 @@ import LeftPane from "./LeftPane";
 import GraphCanvas from "./GraphCanvas";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setValueAtPath,
-  setValuesAtPaths,
+  setActiveFileConfigValue,
+  setActiveFileConfigValues,
   setFileValue,
 } from "../../../../../store";
 import {
@@ -103,7 +103,8 @@ function ModelCanvas({ activeFileIndex }) {
     (store) => store.filesystem.fsState[activeFileIndex]
   );
   const layers = useSelector((store) => store.artefacts.layers);
-  const config = useSelector((store) => store.viewConfig[activeFileIndex]);
+  
+  const config = useSelector(store => store.filesystem.openFiles)[0].config;
 
   if (!config || !fileData || !layers) {
     // TODO: Add code here to setup config to a value from backend (default config for this file type).
@@ -237,7 +238,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -251,7 +252,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -266,7 +267,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -415,7 +416,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -429,7 +430,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -444,7 +445,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -626,7 +627,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -640,7 +641,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -655,7 +656,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -804,7 +805,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -818,7 +819,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -833,7 +834,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -984,7 +985,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -998,7 +999,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -1013,7 +1014,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -1162,7 +1163,7 @@ function ModelCanvas({ activeFileIndex }) {
                 })
               );
               dispatch(
-                setValueAtPath({
+                setActiveFileConfigValue({
                   fileIndex: activeFileIndex,
                   path: [
                     "rightPane",
@@ -1176,7 +1177,7 @@ function ModelCanvas({ activeFileIndex }) {
             onCancel={() => {
               config.rightPane.hyperparamKeyValueInput.enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -1191,7 +1192,7 @@ function ModelCanvas({ activeFileIndex }) {
               !config.rightPane.hyperparamKeyValueInput
                 .enableNewKeyValueInput &&
                 dispatch(
-                  setValueAtPath({
+                  setActiveFileConfigValue({
                     fileIndex: activeFileIndex,
                     path: [
                       "rightPane",
@@ -1292,7 +1293,7 @@ function ModelCanvas({ activeFileIndex }) {
           const deepCopyOfNode = cloneDeep(node);
           deepCopyOfNode.data.onActivate = () => {
             dispatch(
-              setValueAtPath({
+              setActiveFileConfigValue({
                 fileIndex: activeFileIndex,
                 path: ["activeNodeID"],
                 value: deepCopyOfNode.id,
@@ -1301,7 +1302,7 @@ function ModelCanvas({ activeFileIndex }) {
           };
           deepCopyOfNode.data.onActivateAndShowInPane = () => {
             dispatch(
-              setValuesAtPaths({
+              setActiveFileConfigValues({
                 fileIndex: activeFileIndex,
                 editPoints: [
                   {
@@ -1368,7 +1369,7 @@ function ModelCanvas({ activeFileIndex }) {
         onEdgeCreation={onEdgeCreation}
         onViewportChange={(viewport) => {
           dispatch(
-            setValueAtPath({
+            setActiveFileConfigValue({
               fileIndex: activeFileIndex,
               path: ["graphCanvas", "viewport"],
               value: viewport,
@@ -1380,7 +1381,7 @@ function ModelCanvas({ activeFileIndex }) {
         open={config.leftPaneOpen}
         onOpen={() => {
           dispatch(
-            setValueAtPath({
+            setActiveFileConfigValue({
               fileIndex: activeFileIndex,
               path: ["leftPaneOpen"],
               value: true,
@@ -1389,7 +1390,7 @@ function ModelCanvas({ activeFileIndex }) {
         }}
         onClose={() => {
           dispatch(
-            setValueAtPath({
+            setActiveFileConfigValue({
               fileIndex: activeFileIndex,
               path: ["leftPaneOpen"],
               value: false,
@@ -1402,7 +1403,7 @@ function ModelCanvas({ activeFileIndex }) {
           innerText="Layers"
           onClick={() => {
             dispatch(
-              setValueAtPath({
+              setActiveFileConfigValue({
                 fileIndex: activeFileIndex,
                 path: ["leftPane", "layerSelector", "show"],
                 value: !config.leftPane.layerSelector.show,
@@ -1576,7 +1577,7 @@ function ModelCanvas({ activeFileIndex }) {
         open={config.rightPaneOpen}
         onOpen={() => {
           dispatch(
-            setValueAtPath({
+            setActiveFileConfigValue({
               fileIndex: activeFileIndex,
               path: ["rightPaneOpen"],
               value: true,
@@ -1585,7 +1586,7 @@ function ModelCanvas({ activeFileIndex }) {
         }}
         onClose={() => {
           dispatch(
-            setValueAtPath({
+            setActiveFileConfigValue({
               fileIndex: activeFileIndex,
               path: ["rightPaneOpen"],
               value: false,
