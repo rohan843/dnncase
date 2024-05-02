@@ -1543,14 +1543,14 @@ function ModelCanvas({ activeFileIndex }) {
         />
         <H1Button
           show
-          innerText="Add a Packer"
+          innerText="Add a Named Packer"
           onClick={() => {
             setNodes([
               ...nodes,
               {
                 id: getNodeId("PackerNode"),
                 position: currentViewport,
-                type: "PackerNode",
+                type: "NamedPackerNode",
                 data: {
                   hyperparams: [{ id: "packingCount", value: 2 }],
                   commentText: "",
@@ -1562,14 +1562,14 @@ function ModelCanvas({ activeFileIndex }) {
         />
         <H1Button
           show
-          innerText="Add an Unpacker"
+          innerText="Add an Named Unpacker"
           onClick={() => {
             setNodes([
               ...nodes,
               {
                 id: getNodeId("UnpackerNode"),
                 position: currentViewport,
-                type: "UnpackerNode",
+                type: "NamedUnpackerNode",
                 data: {
                   hyperparams: [{ id: "unpackingCount", value: 2 }],
                   commentText: "",

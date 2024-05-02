@@ -7,6 +7,8 @@ import CommentNode from "./CommentNode";
 import ReuseNode from "./ReuseNode";
 import NamedPackerNode from "./NamedPackerNode";
 import NamedUnpackerNode from "./NamedUnpackerNode";
+import Input from "./Input";
+import Output from "./output";
 
 export {
   LayerNode,
@@ -18,4 +20,6 @@ export {
   ReuseNode,
   NamedPackerNode,
   NamedUnpackerNode,
+  Input,
+  Output
 };

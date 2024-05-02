@@ -12,7 +12,6 @@ function App() {
       onClickCapture={handleClickCapture}
     >
       <TopBar />
-      <TopBar />
       <MainScreen />
       <BottomBar />
       {/* <DataVariableOut content="hp_units"></DataVariableOut> */}
