@@ -12,10 +12,14 @@ import Output from "./Output";
 import CallBackNode from "./CallBackNode";
 import RawDataInputNode from "./RawDataInputNode";
 import ArtefactImporterNode from "./ArtefactImporterNode";
+import RepeatLoop from "./RepeatLoop";
+import ForInLoop from "./ForInLoop";
 
 export {
   ArtefactImporterNode,
   FunctionNode as LayerNode,
+  ForInLoop,
+  RepeatLoop,
   RawDataInputNode,
   InputNode,
   OutputNode,
