@@ -1449,8 +1449,12 @@ function ModelCanvas({ activeFileIndex }) {
           show={config.leftPane.layerSelector.show}
           options={[
             {
-              id: "reusable",
-              label: "apply reuse block",
+              id: "repeat-loop",
+              label: "wrap node in a repeat loop",
+            },
+            {
+              id: "for-in-loop",
+              label: "wrap node in a for-in loop",
             },
           ]}
           contents={hierarchicalLayersFormat}
