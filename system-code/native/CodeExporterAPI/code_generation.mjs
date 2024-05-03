@@ -4,55 +4,69 @@ const jsonObject={
     "artefacts": [
         {
     "artefactMetadata": {
-        "name": "tmp1",
+        "name": "Constants",
         "artefactType": "ArtefactType"
     },
     "nodes": [
         {
             "id": "1",
-            "nodeType": "InputNode",
-            "name": "hp_units"
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "RawData"
             
         }, 
         {
             "id": "2",
-            "nodeType": "InputNode",
-            "name": "payload"
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "RawData"
             
-        },
-         {
+        }, 
+        {
             "id": "3",
             "nodeType": "FunctionNode",
-            "nodeSubtype": "CreateAndApplyDenseLayer"
+            "nodeSubtype": "RawData"
             
-        },
+        }, 
+       
         {
             "id": "4",
             "nodeType": "OutputNode",
-            "name": "Payload"
+            "name": "Batch_Size"
             
-        }
+        },
+        {
+            "id": "5",
+            "nodeType": "OutputNode",
+            "name": "EPOCHS"
+            
+        },
+        {
+            "id": "6",
+            "nodeType": "OutputNode",
+            "name": "noise_dim"
+            
+        },
+
     ],
     "edges": [
         {
             "label": "",
             "sourceNodeID": "1",
             "sourceNodeHandleID": "out",
-            "targetNodeID": "3",
+            "targetNodeID": "4",
             "targetNodeHandleID": "in"
         },
         {
             "label": "",
             "sourceNodeID": "2",
             "sourceNodeHandleID": "out",
-            "targetNodeID": "3",
+            "targetNodeID": "5",
             "targetNodeHandleID": "in"
         },
         {
             "label": "",
             "sourceNodeID": "3",
             "sourceNodeHandleID": "out",
-            "targetNodeID": "4",
+            "targetNodeID": "6",
             "targetNodeHandleID": "in"
         }
     ]
@@ -78,7 +92,7 @@ const codeGenFuncs = {
         return{
             "imports": ["from keras.layers import Dense"],
             "execution": "",
-            "return": `Dense(${params["units"]})(${params["payload"]})`
+            "return": `Dense(${params["hp_units"]})(${params["payload"]})`
         }
     
     }
@@ -120,7 +134,7 @@ const codeGenFuncs = {
         return{
             "imports": [],
             "execution": "",
-            "return":  params["inp"]
+            "return":  [1,2,3,4]
     
         }
     }
@@ -268,7 +282,7 @@ const codeGenFuncs = {
 
 }
 let dnn_temp_id =0;
-let gen_code=""
+let gen_code="";
 
 
 function generateCode(jsonObject) {
@@ -276,7 +290,7 @@ function generateCode(jsonObject) {
     // mapping is done to give id to each artefact
     const artefactIdMapping = new Map();
     const idToArtefact = new Map()
-    const artefactNodesInfo = new Map(); // artefactId -> nodeId -> [nodeType,nodeSubtype,source/innerArtefact,name] ... if codn false then their name is not in array
+    const artefactNodesInfo = new Map(); // artefactId -> nodeId -> [nodeType,nodeSubtype,source/innerArtefact,name,nodeData] ... if codn false then their name is not in array
     const nodeOutputEdgeMap = new Map()
     const nodeInputEdgeMap = new Map();
     const nodeInputList = new Map();
@@ -316,14 +330,27 @@ function generateCode(jsonObject) {
    }
    //console.log(artefactOrder)
    for(let i=0;i<artefactOrder.length;i++){
+     let out_list={}
       for(const [key,value] of nodeInputEdgeMap.get(artefactOrder[i])){
          if(value.length===0){
             //outdegreeCnt=artefactOutDegreeCnt.get(artefactOrder[i])
-            code_gen_dfs(artefactOrder[i],key,"",idToArtefact,artefactNodesInfo,nodeOutputEdgeMap,nodeInputEdgeMap,nodeInputList,1)
+            code_gen_dfs(artefactOrder[i],key,"",idToArtefact,artefactNodesInfo,nodeOutputEdgeMap,nodeInputEdgeMap,nodeInputList,5,out_list)
+           
         }
     }
-   }
+    //console.log(out_list)
+     if(Object.keys(out_list).length>0){
+       // console.log("outlist")
+       let s =""
+        for(const key in out_list){
+            s= s+ key + ":" + out_list[key] +",\n"
+        }
 
+        
+        gen_code=gen_code.concat(`return{\n${s}}`)
+     }
+   }
+   
    console.log(gen_code)
    //console.log(artefactOrder);
 
@@ -331,47 +358,52 @@ function generateCode(jsonObject) {
 
 }
 
-function code_gen_dfs(artefact_id,curr_node_id,edge_variable,idToArtefact,artefactNodesInfo,nodeOutputEdgeMap,nodeInputEdgeMap,nodeInputList,outDegCnt){
-     if(outDegCnt==0){
-        return;
-     }
+function code_gen_dfs(artefact_id,curr_node_id,edge_variable,idToArtefact,artefactNodesInfo,nodeOutputEdgeMap,nodeInputEdgeMap,nodeInputList,outDegCnt,out_list){
+    //  if(outDegCnt==0){
+    //     return;
+    //  }
+     
      if(nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length>0){
         nodeInputList.get(artefact_id).get(curr_node_id).push(edge_variable)
      }
-     console.log("hello1")
-     if(nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length === nodeInputList.get(artefact_id).get(curr_node_id)){
+     if(nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length === nodeInputList.get(artefact_id).get(curr_node_id).length){
         // generate code
-        console.log("hello1")
+       
         let nodeType = artefactNodesInfo.get(artefact_id).get(curr_node_id)[0]
         let nodeSubtype = artefactNodesInfo.get(artefact_id).get(curr_node_id)[1]
 
         if(nodeType==="FunctionNode"){
-            let nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[-1]
+            let nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4]
             let funcCode = codeGenFuncs[nodeSubtype](nodeData).return
             let dnn_var = dnn_temp_var_id()
-            let str =  `${dnn_var} = ${funcCode}`
-
-            gen_code.append(str +"\n")
-
+            let str =  `${dnn_var} = ${funcCode}\n`
+            
+            gen_code = gen_code.concat("" + str)
+           
             const list =nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)
             if(list.length>0){
 
-                for(const i=0;i<list.length;i++){
-                    if(list[i][-1] != undefined){
-                        let s = list[i][0] + "=" + dnn_var+"["+list[i][-1]+"]"
-                        gen_code.append(s+ "\n") 
+                for(let i=0;i<list.length;i++){
+                    //console.log(typeof list[i][3])
+                    if(list[i][3].length===0){
+                        let s = list[i][0] + "=" + dnn_var+"\n"
+                        
+                        gen_code= gen_code.concat(s) 
+                       
                         
                     }else{
-                        let s = list[i][0] + "=" + dnn_var
-                        gen_code.append(s+ "\n") 
+                        let s = list[i][0] + "=" + dnn_var+"["+list[i][3]+"]\n"
+                        
+                        gen_code = gen_code.concat(s) 
                     }
-                    dfs(artefact_id,list[i][1],list[i][0],idToArtefact,artefactNodesInfo,nodeOutputEdgeMap,nodeInputEdgeMap,nodeInputList,outDegCnt)
+
+                    code_gen_dfs(artefact_id,list[i][1],list[i][0],idToArtefact,artefactNodesInfo,nodeOutputEdgeMap,nodeInputEdgeMap,nodeInputList,outDegCnt,out_list)
                 }
 
 
             }else{
-                console.log("hello1")
-                //outDegCnt--;
+               // console.log("hello1")
+                outDegCnt--;
                 return
             }
         
@@ -381,16 +413,19 @@ function code_gen_dfs(artefact_id,curr_node_id,edge_variable,idToArtefact,artefa
             let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3]
             let dnn_var = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0][0]
             const nxtNodeId = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0][1]
-            artefactNodesInfo.get(artefact_id).get(nxtNodeId)[-1][`${name}`] = dnn_var
+            //console.log(nxtNodeId)
+            //console.log(artefactNodesInfo.get(artefact_id).get(nxtNodeId)[4])
+            artefactNodesInfo.get(artefact_id).get(nxtNodeId)[4][`${name}`] = dnn_var
            
-            let str = dnn_var + `= parmas[${name}]`
-            gen_code.append(str+"\n")
+            let str = dnn_var + `= parmas["${name}"]`
+            
+            gen_code = gen_code.concat(str+"\n")
             
             const list =nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)
             if(list.length>0){
 
-                for(const i=0;i<list.length;i++){
-                    dfs(artefact_id,list[i][1],list[i][0],idToArtefact,artefactNodesInfo,nodeOutputEdgeMap,nodeInputEdgeMap,nodeInputList,outDegCnt)
+                for(let i=0;i<list.length;i++){
+                    code_gen_dfs(artefact_id,list[i][1],list[i][0],idToArtefact,artefactNodesInfo,nodeOutputEdgeMap,nodeInputEdgeMap,nodeInputList,outDegCnt,out_list)
                 }
 
 
@@ -401,12 +436,17 @@ function code_gen_dfs(artefact_id,curr_node_id,edge_variable,idToArtefact,artefa
 
 
             
+        } else if(nodeType="OutputNode"){
+
+            let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3]
+            
+            out_list[`${name}`] = edge_variable
+            
+
+            return;
+
         }
 
-
-        //check if curr not output edge is zero
-
-        // call dfs.
      }else {
         return;
      }
