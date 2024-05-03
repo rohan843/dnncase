@@ -11,8 +11,10 @@ import Input from "./Input";
 import Output from "./Output";
 import CallBackNode from "./CallBackNode";
 import RawDataInputNode from "./RawDataInputNode";
+import ArtefactImporterNode from "./ArtefactImporterNode";
 
 export {
+  ArtefactImporterNode,
   FunctionNode as LayerNode,
   RawDataInputNode,
   InputNode,
