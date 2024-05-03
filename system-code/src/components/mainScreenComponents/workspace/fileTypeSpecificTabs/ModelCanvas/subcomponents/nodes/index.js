@@ -10,9 +10,11 @@ import NamedUnpackerNode from "./NamedUnpackerNode";
 import Input from "./Input";
 import Output from "./Output";
 import CallBackNode from "./CallBackNode";
+import RawDataInputNode from "./RawDataInputNode";
 
 export {
   FunctionNode as LayerNode,
+  RawDataInputNode,
   InputNode,
   OutputNode,
   UnpackerNode,
@@ -23,5 +25,5 @@ export {
   NamedUnpackerNode,
   Input,
   Output,
-  CallBackNode
+  CallBackNode,
 };
