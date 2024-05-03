@@ -1,5 +1,3 @@
-// TODO: Add editing facility for labels.
-
 import layerIcon from "../../../../../../../assets/Fx.png";
 import { Handle, Position } from "reactflow";
 import classNames from "classnames";
