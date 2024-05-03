@@ -1,4 +1,4 @@
-import LayerNode from "./LayerNode";
+import FunctionNode from "./FunctionNode";
 import InputNode from "./InputNode";
 import OutputNode from "./OutputNode";
 import UnpackerNode from "./UnpackerNode";
@@ -12,7 +12,7 @@ import Output from "./Output";
 import CallBackNode from "./CallBackNode";
 
 export {
-  LayerNode,
+  FunctionNode as LayerNode,
   InputNode,
   OutputNode,
   UnpackerNode,

@@ -1,4 +1,4 @@
-import LayerNode from "./LayerNode";
+import FunctionNode from "./FunctionNode";
 import Packer from "../../../../../../../assets/packer.png";
 import unPacker from "../../../../../../../assets/unpacker.png";
 import classNames from "classnames";
@@ -73,7 +73,7 @@ const ReuseNode = (nodeData) => {
       <div className="flex items-center" style={{ padding: "5px" }}>
         <img src={Packer} alt="Packer" className="w-[50px] h-auto" />
       </div>
-      <LayerNode {...nodeData} selected={false} handlesDisabled />
+      <FunctionNode {...nodeData} selected={false} handlesDisabled />
       <div className="flex items-center" style={{ padding: "5px" }}>
         <img src={unPacker} alt="Packer" className="w-[50px] h-auto" />
       </div>
