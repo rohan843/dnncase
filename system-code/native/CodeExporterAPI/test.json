@@ -1,4 +1,4 @@
-{
+ {
     "artefacts": [
         {
     "artefactMetadata": {
@@ -10,7 +10,7 @@
             "id": "1",
             "nodeType": "FunctionNode",
             "nodeSubtype": "ClassiferModel",
-            "sourceArtefact":"ClassiferModelArtefact"
+            "sourceArtefact":"ClassifierModelArtefact"
         },
         {
             "id": "2",
@@ -81,7 +81,7 @@
         },
         {
             "label": "",
-            "sourceNodeID": "6",
+            "sourceNodeID": "5",
             "sourceNodeHandleID": "out",
             "targetNodeID": "7",
             "targetNodeHandleID": "in"
@@ -104,7 +104,7 @@
 },
 {
     "artefactMetadata": {
-        "name": "Classifier Model",
+        "name": "ClassifierModelArtefact",
         "artefactType": "ModelArchitectureType"
     },
     "nodes": [
@@ -279,6 +279,60 @@
             "sourceNodeID": "14",
             "sourceNodeHandleID": "out",
             "targetNodeID": "15",
+            "targetNodeHandleID": "in"
+        }
+    ]
+},{
+    "artefactMetadata": {
+        "name": "tmp1",
+        "artefactType": "ArtefactType"
+    },
+    "nodes": [
+        {
+            "id": "1",
+            "nodeType": "InputNode",
+            "name": "hp_units"
+            
+        }, 
+        {
+            "id": "2",
+            "nodeType": "InputNode",
+            "name": "payload"
+            
+        },
+         {
+            "id": "3",
+            "nodeType": "FunctionNode",
+            "nodeSubtype": "CreateAndApplyDenseLayer"
+            
+        },
+        {
+            "id": "4",
+            "nodeType": "OutputNode",
+            "name": "Payload"
+            
+        }
+    ],
+    "edges": [
+        {
+            "label": "",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "2",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "3",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "4",
             "targetNodeHandleID": "in"
         }
     ]
