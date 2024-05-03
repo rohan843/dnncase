@@ -1475,15 +1475,12 @@ function ModelCanvas({ activeFileIndex }) {
                   y: -currentViewport.y,
                   zoom: currentViewport.zoom,
                 },
-                type: "FunctionNode",
+                type: functions[elementID].nodeType,
                 data: {
                   name: functions[elementID].displayName,
-                  trained: false,
-                  usingPrevWeights: false,
                   hyperparams: functions[elementID].defaultHyperparams,
                   commentText: "",
                   commentType: "plain",
-                  reuseCount: 0,
                   inputHandles: functions[elementID].defaultInputHandles,
                   outputHandles: functions[elementID].defaultOutputHandles,
                   elementID,
@@ -1522,6 +1519,46 @@ function ModelCanvas({ activeFileIndex }) {
                 id: getNodeId("Output"),
                 position: currentViewport,
                 type: "Output",
+                data: {
+                  hyperparams: [{ id: "outputShape", value: null }],
+                  commentText: "",
+                  commentType: "plain",
+                  outputHandles: ["out"],
+                },
+              },
+            ]);
+          }}
+        />
+        <H1Button
+          show
+          innerText="Data Variable IN"
+          onClick={() => {
+            setNodes([
+              ...nodes,
+              {
+                id: getNodeId("Output"),
+                position: currentViewport,
+                type: "DataVariable/IN",
+                data: {
+                  hyperparams: [],
+                  commentText: "",
+                  commentType: "plain",
+                  outputHandles: ["out"],
+                },
+              },
+            ]);
+          }}
+        />
+        <H1Button
+          show
+          innerText="Data Variable OUT"
+          onClick={() => {
+            setNodes([
+              ...nodes,
+              {
+                id: getNodeId("Output"),
+                position: currentViewport,
+                type: "DataVariable/OUT",
                 data: {
                   hyperparams: [{ id: "outputShape", value: null }],
                   commentText: "",
