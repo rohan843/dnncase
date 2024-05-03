@@ -3,7 +3,6 @@ import MainScreen from "./components/mainScreenComponents/MainScreen";
 import BottomBar from "./components/bottomBarComponents/BottomBar";
 import { MajorEntityIDs } from "./constants";
 import useActivatableEntity from "./hooks/useActivatableEntity";
-import { CallbackNode } from "./components/mainScreenComponents/workspace/fileTypeSpecificTabs/ModelCanvas/subcomponents/nodes";
 
 function App() {
   const handleClickCapture = useActivatableEntity(MajorEntityIDs.base);
@@ -15,8 +14,6 @@ function App() {
       <TopBar />
       <MainScreen />
       <BottomBar />
-      {/* <DataVariableOut content="hp_units"></DataVariableOut> */}
-
     </div>
   );
 }
