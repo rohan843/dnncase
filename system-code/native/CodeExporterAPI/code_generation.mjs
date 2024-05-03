@@ -361,7 +361,7 @@ const codeGenFuncs = {
 };
 let dnn_temp_id = 0;
 let gen_code = "";
-
+let importList=[]
 function generateCode(jsonObject) {
   // mapping is done to give id to each artefact
   const artefactIdMapping = new Map();
@@ -371,6 +371,7 @@ function generateCode(jsonObject) {
   const nodeInputEdgeMap = new Map();
   const nodeInputList = new Map();
   const artefactOutDegreeCnt = new Map();
+  const dataVariableInpOutMap = new Map();
   artefactMapping(jsonObject, artefactIdMapping, idToArtefact); // artefact id mapping
   artefactNodesMapping(jsonObject, artefactIdMapping, artefactNodesInfo); // artefact nodes mapping
   nodeOutInEdgeMapping(
@@ -382,6 +383,7 @@ function generateCode(jsonObject) {
     artefactNodesInfo
   ); // artefact-> nodeId->[dnn_temp_id,targetNodeID,targetNodeHandleID,label]
   outdegreeCnt(nodeOutputEdgeMap, artefactOutDegreeCnt);
+  dataVariableNodeMapping(jsonObject, artefactIdMapping, dataVariableInpOutMap);
   console.log(artefactNodesInfo);
   // console.log(nodeOutputEdgeMap)
   // console.log(nodeInputEdgeMap)
@@ -405,8 +407,8 @@ function generateCode(jsonObject) {
   for (const key of graph.keys()) {
     if (!visited[key]) dfs(key, graph, stack, visited);
   }
-
-  const artefactOrder = [0];
+  
+  const artefactOrder = [0]; // handle conditions if all artefacts are independent
   while (stack.length > 0) {
     artefactOrder.push(stack.pop());
   }
@@ -447,7 +449,7 @@ function generateCode(jsonObject) {
   console.log(gen_code);
   //console.log(artefactOrder);
 }
-
+// Write code for Loop NOdes
 function gen_arte_dfs(
   artefact_id,
   curr_node_id,
@@ -473,14 +475,24 @@ function gen_arte_dfs(
   ) {
     // generate code
 
-    let nodeType = artefactNodesInfo.get(artefact_id).get(curr_node_id)[0];
-    let nodeSubtype = artefactNodesInfo.get(artefact_id).get(curr_node_id)[1];
-
+    const nodeType = artefactNodesInfo.get(artefact_id).get(curr_node_id)[0];
+    const nodeSubtype = artefactNodesInfo.get(artefact_id).get(curr_node_id)[1];
+    const artefactName = artefactNodesInfo.get(artefact_id).get(curr_node_id)[2]
+    
     if (nodeType === "FunctionNode") {
       let nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
-      let funcCode = codeGenFuncs[nodeSubtype](nodeData).return;
+      let funcCode;
+      if(artefactName.length>0){
+      funcCode = codeGenFuncs[artefactName](nodeData);
+      }else{
+        funcCode = codeGenFuncs[nodeSubtype](nodeData);
+      }
+      const funcReturn = funcCode.return
+      const funcExe = funcCode.execution
+      const imp = funcCode.imports
+      importList.push(imp)
       let dnn_var = dnn_temp_var_id();
-      let str = `${dnn_var} = ${funcCode}\n\t`;
+      let str = `${funcExe}\n\t ${dnn_var} = ${funcReturn}\n\t`;
 
       gen_code = gen_code.concat("" + str);
 
@@ -556,6 +568,124 @@ function gen_arte_dfs(
   }
 }
 
+function hypermodel_arte_dfs(
+    artefact_id,
+    curr_node_id,
+    edge_variable,
+    idToArtefact,
+    artefactNodesInfo,
+    nodeOutputEdgeMap,
+    nodeInputEdgeMap,
+    nodeInputList,
+    outDegCnt,
+    out_list
+  ) {
+    //  if(outDegCnt==0){
+    //     return;
+    //  }
+  
+    if (nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length > 0) {
+      nodeInputList.get(artefact_id).get(curr_node_id).push(edge_variable);
+    }
+    if (
+      nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length ===
+      nodeInputList.get(artefact_id).get(curr_node_id).length
+    ) {
+      // generate code
+  
+      const nodeType = artefactNodesInfo.get(artefact_id).get(curr_node_id)[0];
+      const nodeSubtype = artefactNodesInfo.get(artefact_id).get(curr_node_id)[1];
+      const artefactName = artefactNodesInfo.get(artefact_id).get(curr_node_id)[2]
+      
+      if (nodeType === "FunctionNode") {
+        let nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
+        let funcCode;
+        if(artefactName.length>0){
+        funcCode = codeGenFuncs[artefactName](nodeData);
+        }else{
+          funcCode = codeGenFuncs[nodeSubtype](nodeData);
+        }
+        const funcReturn = funcCode.return
+        const funcExe = funcCode.execution
+        const imp = funcCode.imports
+        importList.push(imp)
+        let dnn_var = dnn_temp_var_id();
+        let str = `${funcExe}\n\t ${dnn_var} = ${funcReturn}\n\t`;
+  
+        gen_code = gen_code.concat("" + str);
+  
+        const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
+        if (list.length > 0) {
+          for (let i = 0; i < list.length; i++) {
+            //console.log(typeof list[i][3])
+            if (list[i][3].length === 0) {
+              let s = list[i][0] + "=" + dnn_var + "\n\t";
+  
+              gen_code = gen_code.concat(s);
+            } else {
+              let s = list[i][0] + "=" + dnn_var + "[" + list[i][3] + "]\n\t";
+  
+              gen_code = gen_code.concat(s);
+            }
+  
+            gen_arte_dfs(
+              artefact_id,
+              list[i][1],
+              list[i][0],
+              idToArtefact,
+              artefactNodesInfo,
+              nodeOutputEdgeMap,
+              nodeInputEdgeMap,
+              nodeInputList,
+              outDegCnt,
+              out_list
+            );
+          }
+        } else {
+          // console.log("hello1")
+          outDegCnt--;
+          return;
+        }
+      } else if (nodeType == "InputNode") {
+        let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
+        let dnn_var = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0][0];
+  
+        let str = dnn_var + `= parmas["${name}"]`;
+  
+        gen_code = gen_code.concat(str + "\n\t");
+  
+        const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
+        if (list.length > 0) {
+          for (let i = 0; i < list.length; i++) {
+            gen_arte_dfs(
+              artefact_id,
+              list[i][1],
+              list[i][0],
+              idToArtefact,
+              artefactNodesInfo,
+              nodeOutputEdgeMap,
+              nodeInputEdgeMap,
+              nodeInputList,
+              outDegCnt,
+              out_list
+            );
+          }
+        } else {
+          outDegCnt--;
+          return;
+        }
+      } else if ((nodeType = "OutputNode")) {
+        let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
+  
+        out_list[`${name}`] = edge_variable;
+  
+        return;
+      }
+    } else {
+      return;
+    }
+  }
+
 function model_arte_dfs(
   artefact_id,
   curr_node_id,
@@ -566,6 +696,9 @@ function model_arte_dfs(
   nodeInputEdgeMap,
   nodeInputList,
   outDegCnt,
+  dataVariableInpOutMap,
+  model_in_list,
+  model_out_list,
   out_list
 ) {
   //  if(outDegCnt==0){
@@ -593,6 +726,13 @@ function model_arte_dfs(
       gen_code = gen_code.concat("" + str);
 
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
+
+      if (nodeSubtype === "Input") {
+        model_in_list.push(list[0][0]);
+      }
+      if (nodeSubtype === "Output") {
+        model_out_list.push(edge_variable);
+      }
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
           //console.log(typeof list[i][3])
@@ -616,6 +756,9 @@ function model_arte_dfs(
             nodeInputEdgeMap,
             nodeInputList,
             outDegCnt,
+            dataVariableInpOutMap,
+            model_in_list,
+            model_out_list,
             out_list
           );
         }
@@ -624,40 +767,6 @@ function model_arte_dfs(
         outDegCnt--;
         return;
       }
-    } else if (nodeType === "InputNode") {
-      let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
-      let dnn_var = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0][0];
-
-      let str = dnn_var + `= parmas["${name}"]`;
-
-      gen_code = gen_code.concat(str + "\n\t");
-
-      const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
-      if (list.length > 0) {
-        for (let i = 0; i < list.length; i++) {
-          model_arte_dfs(
-            artefact_id,
-            list[i][1],
-            list[i][0],
-            idToArtefact,
-            artefactNodesInfo,
-            nodeOutputEdgeMap,
-            nodeInputEdgeMap,
-            nodeInputList,
-            outDegCnt,
-            out_list
-          );
-        }
-      } else {
-        outDegCnt--;
-        return;
-      }
-    } else if (nodeType === "OutputNode") {
-      let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
-
-      out_list[`${name}`] = edge_variable;
-
-      return;
     } else if (nodeType === "DataVariableNode") {
       const name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
       if (nodeSubtype === "Input") {
@@ -682,6 +791,9 @@ function model_arte_dfs(
           nodeInputEdgeMap,
           nodeInputList,
           outDegCnt,
+          dataVariableInpOutMap,
+          model_in_list,
+          model_out_list,
           out_list
         );
       }
@@ -728,41 +840,79 @@ function model_arte_dfs(
           nodeInputEdgeMap,
           nodeInputList,
           outDegCnt,
+          dataVariableInpOutMap,
+          model_in_list,
+          model_out_list,
           out_list
         );
+      }else if(nodeSubtype==="ForEachLoop"){
+        // write code here
       }
-    }else if(nodeType=="PackerNode"){
-        const nodeData = artefactNodesInfo
-          .get(artefact_id)
-          .get(curr_node_id)[4];
+    } else if (nodeType == "PackerNode") {
+      const nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
 
-          const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+      const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
 
-          gen_code = gen_code.concat(`
+      gen_code = gen_code.concat(`
               ${list[0]}= ${nodeData}\n\t
-          `)
+          `);
+
+      model_arte_dfs(
+        artefact_id,
+        list[1],
+        list[0],
+        idToArtefact,
+        artefactNodesInfo,
+        nodeOutputEdgeMap,
+        nodeInputEdgeMap,
+        nodeInputList,
+        outDegCnt,
+        dataVariableInpOutMap,
+        model_in_list,
+        model_out_list,
+        out_list
+      );
+    } else if (nodeType == "UnpackerNode") {
+      const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
+      if (list.length > 0) {
+        for (let i = 0; i < list.length; i++) {
+          //console.log(typeof list[i][3])
+          if (list[i][3].length === 0) {
+            gen_code = gen_code.concat(
+              `${list[i][0]}"="${edge_variable}"\n\t"`
+            );
+          } else {
+            let s = list[i][0] + "=" + dnn_var + "[" + list[i][3] + "]\n\t";
+            gen_code = gen_code.concat(
+              `${list[i][0]}= ${edge_variable}["${list[i][3]}"]\n\t"`
+            );
+          }
 
           model_arte_dfs(
             artefact_id,
-            list[1],
-            list[0],
+            list[i][1],
+            list[i][0],
             idToArtefact,
             artefactNodesInfo,
             nodeOutputEdgeMap,
             nodeInputEdgeMap,
             nodeInputList,
             outDegCnt,
+            dataVariableInpOutMap,
+            model_in_list,
+            model_out_list,
             out_list
           );
-
-
-
-    } 
-  } else {
-    return;
+        }
+      } else {
+        outDegCnt--;
+        return;
+      }
+    } else {
+      return;
+    }
   }
 }
-
 function functionDef(artefact_list) {
   const artefactName = artefact_list[0];
   const artefactType = artefact_list[1];
@@ -777,6 +927,27 @@ function functionDef(artefact_list) {
     return `def ${artefactName}(params)`;
   }
 }
+function dataVariableNodeMapping(
+  jsonObject,
+  artefactIdMapping,
+  dataVariableInpOutMap
+) {
+  for (const artefact of jsonObject.artefacts) {
+    const id = artefactIdMapping.get(artefact.artefactMetadata.name);
+    dataVariableInpOutMap.set(id, new Map());
+    for (const node of artefact.nodes) {
+      if (node.type === "DataVariableNode" && node.nodeSubtype === "Input") {
+        dataVariableInpOutMap.get(id).set(node.name, []);
+      }
+      if (node.type === "DataVariableNode" && node.nodeSubtype === "Output") {
+        if (dataVariableInpOutMap.get(id).has(node.name)) {
+          dataVariableInpOutMap.get(id).get(node.name).push(node.id);
+        }
+      }
+    }
+  }
+}
+
 function outdegreeCnt(nodeOutputEdgeMap, artefactOutDegreeCnt) {
   for (const [key, values] of nodeOutputEdgeMap) {
     let cnt = 0;

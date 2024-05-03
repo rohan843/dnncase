@@ -1,6 +1,6 @@
 {
     "artefactMetadata": {
-        "name": "Compiled Classifier Model",
+        "name": "CompiledClassifierModel",
         "artefactType": "ModelArchitectureType"
     },
     "nodes": [
