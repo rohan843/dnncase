@@ -1598,8 +1598,7 @@ function ModelCanvas({ activeFileIndex }) {
                 id: currentNodeID,
                 position: currentViewport,
                 data: {
-                  isCommentTODO: false,
-                  commentText: "",
+                  
                 },
                 type: "CallBackNode",
               },
