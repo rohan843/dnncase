@@ -131,12 +131,13 @@ const FunctionNode = ({
           id="multi-in"
           type="target"
           className={classNames(
-            "relative -left-[0px] -top-[10px] bg-[#fff4dc] border w-[20px] h-[20px] rounded-full",
+            "relative -left-[10px] -top-[0px] bg-[#fff4dc] border w-[20px] h-[20px] rounded-full",
             {
               "border-[#000000]": selected,
               "border-[#826623]": !selected,
             }
           )}
+          position={Position.Left}
         />
       </div>
     </div>
