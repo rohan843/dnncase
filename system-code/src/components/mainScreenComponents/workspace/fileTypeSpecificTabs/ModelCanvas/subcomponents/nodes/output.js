@@ -1,9 +1,9 @@
-const Output = ()=>{
-    return (
-        <div class="output">
-        <p>Output</p>
-      </div>
-    )
-}
+const OutputNode = () => {
+  return (
+    <div className="OutputNodeStyles">
+      <p>layer_count</p>
+    </div>
+  );
+};
 
-export default Output;
+export default OutputNode;

@@ -298,63 +298,42 @@ In other words, use this in place of something like
     color: transparent;
 }
 
-.input {
-    width: 0px;
-    height: 0px;
-    border-style: inset;
-    border-width: 0 100px 173.2px 100px;
-    border-color: transparent transparent #888a8d transparent;
-    float: left;
-    transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(90deg);
+.InputNodeStyles {
+    background-color: #0050EF;
+    color: white;
+    display: inline-block;
+    min-width: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 40px;
+    clip-path: polygon(100% 50%, 0 100%, 0 0);
 }
 
-.input p {
-    text-align: center;
-    top: 68px;
-    left: -18px;
-    position: relative;
-    width: 93px;
-    height: 93px;
-    margin: 0px;
-    transform: rotate(-90deg);
-    font-size: x-large;
-    color: black;
+.InputNodeStyles p {
+    margin: 0;
+    width: 60%;
 }
 
-.output {
-    margin-top: 100px;
-    width: 0px;
-    height: 0px;
-    border-style: inset;
-    border-width: 0 100px 173.2px 100px;
-    border-color: transparent transparent #888a8d transparent;
-    float: left;
-    transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(-90deg);
+.OutputNodeStyles {
+    background-color: #0050EF;
+    color: white;
+    display: flex;
+    flex-direction: row-reverse;
+    max-width: max-content;
+    min-width: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 10px;
+    padding-left: 40px;
+    clip-path: polygon(0% 50%, 100% 0, 100% 100%);
 }
 
-.output p {
-    text-align: center;
-    top: 68px;
-    left: -68px;
-    position: relative;
-    width: 93px;
-    height: 93px;
-    margin: 0px;
-    transform: rotate(90deg);
-    font-size: x-large;
-    color: black;
+.OutputNodeStyles p {
+    margin: 0;
+    width: 60%;
+    direction: rtl;
 }
-
 
 .data-variable-in {
     margin-top: 100px;
@@ -440,7 +419,7 @@ In other words, use this in place of something like
     width: 40px;
     height: 40px;
     border-radius: 100%;
-    border: 1px solid black;
+    border: 1px solid #A50040;
     clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
     position: relative;
     left: 5px;
@@ -450,7 +429,8 @@ In other words, use this in place of something like
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    background-color: rgb(58, 58, 58);
+    background-color: #D80073;
+    border: 1px solid #A50040;
     position: absolute;
     z-index: 100;
 }

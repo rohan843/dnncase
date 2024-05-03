@@ -1,9 +1,14 @@
-const Input = ()=>{
-    return (
-        <div class="input">
-        <p>Input</p>
-      </div>
-    )
-}
+const InputNode = (
+  {
+    data: { hyperparams, onActivate, onActivateAndShowInPane },
+    selected,
+  }
+) => {
+  return (
+    <div className="InputNodeStyles">
+      <p>layer_count</p>
+    </div>
+  );
+};
 
-export default Input;
+export default InputNode;
