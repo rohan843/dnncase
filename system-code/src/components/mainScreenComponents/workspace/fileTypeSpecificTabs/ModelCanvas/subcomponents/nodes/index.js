@@ -16,18 +16,18 @@ import ForInLoop from "./ForInLoop";
 
 export {
   ArtefactImporterNode,
-  FunctionNode as LayerNode,
+  FunctionNode,
   ForInLoop,
   RepeatLoop,
   RawDataInputNode,
   InputNode,
   OutputNode,
-  UnpackerNode,
-  PackerNode,
   CommentNode,
   NamedPackerNode,
   NamedUnpackerNode,
   Input,
   Output,
   CallBackNode,
+  UnpackerNode,
+  PackerNode,
 };
