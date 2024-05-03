@@ -29,6 +29,7 @@ import {
   ReuseNode,
   NamedPackerNode,
   NamedUnpackerNode,
+  CallBackNode
 } from "./subcomponents/nodes";
 import { cloneDeep, findIndex } from "lodash";
 
@@ -42,6 +43,7 @@ const NodeTypes = {
   ReuseNode,
   NamedPackerNode,
   NamedUnpackerNode,
+  CallBackNode
 };
 
 const permissibleFileTypes = {
@@ -1581,6 +1583,24 @@ function ModelCanvas({ activeFileIndex }) {
                   commentType: "plain",
                   outputHandles: ["o0", "o1"],
                 },
+              },
+            ]);
+          }}
+        />
+        <H1Button
+          show
+          innerText="Add a CallBack Node"
+          onClick={() => {
+            const currentNodeID = getNodeId("CallBackNode");
+            setNodes([
+              ...nodes,
+              {
+                id: currentNodeID,
+                position: currentViewport,
+                data: {
+                  
+                },
+                type: "CallBackNode",
               },
             ]);
           }}
