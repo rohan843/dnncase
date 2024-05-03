@@ -1,4 +1,5 @@
-// TODO: convert nodes/edges arrays to objects.
+// TODO: Add facility to create loops around functions
+// TODO: Create & Register Data Variable IN/OUT nodes
 
 import RightPane from "./RightPane";
 import LeftPane from "./LeftPane";
