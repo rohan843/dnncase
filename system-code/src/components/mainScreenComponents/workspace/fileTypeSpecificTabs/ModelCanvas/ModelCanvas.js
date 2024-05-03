@@ -110,6 +110,7 @@ function ModelCanvas({ activeFileIndex }) {
   };
 
   const handleSubmit = () => {
+    setInputValue("");
     closeModal();
   };
 
@@ -1658,6 +1659,7 @@ function ModelCanvas({ activeFileIndex }) {
                 value={inputValue}
                 onChange={handleInputChange}
                 placeholder="Enter edge label"
+                autoFocus
               />
               <button onClick={handleSubmit}>OK</button>
             </div>
