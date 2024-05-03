@@ -26,10 +26,9 @@ import {
   UnpackerNode,
   PackerNode,
   CommentNode,
-  ReuseNode,
   NamedPackerNode,
   NamedUnpackerNode,
-  CallBackNode
+  CallBackNode,
 } from "./subcomponents/nodes";
 import { cloneDeep, findIndex } from "lodash";
 
@@ -40,10 +39,9 @@ const NodeTypes = {
   UnpackerNode,
   PackerNode,
   CommentNode,
-  ReuseNode,
   NamedPackerNode,
   NamedUnpackerNode,
-  CallBackNode
+  CallBackNode,
 };
 
 const permissibleFileTypes = {
@@ -1601,9 +1599,7 @@ function ModelCanvas({ activeFileIndex }) {
               {
                 id: currentNodeID,
                 position: currentViewport,
-                data: {
-                  
-                },
+                data: {},
                 type: "CallBackNode",
               },
             ]);
