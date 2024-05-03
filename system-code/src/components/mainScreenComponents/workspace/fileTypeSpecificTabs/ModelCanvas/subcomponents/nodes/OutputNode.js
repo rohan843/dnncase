@@ -1,15 +1,10 @@
 import classNames from "classnames";
-import { find } from "lodash";
 import { Handle, Position } from "reactflow";
 
 const OutputNode = ({
   data: { hyperparams, onActivate, onActivateAndShowInPane },
   selected,
 }) => {
-  const outputShape = find(
-    hyperparams,
-    (hyperparam) => hyperparam.id === "outputShape"
-  ).value;
   return (
     <div
       style={{
@@ -18,11 +13,13 @@ const OutputNode = ({
         borderRadius: "100px 0px 0px 100px",
         textAlign: "right",
       }}
-      className={classNames({
-        "border-black": selected,
-        "border-darker": !selected,
-        "background-dark": true,
-      })}
+      className={classNames(
+        "bg-[#F0A30A] border flex flex-col justify-center items-center",
+        {
+          "border-black": selected,
+          "border-[#BD7000]": !selected,
+        }
+      )}
       onClick={() => {
         onActivate && onActivate();
       }}
@@ -30,8 +27,9 @@ const OutputNode = ({
         onActivateAndShowInPane && onActivateAndShowInPane();
       }}
     >
-      <div style={{ padding: "10px" }}>Output Node</div>
-      <div style={{ padding: "10px" }}>{JSON.stringify(outputShape)}</div>
+      <div style={{ padding: "10px" }} className="text-xl">
+        Record Array Output
+      </div>
       <Handle type="target" id="in" position={Position.Left} />
     </div>
   );

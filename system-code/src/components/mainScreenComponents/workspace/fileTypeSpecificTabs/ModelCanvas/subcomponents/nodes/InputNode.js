@@ -26,14 +26,17 @@ const InputNode = ({
           height: "100px",
           borderRadius: "0px 100px 100px 0px",
         }}
-        className={classNames({
+        className={classNames("bg-[#F0A30A] border flex flex-col", {
           "border-black": selected,
-          "border-darker": !selected,
-          "background-dark": true,
+          "border-[#BD7000]": !selected,
         })}
       >
-        <div style={{ padding: "10px" }}>Input Node</div>
-        <div style={{ padding: "10px" }}>{JSON.stringify(inputShape)}</div>
+        <div style={{ padding: "10px" }} className="text-xl grow ">
+          Array Input
+        </div>
+        <div style={{ padding: "10px" }} className="text-xs font-mono w-[90%] truncate">
+          Shape: {(inputShape && JSON.stringify(inputShape)) || "N/A"}
+        </div>
         <Handle type="source" id="out" position={Position.Right} />
       </div>
     </div>
