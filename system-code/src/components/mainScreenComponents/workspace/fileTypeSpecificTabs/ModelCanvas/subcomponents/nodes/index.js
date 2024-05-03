@@ -9,6 +9,7 @@ import NamedPackerNode from "./NamedPackerNode";
 import NamedUnpackerNode from "./NamedUnpackerNode";
 import Input from "./Input";
 import Output from "./output";
+import CallBackNode from "./CallBackNode";
 
 export {
   LayerNode,
@@ -21,5 +22,6 @@ export {
   NamedPackerNode,
   NamedUnpackerNode,
   Input,
-  Output
+  Output,
+  CallBackNode
 };
