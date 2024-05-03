@@ -20,28 +20,36 @@ import {
   Markdown,
 } from "./subcomponents";
 import {
-  LayerNode,
+  FunctionNode,
   InputNode,
   OutputNode,
-  UnpackerNode,
-  PackerNode,
   CommentNode,
   NamedPackerNode,
   NamedUnpackerNode,
   CallBackNode,
+  ArtefactImporterNode,
+  ForInLoop,
+  RepeatLoop,
+  RawDataInputNode,
+  Input,
+  Output,
 } from "./subcomponents/nodes";
 import { cloneDeep, findIndex } from "lodash";
 
 const NodeTypes = {
-  LayerNode,
-  InputNode,
-  OutputNode,
-  UnpackerNode,
-  PackerNode,
-  CommentNode,
-  NamedPackerNode,
-  NamedUnpackerNode,
-  CallBackNode,
+  FunctionNode: FunctionNode,
+  "FunctionNode/ArtefactImporter": ArtefactImporterNode,
+  "FunctionNode/RawData": RawDataInputNode,
+  "FunctionNode/ArrayInput": InputNode,
+  "FunctionNode/RecordArrayOutput": OutputNode,
+  "Loop/ForIn": ForInLoop,
+  "Loop/Repeat": RepeatLoop,
+  Input: Input,
+  Output: Output,
+  "PseudoNode/Comment": CommentNode,
+  "Packer/Named": NamedPackerNode,
+  "Unpacker/Named": NamedUnpackerNode,
+  Callback: CallBackNode,
 };
 
 const permissibleFileTypes = {
@@ -118,11 +126,11 @@ function ModelCanvas({ activeFileIndex }) {
   const fileData = useSelector(
     (store) => store.filesystem.fsState[activeFileIndex]
   );
-  const layers = useSelector((store) => store.artefacts.layers);
+  const functions = useSelector((store) => store.artefacts.functions);
 
   const config = useSelector((store) => store.filesystem.openFiles)[0].config;
 
-  if (!config || !fileData || !layers) {
+  if (!config || !fileData || !functions) {
     // TODO: Add code here to setup config to a value from backend (default config for this file type).
     // https://tushar-balar-27618.medium.com/how-to-use-async-await-in-the-functional-component-react-js-15d0fa9137d3
   }
@@ -142,7 +150,7 @@ function ModelCanvas({ activeFileIndex }) {
 
   const currentViewport = config.graphCanvas.viewport;
 
-  const hierarchicalLayersFormat = getHierarchicalLayersFormat(layers);
+  const hierarchicalLayersFormat = getHierarchicalLayersFormat(functions);
 
   const setNodes = (newNodes) => {
     dispatch(
@@ -1433,7 +1441,7 @@ function ModelCanvas({ activeFileIndex }) {
       >
         <H1Button
           show
-          innerText="Layers"
+          innerText="Functions"
           onClick={() => {
             dispatch(
               setActiveFileConfigValue({
@@ -1458,69 +1466,42 @@ function ModelCanvas({ activeFileIndex }) {
           ]}
           contents={hierarchicalLayersFormat}
           onSelect={(elementID, options) => {
-            if (!options.reusable) {
-              setNodes([
-                ...nodes,
-                {
-                  id: getNodeId("LayerNode", elementID),
-                  position: {
-                    x: -currentViewport.x,
-                    y: -currentViewport.y,
-                    zoom: currentViewport.zoom,
-                  },
-                  type: "LayerNode",
-                  data: {
-                    name: layers[elementID].displayName,
-                    trained: false,
-                    usingPrevWeights: false,
-                    hyperparams: layers[elementID].defaultHyperparams,
-                    commentText: "",
-                    commentType: "plain",
-                    reuseCount: 0,
-                    inputHandles: layers[elementID].defaultInputHandles,
-                    outputHandles: layers[elementID].defaultOutputHandles,
-                    elementID,
-                  },
+            setNodes([
+              ...nodes,
+              {
+                id: getNodeId("FunctionNode", elementID),
+                position: {
+                  x: -currentViewport.x,
+                  y: -currentViewport.y,
+                  zoom: currentViewport.zoom,
                 },
-              ]);
-            } else {
-              setNodes([
-                ...nodes,
-                {
-                  id: getNodeId("ReuseNode", elementID),
-                  position: {
-                    x: -currentViewport.x,
-                    y: -currentViewport.y,
-                    zoom: currentViewport.zoom,
-                  },
-                  type: "ReuseNode",
-                  data: {
-                    name: layers[elementID].displayName,
-                    trained: false,
-                    usingPrevWeights: false,
-                    hyperparams: layers[elementID].defaultHyperparams,
-                    commentText: "",
-                    commentType: "plain",
-                    reuseCount: 2,
-                    inputHandles: layers[elementID].defaultInputHandles,
-                    outputHandles: layers[elementID].defaultOutputHandles,
-                    elementID,
-                  },
+                type: "FunctionNode",
+                data: {
+                  name: functions[elementID].displayName,
+                  trained: false,
+                  usingPrevWeights: false,
+                  hyperparams: functions[elementID].defaultHyperparams,
+                  commentText: "",
+                  commentType: "plain",
+                  reuseCount: 0,
+                  inputHandles: functions[elementID].defaultInputHandles,
+                  outputHandles: functions[elementID].defaultOutputHandles,
+                  elementID,
                 },
-              ]);
-            }
+              },
+            ]);
           }}
         />
         <H1Button
           show
-          innerText="Add an Input"
+          innerText="Artefact Input Node"
           onClick={() => {
             setNodes([
               ...nodes,
               {
-                id: getNodeId("InputNode"),
+                id: getNodeId("Input"),
                 position: currentViewport,
-                type: "InputNode",
+                type: "Input",
                 data: {
                   hyperparams: [{ id: "input_shape", value: null }],
                   commentText: "",
@@ -1533,14 +1514,14 @@ function ModelCanvas({ activeFileIndex }) {
         />
         <H1Button
           show
-          innerText="Add an Output"
+          innerText="Artefact Output Node"
           onClick={() => {
             setNodes([
               ...nodes,
               {
-                id: getNodeId("OutputNode"),
+                id: getNodeId("Output"),
                 position: currentViewport,
-                type: "OutputNode",
+                type: "Output",
                 data: {
                   hyperparams: [{ id: "outputShape", value: null }],
                   commentText: "",
@@ -1553,14 +1534,14 @@ function ModelCanvas({ activeFileIndex }) {
         />
         <H1Button
           show
-          innerText="Add a Named Packer"
+          innerText="Packer Node"
           onClick={() => {
             setNodes([
               ...nodes,
               {
                 id: getNodeId("PackerNode"),
                 position: currentViewport,
-                type: "NamedPackerNode",
+                type: "Packer/Named",
                 data: {
                   hyperparams: [{ id: "packingCount", value: 2 }],
                   commentText: "",
@@ -1572,14 +1553,14 @@ function ModelCanvas({ activeFileIndex }) {
         />
         <H1Button
           show
-          innerText="Add an Named Unpacker"
+          innerText="Unpacker Node"
           onClick={() => {
             setNodes([
               ...nodes,
               {
                 id: getNodeId("UnpackerNode"),
                 position: currentViewport,
-                type: "NamedUnpackerNode",
+                type: "Unpacker/Named",
                 data: {
                   hyperparams: [{ id: "unpackingCount", value: 2 }],
                   commentText: "",
@@ -1592,7 +1573,7 @@ function ModelCanvas({ activeFileIndex }) {
         />
         <H1Button
           show
-          innerText="Add a CallBack Node"
+          innerText="Callback Node"
           onClick={() => {
             const currentNodeID = getNodeId("CallBackNode");
             setNodes([
@@ -1601,14 +1582,14 @@ function ModelCanvas({ activeFileIndex }) {
                 id: currentNodeID,
                 position: currentViewport,
                 data: {},
-                type: "CallBackNode",
+                type: "Callback",
               },
             ]);
           }}
         />
         <H1Button
           show
-          innerText="Add a Comment"
+          innerText="Comment Node"
           onClick={() => {
             const currentNodeID = getNodeId("CommentNode");
             setNodes([
@@ -1620,7 +1601,7 @@ function ModelCanvas({ activeFileIndex }) {
                   isCommentTODO: false,
                   commentText: "",
                 },
-                type: "CommentNode",
+                type: "PseudoNode/Comment",
               },
             ]);
           }}

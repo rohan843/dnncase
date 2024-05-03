@@ -356,7 +356,7 @@ const filesystemSlice = createSlice({
                 y: 100,
                 zoom: 1,
               },
-              type: "NamedUnpackerNode",
+              type: "Unpacker/Named",
               data: {},
             },
             {
@@ -366,7 +366,7 @@ const filesystemSlice = createSlice({
                 y: 100,
                 zoom: 1,
               },
-              type: "NamedPackerNode",
+              type: "Packer/Named",
               data: {},
             },
             {
@@ -376,7 +376,7 @@ const filesystemSlice = createSlice({
                 y: 100,
                 zoom: 1,
               },
-              type: "NamedUnpackerNode",
+              type: "Unpacker/Named",
               data: {},
             },
           ],
@@ -394,18 +394,7 @@ const filesystemSlice = createSlice({
           unsaved: true,
           filetype: "dc",
           artefacttype: "ModelCompilerType",
-          nodes: [
-            {
-              id: "1",
-              position: {
-                x: 100,
-                y: 100,
-                zoom: 1,
-              },
-              type: "NamedUnpackerNode",
-              data: {},
-            },
-          ],
+          nodes: [],
           edges: [],
         },
         isFolder: false,
