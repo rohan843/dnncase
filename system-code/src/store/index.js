@@ -20,6 +20,8 @@ import {
   setFocusedItem,
   setFsState,
   setFileValue,
+  setActiveFileConfigValue,
+  setActiveFileConfigValues,
 } from "./slices/filesystemSlice";
 import {
   mainScreenReducer,
@@ -52,12 +54,14 @@ import {
   activeElementReducer,
   setActiveElementTo,
 } from "./slices/activeElementSlice";
-import {
-  viewConfigReducer,
-  setConfig,
-  setValueAtPath,
-  setValuesAtPaths,
-} from "./slices/viewConfigsSlice";
+// import {
+//   viewConfigReducer,
+//   setConfig,
+//   setValueAtPath,
+//   setValuesAtPaths,
+//   setDCFileConfig,
+//   deleteConfig,
+// } from "./slices/viewConfigsSlice";
 import { artefactsReducer } from "./slices/artefactsSlice";
 
 const store = configureStore({
@@ -68,8 +72,8 @@ const store = configureStore({
     validationTerminal: validationTerminalReducer,
     commentsTerminal: commentsTerminalReducer,
     activeElement: activeElementReducer,
-    viewConfig: viewConfigReducer,
-    artefacts: artefactsReducer
+    // viewConfig: viewConfigReducer,
+    artefacts: artefactsReducer,
   },
 });
 
@@ -96,6 +100,8 @@ export {
   setFocusedItem,
   setFsState,
   setFileValue,
+  setActiveFileConfigValue,
+  setActiveFileConfigValues,
 
   // mainScreenSlice
   removeLeftPane,
@@ -124,9 +130,11 @@ export {
   setActiveElementTo,
 
   // viewConfigSlice
-  setConfig,
-  setValueAtPath,
-  setValuesAtPaths,
+  // setConfig,
+  // setValueAtPath,
+  // setValuesAtPaths,
+  // setDCFileConfig,
+  // deleteConfig,
 
   // artefactsSlice
   artefactsReducer,
