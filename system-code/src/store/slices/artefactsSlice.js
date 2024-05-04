@@ -201,8 +201,8 @@ const artefactsSlice = createSlice({
         defaultInputHandles: ["inSignal"],
         defaultOutputHandles: ["outSignal"],
       },
-      "Custom Edge Data": {
-        displayName: "Record Array Output",
+      CustomEdgeData: {
+        displayName: "Custom Edge Data",
         subcategorization:
           "Unknown/Duplicated (ask Gurkaran the work these do)",
         nodeType: "FunctionNode",
@@ -210,8 +210,8 @@ const artefactsSlice = createSlice({
         defaultInputHandles: ["inSignal"],
         defaultOutputHandles: ["outSignal"],
       },
-      "Best tuning model": {
-        displayName: "Record Array Output",
+      BestTuningModel: {
+        displayName: "Best Tuning Model",
         subcategorization:
           "Unknown/Duplicated (ask Gurkaran the work these do)",
         nodeType: "FunctionNode",
@@ -220,7 +220,7 @@ const artefactsSlice = createSlice({
         defaultOutputHandles: ["outSignal"],
       },
       Evaluate: {
-        displayName: "Record Array Output",
+        displayName: "Evaluate",
         subcategorization:
           "Unknown/Duplicated (ask Gurkaran the work these do)",
         nodeType: "FunctionNode",
