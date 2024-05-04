@@ -307,7 +307,6 @@ function ModelCanvas({ activeFileIndex }) {
         </>
       );
     } else if (nodeType === "Unpacker/Ordered") {
-      // TODO: Finish this.
       return (
         <>
           <Title show innerText="List Unpacker Node" />
@@ -316,33 +315,45 @@ function ModelCanvas({ activeFileIndex }) {
             show
             innerText="Increase Output Count"
             onClick={() => {
-              // const currentHandleCount =
-              // dispatch(
-              //   setFileValue({
-              //     fileIndex: activeFileIndex,
-              //     path: ["data", "nodes", activeNodeIndex, "data", "name"],
-              //     value: newValue,
-              //   })
-              // );
+              const currentHandleCount = activeNode.data.unpackingCount;
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "unpackingCount",
+                  ],
+                  value: currentHandleCount + 1,
+                })
+              );
             }}
           />
           <H1Button
             show
             innerText="Decrease Output Count"
             onClick={() => {
-              // dispatch(
-              //   setFileValue({
-              //     fileIndex: activeFileIndex,
-              //     path: ["data", "nodes", activeNodeIndex, "data", "name"],
-              //     value: newValue,
-              //   })
-              // );
+              const currentHandleCount = activeNode.data.unpackingCount;
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "unpackingCount",
+                  ],
+                  value: Math.max(2, currentHandleCount - 1),
+                })
+              );
             }}
           />
         </>
       );
     } else if (nodeType === "Packer/Ordered") {
-      // TODO: Finish this.
       return (
         <>
           <Title show innerText="List Packer Node" />
@@ -351,27 +362,40 @@ function ModelCanvas({ activeFileIndex }) {
             show
             innerText="Increase Input Count"
             onClick={() => {
-              // const currentHandleCount =
-              // dispatch(
-              //   setFileValue({
-              //     fileIndex: activeFileIndex,
-              //     path: ["data", "nodes", activeNodeIndex, "data", "name"],
-              //     value: newValue,
-              //   })
-              // );
+              const currentHandleCount = activeNode.data.packingCount;
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "packingCount",
+                  ],
+                  value: currentHandleCount + 1,
+                })
+              );
             }}
           />
           <H1Button
             show
             innerText="Decrease Input Count"
             onClick={() => {
-              // dispatch(
-              //   setFileValue({
-              //     fileIndex: activeFileIndex,
-              //     path: ["data", "nodes", activeNodeIndex, "data", "name"],
-              //     value: newValue,
-              //   })
-              // );
+              const currentHandleCount = activeNode.data.packingCount;
+              dispatch(
+                setFileValue({
+                  fileIndex: activeFileIndex,
+                  path: [
+                    "data",
+                    "nodes",
+                    activeNodeIndex,
+                    "data",
+                    "packingCount",
+                  ],
+                  value: Math.max(2, currentHandleCount - 1),
+                })
+              );
             }}
           />
         </>
@@ -783,10 +807,8 @@ function ModelCanvas({ activeFileIndex }) {
                 position: currentViewport,
                 type: "Unpacker/Named",
                 data: {
-                  hyperparams: [{ id: "unpackingCount", value: 2 }],
                   commentText: "",
                   commentType: "plain",
-                  outputHandles: ["o0", "o1"],
                 },
               },
             ]);
@@ -803,7 +825,7 @@ function ModelCanvas({ activeFileIndex }) {
                 position: currentViewport,
                 type: "Packer/Ordered",
                 data: {
-                  hyperparams: [{ id: "packingCount", value: 2 }],
+                  packingCount: 2,
                   commentText: "",
                   commentType: "plain",
                 },
@@ -822,7 +844,7 @@ function ModelCanvas({ activeFileIndex }) {
                 position: currentViewport,
                 type: "Unpacker/Ordered",
                 data: {
-                  hyperparams: [{ id: "unpackingCount", value: 2 }],
+                  unpackingCount: 2,
                   commentText: "",
                   commentType: "plain",
                 },

@@ -1,23 +1,11 @@
 import classNames from "classnames";
 import Packer from "../../../../../../../assets/packer.png";
-import { find } from "lodash";
-import { Handle, Position, useUpdateNodeInternals } from "reactflow";
-import { useEffect } from "react";
+import { Handle, Position } from "reactflow";
 
 const ListUnpackerNode = ({
   selected,
-  data: { hyperparams, onActivateAndShowInPane, onActivate },
+  data: { unpackingCount, onActivateAndShowInPane, onActivate },
 }) => {
-  const unpackingCount = find(
-    hyperparams,
-    (hp) => hp.id === "unpackingCount"
-  ).value;
-  const updateNodeInternals = useUpdateNodeInternals();
-
-  // useEffect(() => {
-  //   updateNodeInternals();
-  // }, [unpackingCount, updateNodeInternals]);
-
   const minimumRequiredContentAreaHeight = Math.max(unpackingCount * 19, 150);
 
   const outputHandlesList = [];
