@@ -219,11 +219,13 @@ function ModelCanvas({ activeFileIndex }) {
   const activeNodeIndex = findIndex(nodes, (node) => node.id === activeNodeID);
   const activeNode = (activeNodeIndex !== -1 && nodes[activeNodeIndex]) || null;
   function getRightPaneContents(node, artefactType) {
-    // TODO 1: Finish Contents.
-    // @Rohanray2005 functions @rohan843 rest
     if (!node) {
       return <Title show innerText={`${artefactType} File`} />;
-    } else if (node.type === "DataVariable/OUT") {
+    }
+    let nodeType = node.type;
+
+    // Deal with Special Nodes.
+    if (nodeType === "DataVariable/OUT") {
       return (
         <>
           <Title show innerText={`Data Variable OUT`} />
@@ -250,7 +252,7 @@ function ModelCanvas({ activeFileIndex }) {
           />
         </>
       );
-    } else if (node.type === "DataVariable/IN") {
+    } else if (nodeType === "DataVariable/IN") {
       return (
         <>
           <Title show innerText={`Data Variable IN`} />
@@ -277,7 +279,7 @@ function ModelCanvas({ activeFileIndex }) {
           />
         </>
       );
-    } else if (node.type === "Callback") {
+    } else if (nodeType === "Callback") {
       return (
         <>
           <Title show innerText="Callback Node" />
@@ -304,7 +306,7 @@ function ModelCanvas({ activeFileIndex }) {
           />
         </>
       );
-    } else if (node.type === "Unpacker/Ordered") {
+    } else if (nodeType === "Unpacker/Ordered") {
       // TODO: Finish this.
       return (
         <>
@@ -339,7 +341,7 @@ function ModelCanvas({ activeFileIndex }) {
           />
         </>
       );
-    } else if (node.type === "Packer/Ordered") {
+    } else if (nodeType === "Packer/Ordered") {
       // TODO: Finish this.
       return (
         <>
@@ -374,17 +376,17 @@ function ModelCanvas({ activeFileIndex }) {
           />
         </>
       );
-    } else if (node.type === "Unpacker/Named") {
+    } else if (nodeType === "Unpacker/Named") {
       return <Title show innerText="Unpacker Node" />;
-    } else if (node.type === "Packer/Named") {
+    } else if (nodeType === "Packer/Named") {
       return <Title show innerText="Packer Node" />;
-    } else if (node.type === "PseudoNode/Comment") {
+    } else if (nodeType === "PseudoNode/Comment") {
       return (
         <>
           <Title show innerText="Comment Node" />
         </>
       );
-    } else if (node.type === "Output") {
+    } else if (nodeType === "Output") {
       return (
         <>
           <Title show innerText="Artefact Output" />
@@ -411,7 +413,7 @@ function ModelCanvas({ activeFileIndex }) {
           />
         </>
       );
-    } else if (node.type === "Input") {
+    } else if (nodeType === "Input") {
       return (
         <>
           <Title show innerText="Artefact Input" />
@@ -438,13 +440,22 @@ function ModelCanvas({ activeFileIndex }) {
           />
         </>
       );
-    } else if (node.type === "Loop/Repeat") {
-    } else if (node.type === "Loop/ForIn") {
-    } else if (node.type === "FunctionNode/RecordArrayOutput") {
-    } else if (node.type === "FunctionNode/ArrayInput") {
-    } else if (node.type === "FunctionNode/RawData") {
-    } else if (node.type === "FunctionNode/ArtefactImporter") {
-    } else if (node.type === "FunctionNode") {
+    }
+
+    // In case of wrapped function nodes, correct nodeType to the actual type of the enclosed node.
+    if (nodeType === "Loop/Repeat") {
+      nodeType = node.data.enclosedNodeType;
+    } else if (nodeType === "Loop/ForIn") {
+      nodeType = node.data.enclosedNodeType;
+    }
+
+    // TODO 1: Finish Contents. @Rohanray2005
+    // Deal with function nodes.
+    if (nodeType === "FunctionNode/RecordArrayOutput") {
+    } else if (nodeType === "FunctionNode/ArrayInput") {
+    } else if (nodeType === "FunctionNode/RawData") {
+    } else if (nodeType === "FunctionNode/ArtefactImporter") {
+    } else if (nodeType === "FunctionNode") {
     } else {
       return <Title show innerText={node.type} />;
     }
@@ -595,6 +606,12 @@ function ModelCanvas({ activeFileIndex }) {
           ]}
           contents={hierarchicalLayersFormat}
           onSelect={(elementID, options) => {
+            let canvasDisplayName = functions[elementID].displayName;
+            if (
+              functions[elementID].nodeType === "FunctionNode/ArtefactImporter"
+            ) {
+              canvasDisplayName = null;
+            }
             if (options["repeat-loop"]) {
               setNodes([
                 ...nodes,
@@ -607,8 +624,8 @@ function ModelCanvas({ activeFileIndex }) {
                   },
                   type: "Loop/Repeat",
                   data: {
-                    // TODO: Add a separate (stateful) graph display name in function data.
-                    name: functions[elementID].displayName,
+                    enclosedNodeType: functions[elementID].nodeType,
+                    name: canvasDisplayName,
                     hyperparams: functions[elementID].defaultHyperparams,
                     commentText: "",
                     commentType: "plain",
@@ -630,7 +647,8 @@ function ModelCanvas({ activeFileIndex }) {
                   },
                   type: "Loop/ForIn",
                   data: {
-                    name: functions[elementID].displayName,
+                    enclosedNodeType: functions[elementID].nodeType,
+                    name: canvasDisplayName,
                     hyperparams: functions[elementID].defaultHyperparams,
                     commentText: "",
                     commentType: "plain",
@@ -652,7 +670,7 @@ function ModelCanvas({ activeFileIndex }) {
                   },
                   type: functions[elementID].nodeType,
                   data: {
-                    name: functions[elementID].displayName,
+                    name: canvasDisplayName,
                     hyperparams: functions[elementID].defaultHyperparams,
                     commentText: "",
                     commentType: "plain",

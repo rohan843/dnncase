@@ -59,8 +59,13 @@ const ForInLoop = ({
           }
         )}
       >
-        <div className="max-w-[350px] h-[50px] min-w-[100px] flex justify-center items-center bg-[#F0A30A] border border-[#BD7000] px-2">
-          <p className="truncate whitespace-nowrap">tmp1</p>
+        <div
+          title={name || "Un - Assigned"}
+          className="max-w-[350px] h-[50px] min-w-[100px] flex justify-center items-center bg-[#F0A30A] border border-[#BD7000] px-2"
+        >
+          <p className="truncate whitespace-nowrap">
+            {name || <span className="text-yellow-700">Un - Assigned</span>}
+          </p>
         </div>
       </div>
       <HandleComponent
