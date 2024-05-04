@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// TODO 3: Update handles and params. @rohan843
 const artefactsSlice = createSlice({
   name: "artefacts",
   initialState: {
