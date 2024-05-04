@@ -1,6 +1,3 @@
-// TODO 1: Add border.
-// TODO 2: Make triangles imploded.
-
 import { Handle, Position } from "reactflow";
 import classNames from "classnames";
 
@@ -62,9 +59,9 @@ const ArtefactImporterNode = ({
       >
         <p
           className="truncate w-[90%] flex items-center justify-center"
-          title={"CompiledClassifierModelEvaluator"}
+          title={name}
         >
-          CompiledClassifierModelEvaluator
+          {name}
         </p>
       </div>
 
