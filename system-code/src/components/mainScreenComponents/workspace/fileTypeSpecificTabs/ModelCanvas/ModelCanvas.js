@@ -367,7 +367,7 @@ function ModelCanvas({ activeFileIndex }) {
               })
             );
           };
-          if (deepCopyOfNode.type === "CommentNode") {
+          if (deepCopyOfNode.type === "PseudoNode/Comment") {
             deepCopyOfNode.data.onToggleTODOStatus = () => {
               const currentNodeID = deepCopyOfNode.id;
               const newNodes = nodes.map((node) => {
