@@ -278,6 +278,32 @@ function ModelCanvas({ activeFileIndex }) {
         </>
       );
     } else if (node.type === "Callback") {
+      return (
+        <>
+          <Title show innerText="Callback Node" />
+          <H show level={1} innerText="Parameters" />
+          <KeyValue
+            show
+            content={[
+              {
+                keyInnerText: "name",
+                valueInnerText: node.data.name,
+                isValueEditable: true,
+                removable: false,
+                onValueChange: (newValue) => {
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: ["data", "nodes", activeNodeIndex, "data", "name"],
+                      value: newValue,
+                    })
+                  );
+                },
+              },
+            ]}
+          />
+        </>
+      );
     } else if (node.type === "Unpacker/Ordered") {
     } else if (node.type === "Packer/Ordered") {
     } else if (node.type === "Unpacker/Named") {
