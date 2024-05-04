@@ -13,9 +13,13 @@ import RawDataInputNode from "./RawDataInputNode";
 import ArtefactImporterNode from "./ArtefactImporterNode";
 import RepeatLoop from "./RepeatLoop";
 import ForInLoop from "./ForInLoop";
+import DataVariableIN from "./DataVariableIN";
+import DataVariableOUT from "./DataVariableOUT";
 
 export {
   ArtefactImporterNode,
+  DataVariableIN,
+  DataVariableOUT,
   FunctionNode,
   ForInLoop,
   RepeatLoop,

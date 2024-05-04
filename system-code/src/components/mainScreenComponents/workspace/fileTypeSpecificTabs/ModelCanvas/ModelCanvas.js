@@ -1,5 +1,4 @@
 // TODO: Add facility to create loops around functions
-// TODO: Create & Register Data Variable IN/OUT nodes
 
 import RightPane from "./RightPane";
 import LeftPane from "./LeftPane";
@@ -34,6 +33,8 @@ import {
   RawDataInputNode,
   Input,
   Output,
+  DataVariableIN,
+  DataVariableOUT,
 } from "./subcomponents/nodes";
 import { cloneDeep, findIndex } from "lodash";
 
@@ -51,6 +52,8 @@ const NodeTypes = {
   "Packer/Named": NamedPackerNode,
   "Unpacker/Named": NamedUnpackerNode,
   Callback: CallBackNode,
+  "DataVariable/IN": DataVariableIN,
+  "DataVariable/OUT": DataVariableOUT,
 };
 
 const permissibleFileTypes = {
