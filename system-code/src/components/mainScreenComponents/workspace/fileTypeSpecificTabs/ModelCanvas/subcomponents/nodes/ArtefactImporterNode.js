@@ -60,7 +60,10 @@ const ArtefactImporterNode = ({
           }
         )}
       >
-        <p className="truncate" title={"CompiledClassifierModelEvaluator"}>
+        <p
+          className="truncate w-[90%] flex items-center justify-center"
+          title={"CompiledClassifierModelEvaluator"}
+        >
           CompiledClassifierModelEvaluator
         </p>
       </div>
