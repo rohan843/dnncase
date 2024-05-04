@@ -306,29 +306,12 @@ In other words, use this in place of something like
     clip-path: polygon(100% 50%, 0 100%, 0 0);
 }
 
-.InputNodeStyles p {
-    margin: 0;
-    width: 60%;
-}
-
 .OutputNodeStyles {
     background-color: #0050EF;
     color: white;
-    display: flex;
-    flex-direction: row-reverse;
-    max-width: max-content;
-    min-width: 50px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-right: 10px;
-    padding-left: 40px;
+    width: 150px;
+    height: 100px;
     clip-path: polygon(0% 50%, 100% 0, 100% 100%);
-}
-
-.OutputNodeStyles p {
-    margin: 0;
-    width: 60%;
-    direction: rtl;
 }
 
 .triangle-point-left {
