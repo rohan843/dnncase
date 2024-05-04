@@ -1,27 +1,3 @@
-// const jsonObject = require("./graphJson");
-import {
-  GenerateAdamOptimizer,
-  CreateAndApplyDenseLayer,
-  Flatten,
-  Input,
-  GetTunableInt,
-  GetTunableFromList,
-  RawData,
-  gradientTape,
-  zeros_like,
-  ones_like,
-  add,
-  subtract,
-  divide,
-  BinaryCrossentropy,
-  batch,
-  shuffle,
-  reshape,
-  evaluateModel,
-  getBestModelTuning,
-  loadKerasDataset,
-  CompileModel,
-} from "./helperFunction.mjs";
 const jsonObject = {
   artefacts: [
     {
@@ -34,82 +10,97 @@ const jsonObject = {
           id: "1",
           nodeType: "FunctionNode",
           nodeSubtype: "GetTunableInt",
+          nodeData : {}
         },
         {
           id: "2",
           nodeType: "DataVariableNode",
           nodeSubtype: "Input",
           name: "hp_units",
+          nodeData : {},
         },
         {
           id: "3",
           nodeType: "FunctionNode",
           nodeSubtype: "GetTunableInt",
+          nodeData : {}
         },
         {
           id: "4",
           nodeType: "DataVariableNode",
           nodeSubtype: "Input",
           name: "hp_layers",
+          nodeData : {},
         },
         {
           id: "5",
           nodeType: "FunctionNode",
           nodeSubtype: "Input",
+          nodeData : {},
         },
         {
           id: "6",
           nodeType: "FunctionNode",
           nodeSubtype: "Flatten",
+          nodeData : {},
         },
         {
           id: "7",
           nodeType: "DataVariableNode",
           nodeSubtype: "Output",
           name: "hp_units",
+          nodeData : {},
         },
         {
           id: "8",
           nodeType: "FunctionNode",
           nodeSubtype: "CreateAndApplyDenseLayer",
+          nodeData : {},
         },
         {
           id: "9",
           nodeType: "DataVariableNode",
           nodeSubtype: "Output",
           name: "hp_units",
+          nodeData : {},
         },
         {
           id: "10",
           nodeType: "PackerNode",
           nodeSubtype: "NamedPacker",
+          nodeData : {},
         },
         {
           id: "11",
           nodeType: "DataVariableNode",
           nodeSubtype: "Output",
-          name: "hp_units",
+          name: "hp_layers",
+          nodeData : {},
         },
         {
           id: "12",
           nodeType: "Loop",
           nodeSubtype: "RepeatLoopNode",
           innerArtefact: "tmp1",
+          nodeData : {},
         },
         {
           id: "13",
           nodeType: "UnpackerNode",
           nodeSubtype: "NamedUnpacker",
+          nodeData : {},
         },
         {
           id: "14",
           nodeType: "FunctionNode",
           nodeSubtype: "CreateAndApplyDenseLayer",
+          nodeData : {},
         },
         {
           id: "15",
           nodeType: "FunctionNode",
           nodeSubtype: "Output",
+          nodeData : {},
         },
       ],
       edges: [
@@ -118,56 +109,56 @@ const jsonObject = {
           sourceNodeID: "1",
           sourceNodeHandleID: "out",
           targetNodeID: "2",
-          targetNodeHandleID: "in",
+          targetNodeHandleID: "hp_units",
         },
         {
           label: "",
           sourceNodeID: "3",
           sourceNodeHandleID: "out",
           targetNodeID: "4",
-          targetNodeHandleID: "in",
+          targetNodeHandleID: "hp_layers",
         },
         {
           label: "",
           sourceNodeID: "5",
           sourceNodeHandleID: "out",
           targetNodeID: "6",
-          targetNodeHandleID: "in",
+          targetNodeHandleID: "payload",
         },
         {
           label: "",
           sourceNodeID: "7",
           sourceNodeHandleID: "out",
           targetNodeID: "8",
-          targetNodeHandleID: "in",
+          targetNodeHandleID: "units",
         },
         {
           label: "",
           sourceNodeID: "6",
           sourceNodeHandleID: "out",
           targetNodeID: "8",
-          targetNodeHandleID: "in",
+          targetNodeHandleID: "payload",
         },
         {
           label: "hp_units",
           sourceNodeID: "9",
           sourceNodeHandleID: "out",
           targetNodeID: "10",
-          targetNodeHandleID: "in",
+          targetNodeHandleID: "multi-in",
         },
         {
           label: "payload",
           sourceNodeID: "8",
           sourceNodeHandleID: "out",
           targetNodeID: "10",
-          targetNodeHandleID: "in",
+          targetNodeHandleID: "multi-in",
         },
         {
           label: "",
           sourceNodeID: "10",
           sourceNodeHandleID: "out",
           targetNodeID: "12",
-          targetNodeHandleID: "in",
+          targetNodeHandleID: "payload",
         },
         {
           label: "",
@@ -181,14 +172,14 @@ const jsonObject = {
           sourceNodeID: "12",
           sourceNodeHandleID: "out",
           targetNodeID: "13",
-          targetNodeHandleID: "in",
+          targetNodeHandleID: "payload",
         },
         {
           label: "payload",
           sourceNodeID: "13",
           sourceNodeHandleID: "out",
           targetNodeID: "14",
-          targetNodeHandleID: "in",
+          targetNodeHandleID: "payload",
         },
         {
           label: "",
@@ -215,7 +206,7 @@ const codeGenFuncs = {
     return {
       imports: ["from keras.layers import Dense"],
       execution: "",
-      return: `Dense(${params["hp_units"]})(${params["payload"]})`,
+      return: `Dense(${params["units"]})(${params["payload"]})`,
     };
   },
   Input: function Input(params) {
@@ -237,14 +228,14 @@ const codeGenFuncs = {
     return {
       imports: [],
       execution: "",
-      return: `hp.Choice('learning_rate', "values= " ${params["value"]})`,
+      return: `hp.Int(value=${params["val"]})`,
     };
   },
   GetTunableFromList: function GetTunableFromList(params) {
     return {
       imports: [],
       execution: "",
-      return: `hp.Int(value=${params["val"]})`,
+      return: `hp.Choice('learning_rate', "values= " ${params["value"]})`,
     };
   },
   RawData: function RawData(params) {
@@ -362,7 +353,7 @@ const codeGenFuncs = {
 let dnn_temp_id = 0;
 let gen_code = "";
 let importList=[]
-function generateCode(jsonObject) {
+function main(jsonObject) {
   // mapping is done to give id to each artefact
   const artefactIdMapping = new Map();
   const idToArtefact = new Map();
@@ -384,16 +375,18 @@ function generateCode(jsonObject) {
   ); // artefact-> nodeId->[dnn_temp_id,targetNodeID,targetNodeHandleID,label]
   outdegreeCnt(nodeOutputEdgeMap, artefactOutDegreeCnt);
   dataVariableNodeMapping(jsonObject, artefactIdMapping, dataVariableInpOutMap);
-  console.log(artefactNodesInfo);
+  console.log(idToArtefact);
+  // console.log(artefactNodesInfo);
   // console.log(nodeOutputEdgeMap)
   // console.log(nodeInputEdgeMap)
-  // console.log(artefactOutDegreeCnt)
+  //console.log(artefactOutDegreeCnt)
+  console.log(dataVariableInpOutMap)
   //Creating a DAG for the artefacts
 
   const graph = new Map();
   createGraph(jsonObject, artefactIdMapping, graph);
 
-  // console.log(graph);
+  //console.log(graph);
 
   // Now we start topological sorting
 
@@ -408,46 +401,18 @@ function generateCode(jsonObject) {
     if (!visited[key]) dfs(key, graph, stack, visited);
   }
   
-  const artefactOrder = [0]; // handle conditions if all artefacts are independent
+  const artefactOrder = []; // handle conditions if all artefacts are independent
+  if(graph.size>0){
   while (stack.length > 0) {
-    artefactOrder.push(stack.pop());
-  }
-  //console.log(artefactOrder)
-  for (let i = 0; i < artefactOrder.length; i++) {
-    let str = functionDef(idToArtefact.get(artefactOrder[i]));
-    gen_code = gen_code.concat(`${str}\n\t`);
-    let out_list = {};
-    for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
-      if (value.length === 0) {
-        //outdegreeCnt=artefactOutDegreeCnt.get(artefactOrder[i])
-        model_arte_dfs(
-          artefactOrder[i],
-          key,
-          "",
-          idToArtefact,
-          artefactNodesInfo,
-          nodeOutputEdgeMap,
-          nodeInputEdgeMap,
-          nodeInputList,
-          5,
-          out_list
-        );
-      }
-    }
-    //console.log(out_list)
-    if (Object.keys(out_list).length > 0) {
-      // console.log("outlist")
-      let s = "";
-      for (const key in out_list) {
-        s = s + key + ":" + out_list[key] + ",\n\t\t";
-      }
-
-      gen_code = gen_code.concat(`return{\n\t\t${s}}`);
+     artefactOrder.push(stack.pop());
+   }
+  }else {
+    for(const [key,value] of artefactIdMapping){
+      artefactOrder.push(value)
     }
   }
-
-  console.log(gen_code);
-  //console.log(artefactOrder);
+  
+  generateCode(artefactNodesInfo,idToArtefact, nodeInputEdgeMap, nodeOutputEdgeMap,nodeInputList, dataVariableInpOutMap,artefactOrder)
 }
 // Write code for Loop NOdes
 function gen_arte_dfs(
@@ -528,7 +493,7 @@ function gen_arte_dfs(
         outDegCnt--;
         return;
       }
-    } else if (nodeType == "InputNode") {
+    } else if (nodeType === "InputNode") {
       let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
       let dnn_var = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0][0];
 
@@ -556,7 +521,7 @@ function gen_arte_dfs(
         outDegCnt--;
         return;
       }
-    } else if ((nodeType = "OutputNode")) {
+    } else if ((nodeType === "OutputNode")) {
       let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
 
       out_list[`${name}`] = edge_variable;
@@ -628,7 +593,7 @@ function hypermodel_arte_dfs(
               gen_code = gen_code.concat(s);
             }
   
-            gen_arte_dfs(
+            hypermodel_arte_dfs(
               artefact_id,
               list[i][1],
               list[i][0],
@@ -646,7 +611,7 @@ function hypermodel_arte_dfs(
           outDegCnt--;
           return;
         }
-      } else if (nodeType == "InputNode") {
+      } else if (nodeType === "InputNode") {
         let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
         let dnn_var = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0][0];
   
@@ -657,7 +622,7 @@ function hypermodel_arte_dfs(
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
         if (list.length > 0) {
           for (let i = 0; i < list.length; i++) {
-            gen_arte_dfs(
+            hypermodel_arte_dfs(
               artefact_id,
               list[i][1],
               list[i][0],
@@ -674,7 +639,7 @@ function hypermodel_arte_dfs(
           outDegCnt--;
           return;
         }
-      } else if ((nodeType = "OutputNode")) {
+      } else if ((nodeType === "OutputNode")) {
         let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
   
         out_list[`${name}`] = edge_variable;
@@ -695,16 +660,16 @@ function model_arte_dfs(
   nodeOutputEdgeMap,
   nodeInputEdgeMap,
   nodeInputList,
-  outDegCnt,
   dataVariableInpOutMap,
+
   model_in_list,
   model_out_list,
-  out_list
+  
 ) {
   //  if(outDegCnt==0){
   //     return;
   //  }
-
+  
   if (nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length > 0) {
     nodeInputList.get(artefact_id).get(curr_node_id).push(edge_variable);
   }
@@ -713,35 +678,41 @@ function model_arte_dfs(
     nodeInputList.get(artefact_id).get(curr_node_id).length
   ) {
     // generate code
-
+    //console.log("nde " + artefactNodesInfo.get(artefact_id).get(curr_node_id)[0])
     let nodeType = artefactNodesInfo.get(artefact_id).get(curr_node_id)[0];
     let nodeSubtype = artefactNodesInfo.get(artefact_id).get(curr_node_id)[1];
 
     if (nodeType === "FunctionNode") {
+      if (nodeSubtype === "Output") {
+        model_out_list.push(edge_variable);
+        return;
+      }
       let nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
+      //console.log(`subtype   ${nodeSubtype}  Function  ${codeGenFuncs[nodeSubtype]}`)
       let funcCode = codeGenFuncs[nodeSubtype](nodeData).return;
       let dnn_var = dnn_temp_var_id();
-      let str = `${dnn_var} = ${funcCode}\n\t`;
+      let str = `
+  ${dnn_var} = ${funcCode}`;
 
-      gen_code = gen_code.concat("" + str);
+      gen_code = gen_code.concat(str);
 
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
 
       if (nodeSubtype === "Input") {
         model_in_list.push(list[0][0]);
       }
-      if (nodeSubtype === "Output") {
-        model_out_list.push(edge_variable);
-      }
+      
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
           //console.log(typeof list[i][3])
           if (list[i][3].length === 0) {
-            let s = list[i][0] + "=" + dnn_var + "\n\t";
+            let s = `
+  ${list[i][0]}=${dnn_var}`;
 
             gen_code = gen_code.concat(s);
           } else {
-            let s = list[i][0] + "=" + dnn_var + "[" + list[i][3] + "]\n\t";
+            let s = `
+  ${list[i][0]}=${dnn_var}["${list[i][3]}"]`;
 
             gen_code = gen_code.concat(s);
           }
@@ -755,31 +726,49 @@ function model_arte_dfs(
             nodeOutputEdgeMap,
             nodeInputEdgeMap,
             nodeInputList,
-            outDegCnt,
-            dataVariableInpOutMap,
+             dataVariableInpOutMap,
+             
             model_in_list,
             model_out_list,
-            out_list
+            
           );
         }
       } else {
-        // console.log("hello1")
-        outDegCnt--;
         return;
       }
     } else if (nodeType === "DataVariableNode") {
       const name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
       if (nodeSubtype === "Input") {
-        let s = `${name} = ${dnn_var}`;
-        gen_code = gen_code.concat(s + "\n\t");
+        let s = `
+  ${name} = ${edge_variable}`;
+        gen_code = gen_code.concat(s);
 
         // code to take all Output data variable node and perform dfs on them
+        const Data_Var_Out_List = dataVariableInpOutMap.get(artefact_id).get(name);
+        //console.log(name + "  " + Data_Var_Out_List)
+        for(const nodeId of Data_Var_Out_List){
+          model_arte_dfs(
+            artefact_id,
+            nodeId,
+            "",
+            idToArtefact,
+            artefactNodesInfo,
+            nodeOutputEdgeMap,
+            nodeInputEdgeMap,
+            nodeInputList,
+            dataVariableInpOutMap,
+            model_in_list,
+            model_out_list,
+            
+          )
+        }
       } else if (nodeSubtype === "Output") {
         // assuming only one output
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
 
-        let s = `${list[0]} = name`;
-        gen_code = gen_code.concat(s + "\n\t");
+        let s = `
+  ${list[0]} = ${name}`;
+        gen_code = gen_code.concat(s);
 
         model_arte_dfs(
           artefact_id,
@@ -790,15 +779,15 @@ function model_arte_dfs(
           nodeOutputEdgeMap,
           nodeInputEdgeMap,
           nodeInputList,
-          outDegCnt,
           dataVariableInpOutMap,
           model_in_list,
           model_out_list,
-          out_list
+          
         );
       }
     } else if (nodeType === "Loop") {
-      if (nodeSubtype === "RepeatLoop") {
+      if (nodeSubtype === "RepeatLoopNode") {
+        //console.log("RepeatLoop")
         const nodeData = artefactNodesInfo
           .get(artefact_id)
           .get(curr_node_id)[4];
@@ -807,26 +796,34 @@ function model_arte_dfs(
           .get(curr_node_id)[2];
         const temp_var_destruct = dnn_temp_var_id();
         const temp_var_inner_arte = dnn_temp_var_id();
-
+        let resultString = '{';
+        for (let key in nodeData) {
+            if (nodeData.hasOwnProperty(key)) {
+                resultString = resultString + '"' + key + '": ' + nodeData[key] + ', ';
+            }
+        }
+        resultString = resultString.slice(0, -2);
+  
+        resultString += '}'
         let s = `
-                ${temp_var_destruct} = {**${nodeData["payload"]}}\n\t 
-                for i in range(${node["iterationCount"]})\n\t\t 
-                    ${temp_var_destruct}[ss_index]=i\n\t\t
-                    ${temp_var_inner_arte}=${innerArtefact}(${temp_var_destruct})\n\t\t
-                    ${temp_var_destruct}.update(${temp_var_inner_arte})\n\t
-                      
-
-                `;
-
+  ${temp_var_destruct} = json.loads(${resultString})
+  for i in range(${nodeData["iterationCount"]}):
+    ${temp_var_destruct}["ss_index"]=i
+    ${temp_var_inner_arte}=${innerArtefact}(${temp_var_destruct})
+    ${temp_var_destruct}.update(${temp_var_inner_arte})
+    `;
+       //console.log(s)
         gen_code = gen_code.concat(s);
 
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
 
         if (list[3].length === 0) {
-          gen_code = gen_code.concat(`${list[0]}"="${temp_var_destruct}\n\t`);
+          gen_code = gen_code.concat(`
+  ${list[0]}=${temp_var_destruct}`);
         } else {
           gen_code = gen_code.concat(
-            `${list[0]}=temp_var_destruct"["${list[3]}"]\n\t"`
+            `
+  ${list[0]}=temp_var_destruct["${list[3]}"]`
           );
         }
 
@@ -839,23 +836,80 @@ function model_arte_dfs(
           nodeOutputEdgeMap,
           nodeInputEdgeMap,
           nodeInputList,
-          outDegCnt,
           dataVariableInpOutMap,
           model_in_list,
           model_out_list,
-          out_list
+          
         );
       }else if(nodeSubtype==="ForEachLoop"){
-        // write code here
+        const nodeData = artefactNodesInfo
+          .get(artefact_id)
+          .get(curr_node_id)[4];
+        const innerArtefact = artefactNodesInfo
+          .get(artefact_id)
+          .get(curr_node_id)[2];
+        const temp_var_destruct = dnn_temp_var_id();
+        const temp_var_inner_arte = dnn_temp_var_id();
+        let resultString = '{';
+        for (let key in nodeData) {
+            if (nodeData.hasOwnProperty(key)) {
+                resultString = resultString + '"' + key + '": ' + nodeData[key] + ', ';
+            }
+        }
+        resultString = resultString.slice(0, -2);
+  
+        resultString += '}'
+        let s = `
+  ${temp_var_destruct} = json.loads(${resultString})
+  for i in ${nodeData["iterationCount"]}
+    ${temp_var_destruct}["ss_index"]=i
+    ${temp_var_inner_arte}=${innerArtefact}(${temp_var_destruct})
+    ${temp_var_destruct}.update(${temp_var_inner_arte})`;
+
+        gen_code = gen_code.concat(s);
+
+        const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+
+        if (list[3].length === 0) {
+          gen_code = gen_code.concat(`
+  ${list[0]}"="${temp_var_destruct}`);
+        } else {
+          gen_code = gen_code.concat(`
+  ${list[0]}=temp_var_destruct"["${list[3]}"]`
+          );
+        }
+
+        model_arte_dfs(
+          artefact_id,
+          list[1],
+          list[0],
+          idToArtefact,
+          artefactNodesInfo,
+          nodeOutputEdgeMap,
+          nodeInputEdgeMap,
+          nodeInputList,
+          
+          dataVariableInpOutMap,
+          model_in_list,
+          model_out_list,
+          
+        );
       }
-    } else if (nodeType == "PackerNode") {
+    } else if (nodeType === "PackerNode") {
       const nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
 
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+      let resultString = '{';
+      for (let key in nodeData) {
+          if (nodeData.hasOwnProperty(key)) {
+              resultString = resultString + '"' + key + '": ' + nodeData[key] + ', ';
+          }
+      }
+      resultString = resultString.slice(0, -2);
 
+      resultString += '}'
       gen_code = gen_code.concat(`
-              ${list[0]}= ${nodeData}\n\t
-          `);
+  ${list[0]}= ${resultString}`);
 
       model_arte_dfs(
         artefact_id,
@@ -866,25 +920,22 @@ function model_arte_dfs(
         nodeOutputEdgeMap,
         nodeInputEdgeMap,
         nodeInputList,
-        outDegCnt,
         dataVariableInpOutMap,
         model_in_list,
         model_out_list,
-        out_list
+        
       );
-    } else if (nodeType == "UnpackerNode") {
+    } else if (nodeType === "UnpackerNode") {
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
           //console.log(typeof list[i][3])
           if (list[i][3].length === 0) {
-            gen_code = gen_code.concat(
-              `${list[i][0]}"="${edge_variable}"\n\t"`
-            );
+            gen_code = gen_code.concat(`
+  ${list[i][0]}=${edge_variable}`);
           } else {
-            let s = list[i][0] + "=" + dnn_var + "[" + list[i][3] + "]\n\t";
-            gen_code = gen_code.concat(
-              `${list[i][0]}= ${edge_variable}["${list[i][3]}"]\n\t"`
+            gen_code = gen_code.concat(`
+  ${list[i][0]}= ${edge_variable}["${list[i][3]}"]`
             );
           }
 
@@ -897,15 +948,15 @@ function model_arte_dfs(
             nodeOutputEdgeMap,
             nodeInputEdgeMap,
             nodeInputList,
-            outDegCnt,
+            
             dataVariableInpOutMap,
             model_in_list,
             model_out_list,
-            out_list
+            
           );
         }
       } else {
-        outDegCnt--;
+       
         return;
       }
     } else {
@@ -913,19 +964,112 @@ function model_arte_dfs(
     }
   }
 }
-function functionDef(artefact_list) {
-  const artefactName = artefact_list[0];
-  const artefactType = artefact_list[1];
+function generateCode(artefactNodesInfo,idToArtefact, nodeInputEdgeMap, nodeOutputEdgeMap,nodeInputList, dataVariableInpOutMap,artefactOrder) {
 
-  if (artefactType === "ModelArchitectureType") {
-    return `def ${artefactName}(hp=None)`;
-  } else if (artefactType === "ModelClassifierType") {
-    return `def${artefactName}(hp=None)`;
-  } else if (artefactType === "TrainStepArtefact") {
-    return `@tf.function\ndef ${artefactName}()`;
-  } else {
-    return `def ${artefactName}(params)`;
+  for(let i=0;i<artefactOrder.length;i++){
+    
+    const artefactName = idToArtefact.get(artefactOrder[i])[0];
+    const artefactType = idToArtefact.get(artefactOrder[i])[1];
+
+    if (artefactType === "ModelArchitectureType") {
+      gen_code= gen_code.concat(`
+def ${artefactName}(hp=None):
+      `)
+      const model_in_list=[]
+      const model_out_list=[]
+
+      for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
+        if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariableNode" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
+          //console.log(`nodeType ${artefactNodesInfo.get(artefactOrder[i]).get(key)[0]}  nodeSubtype  ${artefactNodesInfo.get(artefactOrder[i]).get(key)[1]}`)
+          model_arte_dfs(
+            artefactOrder[i],
+            key,
+            "",
+            idToArtefact,
+            artefactNodesInfo,
+            nodeOutputEdgeMap,
+            nodeInputEdgeMap,
+            nodeInputList,
+            dataVariableInpOutMap,
+            model_in_list,
+            model_out_list
+          );
+        }
+      }
+      
+      gen_code=gen_code.concat(`
+  model = Model(inputs=(${model_in_list}), outputs=(${model_out_list}))
+  return model`)
+
+    } else if (artefactType === "ModelClassifierType") {
+      gen_code=gen_code.concat(`def${artefactName}(hp=None):\n\t`);
+      const out_list=[]
+      for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
+        if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariableNode" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
+        
+          hypermodel_arte_dfs(
+            artefactOrder[i],
+            key,
+            "",
+            idToArtefact,
+            artefactNodesInfo,
+            nodeOutputEdgeMap,
+            nodeInputEdgeMap,
+            nodeInputList,
+            out_list
+          )
+        }
+      }
+      if (Object.keys(out_list).length > 0) {
+        // console.log("outlist")
+        let s = "";
+        for (const key in out_list) {
+          s = s + key + ":" + out_list[key] + ",\n\t\t";
+        }
+  
+        gen_code = gen_code.concat(`return{\n\t\t${s}}`);
+
+      }
+
+    } else if (artefactType === "TrainStepArtefact") {
+      return `@tf.function\ndef ${artefactName}()`;
+    } else {
+      gen_code = gen_code.concat(`def ${artefactName}(params):`)
+      const out_list=[]
+      for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
+        if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariableNode" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
+        
+          gen_arte_dfs(
+            artefactOrder[i],
+            key,
+            "",
+            idToArtefact,
+            artefactNodesInfo,
+            nodeOutputEdgeMap,
+            nodeInputEdgeMap,
+            nodeInputList,
+            out_list
+          )
+        }
+      }
+      if (Object.keys(out_list).length > 0) {
+        // console.log("outlist")
+        let s = "";
+        for (const key in out_list) {
+          s = s + key + ":" + out_list[key] + ",\n\t\t";
+        }
+  
+        gen_code = gen_code.concat(`return{\n\t\t${s}}`);
+
+      }
+    }
+
   }
+
+  console.log(gen_code)
+
+ 
+  
 }
 function dataVariableNodeMapping(
   jsonObject,
@@ -934,13 +1078,16 @@ function dataVariableNodeMapping(
 ) {
   for (const artefact of jsonObject.artefacts) {
     const id = artefactIdMapping.get(artefact.artefactMetadata.name);
+    
     dataVariableInpOutMap.set(id, new Map());
     for (const node of artefact.nodes) {
-      if (node.type === "DataVariableNode" && node.nodeSubtype === "Input") {
+      if (node.nodeType === "DataVariableNode" && node.nodeSubtype === "Input") {
+        //console.log(`Input   ${node.name}`)
         dataVariableInpOutMap.get(id).set(node.name, []);
       }
-      if (node.type === "DataVariableNode" && node.nodeSubtype === "Output") {
+      if (node.nodeType === "DataVariableNode" && node.nodeSubtype === "Output") {
         if (dataVariableInpOutMap.get(id).has(node.name)) {
+          //console.log(`Output   ${node.name}`)
           dataVariableInpOutMap.get(id).get(node.name).push(node.id);
         }
       }
@@ -1040,7 +1187,7 @@ function artefactNodesMapping(
             node.nodeSubtype,
             node.sourceArtefact,
             node.name,
-            {},
+            node.nodeData,
           ]);
       } else {
         artefactNodesInfo
@@ -1097,15 +1244,16 @@ function createGraph(jsonObject, artefactIdMapping, graph) {
         } else {
           nodeB = artefactIdMapping.get(node.innerArtefact);
         }
-
+        if(typeof nodeB !== 'undefined'){
         if (graph.has(nodeB)) {
           graph.get(nodeB).push(nodeA);
         } else {
           graph.set(nodeB, [nodeA]);
         }
       }
+      }
     }
   }
 }
 
-generateCode(jsonObject);
+main(jsonObject);
