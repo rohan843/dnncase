@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// TODO 3: Update handles and params.
 const artefactsSlice = createSlice({
   name: "artefacts",
   initialState: {
@@ -196,33 +197,6 @@ const artefactsSlice = createSlice({
       CompileModel: {
         displayName: "Compile Model",
         subcategorization: "Model Compilation",
-        nodeType: "FunctionNode",
-        defaultHyperparams: [],
-        defaultInputHandles: ["inSignal"],
-        defaultOutputHandles: ["outSignal"],
-      },
-      CustomEdgeData: {
-        displayName: "Custom Edge Data",
-        subcategorization:
-          "Unknown/Duplicated (ask Gurkaran the work these do)",
-        nodeType: "FunctionNode",
-        defaultHyperparams: [],
-        defaultInputHandles: ["inSignal"],
-        defaultOutputHandles: ["outSignal"],
-      },
-      BestTuningModel: {
-        displayName: "Best Tuning Model",
-        subcategorization:
-          "Unknown/Duplicated (ask Gurkaran the work these do)",
-        nodeType: "FunctionNode",
-        defaultHyperparams: [],
-        defaultInputHandles: ["inSignal"],
-        defaultOutputHandles: ["outSignal"],
-      },
-      Evaluate: {
-        displayName: "Evaluate",
-        subcategorization:
-          "Unknown/Duplicated (ask Gurkaran the work these do)",
         nodeType: "FunctionNode",
         defaultHyperparams: [],
         defaultInputHandles: ["inSignal"],
