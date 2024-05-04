@@ -307,7 +307,9 @@ function ModelCanvas({ activeFileIndex }) {
     } else if (node.type === "Unpacker/Ordered") {
     } else if (node.type === "Packer/Ordered") {
     } else if (node.type === "Unpacker/Named") {
+      return <Title show innerText="Unpacker Node" />;
     } else if (node.type === "Packer/Named") {
+      return <Title show innerText="Packer Node" />;
     } else if (node.type === "PseudoNode/Comment") {
     } else if (node.type === "Output") {
     } else if (node.type === "Input") {
