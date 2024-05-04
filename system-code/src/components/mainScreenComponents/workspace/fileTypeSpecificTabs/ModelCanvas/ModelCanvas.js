@@ -36,7 +36,7 @@ import {
   DataVariableIN,
   DataVariableOUT,
   ListPackerNode,
-  ListUnpackerNode
+  ListUnpackerNode,
 } from "./subcomponents/nodes";
 import { cloneDeep, findIndex } from "lodash";
 
@@ -1474,27 +1474,73 @@ function ModelCanvas({ activeFileIndex }) {
           ]}
           contents={hierarchicalLayersFormat}
           onSelect={(elementID, options) => {
-            setNodes([
-              ...nodes,
-              {
-                id: getNodeId("FunctionNode", elementID),
-                position: {
-                  x: -currentViewport.x,
-                  y: -currentViewport.y,
-                  zoom: currentViewport.zoom,
+            if (options["repeat-loop"]) {
+              setNodes([
+                ...nodes,
+                {
+                  id: getNodeId("FunctionNode", "RepeatLoop", elementID),
+                  position: {
+                    x: -currentViewport.x,
+                    y: -currentViewport.y,
+                    zoom: currentViewport.zoom,
+                  },
+                  type: "Loop/Repeat",
+                  data: {
+                    name: functions[elementID].displayName,
+                    hyperparams: functions[elementID].defaultHyperparams,
+                    commentText: "",
+                    commentType: "plain",
+                    inputHandles: functions[elementID].defaultInputHandles,
+                    outputHandles: functions[elementID].defaultOutputHandles,
+                    elementID,
+                  },
                 },
-                type: functions[elementID].nodeType,
-                data: {
-                  name: functions[elementID].displayName,
-                  hyperparams: functions[elementID].defaultHyperparams,
-                  commentText: "",
-                  commentType: "plain",
-                  inputHandles: functions[elementID].defaultInputHandles,
-                  outputHandles: functions[elementID].defaultOutputHandles,
-                  elementID,
+              ]);
+            } else if (options["for-in-loop"]) {
+              setNodes([
+                ...nodes,
+                {
+                  id: getNodeId("FunctionNode", "ForInLoop", elementID),
+                  position: {
+                    x: -currentViewport.x,
+                    y: -currentViewport.y,
+                    zoom: currentViewport.zoom,
+                  },
+                  type: "Loop/ForIn",
+                  data: {
+                    name: functions[elementID].displayName,
+                    hyperparams: functions[elementID].defaultHyperparams,
+                    commentText: "",
+                    commentType: "plain",
+                    inputHandles: functions[elementID].defaultInputHandles,
+                    outputHandles: functions[elementID].defaultOutputHandles,
+                    elementID,
+                  },
                 },
-              },
-            ]);
+              ]);
+            } else {
+              setNodes([
+                ...nodes,
+                {
+                  id: getNodeId("FunctionNode", elementID),
+                  position: {
+                    x: -currentViewport.x,
+                    y: -currentViewport.y,
+                    zoom: currentViewport.zoom,
+                  },
+                  type: functions[elementID].nodeType,
+                  data: {
+                    name: functions[elementID].displayName,
+                    hyperparams: functions[elementID].defaultHyperparams,
+                    commentText: "",
+                    commentType: "plain",
+                    inputHandles: functions[elementID].defaultInputHandles,
+                    outputHandles: functions[elementID].defaultOutputHandles,
+                    elementID,
+                  },
+                },
+              ]);
+            }
           }}
         />
         <H1Button
