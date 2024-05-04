@@ -311,6 +311,11 @@ function ModelCanvas({ activeFileIndex }) {
     } else if (node.type === "Packer/Named") {
       return <Title show innerText="Packer Node" />;
     } else if (node.type === "PseudoNode/Comment") {
+      return (
+        <>
+          <Title show innerText="Comment Node" />
+        </>
+      );
     } else if (node.type === "Output") {
     } else if (node.type === "Input") {
     } else if (node.type === "Loop/Repeat") {
