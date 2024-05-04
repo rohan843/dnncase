@@ -305,7 +305,75 @@ function ModelCanvas({ activeFileIndex }) {
         </>
       );
     } else if (node.type === "Unpacker/Ordered") {
+      // TODO: Finish this.
+      return (
+        <>
+          <Title show innerText="List Unpacker Node" />
+          <H show innerText="Handle Count Manipulation" level={1} />
+          <H1Button
+            show
+            innerText="Increase Output Count"
+            onClick={() => {
+              // const currentHandleCount =
+              // dispatch(
+              //   setFileValue({
+              //     fileIndex: activeFileIndex,
+              //     path: ["data", "nodes", activeNodeIndex, "data", "name"],
+              //     value: newValue,
+              //   })
+              // );
+            }}
+          />
+          <H1Button
+            show
+            innerText="Decrease Output Count"
+            onClick={() => {
+              // dispatch(
+              //   setFileValue({
+              //     fileIndex: activeFileIndex,
+              //     path: ["data", "nodes", activeNodeIndex, "data", "name"],
+              //     value: newValue,
+              //   })
+              // );
+            }}
+          />
+        </>
+      );
     } else if (node.type === "Packer/Ordered") {
+      // TODO: Finish this.
+      return (
+        <>
+          <Title show innerText="List Packer Node" />
+          <H show innerText="Handle Count Manipulation" level={1} />
+          <H1Button
+            show
+            innerText="Increase Input Count"
+            onClick={() => {
+              // const currentHandleCount =
+              // dispatch(
+              //   setFileValue({
+              //     fileIndex: activeFileIndex,
+              //     path: ["data", "nodes", activeNodeIndex, "data", "name"],
+              //     value: newValue,
+              //   })
+              // );
+            }}
+          />
+          <H1Button
+            show
+            innerText="Decrease Input Count"
+            onClick={() => {
+              // dispatch(
+              //   setFileValue({
+              //     fileIndex: activeFileIndex,
+              //     path: ["data", "nodes", activeNodeIndex, "data", "name"],
+              //     value: newValue,
+              //   })
+              // );
+            }}
+          />
+        </>
+      );
     } else if (node.type === "Unpacker/Named") {
       return <Title show innerText="Unpacker Node" />;
     } else if (node.type === "Packer/Named") {
@@ -317,6 +385,32 @@ function ModelCanvas({ activeFileIndex }) {
         </>
       );
     } else if (node.type === "Output") {
+      return (
+        <>
+          <Title show innerText="Artefact Output" />
+          <H show innerText="Parameters" />
+          <KeyValue
+            show
+            content={[
+              {
+                keyInnerText: "name",
+                valueInnerText: node.data.name,
+                isValueEditable: true,
+                removable: false,
+                onValueChange: (newValue) => {
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: ["data", "nodes", activeNodeIndex, "data", "name"],
+                      value: newValue,
+                    })
+                  );
+                },
+              },
+            ]}
+          />
+        </>
+      );
     } else if (node.type === "Input") {
     } else if (node.type === "Loop/Repeat") {
     } else if (node.type === "Loop/ForIn") {
@@ -575,10 +669,7 @@ function ModelCanvas({ activeFileIndex }) {
                 position: currentViewport,
                 type: "Output",
                 data: {
-                  hyperparams: [{ id: "outputShape", value: null }],
-                  commentText: "",
-                  commentType: "plain",
-                  outputHandles: ["out"],
+                  name: null,
                 },
               },
             ]);
@@ -596,9 +687,7 @@ function ModelCanvas({ activeFileIndex }) {
                 type: "DataVariable/IN",
                 data: {
                   hyperparams: [],
-                  commentText: "",
-                  commentType: "plain",
-                  outputHandles: ["out"],
+                  name: null,
                 },
               },
             ]);
@@ -615,10 +704,8 @@ function ModelCanvas({ activeFileIndex }) {
                 position: currentViewport,
                 type: "DataVariable/OUT",
                 data: {
-                  hyperparams: [{ id: "outputShape", value: null }],
-                  commentText: "",
-                  commentType: "plain",
-                  outputHandles: ["out"],
+                  hyperparams: [],
+                  name: null,
                 },
               },
             ]);
@@ -711,7 +798,9 @@ function ModelCanvas({ activeFileIndex }) {
               {
                 id: currentNodeID,
                 position: currentViewport,
-                data: {},
+                data: {
+                  name: null,
+                },
                 type: "Callback",
               },
             ]);
