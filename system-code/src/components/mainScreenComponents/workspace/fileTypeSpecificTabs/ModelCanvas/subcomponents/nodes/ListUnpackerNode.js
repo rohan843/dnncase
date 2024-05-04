@@ -1,17 +1,11 @@
 import classNames from "classnames";
 import Packer from "../../../../../../../assets/packer.png";
-import { find } from "lodash";
 import { Handle, Position } from "reactflow";
 
-const UnpackerNode = ({
+const ListUnpackerNode = ({
   selected,
-  data: { hyperparams, onActivateAndShowInPane, onActivate },
+  data: { unpackingCount, onActivateAndShowInPane, onActivate },
 }) => {
-  const unpackingCount = find(
-    hyperparams,
-    (hp) => hp.id === "unpackingCount"
-  ).value;
-
   const minimumRequiredContentAreaHeight = Math.max(unpackingCount * 19, 150);
 
   const outputHandlesList = [];
@@ -98,4 +92,4 @@ const UnpackerNode = ({
   );
 };
 
-export default UnpackerNode;
+export default ListUnpackerNode;

@@ -1,6 +1,3 @@
-// TODO 1: Add border.
-// TODO 2: Make triangles imploded.
-
 import { Handle, Position } from "reactflow";
 import classNames from "classnames";
 
@@ -9,14 +6,7 @@ const Div = ({ children, ...props }) => {
 };
 
 const ArtefactImporterNode = ({
-  data: {
-    name,
-    hyperparams,
-    inputHandles,
-    outputHandles,
-    onActivate,
-    onActivateAndShowInPane,
-  },
+  data: { name, onActivate, onActivateAndShowInPane },
   selected,
   handlesDisabled,
 }) => {
@@ -27,7 +17,9 @@ const ArtefactImporterNode = ({
 
   return (
     <div
-      className={classNames("w-[400px] h-[60px] relative flex flex-row")}
+      className={classNames(
+        "w-[400px] h-[60px] relative grid grid-cols-1 grid-rows-1"
+      )}
       onClick={() => {
         onActivate && onActivate();
       }}
@@ -35,20 +27,49 @@ const ArtefactImporterNode = ({
         onActivateAndShowInPane && onActivateAndShowInPane();
       }}
     >
-      <div className="w-[12%] bg-[#F0A30A] triangle-point-left" />
-      <div className="w-[75%] bg-[#F0A30A] flex items-center justify-center text-xl px-2 truncate">
-        <p className="truncate" title={"CompiledClassifierModelEvaluator"}>
-          CompiledClassifierModelEvaluator
+      <div
+        style={{
+          clipPath:
+            "polygon(0 50%, 12.5% 0, 87.5% 0, 100% 50%, 87.5% 100%, 12.5% 100%)",
+        }}
+        className={classNames("w-[400px] h-[60px] scale-[1.01]", {
+          "bg-[#000]": selected,
+          "bg-[#826623]": !selected,
+        })}
+      />
+      <div
+        style={{
+          clipPath:
+            "polygon(0 50%, 12.5% 0, 87.5% 0, 100% 50%, 87.5% 100%, 12.5% 100%)",
+        }}
+        className={classNames(
+          "w-[400px] h-[60px] bg-[#F0A30A] flex items-center justify-center text-xl px-2 truncate border-t border-b",
+          {
+            "border-[#000]": selected,
+            "border-[#826623]": !selected,
+          }
+        )}
+      >
+        <p
+          className="truncate w-[90%] flex items-center justify-center"
+          title={name || "Un - Assigned"}
+        >
+          {name || <span className="text-yellow-700">Un - Assigned</span>}
         </p>
       </div>
-      <div className="w-[13%] bg-[#F0A30A] triangle-point-right" />
 
       {/* Output Handle */}
       <HandleComponent
         id="out"
         type="source"
         position={Position.Right}
-        className="bg-[#e7c783] border border-[#BD7000] w-[12px] h-[8px] rounded-none"
+        className={classNames(
+          "bg-[#e7c783] border w-[12px] h-[8px] rounded-none",
+          {
+            "border-[#000]": selected,
+            "border-[#BD7000]": !selected,
+          }
+        )}
       />
 
       {/* Multi-Input Handle */}
