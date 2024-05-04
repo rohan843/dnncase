@@ -607,6 +607,7 @@ function ModelCanvas({ activeFileIndex }) {
                   },
                   type: "Loop/Repeat",
                   data: {
+                    // TODO: Add a separate (stateful) graph display name in function data.
                     name: functions[elementID].displayName,
                     hyperparams: functions[elementID].defaultHyperparams,
                     commentText: "",
