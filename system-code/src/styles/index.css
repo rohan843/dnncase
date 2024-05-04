@@ -301,12 +301,8 @@ In other words, use this in place of something like
 .InputNodeStyles {
     background-color: #0050EF;
     color: white;
-    display: inline-block;
-    min-width: 50px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-left: 10px;
-    padding-right: 40px;
+    width: 150px;
+    height: 100px;
     clip-path: polygon(100% 50%, 0 100%, 0 0);
 }
 
