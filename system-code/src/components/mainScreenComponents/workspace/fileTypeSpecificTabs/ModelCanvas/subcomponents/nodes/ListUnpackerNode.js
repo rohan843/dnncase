@@ -1,7 +1,8 @@
 import classNames from "classnames";
 import Packer from "../../../../../../../assets/packer.png";
 import { find } from "lodash";
-import { Handle, Position } from "reactflow";
+import { Handle, Position, useUpdateNodeInternals } from "reactflow";
+import { useEffect } from "react";
 
 const ListUnpackerNode = ({
   selected,
@@ -11,6 +12,11 @@ const ListUnpackerNode = ({
     hyperparams,
     (hp) => hp.id === "unpackingCount"
   ).value;
+  const updateNodeInternals = useUpdateNodeInternals();
+
+  // useEffect(() => {
+  //   updateNodeInternals();
+  // }, [unpackingCount, updateNodeInternals]);
 
   const minimumRequiredContentAreaHeight = Math.max(unpackingCount * 19, 150);
 
