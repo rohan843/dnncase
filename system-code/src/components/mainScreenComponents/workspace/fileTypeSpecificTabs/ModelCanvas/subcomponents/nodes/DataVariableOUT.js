@@ -49,7 +49,9 @@ const DataVariableOUT = ({
           onActivateAndShowInPane && onActivateAndShowInPane();
         }}
       >
-        <p className="truncate pr-[40px] pl-3">jdhgksdh gsdl hgkdxf</p>
+        <p className="truncate pr-[40px] pl-3">
+          {name || <span className="text-gray-300">Untitled</span>}
+        </p>
       </div>
       <Handle id="output" type="source" position={Position.Right} />
     </div>

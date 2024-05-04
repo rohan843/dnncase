@@ -41,7 +41,9 @@ const DataVariableIN = ({
           onActivateAndShowInPane && onActivateAndShowInPane();
         }}
       >
-        <p className="truncate pl-[40px] pr-2">jdhgksdh gsdl hgkdxf</p>
+        <p className="truncate pl-[40px] pr-2">
+          {name || <span className="text-gray-300">Untitled</span>}
+        </p>
       </div>
       <Handle id="input" type="target" position={Position.Left} />
     </div>

@@ -224,7 +224,59 @@ function ModelCanvas({ activeFileIndex }) {
     if (!node) {
       return <Title show innerText={`${artefactType} File`} />;
     } else if (node.type === "DataVariable/OUT") {
+      return (
+        <>
+          <Title show innerText={`Data Variable OUT`} />
+          <H show level={1} innerText="Parameters" />
+          <KeyValue
+            show
+            content={[
+              {
+                keyInnerText: "name",
+                valueInnerText: node.data.name,
+                isValueEditable: true,
+                removable: false,
+                onValueChange: (newValue) => {
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: ["data", "nodes", activeNodeIndex, "data", "name"],
+                      value: newValue,
+                    })
+                  );
+                },
+              },
+            ]}
+          />
+        </>
+      );
     } else if (node.type === "DataVariable/IN") {
+      return (
+        <>
+          <Title show innerText={`Data Variable IN`} />
+          <H show level={1} innerText="Parameters" />
+          <KeyValue
+            show
+            content={[
+              {
+                keyInnerText: "name",
+                valueInnerText: node.data.name,
+                isValueEditable: true,
+                removable: false,
+                onValueChange: (newValue) => {
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: ["data", "nodes", activeNodeIndex, "data", "name"],
+                      value: newValue,
+                    })
+                  );
+                },
+              },
+            ]}
+          />
+        </>
+      );
     } else if (node.type === "Callback") {
     } else if (node.type === "Unpacker/Ordered") {
     } else if (node.type === "Packer/Ordered") {
