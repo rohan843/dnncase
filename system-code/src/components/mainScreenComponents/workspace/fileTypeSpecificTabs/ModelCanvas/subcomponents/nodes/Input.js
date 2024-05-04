@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { Handle, Position } from "reactflow";
 
 const InputNode = ({
-  data: { hyperparams, onActivate, onActivateAndShowInPane },
+  data: { name, onActivate, onActivateAndShowInPane },
   selected,
 }) => {
   return (
@@ -26,9 +26,11 @@ const InputNode = ({
       ></div>
       <div
         className="InputNodeStyles flex flex-col items-start justify-center"
-        title="layer_count"
+        title={name || "Untitled"}
       >
-        <p className="truncate pl-2 w-[60%]">layer_count</p>
+        <p className="truncate pl-2 w-[60%]">
+          {name || <span className="text-blue-200">Untitled</span>}
+        </p>
       </div>
       <Handle id="out" type="source" position={Position.Right} />
     </div>

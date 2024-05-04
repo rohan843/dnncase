@@ -412,6 +412,32 @@ function ModelCanvas({ activeFileIndex }) {
         </>
       );
     } else if (node.type === "Input") {
+      return (
+        <>
+          <Title show innerText="Artefact Input" />
+          <H show innerText="Parameters" level={1} />
+          <KeyValue
+            show
+            content={[
+              {
+                keyInnerText: "name",
+                valueInnerText: node.data.name,
+                isValueEditable: true,
+                removable: false,
+                onValueChange: (newValue) => {
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: ["data", "nodes", activeNodeIndex, "data", "name"],
+                      value: newValue,
+                    })
+                  );
+                },
+              },
+            ]}
+          />
+        </>
+      );
     } else if (node.type === "Loop/Repeat") {
     } else if (node.type === "Loop/ForIn") {
     } else if (node.type === "FunctionNode/RecordArrayOutput") {
@@ -649,10 +675,7 @@ function ModelCanvas({ activeFileIndex }) {
                 position: currentViewport,
                 type: "Input",
                 data: {
-                  hyperparams: [{ id: "input_shape", value: null }],
-                  commentText: "",
-                  commentType: "plain",
-                  outputHandles: ["in"],
+                  name: null,
                 },
               },
             ]);
