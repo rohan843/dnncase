@@ -6,11 +6,7 @@ const Div = ({ children, ...props }) => {
 };
 
 const ArtefactImporterNode = ({
-  data: {
-    name,
-    onActivate,
-    onActivateAndShowInPane,
-  },
+  data: { name, onActivate, onActivateAndShowInPane },
   selected,
   handlesDisabled,
 }) => {
@@ -56,9 +52,9 @@ const ArtefactImporterNode = ({
       >
         <p
           className="truncate w-[90%] flex items-center justify-center"
-          title={name}
+          title={name || "Un - Assigned"}
         >
-          {name}
+          {name || <span className="text-yellow-700">Un - Assigned</span>}
         </p>
       </div>
 
