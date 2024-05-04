@@ -6,7 +6,15 @@ const CallBackNode = ({
   selected,
 }) => {
   return (
-    <div className="callBack">
+    <div
+      onClick={() => {
+        onActivate && onActivate();
+      }}
+      onDoubleClick={() => {
+        onActivateAndShowInPane && onActivateAndShowInPane();
+      }}
+      className="callBack"
+    >
       <div className="circle"></div>
       <div className="outer"></div>
       <div style={{ paddingLeft: "10px" }}>

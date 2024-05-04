@@ -6,15 +6,20 @@ const OutputNode = ({
   selected,
 }) => {
   return (
-    <div className="w-[153px] h-[100px] grid grid-cols-1 grid-rows-1 justify-center">
+    <div
+      onClick={() => {
+        onActivate && onActivate();
+      }}
+      onDoubleClick={() => {
+        onActivateAndShowInPane && onActivateAndShowInPane();
+      }}
+      className="w-[153px] h-[100px] grid grid-cols-1 grid-rows-1 justify-center"
+    >
       <div
-        className={classNames(
-          "OutputNodeStyles scale-105 relative",
-          {
-            "!bg-[#000000]": selected,
-            "!bg-[#001DBC]": !selected,
-          }
-        )}
+        className={classNames("OutputNodeStyles scale-105 relative", {
+          "!bg-[#000000]": selected,
+          "!bg-[#001DBC]": !selected,
+        })}
       ></div>
       <div
         className="OutputNodeStyles flex flex-col items-end justify-center relative left-[1.5px]"

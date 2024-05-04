@@ -6,7 +6,15 @@ const InputNode = ({
   selected,
 }) => {
   return (
-    <div className="w-[153px] h-[100px] grid grid-cols-1 grid-rows-1 justify-center">
+    <div
+      onClick={() => {
+        onActivate && onActivate();
+      }}
+      onDoubleClick={() => {
+        onActivateAndShowInPane && onActivateAndShowInPane();
+      }}
+      className="w-[153px] h-[100px] grid grid-cols-1 grid-rows-1 justify-center"
+    >
       <div
         className={classNames(
           "InputNodeStyles scale-105 relative left-[1.5px]",
