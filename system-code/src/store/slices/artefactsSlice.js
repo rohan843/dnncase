@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// TODO 3: Update handles and params.
+// TODO 3: Update handles and params. @rohan843
 const artefactsSlice = createSlice({
   name: "artefacts",
   initialState: {
@@ -78,7 +78,7 @@ const artefactsSlice = createSlice({
         displayName: "Emit Raw Data",
         subcategorization: "Miscellaneous",
         nodeType: "FunctionNode/RawData",
-        defaultHyperparams: [],
+        defaultHyperparams: [{ id: "raw-python-data", value: "None" }],
         defaultInputHandles: [],
         defaultOutputHandles: [],
       },
@@ -86,7 +86,7 @@ const artefactsSlice = createSlice({
         displayName: "Use Another Artefact",
         subcategorization: "Miscellaneous",
         nodeType: "FunctionNode/ArtefactImporter",
-        defaultHyperparams: [],
+        defaultHyperparams: [{ id: "imported-artefact", value: null }],
         defaultInputHandles: [],
         defaultOutputHandles: [],
       },

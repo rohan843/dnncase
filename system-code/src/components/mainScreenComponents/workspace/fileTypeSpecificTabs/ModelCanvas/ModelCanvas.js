@@ -1,5 +1,3 @@
-// TODO: Add facility to create loops around functions
-
 import RightPane from "./RightPane";
 import LeftPane from "./LeftPane";
 import GraphCanvas from "./GraphCanvas";
@@ -136,7 +134,7 @@ function ModelCanvas({ activeFileIndex }) {
   );
   const functions = useSelector((store) => store.artefacts.functions);
 
-  // TODO 2: Make activeNodeID NULL on click on canvas.
+  // TODO 2: Make activeNodeID NULL on click on canvas. @Rohanray2005
   const config = useSelector((store) => store.filesystem.openFiles)[0].config;
 
   if (!config || !fileData || !functions) {
@@ -222,6 +220,7 @@ function ModelCanvas({ activeFileIndex }) {
   const activeNode = (activeNodeIndex !== -1 && nodes[activeNodeIndex]) || null;
   function getRightPaneContents(node, artefactType) {
     // TODO 1: Finish Contents.
+    // @Rohanray2005 functions @rohan843 rest
     if (!node) {
       return <Title show innerText={`${artefactType} File`} />;
     } else if (node.type === "DataVariable/OUT") {
