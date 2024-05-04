@@ -388,7 +388,7 @@ function ModelCanvas({ activeFileIndex }) {
       return (
         <>
           <Title show innerText="Artefact Output" />
-          <H show innerText="Parameters" />
+          <H show innerText="Parameters" level={1} />
           <KeyValue
             show
             content={[
