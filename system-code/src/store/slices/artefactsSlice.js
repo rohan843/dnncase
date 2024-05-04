@@ -110,7 +110,7 @@ const artefactsSlice = createSlice({
         displayName: "Use Another Artefact",
         subcategorization: "Miscellaneous",
         nodeType: "FunctionNode/ArtefactImporter",
-        defaultHyperparams: [{ id: "imported-artefact", value: null }],
+        defaultHyperparams: [],
       },
       BeginGradientMonitoring: {
         displayName: "Begin Gradient Monitoring",

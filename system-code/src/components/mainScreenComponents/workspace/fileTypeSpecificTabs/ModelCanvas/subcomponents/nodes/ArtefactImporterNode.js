@@ -8,9 +8,6 @@ const Div = ({ children, ...props }) => {
 const ArtefactImporterNode = ({
   data: {
     name,
-    hyperparams,
-    inputHandles,
-    outputHandles,
     onActivate,
     onActivateAndShowInPane,
   },
