@@ -35,6 +35,8 @@ import {
   Output,
   DataVariableIN,
   DataVariableOUT,
+  ListPackerNode,
+  ListUnpackerNode
 } from "./subcomponents/nodes";
 import { cloneDeep, findIndex } from "lodash";
 
@@ -51,6 +53,8 @@ const NodeTypes = {
   "PseudoNode/Comment": CommentNode,
   "Packer/Named": NamedPackerNode,
   "Unpacker/Named": NamedUnpackerNode,
+  "Packer/Ordered": ListPackerNode,
+  "Unpacker/Ordered": ListUnpackerNode,
   Callback: CallBackNode,
   "DataVariable/IN": DataVariableIN,
   "DataVariable/OUT": DataVariableOUT,
@@ -1607,6 +1611,44 @@ function ModelCanvas({ activeFileIndex }) {
                   commentText: "",
                   commentType: "plain",
                   outputHandles: ["o0", "o1"],
+                },
+              },
+            ]);
+          }}
+        />
+        <H1Button
+          show
+          innerText="List Packer Node"
+          onClick={() => {
+            setNodes([
+              ...nodes,
+              {
+                id: getNodeId("ListPackerNode"),
+                position: currentViewport,
+                type: "Packer/Ordered",
+                data: {
+                  hyperparams: [{ id: "packingCount", value: 2 }],
+                  commentText: "",
+                  commentType: "plain",
+                },
+              },
+            ]);
+          }}
+        />
+        <H1Button
+          show
+          innerText="List Unpacker Node"
+          onClick={() => {
+            setNodes([
+              ...nodes,
+              {
+                id: getNodeId("ListUnpackerNode"),
+                position: currentViewport,
+                type: "Unpacker/Ordered",
+                data: {
+                  hyperparams: [{ id: "unpackingCount", value: 2 }],
+                  commentText: "",
+                  commentType: "plain",
                 },
               },
             ]);

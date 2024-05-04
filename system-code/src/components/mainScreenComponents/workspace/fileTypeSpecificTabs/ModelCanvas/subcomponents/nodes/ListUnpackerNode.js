@@ -3,7 +3,7 @@ import Packer from "../../../../../../../assets/packer.png";
 import { find } from "lodash";
 import { Handle, Position } from "reactflow";
 
-const UnpackerNode = ({
+const ListUnpackerNode = ({
   selected,
   data: { hyperparams, onActivateAndShowInPane, onActivate },
 }) => {
@@ -98,4 +98,4 @@ const UnpackerNode = ({
   );
 };
 
-export default UnpackerNode;
+export default ListUnpackerNode;
