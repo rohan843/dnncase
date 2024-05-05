@@ -4253,22 +4253,38 @@ const filesystemSlice = createSlice({
           nodes: [
             {
               id: "Output_1114",
-              position: { x: 1415, y: 30 },
+              position: {
+                x: 1415,
+                y: 30,
+              },
               type: "Output",
-              data: { name: "Compiled Model" },
+              data: {
+                name: "Compiled Model",
+              },
               width: 153,
               height: 100,
-              selected: false,
-              positionAbsolute: { x: 1415, y: 30 },
+              selected: true,
+              positionAbsolute: {
+                x: 1415,
+                y: 30,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_GenerateAdamOptimizer_9984",
-              position: { x: 425, y: 100 },
+              position: {
+                x: 425,
+                y: 100,
+              },
               type: "FunctionNode",
               data: {
                 name: "Generate ADAM Optimizer",
-                hyperparams: [{ id: "learning_rate", value: "0.001" }],
+                hyperparams: [
+                  {
+                    id: "learning_rate",
+                    value: "0.001",
+                  },
+                ],
                 commentText: "",
                 commentType: "plain",
                 inputHandles: [],
@@ -4278,12 +4294,18 @@ const filesystemSlice = createSlice({
               width: 353,
               height: 203,
               selected: false,
-              positionAbsolute: { x: 425, y: 100 },
+              positionAbsolute: {
+                x: 425,
+                y: 100,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_CompileModel_1908",
-              position: { x: 960, y: -20 },
+              position: {
+                x: 960,
+                y: -20,
+              },
               type: "FunctionNode",
               data: {
                 name: "Compile Model",
@@ -4297,19 +4319,34 @@ const filesystemSlice = createSlice({
               width: 353,
               height: 203,
               selected: false,
-              positionAbsolute: { x: 960, y: -20 },
+              positionAbsolute: {
+                x: 960,
+                y: -20,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_GetTunableFromList_1567",
-              position: { x: -70, y: 100 },
+              position: {
+                x: -70,
+                y: 100,
+              },
               type: "FunctionNode",
               data: {
                 name: "Get Tunable From List",
                 hyperparams: [
-                  { id: "name", value: null },
-                  { id: "values", value: null },
-                  { id: "ordered", value: "None" },
+                  {
+                    id: "name",
+                    value: "'learning_rate'",
+                  },
+                  {
+                    id: "values",
+                    value: null,
+                  },
+                  {
+                    id: "ordered",
+                    value: "None",
+                  },
                 ],
                 commentText: "",
                 commentType: "plain",
@@ -4320,16 +4357,27 @@ const filesystemSlice = createSlice({
               width: 353,
               height: 203,
               selected: false,
-              positionAbsolute: { x: -70, y: 100 },
+              positionAbsolute: {
+                x: -70,
+                y: 100,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_RawData_612",
-              position: { x: -435, y: 145 },
+              position: {
+                x: -435,
+                y: 145,
+              },
               type: "FunctionNode/RawData",
               data: {
                 name: "Emit Raw Data",
-                hyperparams: [{ id: "raw-python-data", value: "None" }],
+                hyperparams: [
+                  {
+                    id: "raw-python-data",
+                    value: "None",
+                  },
+                ],
                 commentText: "",
                 commentType: "plain",
                 elementID: "RawData",
@@ -4338,51 +4386,79 @@ const filesystemSlice = createSlice({
               width: 180,
               height: 120,
               selected: false,
-              positionAbsolute: { x: -435, y: 145 },
+              positionAbsolute: {
+                x: -435,
+                y: 145,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_RawData_1175",
-              position: { x: 520, y: 425 },
-              type: "FunctionNode/RawData",
-              data: {
-                name: "Emit Raw Data",
-                hyperparams: [{ id: "raw-python-data", value: "None" }],
-                commentText: "",
-                commentType: "plain",
-                elementID: "RawData",
-                innerCode: "1e-3",
+              position: {
+                x: 520,
+                y: 425,
               },
-              width: 180,
-              height: 120,
-              selected: true,
-              positionAbsolute: { x: 520, y: 425 },
-              dragging: false,
-            },
-            {
-              id: "FunctionNode_RawData_2107",
-              position: { x: 525, y: 625 },
               type: "FunctionNode/RawData",
               data: {
                 name: "Emit Raw Data",
-                hyperparams: [{ id: "raw-python-data", value: "None" }],
+                hyperparams: [
+                  {
+                    id: "raw-python-data",
+                    value: "None",
+                  },
+                ],
                 commentText: "",
                 commentType: "plain",
                 elementID: "RawData",
-                innerCode: "1e-4",
+                innerCode: "'sparse_categorical_crossentropy'",
               },
               width: 180,
               height: 120,
               selected: false,
-              positionAbsolute: { x: 525, y: 625 },
+              positionAbsolute: {
+                x: 520,
+                y: 425,
+              },
+              dragging: false,
+            },
+            {
+              id: "FunctionNode_RawData_2107",
+              position: {
+                x: 525,
+                y: 625,
+              },
+              type: "FunctionNode/RawData",
+              data: {
+                name: "Emit Raw Data",
+                hyperparams: [
+                  {
+                    id: "raw-python-data",
+                    value: "None",
+                  },
+                ],
+                commentText: "",
+                commentType: "plain",
+                elementID: "RawData",
+                innerCode: "['accuracy']",
+              },
+              width: 180,
+              height: 120,
+              selected: false,
+              positionAbsolute: {
+                x: 525,
+                y: 625,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_ArtefactImporter_9042",
-              position: { x: 355, y: -115 },
+              position: {
+                x: 355,
+                y: -115,
+              },
               type: "FunctionNode/ArtefactImporter",
               data: {
-                name: "Classifier Model",
+                name: "ClassifierModel",
                 hyperparams: [],
                 commentText: "",
                 commentType: "plain",
@@ -4391,31 +4467,14 @@ const filesystemSlice = createSlice({
               width: 400,
               height: 60,
               selected: false,
-              positionAbsolute: { x: 355, y: -115 },
+              positionAbsolute: {
+                x: 355,
+                y: -115,
+              },
               dragging: false,
             },
           ],
           edges: [
-            {
-              id: "FunctionNode_GetTunableFromList_1567_multi-in+326",
-              source: "FunctionNode_RawData_612",
-              sourceHandle: "out",
-              target: "FunctionNode_GetTunableFromList_1567",
-              targetHandle: "multi-in",
-              label: "",
-              animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
-            },
-            {
-              id: "FunctionNode_GenerateAdamOptimizer_9984_multi-in+923",
-              source: "FunctionNode_GetTunableFromList_1567",
-              sourceHandle: "value",
-              target: "FunctionNode_GenerateAdamOptimizer_9984",
-              targetHandle: "multi-in",
-              label: "",
-              animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
-            },
             {
               id: "FunctionNode_CompileModel_1908_model",
               source: "FunctionNode_ArtefactImporter_9042",
@@ -4424,7 +4483,10 @@ const filesystemSlice = createSlice({
               targetHandle: "model",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "FunctionNode_CompileModel_1908_optimizer",
@@ -4434,7 +4496,10 @@ const filesystemSlice = createSlice({
               targetHandle: "optimizer",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "FunctionNode_CompileModel_1908_loss",
@@ -4444,7 +4509,10 @@ const filesystemSlice = createSlice({
               targetHandle: "loss",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "FunctionNode_CompileModel_1908_metrics",
@@ -4454,7 +4522,10 @@ const filesystemSlice = createSlice({
               targetHandle: "metrics",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "Output_1114_in",
@@ -4463,6 +4534,32 @@ const filesystemSlice = createSlice({
               target: "Output_1114",
               targetHandle: "in",
               label: "",
+              animated: true,
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
+            },
+            {
+              id: "FunctionNode_GetTunableFromList_1567_multi-in+3057",
+              source: "FunctionNode_RawData_612",
+              sourceHandle: "out",
+              target: "FunctionNode_GetTunableFromList_1567",
+              targetHandle: "multi-in",
+              label: "values",
+              animated: true,
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
+            },
+            {
+              id: "FunctionNode_GenerateAdamOptimizer_9984_multi-in+780",
+              source: "FunctionNode_GetTunableFromList_1567",
+              sourceHandle: "value",
+              target: "FunctionNode_GenerateAdamOptimizer_9984",
+              targetHandle: "multi-in",
+              label: "learning_rate",
             },
           ],
         },
