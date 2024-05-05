@@ -485,7 +485,7 @@ function ModelCanvas({ activeFileIndex }) {
         <>
           <Title show innerText="ArrayInput" />
           <H show innerText="Parameters" level={1} />
-          <KeyValue
+          {/* <KeyValue
             show
             content={[
               {
@@ -504,7 +504,7 @@ function ModelCanvas({ activeFileIndex }) {
                 },
               },
             ]}
-          />
+          /> */}
         </>
       );
     } else if (nodeType === "FunctionNode/RawData") {
