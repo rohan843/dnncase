@@ -3575,16 +3575,34 @@ const filesystemSlice = createSlice({
           nodes: [
             {
               id: "FunctionNode_GetTunableInt_5167",
-              position: { x: -595, y: -390 },
+              position: {
+                x: -595,
+                y: -390,
+              },
               type: "FunctionNode",
               data: {
                 name: "Get Tunable Int",
                 hyperparams: [
-                  { id: "name", value: null },
-                  { id: "min_value", value: "1" },
-                  { id: "max_value", value: "4" },
-                  { id: "step", value: "1" },
-                  { id: "sampling", value: "'linear'" },
+                  {
+                    id: "name",
+                    value: "'hp_layers'",
+                  },
+                  {
+                    id: "min_value",
+                    value: "1",
+                  },
+                  {
+                    id: "max_value",
+                    value: "4",
+                  },
+                  {
+                    id: "step",
+                    value: "1",
+                  },
+                  {
+                    id: "sampling",
+                    value: "'linear'",
+                  },
                 ],
                 commentText: "",
                 commentType: "plain",
@@ -3594,22 +3612,43 @@ const filesystemSlice = createSlice({
               },
               width: 353,
               height: 203,
-              selected: true,
-              positionAbsolute: { x: -595, y: -390 },
+              selected: false,
+              positionAbsolute: {
+                x: -595,
+                y: -390,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_GetTunableInt_5655",
-              position: { x: -590, y: -660 },
+              position: {
+                x: -590,
+                y: -660,
+              },
               type: "FunctionNode",
               data: {
                 name: "Get Tunable Int",
                 hyperparams: [
-                  { id: "name", value: null },
-                  { id: "min_value", value: "32" },
-                  { id: "max_value", value: "512" },
-                  { id: "step", value: "32" },
-                  { id: "sampling", value: "'linear'" },
+                  {
+                    id: "name",
+                    value: "'hp_units'",
+                  },
+                  {
+                    id: "min_value",
+                    value: "32",
+                  },
+                  {
+                    id: "max_value",
+                    value: "512",
+                  },
+                  {
+                    id: "step",
+                    value: "32",
+                  },
+                  {
+                    id: "sampling",
+                    value: "'linear'",
+                  },
                 ],
                 commentText: "",
                 commentType: "plain",
@@ -3620,67 +3659,118 @@ const filesystemSlice = createSlice({
               width: 353,
               height: 203,
               selected: false,
-              positionAbsolute: { x: -590, y: -660 },
+              positionAbsolute: {
+                x: -590,
+                y: -660,
+              },
               dragging: false,
             },
             {
               id: "Output_3442",
-              position: { x: -50, y: -585 },
+              position: {
+                x: -50,
+                y: -585,
+              },
               type: "DataVariable/IN",
-              data: { hyperparams: [], name: "hp_units" },
+              data: {
+                hyperparams: [],
+                name: "hp_units",
+              },
               width: 200,
               height: 50,
               selected: false,
-              positionAbsolute: { x: -50, y: -585 },
+              positionAbsolute: {
+                x: -50,
+                y: -585,
+              },
               dragging: false,
             },
             {
               id: "Output_3588",
-              position: { x: -40, y: -315 },
+              position: {
+                x: -40,
+                y: -315,
+              },
               type: "DataVariable/IN",
-              data: { hyperparams: [], name: "hp_layers" },
+              data: {
+                hyperparams: [],
+                name: "hp_layers",
+              },
               width: 200,
               height: 50,
               selected: false,
-              positionAbsolute: { x: -40, y: -315 },
+              positionAbsolute: {
+                x: -40,
+                y: -315,
+              },
               dragging: false,
             },
             {
               id: "Output_6718",
-              position: { x: -15, y: 535 },
+              position: {
+                x: -15,
+                y: 535,
+              },
               type: "DataVariable/OUT",
-              data: { hyperparams: [], name: "hp_units" },
+              data: {
+                hyperparams: [],
+                name: "hp_units",
+              },
               width: 200,
               height: 50,
               selected: false,
-              positionAbsolute: { x: -15, y: 535 },
+              positionAbsolute: {
+                x: -15,
+                y: 535,
+              },
               dragging: false,
             },
             {
               id: "Output_6923",
-              position: { x: 400, y: 520 },
+              position: {
+                x: 400,
+                y: 520,
+              },
               type: "DataVariable/OUT",
-              data: { hyperparams: [], name: "hp_units" },
+              data: {
+                hyperparams: [],
+                name: "hp_units",
+              },
               width: 200,
               height: 50,
               selected: false,
-              positionAbsolute: { x: 400, y: 520 },
+              positionAbsolute: {
+                x: 400,
+                y: 520,
+              },
               dragging: false,
             },
             {
               id: "Output_7254",
-              position: { x: 635, y: 155 },
+              position: {
+                x: 635,
+                y: 155,
+              },
               type: "DataVariable/OUT",
-              data: { hyperparams: [], name: "hp_layers" },
+              data: {
+                hyperparams: [],
+                name: "hp_layers",
+              },
               width: 200,
               height: 50,
               selected: false,
-              positionAbsolute: { x: 635, y: 155 },
+              positionAbsolute: {
+                x: 635,
+                y: 155,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_Flatten_919",
-              position: { x: -240, y: 235 },
+              position: {
+                x: -240,
+                y: 235,
+              },
               type: "FunctionNode",
               data: {
                 name: "Flatten",
@@ -3694,18 +3784,30 @@ const filesystemSlice = createSlice({
               width: 353,
               height: 203,
               selected: false,
-              positionAbsolute: { x: -240, y: 235 },
+              positionAbsolute: {
+                x: -240,
+                y: 235,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_CreateAndApplyDenseLayer_4849",
-              position: { x: 1385, y: 260 },
+              position: {
+                x: 1385,
+                y: 260,
+              },
               type: "FunctionNode",
               data: {
                 name: "Create and Apply Dense Layer",
                 hyperparams: [
-                  { id: "units", value: "10" },
-                  { id: "activation", value: "softmax" },
+                  {
+                    id: "units",
+                    value: "10",
+                  },
+                  {
+                    id: "activation",
+                    value: "softmax",
+                  },
                 ],
                 commentText: "",
                 commentType: "plain",
@@ -3716,44 +3818,76 @@ const filesystemSlice = createSlice({
               width: 353,
               height: 203,
               selected: false,
-              positionAbsolute: { x: 1385, y: 260 },
+              positionAbsolute: {
+                x: 1385,
+                y: 260,
+              },
               dragging: false,
             },
             {
               id: "PackerNode_4040",
-              position: { x: 735, y: 320 },
+              position: {
+                x: 735,
+                y: 320,
+              },
               type: "Packer/Named",
               data: {
-                hyperparams: [{ id: "packingCount", value: 2 }],
+                hyperparams: [
+                  {
+                    id: "packingCount",
+                    value: 2,
+                  },
+                ],
                 commentText: "",
                 commentType: "plain",
               },
               width: 50,
               height: 40,
               selected: false,
-              positionAbsolute: { x: 735, y: 320 },
+              positionAbsolute: {
+                x: 735,
+                y: 320,
+              },
               dragging: false,
             },
             {
               id: "UnpackerNode_1373",
-              position: { x: 1230, y: 340 },
+              position: {
+                x: 1230,
+                y: 340,
+              },
               type: "Unpacker/Named",
-              data: { commentText: "", commentType: "plain" },
+              data: {
+                commentText: "",
+                commentType: "plain",
+              },
               width: 50,
               height: 40,
               selected: false,
-              positionAbsolute: { x: 1230, y: 340 },
+              positionAbsolute: {
+                x: 1230,
+                y: 340,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_CreateAndApplyDenseLayer_9091",
-              position: { x: 255, y: 235 },
+              position: {
+                x: 255,
+                y: 235,
+              },
               type: "FunctionNode",
               data: {
                 name: "Create and Apply Dense Layer",
                 hyperparams: [
-                  { id: "units", value: "" },
-                  { id: "activation", value: "relu" },
+                  {
+                    id: "units",
+                    value: "",
+                  },
+                  {
+                    id: "activation",
+                    value: "relu",
+                  },
                 ],
                 commentText: "",
                 commentType: "plain",
@@ -3764,12 +3898,18 @@ const filesystemSlice = createSlice({
               width: 353,
               height: 203,
               selected: false,
-              positionAbsolute: { x: 255, y: 235 },
+              positionAbsolute: {
+                x: 255,
+                y: 235,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_RepeatLoop_ArtefactImporter_2040",
-              position: { x: 920, y: 255 },
+              position: {
+                x: 920,
+                y: 255,
+              },
               type: "Loop/Repeat",
               data: {
                 enclosedNodeType: "FunctionNode/ArtefactImporter",
@@ -3779,19 +3919,30 @@ const filesystemSlice = createSlice({
                 commentType: "plain",
                 elementID: "ArtefactImporter",
               },
-              width: 214,
+              width: 213,
               height: 200,
               selected: false,
-              positionAbsolute: { x: 920, y: 255 },
+              positionAbsolute: {
+                x: 920,
+                y: 255,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_ArrayInput_1884",
-              position: { x: -600, y: 290 },
+              position: {
+                x: -600,
+                y: 290,
+              },
               type: "FunctionNode/ArrayInput",
               data: {
                 name: "Array Input",
-                hyperparams: [{ id: "input_shape", value: "(784,)" }],
+                hyperparams: [
+                  {
+                    id: "input_shape",
+                    value: "(784,)",
+                  },
+                ],
                 commentText: "",
                 commentType: "plain",
                 inputHandles: [],
@@ -3801,12 +3952,18 @@ const filesystemSlice = createSlice({
               width: 230,
               height: 100,
               selected: false,
-              positionAbsolute: { x: -600, y: 290 },
+              positionAbsolute: {
+                x: -600,
+                y: 290,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_RecordArrayOutput_2420",
-              position: { x: 105, y: 110 },
+              position: {
+                x: 1830,
+                y: 310,
+              },
               type: "FunctionNode/RecordArrayOutput",
               data: {
                 name: "Record Array Output",
@@ -3820,7 +3977,10 @@ const filesystemSlice = createSlice({
               width: 200,
               height: 100,
               selected: false,
-              positionAbsolute: { x: 105, y: 110 },
+              positionAbsolute: {
+                x: 1830,
+                y: 310,
+              },
               dragging: false,
             },
           ],
@@ -3833,7 +3993,10 @@ const filesystemSlice = createSlice({
               targetHandle: "input",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "Output_3588_input",
@@ -3843,7 +4006,10 @@ const filesystemSlice = createSlice({
               targetHandle: "input",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "FunctionNode_CreateAndApplyDenseLayer_9091_payload",
@@ -3853,7 +4019,10 @@ const filesystemSlice = createSlice({
               targetHandle: "payload",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "PackerNode_4040_multi-in+5949",
@@ -3863,7 +4032,10 @@ const filesystemSlice = createSlice({
               targetHandle: "multi-in",
               label: "payload",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "FunctionNode_RepeatLoop_ArtefactImporter_2040_iteration-count",
@@ -3873,7 +4045,10 @@ const filesystemSlice = createSlice({
               targetHandle: "iteration-count",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "FunctionNode_RepeatLoop_ArtefactImporter_2040_multi-in+9599",
@@ -3883,7 +4058,10 @@ const filesystemSlice = createSlice({
               targetHandle: "multi-in",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "UnpackerNode_1373_in",
@@ -3893,7 +4071,10 @@ const filesystemSlice = createSlice({
               targetHandle: "in",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "FunctionNode_CreateAndApplyDenseLayer_4849_payload",
@@ -3903,7 +4084,10 @@ const filesystemSlice = createSlice({
               targetHandle: "payload",
               label: "payload",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "FunctionNode_CreateAndApplyDenseLayer_9091_multi-in+7296",
@@ -3913,7 +4097,10 @@ const filesystemSlice = createSlice({
               targetHandle: "multi-in",
               label: "units",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "PackerNode_4040_multi-in+9801",
@@ -3923,7 +4110,10 @@ const filesystemSlice = createSlice({
               targetHandle: "multi-in",
               label: "units",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "FunctionNode_Flatten_919_payload",
@@ -3931,6 +4121,19 @@ const filesystemSlice = createSlice({
               sourceHandle: "out",
               target: "FunctionNode_Flatten_919",
               targetHandle: "payload",
+              label: "",
+              animated: true,
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
+            },
+            {
+              id: "FunctionNode_RecordArrayOutput_2420_in",
+              source: "FunctionNode_CreateAndApplyDenseLayer_4849",
+              sourceHandle: "payload",
+              target: "FunctionNode_RecordArrayOutput_2420",
+              targetHandle: "in",
               label: "",
             },
           ],
