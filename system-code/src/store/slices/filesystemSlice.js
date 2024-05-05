@@ -1470,8 +1470,60 @@ const filesystemSlice = createSlice({
           unsaved: true,
           filetype: "dc",
           artefacttype: "ArtefactType",
-          nodes: [],
-          edges: [],
+          nodes: [
+            {
+              id: "FunctionNode_ArtefactImporter_4394",
+              position: {
+                x: 160,
+                y: 160,
+              },
+              type: "FunctionNode/ArtefactImporter",
+              data: {
+                name: "MNISTDataLoader",
+                hyperparams: [],
+                commentText: "",
+                commentType: "plain",
+                elementID: "ArtefactImporter",
+              },
+              width: 400,
+              height: 60,
+              selected: false,
+              positionAbsolute: {
+                x: 160,
+                y: 160,
+              },
+              dragging: false,
+            },
+            {
+              id: "Output_6582",
+              position: {
+                x: 705,
+                y: 140,
+              },
+              type: "Output",
+              data: {
+                name: "train_dataset",
+              },
+              width: 153,
+              height: 100,
+              selected: false,
+              positionAbsolute: {
+                x: 705,
+                y: 140,
+              },
+              dragging: false,
+            },
+          ],
+          edges: [
+            {
+              id: "Output_6582_in",
+              source: "FunctionNode_ArtefactImporter_4394",
+              sourceHandle: "out",
+              target: "Output_6582",
+              targetHandle: "in",
+              label: "train_dataset",
+            },
+          ],
         },
         isFolder: false,
         children: [],
