@@ -7,8 +7,93 @@ const permissibleFileTypes = {
   dc: true,
 };
 
-function flattenNodeDataObject(nodeData) {
-  return;
+function flattenNodeDataHyperparams(nodeData) {
+  if (!nodeData.hyperparams) {
+    return {};
+  }
+  for (let param of nodeData.hyperparams) {
+    nodeData[param.id] = param.value;
+  }
+  return nodeData;
+}
+
+function getNodeMetadata(node) {
+  const nodeType = node.type.split("/")[0];
+  const nodeSubtype = node.type.split("/")[1];
+  if (nodeType === "FunctionNode") {
+    if (nodeSubtype === "ArtefactImporter") {
+      return {
+        nodeType,
+        nodeSubtype,
+        sourceArtefact: node.data.name,
+      };
+    } else if (nodeSubtype === "RawData") {
+      return {
+        nodeType,
+        nodeSubtype,
+      };
+    } else if (nodeSubtype === "ArrayInput") {
+      return {
+        nodeType,
+        nodeSubtype,
+      };
+    } else if (nodeSubtype === "RecordArrayOutput") {
+      return {
+        nodeType,
+        nodeSubtype,
+      };
+    } else {
+      return {
+        nodeType,
+        nodeSubtype: node.data.elementID,
+      };
+    }
+  } else if (nodeType === "Loop") {
+    return {
+      nodeType,
+      nodeSubtype,
+      innerArtefact: node.data.name,
+    };
+  } else if (nodeType === "Input") {
+    return {
+      nodeType,
+    };
+  } else if (nodeType === "Output") {
+    return {
+      nodeType,
+    };
+  } else if (nodeType === "PseudoNode") {
+    return {
+      nodeType,
+      nodeSubtype,
+    };
+  } else if (nodeType === "Packer") {
+    return {
+      nodeType,
+      nodeSubtype,
+    };
+  } else if (nodeType === "Unpacker") {
+    return {
+      nodeType,
+      nodeSubtype,
+    };
+  } else if (nodeType === "Callback") {
+    return {
+      nodeType,
+      nodeSubtype,
+      sourceArtefact: node.data.name,
+    };
+  } else if (nodeType === "DataVariable") {
+    return {
+      nodeType,
+      nodeSubtype,
+    };
+  } else {
+    return {
+      nodeType,
+      nodeSubtype,
+    };
+  }
 }
 
 function getBackendFormatGraphData(fileContents, executedFileName) {
@@ -22,9 +107,8 @@ function getBackendFormatGraphData(fileContents, executedFileName) {
       nodes: fileContents[artefact].data.nodes.map((node) => {
         return {
           id: node.id,
-          nodeType: node.type.split("/")[0],
-          nodeSubtype: node.type.split("/")[1],
-          nodeData: flattenNodeDataObject(node.data),
+          nodeData: flattenNodeDataHyperparams(node.data),
+          ...getNodeMetadata(node),
         };
       }),
       edges: fileContents[artefact].data.edges.map((edge) => {
