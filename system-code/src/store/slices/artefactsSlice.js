@@ -94,15 +94,15 @@ const artefactsSlice = createSlice({
         defaultOutputHandles: ["payload"],
       },
       Dropout: {
-        displayName: "Dropout",
+        displayName: "Dropout Layer",
         subcategorization: "Layers",
         nodeType: "FunctionNode",
         defaultHyperparams: [{ id: "rate", value: null }],
         defaultInputHandles: ["payload"],
         defaultOutputHandles: ["payload"],
       },
-      Reshape: {
-        displayName: "Reshape",
+      ReshapeLayer: {
+        displayName: "Reshape Layer",
         subcategorization: "Layers",
         nodeType: "FunctionNode",
         defaultHyperparams: [{ id: "shape", value: null }],
