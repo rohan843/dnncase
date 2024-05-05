@@ -478,7 +478,6 @@ function ModelCanvas({ activeFileIndex }) {
       return (
         <>
           <Title show innerText="RecordArrayOutput" />
-          <H show innerText="Parameters" level={1} />
         </>
       );
     } else if (nodeType === "FunctionNode/ArrayInput") {
@@ -517,15 +516,21 @@ function ModelCanvas({ activeFileIndex }) {
             show
             content={[
               {
-                keyInnerText: "value",
-                valueInnerText: "raw-python-data",
+                keyInnerText: "raw-python-data",
+                valueInnerText: node.data.innerCode,
                 isValueEditable: true,
                 removable: false,
                 onValueChange: (newValue) => {
                   dispatch(
                     setFileValue({
                       fileIndex: activeFileIndex,
-                      path: ["data", "nodes", activeNodeIndex, "data", "value"],
+                      path: [
+                        "data",
+                        "nodes",
+                        activeNodeIndex,
+                        "data",
+                        "innerCode",
+                      ],
                       value: newValue,
                     })
                   );
@@ -539,7 +544,35 @@ function ModelCanvas({ activeFileIndex }) {
       return (
         <>
           <Title show innerText="ArtefactImporter" />
+          <H show innerText="Imported Artefact Information" level={1} />
+          <KeyValue
+            show
+            content={[
+              {
+                keyInnerText: "name",
+                valueInnerText: node.data.name,
+                isValueEditable: true,
+                removable: false,
+                onValueChange: (newValue) => {
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: ["data", "nodes", activeNodeIndex, "data", "name"],
+                      value: newValue,
+                    })
+                  );
+                },
+              },
+            ]}
+          />
           <H show innerText="Parameters" level={1} />
+          {/* <KeyValue
+            show
+            content={[]}
+            onAdd={() => {}}
+            enableNewKeyValueInput={true}
+            onNewKeyValueInputSubmit={(newKey, newValue) => {}}
+          /> */}
         </>
       );
     } else if (nodeType === "FunctionNode") {
