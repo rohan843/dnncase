@@ -473,13 +473,97 @@ function ModelCanvas({ activeFileIndex }) {
       nodeType = node.data.enclosedNodeType;
     }
 
-    // TODO 1: Finish Contents. @Rohanray2005
     // Deal with function nodes.
     if (nodeType === "FunctionNode/RecordArrayOutput") {
+      return (
+        <>
+          <Title show innerText="RecordArrayOutput" />
+          <H show innerText="Parameters" level={1} />
+      </>
+      )
     } else if (nodeType === "FunctionNode/ArrayInput") {
+      return (
+        <>
+          <Title show innerText="ArrayInput" />
+          <H show innerText="Parameters" level={1} />
+          <KeyValue
+            show
+            content={[
+              {
+                keyInnerText: "id",
+                valueInnerText: node.data.id,
+                isValueEditable: true,
+                removable: false,
+                onValueChange: (newValue) => {
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: ["data", "nodes", activeNodeIndex, "data", "name"],
+                      value: newValue,
+                    })
+                  );
+                },
+              },
+            ]}
+          />
+      </>
+      )
     } else if (nodeType === "FunctionNode/RawData") {
+      return (
+        <>
+          <Title show innerText="RawData" />
+          <H show innerText="Parameters" level={1} />
+          <KeyValue
+            show
+            content={[
+              {
+                keyInnerText: "id",
+                valueInnerText: "raw-python-data",
+                isValueEditable: true,
+                removable: false,
+                onValueChange: (newValue) => {
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: ["data", "nodes", activeNodeIndex, "data", "id"],
+                      value: newValue,
+                    })
+                  );
+                },
+              },
+              {
+                keyInnerText: "value",
+                valueInnerText: node.data.value,
+                isValueEditable: true,
+                removable: false,
+                onValueChange: (newValue) => {
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: ["data", "nodes", activeNodeIndex, "data", "value"],
+                      value: newValue,
+                    })
+                  );
+                },
+              },
+            ]}
+          />
+      </>
+      )
     } else if (nodeType === "FunctionNode/ArtefactImporter") {
+      return (
+        <>
+          <Title show innerText="ArtefactImporter" />
+          <H show innerText="Parameters" level={1} />
+      </>
+      )
     } else if (nodeType === "FunctionNode") {
+      return (
+        <>
+          <Title show innerText="Function Node" />
+          <H show innerText="Parameters" level={1} />
+      </>
+      )
     } else {
       return <Title show innerText={node.type} />;
     }

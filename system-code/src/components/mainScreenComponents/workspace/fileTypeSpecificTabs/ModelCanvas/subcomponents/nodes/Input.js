@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { Handle, Position } from "reactflow";
 
-const InputNode = ({
+const Input = ({
   data: { name, onActivate, onActivateAndShowInPane },
   selected,
 }) => {
@@ -37,4 +37,4 @@ const InputNode = ({
   );
 };
 
-export default InputNode;
+export default Input;
