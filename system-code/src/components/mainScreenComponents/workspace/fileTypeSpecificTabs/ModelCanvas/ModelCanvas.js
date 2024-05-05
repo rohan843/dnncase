@@ -485,26 +485,35 @@ function ModelCanvas({ activeFileIndex }) {
         <>
           <Title show innerText="ArrayInput" />
           <H show innerText="Parameters" level={1} />
-          {/* <KeyValue
+          <KeyValue
             show
-            content={[
-              {
-                keyInnerText: "id",
-                valueInnerText: node.data.id,
+            content={node.data.hyperparams.map((item,index)=>{
+              return ({
+                keyInnerText:item.id,
+                valueInnerText:item.value,
                 isValueEditable: true,
                 removable: false,
                 onValueChange: (newValue) => {
                   dispatch(
                     setFileValue({
                       fileIndex: activeFileIndex,
-                      path: ["data", "nodes", activeNodeIndex, "data", "id"],
+                      path: [
+                        "data",
+                        "nodes",
+                        activeNodeIndex,
+                        "data",
+                        "hyperparams",
+                        index,
+                        "value"
+                      ],
                       value: newValue,
                     })
                   );
                 },
-              },
-            ]}
-          /> */}
+              }
+            )
+            })}
+          />
         </>
       );
     } else if (nodeType === "FunctionNode/RawData") {
@@ -566,13 +575,36 @@ function ModelCanvas({ activeFileIndex }) {
             ]}
           />
           <H show innerText="Parameters" level={1} />
-          {/* <KeyValue
+          <KeyValue
             show
-            content={node.data.hyperparams.map(...)}
-            onAdd={() => {}}
-            enableNewKeyValueInput={true}
-            onNewKeyValueInputSubmit={(newKey, newValue) => {}}
-          /> */}
+            onAdd={()=>{}}
+            content={node.data.hyperparams.map((item,index)=>{
+              return ({
+                keyInnerText:item.id,
+                valueInnerText:item.value,
+                isValueEditable: true,
+                removable: false,
+                onValueChange: (newValue) => {
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: [
+                        "data",
+                        "nodes",
+                        activeNodeIndex,
+                        "data",
+                        "hyperparams",
+                        index,
+                        "value"
+                      ],
+                      value: newValue,
+                    })
+                  );
+                },
+              }
+            )
+            })}
+          />
         </>
       );
     } else if (nodeType === "FunctionNode") {
@@ -580,6 +612,35 @@ function ModelCanvas({ activeFileIndex }) {
         <>
           <Title show innerText="Function Node" />
           <H show innerText="Parameters" level={1} />
+          <KeyValue
+            show
+            content={node.data.hyperparams.map((item,index)=>{
+              return ({
+                keyInnerText:item.id,
+                valueInnerText:item.value,
+                isValueEditable: true,
+                removable: false,
+                onValueChange: (newValue) => {
+                  dispatch(
+                    setFileValue({
+                      fileIndex: activeFileIndex,
+                      path: [
+                        "data",
+                        "nodes",
+                        activeNodeIndex,
+                        "data",
+                        "hyperparams",
+                        index,
+                        "value"
+                      ],
+                      value: newValue,
+                    })
+                  );
+                },
+              }
+            )
+            })}
+          />
         </>
       );
     } else {
