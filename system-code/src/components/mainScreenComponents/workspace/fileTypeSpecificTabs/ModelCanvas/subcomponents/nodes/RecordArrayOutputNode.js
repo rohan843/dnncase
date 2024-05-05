@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { Handle, Position } from "reactflow";
 
-const OutputNode = ({
+const RecordArrayOutputNode = ({
   data: { hyperparams, onActivate, onActivateAndShowInPane },
   selected,
 }) => {
@@ -35,4 +35,4 @@ const OutputNode = ({
   );
 };
 
-export default OutputNode;
+export default RecordArrayOutputNode;

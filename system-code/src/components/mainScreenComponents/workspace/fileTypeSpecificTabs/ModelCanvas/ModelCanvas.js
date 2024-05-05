@@ -19,8 +19,8 @@ import {
 } from "./subcomponents";
 import {
   FunctionNode,
-  InputNode,
-  OutputNode,
+  ArrayInputNode,
+  RecordArrayOutputNode,
   CommentNode,
   NamedPackerNode,
   NamedUnpackerNode,
@@ -29,8 +29,8 @@ import {
   ForInLoop,
   RepeatLoop,
   RawDataInputNode,
-  Input,
-  Output,
+  ArtefactInput,
+  ArtefactOutput,
   DataVariableIN,
   DataVariableOUT,
   ListPackerNode,
@@ -42,12 +42,12 @@ const NodeTypes = {
   FunctionNode: FunctionNode,
   "FunctionNode/ArtefactImporter": ArtefactImporterNode,
   "FunctionNode/RawData": RawDataInputNode,
-  "FunctionNode/ArrayInput": InputNode,
-  "FunctionNode/RecordArrayOutput": OutputNode,
+  "FunctionNode/ArrayInput": ArrayInputNode,
+  "FunctionNode/RecordArrayOutput": RecordArrayOutputNode,
   "Loop/ForIn": ForInLoop,
   "Loop/Repeat": RepeatLoop,
-  Input: Input,
-  Output: Output,
+  Input: ArtefactInput,
+  Output: ArtefactOutput,
   "PseudoNode/Comment": CommentNode,
   "Packer/Named": NamedPackerNode,
   "Unpacker/Named": NamedUnpackerNode,
@@ -479,8 +479,8 @@ function ModelCanvas({ activeFileIndex }) {
         <>
           <Title show innerText="RecordArrayOutput" />
           <H show innerText="Parameters" level={1} />
-      </>
-      )
+        </>
+      );
     } else if (nodeType === "FunctionNode/ArrayInput") {
       return (
         <>
@@ -506,8 +506,8 @@ function ModelCanvas({ activeFileIndex }) {
               },
             ]}
           />
-      </>
-      )
+        </>
+      );
     } else if (nodeType === "FunctionNode/RawData") {
       return (
         <>
@@ -533,22 +533,22 @@ function ModelCanvas({ activeFileIndex }) {
               },
             ]}
           />
-      </>
-      )
+        </>
+      );
     } else if (nodeType === "FunctionNode/ArtefactImporter") {
       return (
         <>
           <Title show innerText="ArtefactImporter" />
           <H show innerText="Parameters" level={1} />
-      </>
-      )
+        </>
+      );
     } else if (nodeType === "FunctionNode") {
       return (
         <>
           <Title show innerText="Function Node" />
           <H show innerText="Parameters" level={1} />
-      </>
-      )
+        </>
+      );
     } else {
       return <Title show innerText={node.type} />;
     }

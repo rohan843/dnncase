@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { find } from "lodash";
 import { Handle, Position } from "reactflow";
 
-const InputNode = ({
+const ArrayInputNode = ({
   data: { hyperparams, onActivate, onActivateAndShowInPane },
   selected,
 }) => {
@@ -43,4 +43,4 @@ const InputNode = ({
   );
 };
 
-export default InputNode;
+export default ArrayInputNode;

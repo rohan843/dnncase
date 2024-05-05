@@ -1,13 +1,13 @@
 import FunctionNode from "./FunctionNode";
-import InputNode from "./InputNode";
-import OutputNode from "./OutputNode";
+import ArrayInputNode from "./ArrayInputNode";
+import RecordArrayOutputNode from "./RecordArrayOutputNode";
 import ListUnpackerNode from "./ListUnpackerNode";
 import ListPackerNode from "./ListPackerNode";
 import CommentNode from "./CommentNode";
 import NamedPackerNode from "./NamedPackerNode";
 import NamedUnpackerNode from "./NamedUnpackerNode";
-import Input from "./Input";
-import Output from "./Output";
+import ArtefactInput from "./ArtefactInput";
+import ArtefactOutput from "./ArtefactOutput";
 import CallBackNode from "./CallBackNode";
 import RawDataInputNode from "./RawDataInputNode";
 import ArtefactImporterNode from "./ArtefactImporterNode";
@@ -24,14 +24,14 @@ export {
   ForInLoop,
   RepeatLoop,
   RawDataInputNode,
-  InputNode,
-  OutputNode,
+  ArrayInputNode,
+  RecordArrayOutputNode,
   CommentNode,
   NamedPackerNode,
   NamedUnpackerNode,
-  Input,
-  Output,
+  ArtefactInput,
+  ArtefactOutput,
   CallBackNode,
   ListUnpackerNode,
-  ListPackerNode ,
+  ListPackerNode,
 };
