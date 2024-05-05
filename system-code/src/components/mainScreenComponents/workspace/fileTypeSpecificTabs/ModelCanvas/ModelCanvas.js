@@ -498,7 +498,7 @@ function ModelCanvas({ activeFileIndex }) {
                   dispatch(
                     setFileValue({
                       fileIndex: activeFileIndex,
-                      path: ["data", "nodes", activeNodeIndex, "data", "name"],
+                      path: ["data", "nodes", activeNodeIndex, "data", "id"],
                       value: newValue,
                     })
                   );
@@ -517,23 +517,8 @@ function ModelCanvas({ activeFileIndex }) {
             show
             content={[
               {
-                keyInnerText: "id",
-                valueInnerText: "raw-python-data",
-                isValueEditable: true,
-                removable: false,
-                onValueChange: (newValue) => {
-                  dispatch(
-                    setFileValue({
-                      fileIndex: activeFileIndex,
-                      path: ["data", "nodes", activeNodeIndex, "data", "id"],
-                      value: newValue,
-                    })
-                  );
-                },
-              },
-              {
                 keyInnerText: "value",
-                valueInnerText: node.data.value,
+                valueInnerText: "raw-python-data",
                 isValueEditable: true,
                 removable: false,
                 onValueChange: (newValue) => {
