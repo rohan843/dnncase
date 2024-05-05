@@ -209,7 +209,7 @@ function ModelCanvas({ activeFileIndex }) {
           sourceHandle: newEdgeData.sourceHandle,
           target: newEdgeData.target,
           targetHandle: newEdgeData.targetHandle,
-          label: inputValue,
+          label: inputValue === "" ? null : inputValue,
         },
       ]);
   };
@@ -487,10 +487,10 @@ function ModelCanvas({ activeFileIndex }) {
           <H show innerText="Parameters" level={1} />
           <KeyValue
             show
-            content={node.data.hyperparams.map((item,index)=>{
-              return ({
-                keyInnerText:item.id,
-                valueInnerText:item.value,
+            content={node.data.hyperparams.map((item, index) => {
+              return {
+                keyInnerText: item.id,
+                valueInnerText: item.value,
                 isValueEditable: true,
                 removable: false,
                 onValueChange: (newValue) => {
@@ -504,14 +504,13 @@ function ModelCanvas({ activeFileIndex }) {
                         "data",
                         "hyperparams",
                         index,
-                        "value"
+                        "value",
                       ],
                       value: newValue,
                     })
                   );
                 },
-              }
-            )
+              };
             })}
           />
         </>
@@ -577,11 +576,11 @@ function ModelCanvas({ activeFileIndex }) {
           <H show innerText="Parameters" level={1} />
           <KeyValue
             show
-            onAdd={()=>{}}
-            content={node.data.hyperparams.map((item,index)=>{
-              return ({
-                keyInnerText:item.id,
-                valueInnerText:item.value,
+            onAdd={() => {}}
+            content={node.data.hyperparams.map((item, index) => {
+              return {
+                keyInnerText: item.id,
+                valueInnerText: item.value,
                 isValueEditable: true,
                 removable: false,
                 onValueChange: (newValue) => {
@@ -595,14 +594,13 @@ function ModelCanvas({ activeFileIndex }) {
                         "data",
                         "hyperparams",
                         index,
-                        "value"
+                        "value",
                       ],
                       value: newValue,
                     })
                   );
                 },
-              }
-            )
+              };
             })}
           />
         </>
@@ -614,10 +612,10 @@ function ModelCanvas({ activeFileIndex }) {
           <H show innerText="Parameters" level={1} />
           <KeyValue
             show
-            content={node.data.hyperparams.map((item,index)=>{
-              return ({
-                keyInnerText:item.id,
-                valueInnerText:item.value,
+            content={node.data.hyperparams.map((item, index) => {
+              return {
+                keyInnerText: item.id,
+                valueInnerText: item.value,
                 isValueEditable: true,
                 removable: false,
                 onValueChange: (newValue) => {
@@ -631,14 +629,13 @@ function ModelCanvas({ activeFileIndex }) {
                         "data",
                         "hyperparams",
                         index,
-                        "value"
+                        "value",
                       ],
                       value: newValue,
                     })
                   );
                 },
-              }
-            )
+              };
             })}
           />
         </>
