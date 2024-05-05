@@ -1,366 +1,4 @@
-const jsonObject = {
-  artefacts: [
-    {
-      artefactMetadata: {
-        name: "ClassifierModelArtefact",
-        artefactType: "ModelArchitectureType",
-      },
-      nodes: [
-        {
-          id: "1",
-          nodeType: "FunctionNode",
-          nodeSubtype: "GetTunableInt",
-          nodeData : {}
-        },
-        {
-          id: "2",
-          nodeType: "DataVariableNode",
-          nodeSubtype: "Input",
-          name: "hp_units",
-          nodeData : {},
-        },
-        {
-          id: "3",
-          nodeType: "FunctionNode",
-          nodeSubtype: "GetTunableInt",
-          nodeData : {}
-        },
-        {
-          id: "4",
-          nodeType: "DataVariableNode",
-          nodeSubtype: "Input",
-          name: "hp_layers",
-          nodeData : {},
-        },
-        {
-          id: "5",
-          nodeType: "FunctionNode",
-          nodeSubtype: "Input",
-          nodeData : {},
-        },
-        {
-          id: "6",
-          nodeType: "FunctionNode",
-          nodeSubtype: "Flatten",
-          nodeData : {},
-        },
-        {
-          id: "7",
-          nodeType: "DataVariableNode",
-          nodeSubtype: "Output",
-          name: "hp_units",
-          nodeData : {},
-        },
-        {
-          id: "8",
-          nodeType: "FunctionNode",
-          nodeSubtype: "CreateAndApplyDenseLayer",
-          nodeData : {},
-        },
-        {
-          id: "9",
-          nodeType: "DataVariableNode",
-          nodeSubtype: "Output",
-          name: "hp_units",
-          nodeData : {},
-        },
-        {
-          id: "10",
-          nodeType: "PackerNode",
-          nodeSubtype: "Named",
-          nodeData : {},
-        },
-        {
-          id: "11",
-          nodeType: "DataVariableNode",
-          nodeSubtype: "Output",
-          name: "hp_layers",
-          nodeData : {},
-        },
-        {
-          id: "12",
-          nodeType: "Loop",
-          nodeSubtype: "RepeatLoopNode",
-          innerArtefact: "tmp1",
-          nodeData : {},
-        },
-        {
-          id: "13",
-          nodeType: "UnpackerNode",
-          nodeSubtype: "NamedUnpacker",
-          nodeData : {},
-        },
-        {
-          id: "14",
-          nodeType: "FunctionNode",
-          nodeSubtype: "CreateAndApplyDenseLayer",
-          nodeData : {},
-        },
-        {
-          id: "15",
-          nodeType: "FunctionNode",
-          nodeSubtype: "Output",
-          nodeData : {},
-        },
-      ],
-      edges: [
-        {
-          label: "",
-          sourceNodeID: "1",
-          sourceNodeHandleID: "out",
-          targetNodeID: "2",
-          targetNodeHandleID: "hp_units",
-        },
-        {
-          label: "",
-          sourceNodeID: "3",
-          sourceNodeHandleID: "out",
-          targetNodeID: "4",
-          targetNodeHandleID: "hp_layers",
-        },
-        {
-          label: "",
-          sourceNodeID: "5",
-          sourceNodeHandleID: "out",
-          targetNodeID: "6",
-          targetNodeHandleID: "payload",
-        },
-        {
-          label: "",
-          sourceNodeID: "7",
-          sourceNodeHandleID: "out",
-          targetNodeID: "8",
-          targetNodeHandleID: "units",
-        },
-        {
-          label: "",
-          sourceNodeID: "6",
-          sourceNodeHandleID: "out",
-          targetNodeID: "8",
-          targetNodeHandleID: "payload",
-        },
-        {
-          label: "hp_units",
-          sourceNodeID: "9",
-          sourceNodeHandleID: "out",
-          targetNodeID: "10",
-          targetNodeHandleID: "multi-in",
-        },
-        {
-          label: "payload",
-          sourceNodeID: "8",
-          sourceNodeHandleID: "out",
-          targetNodeID: "10",
-          targetNodeHandleID: "multi-in",
-        },
-        {
-          label: "",
-          sourceNodeID: "10",
-          sourceNodeHandleID: "out",
-          targetNodeID: "12",
-          targetNodeHandleID: "payload",
-        },
-        {
-          label: "",
-          sourceNodeID: "11",
-          sourceNodeHandleID: "out",
-          targetNodeID: "12",
-          targetNodeHandleID: "iterationCount",
-        },
-        {
-          label: "",
-          sourceNodeID: "12",
-          sourceNodeHandleID: "out",
-          targetNodeID: "13",
-          targetNodeHandleID: "payload",
-        },
-        {
-          label: "payload",
-          sourceNodeID: "13",
-          sourceNodeHandleID: "out",
-          targetNodeID: "14",
-          targetNodeHandleID: "payload",
-        },
-        {
-          label: "",
-          sourceNodeID: "14",
-          sourceNodeHandleID: "out",
-          targetNodeID: "15",
-          targetNodeHandleID: "in",
-        },
-      ],
-    },
-    {
-      artefactMetadata: {
-          name: "tmp1",
-          artefactType: "ArtefactType"
-      },
-      nodes: [
-          {
-              id: "1",
-              nodeType: "Input",
-              name: "hp_units",
-              nodeData:{}
-              
-          }, 
-          {
-              id: "2",
-              nodeType: "Input",
-              name: "payload",
-              nodeData:{}
-              
-          },
-           {
-              id: "3",
-              nodeType: "FunctionNode",
-              nodeSubtype: "CreateAndApplyDenseLayer",
-              nodeData:{}
-              
-          },
-          {
-              id: "4",
-              nodeType: "Output",
-              name: "Payload",
-              nodeData:{}
-              
-          }
-      ],
-      edges: [
-          {
-              label: "",
-              sourceNodeID: "1",
-              sourceNodeHandleID: "out",
-              targetNodeID: "3",
-              targetNodeHandleID: "units"
-          },
-          {
-              label: "",
-              sourceNodeID: "2",
-              sourceNodeHandleID: "out",
-              targetNodeID: "3",
-              targetNodeHandleID: "payload"
-          },
-          {
-              label: "",
-              sourceNodeID: "3",
-              sourceNodeHandleID: "out",
-              targetNodeID: "4",
-              targetNodeHandleID: "payload"
-          }
-      ]
-  },
-  {
-    artefactMetadata: {
-        name: "CompiledClassifierModel",
-        artefactType: "ModelClassifierType"
-    },
-    nodes: [
-        {
-            id: "1",
-            nodeType: "FunctionNode",
-            nodeSubtype: "ClassiferModel",
-            nodeData : {},
-            sourceArtefact:"ClassifierModelArtefact"
-        },
-        {
-            id: "2",
-            nodeType: "FunctionNode",
-            nodeData : {},
-            nodeSubtype: "RawData"
-        },
-        {
-            id: "3",
-            nodeType: "FunctionNode",
-            nodeData : {},
-            nodeSubtype: "GetTunableFromList"
-            
-        },
-        {
-            id: "4",
-            nodeType: "FunctionNode",
-            nodeData : {},
-            nodeSubtype: "RawData"
-        },
-        {
-            id: "5",
-            nodeType: "FunctionNode",
-            nodeData : {},
-            nodeSubtype: "RawData"            
-        }
-        ,
-        {
-            id: "6",
-            nodeType: "FunctionNode",
-            nodeData : {},
-            nodeSubtype: "GenerateAdamOptimizer"
-        },
-        {
-            id: "7",
-            nodeType: "FunctionNode",
-            nodeData : {},
-            nodeSubtype: "CompileModel"
-        },
-        {
-            id: "8",
-            nodeType: "Output",
-            nodeData : {},
-            name: "CompiledModel"            
-        }
-    ],
-    edges: [
-        {
-            label: "",
-            sourceNodeID: "1",
-            sourceNodeHandleID: "out",
-            targetNodeID: "7",
-            targetNodeHandleID: "model"
-        },
-        {
-            label: "",
-            sourceNodeID: "2",
-            sourceNodeHandleID: "out",
-            targetNodeID: "3",
-            targetNodeHandleID: "val"
-        },
-        {
-            label: "",
-            sourceNodeID: "3",
-            sourceNodeHandleID: "out",
-            targetNodeID: "6",
-            targetNodeHandleID: "learning_rate"
-        },
-        {
-            label: "",
-            sourceNodeID: "4",
-            sourceNodeHandleID: "out",
-            targetNodeID: "7",
-            targetNodeHandleID: "loss"
-        },
-        {
-            label: "",
-            sourceNodeID: "6",
-            sourceNodeHandleID: "out",
-            targetNodeID: "7",
-            targetNodeHandleID: "optimizers"
-        },
-        {
-            label: "",
-            sourceNodeID: "5",
-            sourceNodeHandleID: "out",
-            targetNodeID: "7",
-            targetNodeHandleID: "metrics"
-        },
-        {
-            label: "",
-            sourceNodeID: "7",
-            sourceNodeHandleID: "out",
-            targetNodeID: "8",
-            targetNodeHandleID: "CompileModel"
-        }
-    ]
-}
-  ],
-};
+const jsonObject = {"artefactArray":[{"artefactMetadata":{"name":"ClassifierModel","artefactType":"ModelArchitectureType"},"nodes":[{"id":"FunctionNode_GetTunableInt_5167","nodeData":{"name":"'hp_layers'","hyperparams":[{"id":"name","value":"'hp_layers'"},{"id":"min_value","value":"1"},{"id":"max_value","value":"4"},{"id":"step","value":"1"},{"id":"sampling","value":"'linear'"}],"commentText":"","commentType":"plain","inputHandles":[],"outputHandles":["int"],"elementID":"GetTunableInt","min_value":"1","max_value":"4","step":"1","sampling":"'linear'"},"nodeType":"FunctionNode","nodeSubtype":"GetTunableInt"},{"id":"FunctionNode_GetTunableInt_5655","nodeData":{"name":"'hp_units'","hyperparams":[{"id":"name","value":"'hp_units'"},{"id":"min_value","value":"32"},{"id":"max_value","value":"512"},{"id":"step","value":"32"},{"id":"sampling","value":"'linear'"}],"commentText":"","commentType":"plain","inputHandles":[],"outputHandles":["int"],"elementID":"GetTunableInt","min_value":"32","max_value":"512","step":"32","sampling":"'linear'"},"nodeType":"FunctionNode","nodeSubtype":"GetTunableInt"},{"id":"Output_3442","nodeData":{"hyperparams":[],"name":"hp_units"},"nodeType":"DataVariable","nodeSubtype":"IN"},{"id":"Output_3588","nodeData":{"hyperparams":[],"name":"hp_layers"},"nodeType":"DataVariable","nodeSubtype":"IN"},{"id":"Output_6718","nodeData":{"hyperparams":[],"name":"hp_units"},"nodeType":"DataVariable","nodeSubtype":"OUT"},{"id":"Output_6923","nodeData":{"hyperparams":[],"name":"hp_units"},"nodeType":"DataVariable","nodeSubtype":"OUT"},{"id":"Output_7254","nodeData":{"hyperparams":[],"name":"hp_layers"},"nodeType":"DataVariable","nodeSubtype":"OUT"},{"id":"FunctionNode_Flatten_919","nodeData":{"name":"Flatten","hyperparams":[],"commentText":"","commentType":"plain","inputHandles":["payload"],"outputHandles":["payload"],"elementID":"Flatten"},"nodeType":"FunctionNode","nodeSubtype":"Flatten"},{"id":"FunctionNode_CreateAndApplyDenseLayer_4849","nodeData":{"name":"Create and Apply Dense Layer","hyperparams":[{"id":"units","value":"10"},{"id":"activation","value":"softmax"}],"commentText":"","commentType":"plain","inputHandles":["payload"],"outputHandles":["payload"],"elementID":"CreateAndApplyDenseLayer","units":"10","activation":"softmax"},"nodeType":"FunctionNode","nodeSubtype":"CreateAndApplyDenseLayer"},{"id":"PackerNode_4040","nodeData":{"hyperparams":[{"id":"packingCount","value":2}],"commentText":"","commentType":"plain","packingCount":2},"nodeType":"Packer","nodeSubtype":"Named"},{"id":"UnpackerNode_1373","nodeData":{},"nodeType":"Unpacker","nodeSubtype":"Named"},{"id":"FunctionNode_CreateAndApplyDenseLayer_9091","nodeData":{"name":"Create and Apply Dense Layer","hyperparams":[{"id":"units","value":""},{"id":"activation","value":"relu"}],"commentText":"","commentType":"plain","inputHandles":["payload"],"outputHandles":["payload"],"elementID":"CreateAndApplyDenseLayer","units":"","activation":"relu"},"nodeType":"FunctionNode","nodeSubtype":"CreateAndApplyDenseLayer"},{"id":"FunctionNode_RepeatLoop_ArtefactImporter_2040","nodeData":{"enclosedNodeType":"FunctionNode/ArtefactImporter","name":"tmp1","hyperparams":[],"commentText":"","commentType":"plain","elementID":"ArtefactImporter"},"nodeType":"Loop","nodeSubtype":"Repeat","innerArtefact":"tmp1"},{"id":"FunctionNode_ArrayInput_1884","nodeData":{"name":"Array Input","hyperparams":[{"id":"input_shape","value":"(784,)"}],"commentText":"","commentType":"plain","inputHandles":[],"outputHandles":["array"],"elementID":"ArrayInput","input_shape":"(784,)"},"nodeType":"FunctionNode","nodeSubtype":"ArrayInput"},{"id":"FunctionNode_RecordArrayOutput_2420","nodeData":{"name":"Record Array Output","hyperparams":[],"commentText":"","commentType":"plain","inputHandles":["array"],"outputHandles":[],"elementID":"RecordArrayOutput"},"nodeType":"FunctionNode","nodeSubtype":"RecordArrayOutput"}],"edges":[{"sourceNodeID":"FunctionNode_GetTunableInt_5655","sourceNodeHandleID":"int","targetNodeID":"Output_3442","targetNodeHandleID":"input","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_GetTunableInt_5167","sourceNodeHandleID":"int","targetNodeID":"Output_3588","targetNodeHandleID":"input","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_Flatten_919","sourceNodeHandleID":"payload","targetNodeID":"FunctionNode_CreateAndApplyDenseLayer_9091","targetNodeHandleID":"payload","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_CreateAndApplyDenseLayer_9091","sourceNodeHandleID":"payload","targetNodeID":"PackerNode_4040","targetNodeHandleID":"multi-in","inLabel":"payload","outLabel":"payload"},{"sourceNodeID":"Output_7254","sourceNodeHandleID":"output","targetNodeID":"FunctionNode_RepeatLoop_ArtefactImporter_2040","targetNodeHandleID":"iteration-count","inLabel":"","outLabel":""},{"sourceNodeID":"PackerNode_4040","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_RepeatLoop_ArtefactImporter_2040","targetNodeHandleID":"multi-in","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_RepeatLoop_ArtefactImporter_2040","sourceNodeHandleID":"out","targetNodeID":"UnpackerNode_1373","targetNodeHandleID":"in","inLabel":"","outLabel":""},{"sourceNodeID":"UnpackerNode_1373","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_CreateAndApplyDenseLayer_4849","targetNodeHandleID":"payload","inLabel":"payload","outLabel":"payload"},{"sourceNodeID":"Output_6718","sourceNodeHandleID":"output","targetNodeID":"FunctionNode_CreateAndApplyDenseLayer_9091","targetNodeHandleID":"multi-in","inLabel":"units","outLabel":"units"},{"sourceNodeID":"Output_6923","sourceNodeHandleID":"output","targetNodeID":"PackerNode_4040","targetNodeHandleID":"multi-in","inLabel":"units","outLabel":"units"},{"sourceNodeID":"FunctionNode_ArrayInput_1884","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_Flatten_919","targetNodeHandleID":"payload","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_CreateAndApplyDenseLayer_4849","sourceNodeHandleID":"payload","targetNodeID":"FunctionNode_RecordArrayOutput_2420","targetNodeHandleID":"in","inLabel":"","outLabel":""}]},{"artefactMetadata":{"name":"CompiledClassifierModel","artefactType":"ModelCompilerType"},"nodes":[{"id":"Output_1114","nodeData":{},"nodeType":"Output"},{"id":"FunctionNode_GenerateAdamOptimizer_9984","nodeData":{"name":"Generate ADAM Optimizer","hyperparams":[{"id":"learning_rate","value":"0.001"}],"commentText":"","commentType":"plain","inputHandles":[],"outputHandles":["Optimizer"],"elementID":"GenerateAdamOptimizer","learning_rate":"0.001"},"nodeType":"FunctionNode","nodeSubtype":"GenerateAdamOptimizer"},{"id":"FunctionNode_CompileModel_1908","nodeData":{"name":"Compile Model","hyperparams":[],"commentText":"","commentType":"plain","inputHandles":["model","optimizer","loss","metrics"],"outputHandles":["compiled-model"],"elementID":"CompileModel"},"nodeType":"FunctionNode","nodeSubtype":"CompileModel"},{"id":"FunctionNode_GetTunableFromList_1567","nodeData":{"name":"'learning_rate'","hyperparams":[{"id":"name","value":"'learning_rate'"},{"id":"values","value":null},{"id":"ordered","value":"None"}],"commentText":"","commentType":"plain","inputHandles":[],"outputHandles":["value"],"elementID":"GetTunableFromList","values":null,"ordered":"None"},"nodeType":"FunctionNode","nodeSubtype":"GetTunableFromList"},{"id":"FunctionNode_RawData_612","nodeData":{"name":"Emit Raw Data","hyperparams":[{"id":"raw-python-data","value":"None"}],"commentText":"","commentType":"plain","elementID":"RawData","innerCode":"[1e-2, 1e-3, 1e-4]","raw-python-data":"None"},"nodeType":"FunctionNode","nodeSubtype":"RawData"},{"id":"FunctionNode_RawData_1175","nodeData":{"name":"Emit Raw Data","hyperparams":[{"id":"raw-python-data","value":"None"}],"commentText":"","commentType":"plain","elementID":"RawData","innerCode":"'sparse_categorical_crossentropy'","raw-python-data":"None"},"nodeType":"FunctionNode","nodeSubtype":"RawData"},{"id":"FunctionNode_RawData_2107","nodeData":{"name":"Emit Raw Data","hyperparams":[{"id":"raw-python-data","value":"None"}],"commentText":"","commentType":"plain","elementID":"RawData","innerCode":"['accuracy']","raw-python-data":"None"},"nodeType":"FunctionNode","nodeSubtype":"RawData"},{"id":"FunctionNode_ArtefactImporter_9042","nodeData":{"name":"ClassifierModel","hyperparams":[],"commentText":"","commentType":"plain","elementID":"ArtefactImporter"},"nodeType":"FunctionNode","nodeSubtype":"ArtefactImporter","sourceArtefact":"ClassifierModel"}],"edges":[{"sourceNodeID":"FunctionNode_ArtefactImporter_9042","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_CompileModel_1908","targetNodeHandleID":"model","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_GenerateAdamOptimizer_9984","sourceNodeHandleID":"Optimizer","targetNodeID":"FunctionNode_CompileModel_1908","targetNodeHandleID":"optimizer","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_RawData_1175","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_CompileModel_1908","targetNodeHandleID":"loss","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_RawData_2107","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_CompileModel_1908","targetNodeHandleID":"metrics","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_CompileModel_1908","sourceNodeHandleID":"compiled-model","targetNodeID":"Output_1114","targetNodeHandleID":"in","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_RawData_612","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_GetTunableFromList_1567","targetNodeHandleID":"multi-in","inLabel":"values","outLabel":"values"},{"sourceNodeID":"FunctionNode_GetTunableFromList_1567","sourceNodeHandleID":"value","targetNodeID":"FunctionNode_GenerateAdamOptimizer_9984","targetNodeHandleID":"multi-in","inLabel":"learning_rate","outLabel":"learning_rate"}]},{"artefactMetadata":{"name":"MNISTDataLoader","artefactType":"DataLoaderType"},"nodes":[{"id":"FunctionNode_ScalarDivide_7702","nodeData":{"name":"Divide by Scalar","hyperparams":[],"commentText":"","commentType":"plain","inputHandles":["dividend","divisor"],"outputHandles":["result"],"elementID":"ScalarDivide"},"nodeType":"FunctionNode","nodeSubtype":"ScalarDivide"},{"id":"FunctionNode_ScalarDivide_2003","nodeData":{"name":"Divide by Scalar","hyperparams":[],"commentText":"","commentType":"plain","inputHandles":["dividend","divisor"],"outputHandles":["result"],"elementID":"ScalarDivide"},"nodeType":"FunctionNode","nodeSubtype":"ScalarDivide"},{"id":"Output_2250","nodeData":{},"nodeType":"Output"},{"id":"Output_2707","nodeData":{},"nodeType":"Output"},{"id":"Output_3326","nodeData":{},"nodeType":"Output"},{"id":"Output_2844","nodeData":{},"nodeType":"Output"},{"id":"FunctionNode_RawData_3720","nodeData":{"name":"Emit Raw Data","hyperparams":[{"id":"raw-python-data","value":"None"}],"commentText":"","commentType":"plain","elementID":"RawData","innerCode":"255.0","raw-python-data":"None"},"nodeType":"FunctionNode","nodeSubtype":"RawData"},{"id":"FunctionNode_LoadMNISTDataset_973","nodeData":{"name":"Load MNIST Dataset","hyperparams":[],"commentText":"","commentType":"plain","inputHandles":[],"outputHandles":["mnist-data"],"elementID":"LoadMNISTDataset"},"nodeType":"FunctionNode","nodeSubtype":"LoadMNISTDataset"}],"edges":[{"sourceNodeID":"FunctionNode_ScalarDivide_2003","sourceNodeHandleID":"result","targetNodeID":"Output_3326","targetNodeHandleID":"in","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_ScalarDivide_7702","sourceNodeHandleID":"result","targetNodeID":"Output_2707","targetNodeHandleID":"in","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_RawData_3720","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_ScalarDivide_2003","targetNodeHandleID":"divisor","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_RawData_3720","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_ScalarDivide_7702","targetNodeHandleID":"divisor","inLabel":"","outLabel":""},{"sourceNodeID":"FunctionNode_LoadMNISTDataset_973","sourceNodeHandleID":"mnist-data","targetNodeID":"Output_2250","targetNodeHandleID":"in","inLabel":"y_test","outLabel":"y_test"},{"sourceNodeID":"FunctionNode_LoadMNISTDataset_973","sourceNodeHandleID":"mnist-data","targetNodeID":"Output_2844","targetNodeHandleID":"in","inLabel":"y_train","outLabel":"y_train"},{"sourceNodeID":"FunctionNode_LoadMNISTDataset_973","sourceNodeHandleID":"mnist-data","targetNodeID":"FunctionNode_ScalarDivide_7702","targetNodeHandleID":"dividend","inLabel":"x_test","outLabel":"x_test"},{"sourceNodeID":"FunctionNode_LoadMNISTDataset_973","sourceNodeHandleID":"mnist-data","targetNodeID":"FunctionNode_ScalarDivide_2003","targetNodeHandleID":"dividend","inLabel":"x_train","outLabel":"x_train"}]},{"artefactMetadata":{"name":"ModelEvaluator","artefactType":"ModelEvaluatorArtefact"},"nodes":[{"id":"FunctionNode_EvaluateModel_8759","nodeData":{"name":"Evaluate Model","hyperparams":[],"commentText":"","commentType":"plain","inputHandles":["model","x","y"],"outputHandles":[],"elementID":"EvaluateModel"},"nodeType":"FunctionNode","nodeSubtype":"EvaluateModel"},{"id":"FunctionNode_ArtefactImporter_7192","nodeData":{"name":"ModelTuner","hyperparams":[],"commentText":"","commentType":"plain","elementID":"ArtefactImporter"},"nodeType":"FunctionNode","nodeSubtype":"ArtefactImporter","sourceArtefact":"ModelTuner"},{"id":"FunctionNode_ArtefactImporter_1296","nodeData":{"name":"MNISTDataLoader","hyperparams":[],"commentText":"","commentType":"plain","elementID":"ArtefactImporter"},"nodeType":"FunctionNode","nodeSubtype":"ArtefactImporter","sourceArtefact":"MNISTDataLoader"}],"edges":[{"sourceNodeID":"FunctionNode_ArtefactImporter_7192","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_EvaluateModel_8759","targetNodeHandleID":"model","inLabel":"model","outLabel":"model"},{"sourceNodeID":"FunctionNode_ArtefactImporter_1296","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_EvaluateModel_8759","targetNodeHandleID":"x","inLabel":"x_test","outLabel":"x_test"},{"sourceNodeID":"FunctionNode_ArtefactImporter_1296","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_EvaluateModel_8759","targetNodeHandleID":"y","inLabel":"y_test","outLabel":"y_test"}]},{"artefactMetadata":{"name":"ModelTuner","artefactType":"ModelTunerArtefact"},"nodes":[{"id":"FunctionNode_GetBestModelAfterTuning_6214","nodeData":{"name":"Get Best Model After Tuning","hyperparams":[{"id":"objective","value":"'val_loss'"},{"id":"max_trials","value":"5"},{"id":"epochs","value":"5"}],"commentText":"","commentType":"plain","inputHandles":["build_model"],"outputHandles":["best-model"],"elementID":"GetBestModelAfterTuning","objective":"'val_loss'","max_trials":"5","epochs":"5"},"nodeType":"FunctionNode","nodeSubtype":"GetBestModelAfterTuning"},{"id":"Output_1475","nodeData":{},"nodeType":"Output"},{"id":"CallBackNode_9523","nodeData":{},"nodeType":"Callback","sourceArtefact":"CompiledClassifierModel"},{"id":"FunctionNode_LoadMNISTDataset_4861","nodeData":{"name":"Load MNIST Dataset","hyperparams":[],"commentText":"","commentType":"plain","inputHandles":[],"outputHandles":["mnist-data"],"elementID":"LoadMNISTDataset"},"nodeType":"FunctionNode","nodeSubtype":"LoadMNISTDataset"},{"id":"UnpackerNode_1561","nodeData":{},"nodeType":"Unpacker","nodeSubtype":"Named"},{"id":"UnpackerNode_7502","nodeData":{},"nodeType":"Unpacker","nodeSubtype":"Named"},{"id":"UnpackerNode_7885","nodeData":{},"nodeType":"Unpacker","nodeSubtype":"Named"},{"id":"UnpackerNode_8177","nodeData":{},"nodeType":"Unpacker","nodeSubtype":"Named"}],"edges":[{"sourceNodeID":"FunctionNode_GetBestModelAfterTuning_6214","sourceNodeHandleID":"best-model","targetNodeID":"Output_1475","targetNodeHandleID":"in","inLabel":"","outLabel":""},{"sourceNodeID":"CallBackNode_9523","sourceNodeHandleID":"in","targetNodeID":"FunctionNode_GetBestModelAfterTuning_6214","targetNodeHandleID":"build_model","inLabel":"*","outLabel":"build_model"},{"sourceNodeID":"FunctionNode_LoadMNISTDataset_4861","sourceNodeHandleID":"mnist-data","targetNodeID":"UnpackerNode_1561","targetNodeHandleID":"in","inLabel":null,"outLabel":null},{"sourceNodeID":"UnpackerNode_1561","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_GetBestModelAfterTuning_6214","targetNodeHandleID":"multi-in","inLabel":"x_train","outLabel":"x_train"},{"sourceNodeID":"FunctionNode_LoadMNISTDataset_4861","sourceNodeHandleID":"mnist-data","targetNodeID":"UnpackerNode_7502","targetNodeHandleID":"in","inLabel":null,"outLabel":null},{"sourceNodeID":"FunctionNode_LoadMNISTDataset_4861","sourceNodeHandleID":"mnist-data","targetNodeID":"UnpackerNode_7885","targetNodeHandleID":"in","inLabel":null,"outLabel":null},{"sourceNodeID":"FunctionNode_LoadMNISTDataset_4861","sourceNodeHandleID":"mnist-data","targetNodeID":"UnpackerNode_8177","targetNodeHandleID":"in","inLabel":null,"outLabel":null},{"sourceNodeID":"UnpackerNode_7502","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_GetBestModelAfterTuning_6214","targetNodeHandleID":"multi-in","inLabel":"y_test","outLabel":"y_test"},{"sourceNodeID":"UnpackerNode_7885","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_GetBestModelAfterTuning_6214","targetNodeHandleID":"multi-in","inLabel":"y_train","outLabel":"y_train"},{"sourceNodeID":"UnpackerNode_8177","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_GetBestModelAfterTuning_6214","targetNodeHandleID":"multi-in","inLabel":"x_test","outLabel":"x_test"}]},{"artefactMetadata":{"name":"tmp1","artefactType":"ArtefactType"},"nodes":[{"id":"FunctionNode_CreateAndApplyDenseLayer_5888","nodeData":{"name":"Create and Apply Dense Layer","hyperparams":[{"id":"units","value":null},{"id":"activation","value":"None"}],"commentText":"","commentType":"plain","inputHandles":["payload"],"outputHandles":["payload"],"elementID":"CreateAndApplyDenseLayer","units":null,"activation":"None"},"nodeType":"FunctionNode","nodeSubtype":"CreateAndApplyDenseLayer"},{"id":"Input_7356","nodeData":{},"nodeType":"Input"},{"id":"Input_2507","nodeData":{},"nodeType":"Input"},{"id":"Output_5171","nodeData":{},"nodeType":"Output"}],"edges":[{"sourceNodeID":"FunctionNode_CreateAndApplyDenseLayer_5888","sourceNodeHandleID":"payload","targetNodeID":"Output_5171","targetNodeHandleID":"in","inLabel":"","outLabel":""},{"sourceNodeID":"Input_2507","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_CreateAndApplyDenseLayer_5888","targetNodeHandleID":"payload","inLabel":"","outLabel":""},{"sourceNodeID":"Input_7356","sourceNodeHandleID":"out","targetNodeID":"FunctionNode_CreateAndApplyDenseLayer_5888","targetNodeHandleID":"multi-in","inLabel":"units","outLabel":"units"}]}],"executedFileName":"CompiledClassifierModel"}
 
 const codeGenFuncs = {
   GenerateAdamOptimizer: function GenerateAdamOptimizer(params) {
@@ -419,7 +57,7 @@ const codeGenFuncs = {
     return {
       imports: [],
       execution: "",
-      return: params["raw-python-data"],
+      return: `${params["raw-python-data"]}`,
     };
   },
 
@@ -596,7 +234,7 @@ CompileModel: function CompileModel(params) {
   },
 
   
-  CallBackNode: function Callback(params) {
+  CallBack: function Callback(params) {
     return {
       imports: [],
       execution:"",
@@ -604,100 +242,7 @@ CompileModel: function CompileModel(params) {
     };
   },
 
-  ClassifierModelArtefact: function ClassifierModel(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`ClassifierModel(${params})`,
-    };
-  },
-  MNSITDataLoader: function MNSITDataLoader(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`MNSITDataLoader(${params})`,
-    };
-  },
-  CompiledClassifierModel: function CompiledClassifierModel(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`CompiledClassifierModel(${params})`,
-    };
-  },
-  ModelTuner: function ModelTuner(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`ModelTuner(${params})`,
-    };
-  },
-  ModelEvaluator: function ModelEvaluator(artefactName,params=null) {
-    return {
-      imports: [],
-      execution:"",
-      return:`${artefactName}(${params})`,
-    };
-  },
-  Constants: function Constants(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`Constants(${params})`,
-    };
-  },
-  DiscriminatorLoss: function DiscriminatorLoss(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`DiscriminatorLoss(${params})`,
-    };
-  },
-  GeneratorLoss: function GeneratorLoss(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`GeneratorLoss(${params})`,
-    };
-  },
-  DiscriminatorModel: function DiscriminatorMdel(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`DiscriminatorModel(${params})`,
-    };
-  },
-  GeneratorModel: function GeneratorModel(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`GeneratorModel(${params})`,
-    };
-  },
-  TrainStep: function TrainStep(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`TrainStep(${params})`,
-    };
-  },
-  TrainingLoop: function TrainingLoop(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`TrainingLoop(${params})`,
-    };
-  },
-  LoadedData: function LoadedData(params) {
-    return {
-      imports: [],
-      execution:"",
-      return:`LoadedData(${params})`,
-    };
-  },
-
-
-
+ 
 };
 let dnn_temp_id = 0;
 let gen_code = "";
@@ -711,7 +256,7 @@ function main(jsonObject) {
   const nodeOutputEdgeMap = new Map();
   const nodeInputEdgeMap = new Map();
   const nodeInputList = new Map();
-  const artefactOutDegreeCnt = new Map();
+  //const artefactOutDegreeCnt = new Map();
   const dataVariableInpOutMap = new Map();
   artefactMapping(jsonObject, artefactIdMapping, idToArtefact); // artefact id mapping
   artefactNodesMapping(jsonObject, artefactIdMapping, artefactNodesInfo); // artefact nodes mapping
@@ -722,9 +267,9 @@ function main(jsonObject) {
     nodeInputEdgeMap,
     nodeInputList,
     artefactNodesInfo
-  ); // artefact-> nodeId->[dnn_temp_id,targetNodeID,targetNodeHandleID,label]
-  outdegreeCnt(nodeOutputEdgeMap, artefactOutDegreeCnt);
-  dataVariableNodeMapping(jsonObject, artefactIdMapping, dataVariableInpOutMap);
+  ); // artefact-> nodeId->[dnn_temp_id,targetNodeID,targetNodeHandleID,inLabel,outLabel]
+  //outdegreeCnt(nodeOutputEdgeMap, artefactOutDegreeCnt);
+  DataVariableMapping(jsonObject, artefactIdMapping, dataVariableInpOutMap);
   console.log(artefactIdMapping);
   // console.log(artefactNodesInfo);
   // console.log(nodeOutputEdgeMap)
@@ -792,10 +337,12 @@ function gen_arte_dfs(
     if (nodeType === "FunctionNode") {
       let nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
       let funcCode;
-      if(typeof artefactName !== "undefined"){
-      funcCode = codeGenFuncs[artefactName](nodeData);
+      if(nodeSubtype==="ArtefactImporter"){
+       artefactImporter(artefactName,nodeData)
       }else{
+        console.log(nodeSubtype + " " + JSON.stringify(nodeData))
         funcCode = codeGenFuncs[nodeSubtype](nodeData);
+        console.log(funcCode)
       }
       const funcReturn = funcCode.return
       const funcExe = funcCode.execution
@@ -876,7 +423,7 @@ function gen_arte_dfs(
 
       return;
     } else if (nodeType === "Loop") {
-      if (nodeSubtype === "RepeatLoopNode") {
+      if (nodeSubtype === "RepeatLoop") {
         //console.log("RepeatLoop")
         const nodeData = artefactNodesInfo
           .get(artefact_id)
@@ -978,7 +525,7 @@ function gen_arte_dfs(
           out_list
         );
       }
-    } else if (nodeType === "PackerNode") {
+    } else if (nodeType === "Packer") {
       const nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
 
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
@@ -1004,7 +551,7 @@ function gen_arte_dfs(
     nodeInputList,
     out_list
   );
-    } else if (nodeType === "UnpackerNode") {
+    } else if (nodeType === "UnPacker") {
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
@@ -1068,9 +615,8 @@ function hypermodel_arte_dfs(
       if (nodeType === "FunctionNode") {
         let nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
         let funcCode;
-        if(typeof artefactName !== "undefined"){
-          console.log(artefactName)
-        funcCode = codeGenFuncs[artefactName](nodeData);
+        if(nodeSubtype==="ArtefactImporter"){
+          artefactImporter(artefactName,nodeData)
         }else{
           funcCode = codeGenFuncs[nodeSubtype](nodeData);
         }
@@ -1154,7 +700,7 @@ function hypermodel_arte_dfs(
         out_list[`${name}`] = edge_variable;
   
         return;
-      }else if (nodeType === "PackerNode") {
+      }else if (nodeType === "Packer") {
         const nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
     
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
@@ -1181,7 +727,7 @@ function hypermodel_arte_dfs(
           out_list
           
         );
-      } else if (nodeType === "UnpackerNode") {
+      } else if (nodeType === "UnPacker") {
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
         if (list.length > 0) {
           for (let i = 0; i < list.length; i++) {
@@ -1250,7 +796,7 @@ function model_arte_dfs(
     let nodeSubtype = artefactNodesInfo.get(artefact_id).get(curr_node_id)[1];
 
     if (nodeType === "FunctionNode") {
-      if (nodeSubtype === "Output") {
+      if (nodeSubtype === "RecordArrayOutput") {
         model_out_list.push(edge_variable);
         return;
       }
@@ -1270,7 +816,7 @@ function model_arte_dfs(
 
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
 
-      if (nodeSubtype === "Input") {
+      if (nodeSubtype === "ArrayInput") {
         model_in_list.push(list[0][0]);
       }
       
@@ -1308,9 +854,9 @@ function model_arte_dfs(
       } else {
         return;
       }
-    } else if (nodeType === "DataVariableNode") {
+    } else if (nodeType === "DataVariable") {
       const name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
-      if (nodeSubtype === "Input") {
+      if (nodeSubtype === "IN") {
         let s = `
   ${name} = ${edge_variable}`;
         gen_code = gen_code.concat(s);
@@ -1334,7 +880,7 @@ function model_arte_dfs(
             
           )
         }
-      } else if (nodeSubtype === "Output") {
+      } else if (nodeSubtype === "OUT") {
         // assuming only one output
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
 
@@ -1358,7 +904,7 @@ function model_arte_dfs(
         );
       }
     } else if (nodeType === "Loop") {
-      if (nodeSubtype === "RepeatLoopNode") {
+      if (nodeSubtype === "RepeatLoop") {
         //console.log("RepeatLoop")
         const nodeData = artefactNodesInfo
           .get(artefact_id)
@@ -1467,7 +1013,7 @@ function model_arte_dfs(
           
         );
       }
-    } else if (nodeType === "PackerNode") {
+    } else if (nodeType === "Packer") {
       const nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
 
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
@@ -1496,7 +1042,7 @@ function model_arte_dfs(
         model_out_list,
         
       );
-    } else if (nodeType === "UnpackerNode") {
+    } else if (nodeType === "UnPacker") {
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
@@ -1657,7 +1203,7 @@ function train_step_dfs(
         let other_list=[]
         for(let i=0;i<list.length;i++){
           const targId = list[i][1];
-          if(artefactNodesInfo.get(artefact_id).get(targId)[0]==="DataVariableNode" && artefactNodesInfo.get(artefact_id).get(targId)[1]==="Input"){
+          if(artefactNodesInfo.get(artefact_id).get(targId)[0]==="DataVariable" && artefactNodesInfo.get(artefact_id).get(targId)[1]==="Input"){
             grad_list.push(targId)
           }else {
             other_list.push(list[i])
@@ -1745,9 +1291,9 @@ gen_code=gen_code.concat(s)
       } else {
         return;
       }
-    }}} else if (nodeType === "DataVariableNode") {
+    }}} else if (nodeType === "DataVariable") {
       const name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
-      if (nodeSubtype === "Input") {
+      if (nodeSubtype === "IN") {
         let s;
         if(gradientStart){
           s = `
@@ -1776,7 +1322,7 @@ gen_code=gen_code.concat(s)
             
           )
         }
-      } else if (nodeSubtype === "Output") {
+      } else if (nodeSubtype === "OUT") {
         // assuming only one output
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
         let s;
@@ -1804,7 +1350,7 @@ gen_code=gen_code.concat(s)
         );
       }
     } else if (nodeType === "Loop") {
-      if (nodeSubtype === "RepeatLoopNode") {
+      if (nodeSubtype === "RepeatLoop") {
         //console.log("RepeatLoop")
         const nodeData = artefactNodesInfo
           .get(artefact_id)
@@ -1911,7 +1457,7 @@ gen_code=gen_code.concat(s)
           
         );
       }
-    } else if (nodeType === "PackerNode") {
+    } else if (nodeType === "Packer") {
       const nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
 
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
@@ -1946,7 +1492,7 @@ gen_code=gen_code.concat(s)
    
         
       );
-    } else if (nodeType === "UnpackerNode") {
+    } else if (nodeType === "UnPacker") {
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
@@ -2012,7 +1558,7 @@ def ${artefactName}(hp=None):
       const model_out_list=[]
 
       for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
-        if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariableNode" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
+        if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariable" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
           //console.log(`nodeType ${artefactNodesInfo.get(artefactOrder[i]).get(key)[0]}  nodeSubtype  ${artefactNodesInfo.get(artefactOrder[i]).get(key)[1]}`)
           model_arte_dfs(
             artefactOrder[i],
@@ -2038,7 +1584,7 @@ def ${artefactName}(hp=None):
       gen_code=gen_code.concat(`def ${artefactName}(hp=None):\n\t`);
       const out_list=[]
       for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
-        if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariableNode" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
+        if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariable" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
         
           hypermodel_arte_dfs(
             artefactOrder[i],
@@ -2075,7 +1621,7 @@ def ${artefactName}()`);
       for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
         if(artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="BeginGradientMonitoring"){
           gradient_tape_list.push(key)
-        }else if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariableNode" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
+        }else if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariable" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="OUT")) {
         
           train_step_dfs(
             artefactOrder[i],
@@ -2112,7 +1658,7 @@ def ${artefactName}()`);
 `def ${artefactName}(params):`)
       const out_list=[]
       for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
-        if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariableNode" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
+        if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariable" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="OUT")) {
         
           gen_arte_dfs(
             artefactOrder[i],
@@ -2168,42 +1714,32 @@ ${gen_code}`
  
   
 }
-function dataVariableNodeMapping(
+function DataVariableMapping(
   jsonObject,
   artefactIdMapping,
   dataVariableInpOutMap
 ) {
-  for (const artefact of jsonObject.artefacts) {
+  for (const artefact of jsonObject.artefactArray) {
     const id = artefactIdMapping.get(artefact.artefactMetadata.name);
     
     dataVariableInpOutMap.set(id, new Map());
     for (const node of artefact.nodes) {
-      if (node.nodeType === "DataVariableNode" && node.nodeSubtype === "Input") {
+      const name = node.nodeData["name"]
+      if (node.nodeType === "DataVariable" && node.nodeSubtype === "IN") {
         //console.log(`Input   ${node.name}`)
-        dataVariableInpOutMap.get(id).set(node.name, []);
+        dataVariableInpOutMap.get(id).set(name, []);
       }
-      if (node.nodeType === "DataVariableNode" && node.nodeSubtype === "Output") {
-        if (dataVariableInpOutMap.get(id).has(node.name)) {
+      if (node.nodeType === "DataVariable" && node.nodeSubtype === "OUT") {
+        if (dataVariableInpOutMap.get(id).has(name)) {
           //console.log(`Output   ${node.name}`)
-          dataVariableInpOutMap.get(id).get(node.name).push(node.id);
+          dataVariableInpOutMap.get(id).get(name).push(node.id);
         }
       }
     }
   }
 }
 
-function outdegreeCnt(nodeOutputEdgeMap, artefactOutDegreeCnt) {
-  for (const [key, values] of nodeOutputEdgeMap) {
-    let cnt = 0;
-    for (const [subkey, subvalues] of values) {
-      if (subvalues.length === 0) {
-        cnt++;
-      }
-    }
 
-    artefactOutDegreeCnt.set(key, cnt);
-  }
-}
 function dnn_temp_var_id() {
   dnn_temp_id++;
   return "dnnt_var" + dnn_temp_id;
@@ -2217,7 +1753,7 @@ function nodeOutInEdgeMapping(
   nodeInputList,
   artefactNodesInfo
 ) {
-  for (const artefact of jsonObject.artefacts) {
+  for (const artefact of jsonObject.artefactArray) {
     let id = artefactIdMapping.get(artefact.artefactMetadata.name);
     nodeOutputEdgeMap.set(id, new Map());
     nodeInputEdgeMap.set(id, new Map());
@@ -2239,13 +1775,14 @@ function nodeOutInEdgeMapping(
             temp_var,
             edge.targetNodeID,
             edge.targetNodeHandleID,
-            edge.label,
+            edge.inLabel,
+            edge.outLabel
           ]);
       } else {
         nodeOutputEdgeMap
           .get(id)
           .set(edge.sourceNodeID, [
-            [temp_var, edge.targetNodeID, edge.targetNodeHandleID, edge.label],
+            [temp_var, edge.targetNodeID, edge.targetNodeHandleID, edge.inLabel,edge.outLabel],
           ]);
       }
       // info of number of input handles in a node.
@@ -2257,7 +1794,7 @@ function nodeOutInEdgeMapping(
       // info of temp_var associated with each handle of node
 
       if (edge.targetNodeHandleID === "multi-in") {
-        artefactNodesInfo.get(id).get(edge.targetNodeID)[4][`${edge.label}`] =
+        artefactNodesInfo.get(id).get(edge.targetNodeID)[4][`${edge.outLabel}`] =
           temp_var;
       } else {
         artefactNodesInfo.get(id).get(edge.targetNodeID)[4][
@@ -2272,10 +1809,12 @@ function artefactNodesMapping(
   artefactIdMapping,
   artefactNodesInfo
 ) {
-  for (const artefact of jsonObject.artefacts) {
+  for (const artefact of jsonObject.artefactArray) {
     let id = artefactIdMapping.get(artefact.artefactMetadata.name);
     artefactNodesInfo.set(id, new Map());
     for (const node of artefact.nodes) {
+      const name = node.nodeData["name"]
+      console.log(`${node.nodeSubtype} =>  ${JSON.stringify(node.nodeData)}`)
       if ("sourceArtefact" in node) {
         artefactNodesInfo
           .get(id)
@@ -2283,7 +1822,7 @@ function artefactNodesMapping(
             node.nodeType,
             node.nodeSubtype,
             node.sourceArtefact,
-            node.name,
+            name,
             node.nodeData,
           ]);
       } else {
@@ -2293,7 +1832,7 @@ function artefactNodesMapping(
             node.nodeType,
             node.nodeSubtype,
             node.innerArtefact,
-            node.name,
+            name,
             {},
           ]);
       }
@@ -2318,7 +1857,7 @@ function dfs(node, graph, stack, visited) {
 function artefactMapping(jsonObject, artefactIdMapping, idToArtefact) {
   let id = 0;
 
-  for (const artefact of jsonObject.artefacts) {
+  for (const artefact of jsonObject.artefactArray) {
     if (!artefactIdMapping.has(artefact.artefactMetadata.name)) {
       artefactIdMapping.set(artefact.artefactMetadata.name, id);
       idToArtefact.set(id, [
@@ -2332,7 +1871,7 @@ function artefactMapping(jsonObject, artefactIdMapping, idToArtefact) {
 
 function createGraph(jsonObject, artefactIdMapping, graph) {
   // TODO : Check ogic for call back also
-  for (const artefact of jsonObject.artefacts) {
+  for (const artefact of jsonObject.artefactArray) {
     for (const node of artefact.nodes) {
       if ("sourceArtefact" in node || "innerArtefact" in node) {
         let nodeA = artefactIdMapping.get(artefact.artefactMetadata.name);
@@ -2350,9 +1889,10 @@ function createGraph(jsonObject, artefactIdMapping, graph) {
           graph.set(nodeB, [nodeA]);
         }
       }
-      }else if(node.type === "CallBackNode"){
+      }else if(node.type === "CallBack"){
+        const name = node.nodeData["name"]
         let nodeA = artefactIdMapping.get(artefact.artefactMetadata.name)
-        let nodeB = artefactIdMapping.get(node.name)
+        let nodeB = artefactIdMapping.get(name)
 
         if(typeof nodeB !== 'undefined'){
           if (graph.has(nodeB)) {
@@ -2366,5 +1906,19 @@ function createGraph(jsonObject, artefactIdMapping, graph) {
     }
   }
 }
-
+function artefactImporter(artefactName, params=null){
+  return `${artefactName}(params)`
+}
 main(jsonObject);
+//function outdegreeCnt(nodeOutputEdgeMap, artefactOutDegreeCnt) {
+  //   for (const [key, values] of nodeOutputEdgeMap) {
+  //     let cnt = 0;
+  //     for (const [subkey, subvalues] of values) {
+  //       if (subvalues.length === 0) {
+  //         cnt++;
+  //       }
+  //     }
+  
+  //     artefactOutDegreeCnt.set(key, cnt);
+  //   }
+  // }
