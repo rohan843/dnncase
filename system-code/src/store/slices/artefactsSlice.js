@@ -1,3 +1,5 @@
+// TODO: Normal function nodes can only have one output handles at max.
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const artefactsSlice = createSlice({
