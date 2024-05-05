@@ -568,7 +568,7 @@ function ModelCanvas({ activeFileIndex }) {
           <H show innerText="Parameters" level={1} />
           {/* <KeyValue
             show
-            content={[]}
+            content={node.data.hyperparams.map(...)}
             onAdd={() => {}}
             enableNewKeyValueInput={true}
             onNewKeyValueInputSubmit={(newKey, newValue) => {}}
