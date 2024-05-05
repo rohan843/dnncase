@@ -67,7 +67,7 @@ const jsonObject = {
         {
           id: "10",
           nodeType: "PackerNode",
-          nodeSubtype: "NamedPacker",
+          nodeSubtype: "Named",
           nodeData : {},
         },
         {
@@ -190,6 +190,167 @@ const jsonObject = {
         },
       ],
     },
+    {
+      artefactMetadata: {
+          name: "tmp1",
+          artefactType: "ArtefactType"
+      },
+      nodes: [
+          {
+              id: "1",
+              nodeType: "InputNode",
+              nodeSubtype: "hp_units",
+              nodeData:{}
+              
+          }, 
+          {
+              id: "2",
+              nodeType: "InputNode",
+              name: "payload",
+              nodeData:{}
+              
+          },
+           {
+              id: "3",
+              nodeType: "FunctionNode",
+              nodeSubtype: "CreateAndApplyDenseLayer",
+              nodeData:{}
+              
+          },
+          {
+              id: "4",
+              nodeType: "OutputNode",
+              name: "Payload",
+              nodeData:{}
+              
+          }
+      ],
+      edges: [
+          {
+              label: "",
+              sourceNodeID: "1",
+              sourceNodeHandleID: "out",
+              targetNodeID: "3",
+              targetNodeHandleID: "units"
+          },
+          {
+              label: "",
+              sourceNodeID: "2",
+              sourceNodeHandleID: "out",
+              targetNodeID: "3",
+              targetNodeHandleID: "payload"
+          },
+          {
+              label: "",
+              sourceNodeID: "3",
+              sourceNodeHandleID: "out",
+              targetNodeID: "4",
+              targetNodeHandleID: "payload"
+          }
+      ]
+  },
+  {
+    artefactMetadata: {
+        name: "CompiledClassifierModel",
+        artefactType: "ModelArchitectureType"
+    },
+    nodes: [
+        {
+            id: "1",
+            nodeType: "FunctionNode",
+            nodeSubtype: "ClassiferModel",
+            sourceArtefact:"ClassiferModelArtefact"
+        },
+        {
+            id: "2",
+            nodeType: "FunctionNode",
+            nodeSubtype: "RawData"
+        },
+        {
+            id: "3",
+            nodeType: "FunctionNode",
+            nodeSubtype: "GetTunableFromList"
+            
+        },
+        {
+            id: "4",
+            nodeType: "FunctionNode",
+            nodeSubtype: "RawData"
+        },
+        {
+            id: "5",
+            nodeType: "FunctionNode",
+            nodeSubtype: "RawData"            
+        }
+        ,
+        {
+            id: "6",
+            nodeType: "FunctionNode",
+            nodeSubtype: "GenerateAdamOptimizer"
+        },
+        {
+            id: "7",
+            nodeType: "FunctionNode",
+            nodeSubtype: "CompileModel"
+        },
+        {
+            id: "8",
+            nodeType: "OutputNode",
+            name: "CompiledModel"            
+        }
+    ],
+    edges: [
+        {
+            "label": "",
+            "sourceNodeID": "1",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "7",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "2",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "3",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "3",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "6",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "4",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "7",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "6",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "7",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "6",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "7",
+            "targetNodeHandleID": "in"
+        },
+        {
+            "label": "",
+            "sourceNodeID": "7",
+            "sourceNodeHandleID": "out",
+            "targetNodeID": "8",
+            "targetNodeHandleID": "in"
+        }
+    ]
+}
   ],
 };
 
@@ -238,6 +399,14 @@ const codeGenFuncs = {
       return: `hp.Choice('learning_rate', "values= " ${params["value"]})`,
     };
   },
+  CreateDatasetFromNumpyArray: function CreateDatasetFromNumpyArray(params) {
+    return {
+      imports: [],
+      execution: "",
+      return: `tf.data.Dataset.from_tensor_slices(${params})`,
+    };
+  },
+
   RawData: function RawData(params) {
     return {
       imports: [],
@@ -323,7 +492,7 @@ const codeGenFuncs = {
     return {
       imports: [],
       execution: "",
-      return: "",
+      return: ".evaluate()",
     };
   },
 
@@ -337,9 +506,51 @@ const codeGenFuncs = {
   loadKerasDataset: function loadKerasDataset(params) {
     return {
       imports: [],
-      execution: "mnist = keras.dataset.mnist",
-      return: "mnist.load_data()",
+      execution: "(x_train,y_train,x_test,y_test)=keras.dataset.mnist.load_data()",
+      return: `{"x_train" : x_train,
+                "y_train" : y_train,
+                "x_test" : x_test,
+                "y_test" : y_test
+      }`
     };
+  },
+  Named: function packerNamed(params){
+    let resultString = '{';
+      for (let key in params) {
+          if (params.hasOwnProperty(key)) {
+              resultString = resultString + '"' + key + '": ' + params[key] + ', ';
+          }
+      }
+      resultString = resultString.slice(0, -2);
+
+      resultString += '}'
+
+      return {
+        imports: [],
+        execution: "",
+        return: `${resultString}`,
+      };
+
+
+  },
+  Ordered: function packerOrdered(params){
+    let resultString = '[';
+      for (let key in params) {
+          if (params.hasOwnProperty(key)) {
+              resultString = resultString + '"' + params[key] + ', ';
+          }
+      }
+      resultString = resultString.slice(0, -2);
+
+      resultString += ']'
+
+      return {
+        imports: [],
+        execution: "",
+        return: `${resultString}`,
+      };
+
+
   },
 
   CompileModel: function CompileModel(params) {
@@ -349,10 +560,114 @@ const codeGenFuncs = {
       return: params["model"],
     };
   },
+  
+  CallBackNode: function Callback(params) {
+    return {
+      imports: [],
+      execution:"",
+      return: `${params}`,
+    };
+  },
+
+  ClassifierModel: function ClassifierModel(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`ClassifierModel(${params})`,
+    };
+  },
+  MNSITDataLoader: function MNSITDataLoader(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`MNSITDataLoader(${params})`,
+    };
+  },
+  CompiledClassifierModel: function CompiledClassifierModel(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`CompiledClassifierModel(${params})`,
+    };
+  },
+  ModelTuner: function ModelTuner(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`ModelTuner(${params})`,
+    };
+  },
+  ModelEvaluator: function ModelEvaluator(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`ModelEvaluator(${params})`,
+    };
+  },
+  Constants: function Constants(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`Constants(${params})`,
+    };
+  },
+  DiscriminatorLoss: function DiscriminatorLoss(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`DiscriminatorLoss(${params})`,
+    };
+  },
+  GeneratorLoss: function GeneratorLoss(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`GeneratorLoss(${params})`,
+    };
+  },
+  DiscriminatorModel: function DiscriminatorMdel(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`DiscriminatorModel(${params})`,
+    };
+  },
+  GeneratorModel: function GeneratorModel(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`GeneratorModel(${params})`,
+    };
+  },
+  TrainStep: function TrainStep(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`TrainStep(${params})`,
+    };
+  },
+  TrainingLoop: function TrainingLoop(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`TrainingLoop(${params})`,
+    };
+  },
+  LoadedData: function LoadedData(params) {
+    return {
+      imports: [],
+      execution:"",
+      return:`LoadedData(${params})`,
+    };
+  },
+
+
+
 };
 let dnn_temp_id = 0;
 let gen_code = "";
-let importList=[]
+let importList= [["import tensorflow as tf","from tensorflow import keras"]]
+let gradientStart =false;
 function main(jsonObject) {
   // mapping is done to give id to each artefact
   const artefactIdMapping = new Map();
@@ -424,14 +739,9 @@ function gen_arte_dfs(
   nodeOutputEdgeMap,
   nodeInputEdgeMap,
   nodeInputList,
-  outDegCnt,
   out_list
 ) {
-  //  if(outDegCnt==0){
-  //     return;
-  //  }
-
-  if (nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length > 0) {
+   if (nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length > 0) {
     nodeInputList.get(artefact_id).get(curr_node_id).push(edge_variable);
   }
   if (
@@ -447,7 +757,7 @@ function gen_arte_dfs(
     if (nodeType === "FunctionNode") {
       let nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
       let funcCode;
-      if(artefactName.length>0){
+      if(typeof artefactName !== "undefined"){
       funcCode = codeGenFuncs[artefactName](nodeData);
       }else{
         funcCode = codeGenFuncs[nodeSubtype](nodeData);
@@ -457,20 +767,24 @@ function gen_arte_dfs(
       const imp = funcCode.imports
       importList.push(imp)
       let dnn_var = dnn_temp_var_id();
-      let str = `${funcExe}\n\t ${dnn_var} = ${funcReturn}\n\t`;
+      let str = `
+  ${funcExe} 
+  ${dnn_var} = ${funcReturn}`;
 
-      gen_code = gen_code.concat("" + str);
+      gen_code = gen_code.concat(str);
 
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
-          //console.log(typeof list[i][3])
-          if (list[i][3].length === 0) {
-            let s = list[i][0] + "=" + dnn_var + "\n\t";
+          
+          if (typeof list[i][3] === "undefined") {
+            let s = `
+  ${list[i][0]} = ${dnn_var}`;
 
             gen_code = gen_code.concat(s);
           } else {
-            let s = list[i][0] + "=" + dnn_var + "[" + list[i][3] + "]\n\t";
+            let s = `
+  ${list[i][0]}= dnn_var [${list[i][3]}]`;
 
             gen_code = gen_code.concat(s);
           }
@@ -484,22 +798,21 @@ function gen_arte_dfs(
             nodeOutputEdgeMap,
             nodeInputEdgeMap,
             nodeInputList,
-            outDegCnt,
             out_list
           );
         }
       } else {
-        // console.log("hello1")
-        outDegCnt--;
+       
         return;
       }
     } else if (nodeType === "InputNode") {
       let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
       let dnn_var = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0][0];
 
-      let str = dnn_var + `= parmas["${name}"]`;
+      let str = `
+  ${dnn_var} = parmas["${name}"]`;
 
-      gen_code = gen_code.concat(str + "\n\t");
+      gen_code = gen_code.concat(str);
 
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
       if (list.length > 0) {
@@ -513,12 +826,12 @@ function gen_arte_dfs(
             nodeOutputEdgeMap,
             nodeInputEdgeMap,
             nodeInputList,
-            outDegCnt,
+            
             out_list
           );
         }
       } else {
-        outDegCnt--;
+        
         return;
       }
     } else if ((nodeType === "OutputNode")) {
@@ -527,6 +840,165 @@ function gen_arte_dfs(
       out_list[`${name}`] = edge_variable;
 
       return;
+    } else if (nodeType === "Loop") {
+      if (nodeSubtype === "RepeatLoopNode") {
+        //console.log("RepeatLoop")
+        const nodeData = artefactNodesInfo
+          .get(artefact_id)
+          .get(curr_node_id)[4];
+        const innerArtefact = artefactNodesInfo
+          .get(artefact_id)
+          .get(curr_node_id)[2];
+        const temp_var_destruct = dnn_temp_var_id();
+        const temp_var_inner_arte = dnn_temp_var_id();
+        let resultString = '{';
+        for (let key in nodeData) {
+            if (nodeData.hasOwnProperty(key)) {
+                resultString = resultString + '"' + key + '": ' + nodeData[key] + ', ';
+            }
+        }
+        resultString = resultString.slice(0, -2);
+  
+        resultString += '}'
+        let s = `
+  ${temp_var_destruct} = json.loads(${resultString})
+  for i in range(${nodeData["iterationCount"]}):
+    ${temp_var_destruct}["ss_index"]=i
+    ${temp_var_inner_arte}=${innerArtefact}(${temp_var_destruct})
+    ${temp_var_destruct}.update(${temp_var_inner_arte})
+    `;
+       //console.log(s)
+        gen_code = gen_code.concat(s);
+
+        const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+
+        if (list[3].length === 0) {
+          gen_code = gen_code.concat(`
+  ${list[0]}=${temp_var_destruct}`);
+        } else {
+          gen_code = gen_code.concat(
+            `
+  ${list[0]}=temp_var_destruct["${list[3]}"]`
+          );
+        }
+
+        gen_arte_dfs(
+          artefact_id,
+          list[1],
+          list[0],
+          idToArtefact,
+          artefactNodesInfo,
+          nodeOutputEdgeMap,
+          nodeInputEdgeMap,
+          nodeInputList,
+          out_list
+        );
+      }else if(nodeSubtype==="ForEachLoop"){
+        const nodeData = artefactNodesInfo
+          .get(artefact_id)
+          .get(curr_node_id)[4];
+        const innerArtefact = artefactNodesInfo
+          .get(artefact_id)
+          .get(curr_node_id)[2];
+        const temp_var_destruct = dnn_temp_var_id();
+        const temp_var_inner_arte = dnn_temp_var_id();
+        let resultString = '{';
+        for (let key in nodeData) {
+            if (nodeData.hasOwnProperty(key)) {
+                resultString = resultString + '"' + key + '": ' + nodeData[key] + ', ';
+            }
+        }
+        resultString = resultString.slice(0, -2);
+  
+        resultString += '}'
+        let s = `
+  ${temp_var_destruct} = json.loads(${resultString})
+  for i in ${nodeData["iterationCount"]}
+    ${temp_var_destruct}["ss_index"]=i
+    ${temp_var_inner_arte}=${innerArtefact}(${temp_var_destruct})
+    ${temp_var_destruct}.update(${temp_var_inner_arte})`;
+
+        gen_code = gen_code.concat(s);
+
+        const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+
+        if (list[3].length === 0) {
+          gen_code = gen_code.concat(`
+  ${list[0]}"="${temp_var_destruct}`);
+        } else {
+          gen_code = gen_code.concat(`
+  ${list[0]}=temp_var_destruct"["${list[3]}"]`
+          );
+        }
+
+        gen_arte_dfs(
+          artefact_id,
+          list[1],
+          list[0],
+          idToArtefact,
+          artefactNodesInfo,
+          nodeOutputEdgeMap,
+          nodeInputEdgeMap,
+          nodeInputList,
+          out_list
+        );
+      }
+    } else if (nodeType === "PackerNode") {
+      const nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
+
+      const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+      let funcCode = codeGenFuncs[nodeSubtype](nodeData);
+      const funcReturn = funcCode.return
+      const funcExe = funcCode.execution
+      const imp = funcCode.imports
+      importList.push(imp)
+
+      
+      gen_code = gen_code.concat(`
+  ${funcExe}
+  ${list[0]}= ${funcReturn}`);
+
+  gen_arte_dfs(
+    artefact_id,
+    list[1],
+    list[0],
+    idToArtefact,
+    artefactNodesInfo,
+    nodeOutputEdgeMap,
+    nodeInputEdgeMap,
+    nodeInputList,
+    out_list
+  );
+    } else if (nodeType === "UnpackerNode") {
+      const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
+      if (list.length > 0) {
+        for (let i = 0; i < list.length; i++) {
+          //console.log(typeof list[i][3])
+          if (typeof list[i][3] === "undefined") {
+            gen_code = gen_code.concat(`
+  ${list[i][0]}=${edge_variable}`);
+          } else {
+            gen_code = gen_code.concat(`
+  ${list[i][0]}= ${edge_variable}["${list[i][3]}"]`
+            );
+          }
+
+          gen_arte_dfs(
+            artefact_id,
+            list[i][1],
+            list[i][0],
+            idToArtefact,
+            artefactNodesInfo,
+            nodeOutputEdgeMap,
+            nodeInputEdgeMap,
+            nodeInputList,
+            out_list
+          );
+        }
+      } else {
+       
+        return;
+      }
     }
   } else {
     return;
@@ -542,13 +1014,9 @@ function hypermodel_arte_dfs(
     nodeOutputEdgeMap,
     nodeInputEdgeMap,
     nodeInputList,
-    outDegCnt,
     out_list
   ) {
-    //  if(outDegCnt==0){
-    //     return;
-    //  }
-  
+      
     if (nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length > 0) {
       nodeInputList.get(artefact_id).get(curr_node_id).push(edge_variable);
     }
@@ -575,23 +1043,28 @@ function hypermodel_arte_dfs(
         const imp = funcCode.imports
         importList.push(imp)
         let dnn_var = dnn_temp_var_id();
-        let str = `${funcExe}\n\t ${dnn_var} = ${funcReturn}\n\t`;
+        let str = `
+  ${funcExe}
+  ${dnn_var} = ${funcReturn}`;
   
-        gen_code = gen_code.concat("" + str);
+        gen_code = gen_code.concat(str);
   
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
-        if (list.length > 0) {
-          for (let i = 0; i < list.length; i++) {
-            //console.log(typeof list[i][3])
-            if (list[i][3].length === 0) {
-              let s = list[i][0] + "=" + dnn_var + "\n\t";
-  
-              gen_code = gen_code.concat(s);
-            } else {
-              let s = list[i][0] + "=" + dnn_var + "[" + list[i][3] + "]\n\t";
-  
-              gen_code = gen_code.concat(s);
-            }
+       if (list.length > 0) {
+            for (let i = 0; i < list.length; i++) {
+              //console.log(typeof list[i][3])
+              if (typeof list[i][3] === "undefined") {
+                let s = `
+  ${list[i][0]}=${dnn_var}`;
+    
+                gen_code = gen_code.concat(s);
+              } else {
+                let s = `
+  ${list[i][0]}=${dnn_var}["${list[i][3]}"]`;
+    
+                gen_code = gen_code.concat(s);
+              }
+    
   
             hypermodel_arte_dfs(
               artefact_id,
@@ -602,22 +1075,21 @@ function hypermodel_arte_dfs(
               nodeOutputEdgeMap,
               nodeInputEdgeMap,
               nodeInputList,
-              outDegCnt,
               out_list
             );
           }
         } else {
-          // console.log("hello1")
-          outDegCnt--;
+          
           return;
         }
       } else if (nodeType === "InputNode") {
         let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
         let dnn_var = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0][0];
   
-        let str = dnn_var + `= parmas["${name}"]`;
+        let str = `
+  ${dnn_var}= parmas["${name}"]`;
   
-        gen_code = gen_code.concat(str + "\n\t");
+        gen_code = gen_code.concat(str);
   
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
         if (list.length > 0) {
@@ -631,12 +1103,11 @@ function hypermodel_arte_dfs(
               nodeOutputEdgeMap,
               nodeInputEdgeMap,
               nodeInputList,
-              outDegCnt,
               out_list
             );
           }
         } else {
-          outDegCnt--;
+          
           return;
         }
       } else if ((nodeType === "OutputNode")) {
@@ -645,7 +1116,65 @@ function hypermodel_arte_dfs(
         out_list[`${name}`] = edge_variable;
   
         return;
-      }
+      }else if (nodeType === "PackerNode") {
+        const nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
+    
+        const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+        let funcCode = codeGenFuncs[nodeSubtype](nodeData);
+        const funcReturn = funcCode.return
+        const funcExe = funcCode.execution
+        const imp = funcCode.imports
+        importList.push(imp)
+    
+        
+        gen_code = gen_code.concat(`
+    ${funcExe}
+    ${list[0]}= ${funcReturn}`);
+    
+        hypermodel_arte_dfs(
+          artefact_id,
+          list[1],
+          list[0],
+          idToArtefact,
+          artefactNodesInfo,
+          nodeOutputEdgeMap,
+          nodeInputEdgeMap,
+          nodeInputList,
+          out_list
+          
+        );
+      } else if (nodeType === "UnpackerNode") {
+        const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
+        if (list.length > 0) {
+          for (let i = 0; i < list.length; i++) {
+            //console.log(typeof list[i][3])
+            if (typeof list[i][3] === "undefined") {
+              gen_code = gen_code.concat(`
+    ${list[i][0]}=${edge_variable}`);
+            } else {
+              gen_code = gen_code.concat(`
+    ${list[i][0]}= ${edge_variable}["${list[i][3]}"]`
+              );
+            }
+    
+            hypermodel_arte_dfs(
+              artefact_id,
+              list[i][1],
+              list[i][0],
+              idToArtefact,
+              artefactNodesInfo,
+              nodeOutputEdgeMap,
+              nodeInputEdgeMap,
+              nodeInputList,
+              out_list
+              
+            );
+          }
+        } else {
+         
+          return;
+        }
+      } 
     } else {
       return;
     }
@@ -689,10 +1218,15 @@ function model_arte_dfs(
       }
       let nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
       //console.log(`subtype   ${nodeSubtype}  Function  ${codeGenFuncs[nodeSubtype]}`)
-      let funcCode = codeGenFuncs[nodeSubtype](nodeData).return;
+      let funcCode = codeGenFuncs[nodeSubtype](nodeData);
+      const funcReturn = funcCode.return
+      const funcExe = funcCode.execution
+      const imp = funcCode.imports
+      importList.push(imp)
       let dnn_var = dnn_temp_var_id();
       let str = `
-  ${dnn_var} = ${funcCode}`;
+  ${funcExe}
+  ${dnn_var} = ${funcReturn}`;
 
       gen_code = gen_code.concat(str);
 
@@ -705,7 +1239,7 @@ function model_arte_dfs(
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
           //console.log(typeof list[i][3])
-          if (list[i][3].length === 0) {
+          if (typeof list[i][3] === "undefined") {
             let s = `
   ${list[i][0]}=${dnn_var}`;
 
@@ -899,17 +1433,16 @@ function model_arte_dfs(
       const nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
 
       const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
-      let resultString = '{';
-      for (let key in nodeData) {
-          if (nodeData.hasOwnProperty(key)) {
-              resultString = resultString + '"' + key + '": ' + nodeData[key] + ', ';
-          }
-      }
-      resultString = resultString.slice(0, -2);
+      let funcCode = codeGenFuncs[nodeSubtype](nodeData);
+      const funcReturn = funcCode.return
+      const funcExe = funcCode.execution
+      const imp = funcCode.imports
+      importList.push(imp)
 
-      resultString += '}'
+      
       gen_code = gen_code.concat(`
-  ${list[0]}= ${resultString}`);
+  ${funcExe}
+  ${list[0]}= ${funcReturn}`);
 
       model_arte_dfs(
         artefact_id,
@@ -930,7 +1463,7 @@ function model_arte_dfs(
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
           //console.log(typeof list[i][3])
-          if (list[i][3].length === 0) {
+          if (typeof list[i][3] === "undefined") {
             gen_code = gen_code.concat(`
   ${list[i][0]}=${edge_variable}`);
           } else {
@@ -964,6 +1497,468 @@ function model_arte_dfs(
     }
   }
 }
+
+function train_step_dfs(
+  artefact_id,
+  curr_node_id,
+  edge_variable,
+  idToArtefact,
+  artefactNodesInfo,
+  nodeOutputEdgeMap,
+  nodeInputEdgeMap,
+  nodeInputList,
+  dataVariableInpOutMap,
+   
+) {
+  //  if(outDegCnt==0){
+  //     return;
+  //  }
+  
+  if (nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length > 0) {
+    nodeInputList.get(artefact_id).get(curr_node_id).push(edge_variable);
+  }
+  if (
+    nodeInputEdgeMap.get(artefact_id).get(curr_node_id).length ===
+    nodeInputList.get(artefact_id).get(curr_node_id).length
+  ) {
+    // generate code
+    //console.log("nde " + artefactNodesInfo.get(artefact_id).get(curr_node_id)[0])
+    let nodeType = artefactNodesInfo.get(artefact_id).get(curr_node_id)[0];
+    let nodeSubtype = artefactNodesInfo.get(artefact_id).get(curr_node_id)[1];
+
+    if (nodeType === "FunctionNode") {
+      if(nodeSubtype==="EndTapeMonitoring"){
+        gradientStart=false;
+        let dnn_var = dnn_temp_var_id();
+        let str;
+        if(gradientStart){
+         str = `
+    ${dnn_var} = ${edge_variable}`;
+        }else{
+          str =`
+    
+  ${dnn_var} = ${edge_variable}`;
+        }
+        gen_code=gen_code.concat(str)
+
+        const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
+        if (list.length > 0) {
+          for (let i = 0; i < list.length; i++) {
+            //console.log(typeof list[i][3])
+            let s;
+            if (typeof list[i][3] === "undefined") {
+              if(gradientStart){
+                s = `
+    ${list[i][0]}=${dnn_var}`;
+  
+            }else {
+              s=`
+  ${list[i][0]}=${dnn_var}` 
+            }  
+            } else {
+              if(gradientStart){
+                s = `
+    ${list[i][0]}=${dnn_var}["${list[i][3]}"]`;
+  
+            }else {
+              s=`
+  ${list[i][0]}=${dnn_var}["${list[i][3]}"]` 
+            }  
+            }
+  gen_code=gen_code.concat(s)
+            train_step_dfs(
+              artefact_id,
+              list[i][1],
+              list[i][0],
+              idToArtefact,
+              artefactNodesInfo,
+              nodeOutputEdgeMap,
+              nodeInputEdgeMap,
+              nodeInputList,
+               dataVariableInpOutMap,
+              
+            );
+          }
+        } else {
+          return;
+        }
+
+      }else {
+      let nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
+      //console.log(`subtype   ${nodeSubtype}  Function  ${codeGenFuncs[nodeSubtype]}`)
+      
+      let funcCode = codeGenFuncs[nodeSubtype](nodeData);
+      const funcReturn = funcCode.return
+      const funcExe = funcCode.execution
+      const imp = funcCode.imports
+      importList.push(imp)
+      let dnn_var = dnn_temp_var_id();
+
+      let str;
+      if(gradientStart){
+       str = `
+    ${funcExe}
+    ${dnn_var} = ${funcReturn}`;
+      }else{
+        str =`
+  ${funcExe}
+  ${dnn_var} = ${funcReturn}`;
+
+    
+       
+
+      gen_code = gen_code.concat(str);
+  }
+
+      const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
+
+      if(nodeSubtype==="BeginGradientMonitoring"){
+        gradientStart=true;
+        // start with here
+        let grad_list=[]
+        let other_list=[]
+        for(let i=0;i<list.length;i++){
+          const targId = list[i][1];
+          if(artefactNodesInfo.get(artefact_id).get(targId)[0]==="DataVariableNode" && artefactNodesInfo.get(artefact_id).get(targId)[1]==="Input"){
+            grad_list.push(targId)
+          }else {
+            other_list.push(list[i])
+          }
+        }
+
+        let s =""
+        for(const targId of grad_list){
+          const name = artefactNodesInfo.get(artefact_id).get(targId)[3]
+          s=`
+    ${s}, with tf.GradientTape as ${name}`
+        }
+        gen_code=gen_code.concat(s)
+
+        for(let i=0;i<other_list.length;i++){
+
+  //         if (typeof other_list[i][3] === "undefined") {
+  //           let s = `
+  // ${list[i][0]}=${dnn_var}`;
+
+  //           gen_code = gen_code.concat(s);
+  //         } else {
+  //           let s = `
+  // ${list[i][0]}=${dnn_var}["${list[i][3]}"]`;
+
+  //           gen_code = gen_code.concat(s);
+  //         }
+
+          train_step_dfs(
+            artefact_id,
+            other_list[i][1],
+            other_list[i][0],
+            idToArtefact,
+            artefactNodesInfo,
+            nodeOutputEdgeMap,
+            nodeInputEdgeMap,
+            nodeInputList,
+             dataVariableInpOutMap,
+            
+          );
+          
+        }
+
+        
+      }else {
+        if (list.length > 0) {
+        for (let i = 0; i < list.length; i++) {
+          //console.log(typeof list[i][3])
+          let s;
+          if (typeof list[i][3] === "undefined") {
+            if(gradientStart){
+              s = `
+  ${list[i][0]}=${dnn_var}`;
+
+          }else {
+            s=`
+${list[i][0]}=${dnn_var}` 
+          }  
+          } else {
+            if(gradientStart){
+              s = `
+  ${list[i][0]}=${dnn_var}["${list[i][3]}"]`;
+
+          }else {
+            s=`
+${list[i][0]}=${dnn_var}["${list[i][3]}"]` 
+          }  
+          }
+gen_code=gen_code.concat(s)
+
+          train_step_dfs(
+            artefact_id,
+            list[i][1],
+            list[i][0],
+            idToArtefact,
+            artefactNodesInfo,
+            nodeOutputEdgeMap,
+            nodeInputEdgeMap,
+            nodeInputList,
+             dataVariableInpOutMap,
+            
+          );
+          
+        }
+      } else {
+        return;
+      }
+    }}} else if (nodeType === "DataVariableNode") {
+      const name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
+      if (nodeSubtype === "Input") {
+        let s;
+        if(gradientStart){
+          s = `
+    ${name} = ${edge_variable}`;
+        }else {
+          s = `
+  ${name} = ${edge_variable}`;
+        }
+        gen_code = gen_code.concat(s);
+
+        // code to take all Output data variable node and perform dfs on them
+        const Data_Var_Out_List = dataVariableInpOutMap.get(artefact_id).get(name);
+        //console.log(name + "  " + Data_Var_Out_List)
+        for(const nodeId of Data_Var_Out_List){
+          train_step_dfs(
+            artefact_id,
+            nodeId,
+            "",
+            idToArtefact,
+            artefactNodesInfo,
+            nodeOutputEdgeMap,
+            nodeInputEdgeMap,
+            nodeInputList,
+            dataVariableInpOutMap,
+           
+            
+          )
+        }
+      } else if (nodeSubtype === "Output") {
+        // assuming only one output
+        const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+        let s;
+        if(gradientStart){
+          s = `
+    ${list[0]} = ${name}`;
+        }else {
+          s = `
+  ${list[0]} = ${name}`;
+        }
+        
+        gen_code = gen_code.concat(s);
+
+        train_step_dfs(
+          artefact_id,
+          list[1],
+          list[0],
+          idToArtefact,
+          artefactNodesInfo,
+          nodeOutputEdgeMap,
+          nodeInputEdgeMap,
+          nodeInputList,
+          dataVariableInpOutMap,
+       
+        );
+      }
+    } else if (nodeType === "Loop") {
+      if (nodeSubtype === "RepeatLoopNode") {
+        //console.log("RepeatLoop")
+        const nodeData = artefactNodesInfo
+          .get(artefact_id)
+          .get(curr_node_id)[4];
+        const innerArtefact = artefactNodesInfo
+          .get(artefact_id)
+          .get(curr_node_id)[2];
+        const temp_var_destruct = dnn_temp_var_id();
+        const temp_var_inner_arte = dnn_temp_var_id();
+        let resultString = '{';
+        for (let key in nodeData) {
+            if (nodeData.hasOwnProperty(key)) {
+                resultString = resultString + '"' + key + '": ' + nodeData[key] + ', ';
+            }
+        }
+        resultString = resultString.slice(0, -2);
+  
+        resultString += '}'
+        let s = `
+  ${temp_var_destruct} = json.loads(${resultString})
+  for i in range(${nodeData["iterationCount"]}):
+    ${temp_var_destruct}["ss_index"]=i
+    ${temp_var_inner_arte}=${innerArtefact}(${temp_var_destruct})
+    ${temp_var_destruct}.update(${temp_var_inner_arte})
+    `;
+       //console.log(s)
+        gen_code = gen_code.concat(s);
+
+        const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+
+        if (list[3].length === 0) {
+          gen_code = gen_code.concat(`
+  ${list[0]}=${temp_var_destruct}`);
+        } else {
+          gen_code = gen_code.concat(
+            `
+  ${list[0]}=temp_var_destruct["${list[3]}"]`
+          );
+        }
+
+        train_step_dfs(
+          artefact_id,
+          list[1],
+          list[0],
+          idToArtefact,
+          artefactNodesInfo,
+          nodeOutputEdgeMap,
+          nodeInputEdgeMap,
+          nodeInputList,
+          dataVariableInpOutMap,
+        
+          
+        );
+      }else if(nodeSubtype==="ForEachLoop"){
+        const nodeData = artefactNodesInfo
+          .get(artefact_id)
+          .get(curr_node_id)[4];
+        const innerArtefact = artefactNodesInfo
+          .get(artefact_id)
+          .get(curr_node_id)[2];
+        const temp_var_destruct = dnn_temp_var_id();
+        const temp_var_inner_arte = dnn_temp_var_id();
+        let resultString = '{';
+        for (let key in nodeData) {
+            if (nodeData.hasOwnProperty(key)) {
+                resultString = resultString + '"' + key + '": ' + nodeData[key] + ', ';
+            }
+        }
+        resultString = resultString.slice(0, -2);
+  
+        resultString += '}'
+        let s = `
+  ${temp_var_destruct} = json.loads(${resultString})
+  for i in ${nodeData["iterationCount"]}
+    ${temp_var_destruct}["ss_index"]=i
+    ${temp_var_inner_arte}=${innerArtefact}(${temp_var_destruct})
+    ${temp_var_destruct}.update(${temp_var_inner_arte})`;
+
+        gen_code = gen_code.concat(s);
+
+        const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+
+        if (list[3].length === 0) {
+          gen_code = gen_code.concat(`
+  ${list[0]}"="${temp_var_destruct}`);
+        } else {
+          gen_code = gen_code.concat(`
+  ${list[0]}=temp_var_destruct"["${list[3]}"]`
+          );
+        }
+
+        train_step_dfs(
+          artefact_id,
+          list[1],
+          list[0],
+          idToArtefact,
+          artefactNodesInfo,
+          nodeOutputEdgeMap,
+          nodeInputEdgeMap,
+          nodeInputList,
+          
+          dataVariableInpOutMap,
+     
+          
+        );
+      }
+    } else if (nodeType === "PackerNode") {
+      const nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
+
+      const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+      let funcCode = codeGenFuncs[nodeSubtype](nodeData);
+      const funcReturn = funcCode.return
+      const funcExe = funcCode.execution
+      const imp = funcCode.imports
+      importList.push(imp)
+     let s;
+     if(gradientStart){
+   s=`
+    ${funcExe}
+    ${list[0]}= ${funcReturn}`
+     }else {
+      s=`
+  ${funcExe}
+  ${list[0]}= ${funcReturn}`
+     }
+      
+      gen_code = gen_code.concat(s);
+
+      train_step_dfs(
+        artefact_id,
+        list[1],
+        list[0],
+        idToArtefact,
+        artefactNodesInfo,
+        nodeOutputEdgeMap,
+        nodeInputEdgeMap,
+        nodeInputList,
+        dataVariableInpOutMap,
+   
+        
+      );
+    } else if (nodeType === "UnpackerNode") {
+      const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
+      if (list.length > 0) {
+        for (let i = 0; i < list.length; i++) {
+          //console.log(typeof list[i][3])
+       let s;
+          if (typeof list[i][3] === "undefined") {
+            if(gradientStart){
+              s=`
+    ${list[i][0]}=${edge_variable}`
+            }else {
+              s=`
+  ${list[i][0]}=${edge_variable}`
+              
+            }
+            
+          } else {
+            if(gradientStart){
+                s=`
+    ${list[i][0]}= ${edge_variable}["${list[i][3]}"]`
+            }else {
+              s=`
+  ${list[i][0]}= ${edge_variable}["${list[i][3]}"]`
+            }
+           
+          }
+  gen_code = gen_code.concat(s)
+          train_step_dfs(
+            artefact_id,
+            list[i][1],
+            list[i][0],
+            idToArtefact,
+            artefactNodesInfo,
+            nodeOutputEdgeMap,
+            nodeInputEdgeMap,
+            nodeInputList,
+            
+            dataVariableInpOutMap,
+        
+          );
+        }
+      } else {
+       
+        return;
+      }
+    } else {
+      return;
+    }
+  }
+}
+
 function generateCode(artefactNodesInfo,idToArtefact, nodeInputEdgeMap, nodeOutputEdgeMap,nodeInputList, dataVariableInpOutMap,artefactOrder) {
 
   for(let i=0;i<artefactOrder.length;i++){
@@ -1021,18 +2016,57 @@ def ${artefactName}(hp=None):
         }
       }
       if (Object.keys(out_list).length > 0) {
-        // console.log("outlist")
         let s = "";
         for (const key in out_list) {
-          s = s + key + ":" + out_list[key] + ",\n\t\t";
+          s = `${s} "${key}":${out_list[key]},`;
         }
+        s = s.slice(0, -2)
   
-        gen_code = gen_code.concat(`return{\n\t\t${s}}`);
+        gen_code = gen_code.concat(`
+  return{
+    ${s}
+  }`);
 
       }
 
     } else if (artefactType === "TrainStepArtefact") {
-      return `@tf.function\ndef ${artefactName}()`;
+      gen_code=gen_code.concat(`@tf.function\ndef ${artefactName}()`);
+      const gradient_tape_list=[]
+      for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
+        if(artefactNodesInfo.get(artefactOrder[i]).get(key)[1]=="BeginGradientMonitoring"){
+          gradient_tape_list.push(key)
+        }else if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariableNode" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
+        
+          train_step_dfs(
+            artefactOrder[i],
+            key,
+            "",
+            idToArtefact,
+            artefactNodesInfo,
+            nodeOutputEdgeMap,
+            nodeInputEdgeMap,
+            nodeInputList,
+            
+          )
+        }
+      }
+
+      for(const key of gradient_tape_list){
+
+        train_step_dfs(
+          artefactOrder[i],
+          key,
+          "",
+          idToArtefact,
+          artefactNodesInfo,
+          nodeOutputEdgeMap,
+          nodeInputEdgeMap,
+          nodeInputList,
+          
+        )
+
+      }
+
     } else {
       gen_code = gen_code.concat(`def ${artefactName}(params):`)
       const out_list=[]
@@ -1056,16 +2090,38 @@ def ${artefactName}(hp=None):
         // console.log("outlist")
         let s = "";
         for (const key in out_list) {
-          s = s + key + ":" + out_list[key] + ",\n\t\t";
+          s = `${s} "${key}":${out_list[key]},`;
         }
+        s = s.slice(0, -2)
   
-        gen_code = gen_code.concat(`return{\n\t\t${s}}`);
+        gen_code = gen_code.concat(`
+  return{
+    ${s}
+  }`);
 
       }
     }
-
+    
+    gen_code=gen_code.concat("\n\n")
   }
 
+  //console.log(importList)
+  let union_import_list =[]
+  let imports ="";
+  for(const list of importList){
+    for(const imp of list){
+      if(imp.length>0 && !union_import_list.includes(imp)){
+        union_import_list.push(imp)
+        imports = `
+${imports}
+${imp}`
+      }
+    }
+  }
+  gen_code = `
+${imports}
+
+${gen_code}`
   console.log(gen_code)
 
  
@@ -1234,6 +2290,7 @@ function artefactMapping(jsonObject, artefactIdMapping, idToArtefact) {
 }
 
 function createGraph(jsonObject, artefactIdMapping, graph) {
+  // TODO : Check ogic for call back also
   for (const artefact of jsonObject.artefacts) {
     for (const node of artefact.nodes) {
       if ("sourceArtefact" in node || "innerArtefact" in node) {
@@ -1251,6 +2308,18 @@ function createGraph(jsonObject, artefactIdMapping, graph) {
           graph.set(nodeB, [nodeA]);
         }
       }
+      }else if(node.type === "CallBackNode"){
+        let nodeA = artefactIdMapping.get(artefact.artefactMetadata.name)
+        let nodeB = artefactIdMapping.get(node.name)
+
+        if(typeof nodeB !== 'undefined'){
+          if (graph.has(nodeB)) {
+            graph.get(nodeB).push(nodeA);
+          } else {
+            graph.set(nodeB, [nodeA]);
+          }
+        }
+
       }
     }
   }
