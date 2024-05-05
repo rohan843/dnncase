@@ -4792,7 +4792,10 @@ const filesystemSlice = createSlice({
           nodes: [
             {
               id: "FunctionNode_LoadMNISTDataset_9379",
-              position: { x: -130, y: 185 },
+              position: {
+                x: -130,
+                y: 185,
+              },
               type: "FunctionNode",
               data: {
                 name: "Load MNIST Dataset",
@@ -4806,19 +4809,34 @@ const filesystemSlice = createSlice({
               width: 353,
               height: 203,
               selected: false,
-              positionAbsolute: { x: -130, y: 185 },
+              positionAbsolute: {
+                x: -130,
+                y: 185,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_GetBestModelAfterTuning_6214",
-              position: { x: 605, y: 105 },
+              position: {
+                x: 605,
+                y: 105,
+              },
               type: "FunctionNode",
               data: {
                 name: "Get Best Model After Tuning",
                 hyperparams: [
-                  { id: "objective", value: "'val_loss'" },
-                  { id: "max_trials", value: "5" },
-                  { id: "epochs", value: "5" },
+                  {
+                    id: "objective",
+                    value: "'val_loss'",
+                  },
+                  {
+                    id: "max_trials",
+                    value: "5",
+                  },
+                  {
+                    id: "epochs",
+                    value: "5",
+                  },
                 ],
                 commentText: "",
                 commentType: "plain",
@@ -4829,58 +4847,78 @@ const filesystemSlice = createSlice({
               width: 353,
               height: 203,
               selected: false,
-              positionAbsolute: { x: 605, y: 105 },
+              positionAbsolute: {
+                x: 605,
+                y: 105,
+              },
               dragging: false,
             },
             {
               id: "Output_1475",
-              position: { x: 1075, y: 165 },
+              position: {
+                x: 1075,
+                y: 165,
+              },
               type: "Output",
-              data: { name: "model" },
+              data: {
+                name: "model",
+              },
               width: 153,
               height: 100,
-              selected: true,
-              positionAbsolute: { x: 1075, y: 165 },
+              selected: false,
+              positionAbsolute: {
+                x: 1075,
+                y: 165,
+              },
               dragging: false,
             },
             {
               id: "CallBackNode_9523",
-              position: { x: 10, y: 40 },
-              data: { name: "Compiled Classifier Model" },
+              position: {
+                x: 10,
+                y: 40,
+              },
+              data: {
+                name: "CompiledClassifierModel",
+              },
               type: "Callback",
               width: 50,
               height: 40,
               selected: false,
-              positionAbsolute: { x: 10, y: 40 },
+              positionAbsolute: {
+                x: 10,
+                y: 40,
+              },
               dragging: false,
             },
             {
               id: "PackerNode_9523",
-              position: { x: 410, y: 245 },
+              position: {
+                x: 410,
+                y: 245,
+              },
               type: "Packer/Named",
               data: {
-                hyperparams: [{ id: "packingCount", value: 2 }],
+                hyperparams: [
+                  {
+                    id: "packingCount",
+                    value: 2,
+                  },
+                ],
                 commentText: "",
                 commentType: "plain",
               },
               width: 50,
               height: 40,
               selected: false,
-              positionAbsolute: { x: 410, y: 245 },
+              positionAbsolute: {
+                x: 410,
+                y: 245,
+              },
               dragging: false,
             },
           ],
           edges: [
-            {
-              id: "FunctionNode_GetBestModelAfterTuning_6214_build_model",
-              source: "CallBackNode_9523",
-              sourceHandle: "in",
-              target: "FunctionNode_GetBestModelAfterTuning_6214",
-              targetHandle: "build_model",
-              label: "build_model",
-              animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
-            },
             {
               id: "PackerNode_9523_multi-in+5023",
               source: "FunctionNode_LoadMNISTDataset_9379",
@@ -4889,7 +4927,10 @@ const filesystemSlice = createSlice({
               targetHandle: "multi-in",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "PackerNode_9523_multi-in+304",
@@ -4899,7 +4940,10 @@ const filesystemSlice = createSlice({
               targetHandle: "multi-in",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "PackerNode_9523_multi-in+3929",
@@ -4909,7 +4953,10 @@ const filesystemSlice = createSlice({
               targetHandle: "multi-in",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "PackerNode_9523_multi-in+8146",
@@ -4919,7 +4966,10 @@ const filesystemSlice = createSlice({
               targetHandle: "multi-in",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "FunctionNode_GetBestModelAfterTuning_6214_multi-in+8878",
@@ -4929,7 +4979,10 @@ const filesystemSlice = createSlice({
               targetHandle: "multi-in",
               label: "",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "Output_1475_in",
@@ -4938,6 +4991,19 @@ const filesystemSlice = createSlice({
               target: "Output_1475",
               targetHandle: "in",
               label: "",
+              animated: true,
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
+            },
+            {
+              id: "FunctionNode_GetBestModelAfterTuning_6214_build_model",
+              source: "CallBackNode_9523",
+              sourceHandle: "in",
+              target: "FunctionNode_GetBestModelAfterTuning_6214",
+              targetHandle: "build_model",
+              label: "*:build_model",
             },
           ],
         },
@@ -4956,7 +5022,10 @@ const filesystemSlice = createSlice({
           nodes: [
             {
               id: "FunctionNode_EvaluateModel_8759",
-              position: { x: 775, y: -25 },
+              position: {
+                x: 775,
+                y: -25,
+              },
               type: "FunctionNode",
               data: {
                 name: "Evaluate Model",
@@ -4970,15 +5039,21 @@ const filesystemSlice = createSlice({
               width: 353,
               height: 203,
               selected: false,
-              positionAbsolute: { x: 775, y: -25 },
+              positionAbsolute: {
+                x: 775,
+                y: -25,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_ArtefactImporter_7192",
-              position: { x: 210, y: -45 },
+              position: {
+                x: 210,
+                y: -45,
+              },
               type: "FunctionNode/ArtefactImporter",
               data: {
-                name: "Model Tuner",
+                name: "ModelTuner",
                 hyperparams: [],
                 commentText: "",
                 commentType: "plain",
@@ -4987,15 +5062,21 @@ const filesystemSlice = createSlice({
               width: 400,
               height: 60,
               selected: false,
-              positionAbsolute: { x: 210, y: -45 },
+              positionAbsolute: {
+                x: 210,
+                y: -45,
+              },
               dragging: false,
             },
             {
               id: "FunctionNode_ArtefactImporter_1296",
-              position: { x: 200, y: 105 },
+              position: {
+                x: 185,
+                y: 70,
+              },
               type: "FunctionNode/ArtefactImporter",
               data: {
-                name: "MNIST Data Loader",
+                name: "MNISTDataLoader",
                 hyperparams: [],
                 commentText: "",
                 commentType: "plain",
@@ -5004,20 +5085,39 @@ const filesystemSlice = createSlice({
               width: 400,
               height: 60,
               selected: false,
-              positionAbsolute: { x: 200, y: 105 },
+              positionAbsolute: {
+                x: 185,
+                y: 70,
+              },
               dragging: false,
             },
           ],
           edges: [
+            {
+              id: "FunctionNode_EvaluateModel_8759_model",
+              source: "FunctionNode_ArtefactImporter_7192",
+              sourceHandle: "out",
+              target: "FunctionNode_EvaluateModel_8759",
+              targetHandle: "model",
+              label: "model",
+              animated: true,
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
+            },
             {
               id: "FunctionNode_EvaluateModel_8759_x",
               source: "FunctionNode_ArtefactImporter_1296",
               sourceHandle: "out",
               target: "FunctionNode_EvaluateModel_8759",
               targetHandle: "x",
-              label: "",
+              label: "x_test",
               animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
+              style: {
+                stroke: "#000",
+                strokeWidth: 1.5,
+              },
             },
             {
               id: "FunctionNode_EvaluateModel_8759_y",
@@ -5025,17 +5125,7 @@ const filesystemSlice = createSlice({
               sourceHandle: "out",
               target: "FunctionNode_EvaluateModel_8759",
               targetHandle: "y",
-              label: "",
-              animated: true,
-              style: { stroke: "#000", strokeWidth: 1.5 },
-            },
-            {
-              id: "FunctionNode_EvaluateModel_8759_model",
-              source: "FunctionNode_ArtefactImporter_7192",
-              sourceHandle: "out",
-              target: "FunctionNode_EvaluateModel_8759",
-              targetHandle: "model",
-              label: "",
+              label: "y_test",
             },
           ],
         },
