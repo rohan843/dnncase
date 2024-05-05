@@ -14,8 +14,8 @@ import {
   Title,
   H,
   KeyValue,
-  Plaintext,
-  Markdown,
+  // Plaintext,
+  // Markdown,
 } from "./subcomponents";
 import {
   FunctionNode,
