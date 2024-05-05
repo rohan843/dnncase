@@ -1,3 +1,5 @@
+// TODO: Normal function nodes can only have one output handles at max.
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const artefactsSlice = createSlice({
@@ -57,11 +59,55 @@ const artefactsSlice = createSlice({
         defaultInputHandles: ["payload"],
         defaultOutputHandles: ["payload"],
       },
+      CreateAndApplyConv2DLayer: {
+        displayName: "Create and Apply Conv2D Layer",
+        subcategorization: "Layers",
+        nodeType: "FunctionNode",
+        defaultHyperparams: [
+          { id: "activation", value: "None" },
+          { id: "filters", value: null },
+          { id: "kernel_size", value: null },
+          { id: "strides", value: "(1, 1)" },
+          { id: "padding", value: "'valid'" },
+        ],
+        defaultInputHandles: ["payload"],
+        defaultOutputHandles: ["payload"],
+      },
+      CreateAndApplyConv2DTransposeLayer: {
+        displayName: "Create and Apply Conv2DTranspose Layer",
+        subcategorization: "Layers",
+        nodeType: "FunctionNode",
+        defaultHyperparams: [
+          { id: "activation", value: "None" },
+          { id: "filters", value: null },
+          { id: "kernel_size", value: null },
+          { id: "strides", value: "(1, 1)" },
+          { id: "padding", value: "'valid'" },
+        ],
+        defaultInputHandles: ["payload"],
+        defaultOutputHandles: ["payload"],
+      },
       Flatten: {
         displayName: "Flatten",
         subcategorization: "Layers",
         nodeType: "FunctionNode",
         defaultHyperparams: [],
+        defaultInputHandles: ["payload"],
+        defaultOutputHandles: ["payload"],
+      },
+      Dropout: {
+        displayName: "Dropout Layer",
+        subcategorization: "Layers",
+        nodeType: "FunctionNode",
+        defaultHyperparams: [{ id: "rate", value: null }],
+        defaultInputHandles: ["payload"],
+        defaultOutputHandles: ["payload"],
+      },
+      ReshapeLayer: {
+        displayName: "Reshape Layer",
+        subcategorization: "Layers",
+        nodeType: "FunctionNode",
+        defaultHyperparams: [{ id: "shape", value: null }],
         defaultInputHandles: ["payload"],
         defaultOutputHandles: ["payload"],
       },
@@ -155,6 +201,14 @@ const artefactsSlice = createSlice({
         defaultInputHandles: ["input"],
         defaultOutputHandles: ["array"],
       },
+      GenerateArrayFromNormalDistribution: {
+        displayName: "Generate Array From Normal Distribution",
+        subcategorization: "Array Constructors",
+        nodeType: "FunctionNode",
+        defaultHyperparams: [],
+        defaultInputHandles: ["shape"],
+        defaultOutputHandles: ["array"],
+      },
       Add: {
         displayName: "Add",
         subcategorization: "Arithmetic",
@@ -184,8 +238,8 @@ const artefactsSlice = createSlice({
         subcategorization: "Losses",
         nodeType: "FunctionNode",
         defaultHyperparams: [{ id: "from_logits", value: "False" }],
-        defaultInputHandles: [],
-        defaultOutputHandles: ["loss-function"],
+        defaultInputHandles: ["ground-truth", "prediction"],
+        defaultOutputHandles: ["loss"],
       },
       Batch: {
         displayName: "Batch",
@@ -207,7 +261,25 @@ const artefactsSlice = createSlice({
         displayName: "Reshape",
         subcategorization: "Array Manipulations",
         nodeType: "FunctionNode",
-        defaultHyperparams: [],
+        defaultHyperparams: [
+          {
+            id: "shape",
+            value: null,
+          },
+        ],
+        defaultInputHandles: ["array"],
+        defaultOutputHandles: ["array"],
+      },
+      TypecastTo: {
+        displayName: "Typecast To",
+        subcategorization: "Array Manipulations",
+        nodeType: "FunctionNode",
+        defaultHyperparams: [
+          {
+            id: "dtype",
+            value: null,
+          },
+        ],
         defaultInputHandles: ["array"],
         defaultOutputHandles: ["array"],
       },
@@ -254,7 +326,7 @@ const artefactsSlice = createSlice({
         nodeType: "FunctionNode",
         defaultHyperparams: [],
         defaultInputHandles: [],
-        defaultOutputHandles: ["x_train", "y_train", "x_test", "y_test"],
+        defaultOutputHandles: ["mnist-data"],
       },
       CompileModel: {
         displayName: "Compile Model",
@@ -263,6 +335,27 @@ const artefactsSlice = createSlice({
         defaultHyperparams: [],
         defaultInputHandles: ["model", "optimizer", "loss", "metrics"],
         defaultOutputHandles: ["compiled-model"],
+      },
+      RunTrainingStep: {
+        displayName: "Run Training Step",
+        subcategorization: "Model Training",
+        nodeType: "FunctionNode",
+        defaultHyperparams: [],
+        defaultInputHandles: ["model", "model-input"],
+        defaultOutputHandles: ["model-output"],
+      },
+      ApplyGradientsToModelInPlace: {
+        displayName: "Apply Gradients To Model In Place",
+        subcategorization: "Model Training",
+        nodeType: "FunctionNode",
+        defaultHyperparams: [],
+        defaultInputHandles: [
+          "model",
+          "gradient-tape",
+          "optimizer",
+          "model-loss",
+        ],
+        defaultOutputHandles: [],
       },
     },
   },
