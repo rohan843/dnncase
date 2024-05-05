@@ -184,8 +184,8 @@ const artefactsSlice = createSlice({
         subcategorization: "Losses",
         nodeType: "FunctionNode",
         defaultHyperparams: [{ id: "from_logits", value: "False" }],
-        defaultInputHandles: [],
-        defaultOutputHandles: ["loss-function"],
+        defaultInputHandles: ["ground-truth", "prediction"],
+        defaultOutputHandles: ["loss"],
       },
       Batch: {
         displayName: "Batch",
