@@ -198,14 +198,14 @@ const jsonObject = {
       nodes: [
           {
               id: "1",
-              nodeType: "InputNode",
-              nodeSubtype: "hp_units",
+              nodeType: "Input",
+              name: "hp_units",
               nodeData:{}
               
           }, 
           {
               id: "2",
-              nodeType: "InputNode",
+              nodeType: "Input",
               name: "payload",
               nodeData:{}
               
@@ -219,7 +219,7 @@ const jsonObject = {
           },
           {
               id: "4",
-              nodeType: "OutputNode",
+              nodeType: "Output",
               name: "Payload",
               nodeData:{}
               
@@ -252,102 +252,110 @@ const jsonObject = {
   {
     artefactMetadata: {
         name: "CompiledClassifierModel",
-        artefactType: "ModelArchitectureType"
+        artefactType: "ModelClassifierType"
     },
     nodes: [
         {
             id: "1",
             nodeType: "FunctionNode",
             nodeSubtype: "ClassiferModel",
-            sourceArtefact:"ClassiferModelArtefact"
+            nodeData : {},
+            sourceArtefact:"ClassifierModelArtefact"
         },
         {
             id: "2",
             nodeType: "FunctionNode",
+            nodeData : {},
             nodeSubtype: "RawData"
         },
         {
             id: "3",
             nodeType: "FunctionNode",
+            nodeData : {},
             nodeSubtype: "GetTunableFromList"
             
         },
         {
             id: "4",
             nodeType: "FunctionNode",
+            nodeData : {},
             nodeSubtype: "RawData"
         },
         {
             id: "5",
             nodeType: "FunctionNode",
+            nodeData : {},
             nodeSubtype: "RawData"            
         }
         ,
         {
             id: "6",
             nodeType: "FunctionNode",
+            nodeData : {},
             nodeSubtype: "GenerateAdamOptimizer"
         },
         {
             id: "7",
             nodeType: "FunctionNode",
+            nodeData : {},
             nodeSubtype: "CompileModel"
         },
         {
             id: "8",
-            nodeType: "OutputNode",
+            nodeType: "Output",
+            nodeData : {},
             name: "CompiledModel"            
         }
     ],
     edges: [
         {
-            "label": "",
-            "sourceNodeID": "1",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "7",
-            "targetNodeHandleID": "in"
+            label: "",
+            sourceNodeID: "1",
+            sourceNodeHandleID: "out",
+            targetNodeID: "7",
+            targetNodeHandleID: "model"
         },
         {
-            "label": "",
-            "sourceNodeID": "2",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "3",
-            "targetNodeHandleID": "in"
+            label: "",
+            sourceNodeID: "2",
+            sourceNodeHandleID: "out",
+            targetNodeID: "3",
+            targetNodeHandleID: "val"
         },
         {
-            "label": "",
-            "sourceNodeID": "3",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "6",
-            "targetNodeHandleID": "in"
+            label: "",
+            sourceNodeID: "3",
+            sourceNodeHandleID: "out",
+            targetNodeID: "6",
+            targetNodeHandleID: "learning_rate"
         },
         {
-            "label": "",
-            "sourceNodeID": "4",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "7",
-            "targetNodeHandleID": "in"
+            label: "",
+            sourceNodeID: "4",
+            sourceNodeHandleID: "out",
+            targetNodeID: "7",
+            targetNodeHandleID: "loss"
         },
         {
-            "label": "",
-            "sourceNodeID": "6",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "7",
-            "targetNodeHandleID": "in"
+            label: "",
+            sourceNodeID: "6",
+            sourceNodeHandleID: "out",
+            targetNodeID: "7",
+            targetNodeHandleID: "optimizers"
         },
         {
-            "label": "",
-            "sourceNodeID": "6",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "7",
-            "targetNodeHandleID": "in"
+            label: "",
+            sourceNodeID: "5",
+            sourceNodeHandleID: "out",
+            targetNodeID: "7",
+            targetNodeHandleID: "metrics"
         },
         {
-            "label": "",
-            "sourceNodeID": "7",
-            "sourceNodeHandleID": "out",
-            "targetNodeID": "8",
-            "targetNodeHandleID": "in"
+            label: "",
+            sourceNodeID: "7",
+            sourceNodeHandleID: "out",
+            targetNodeID: "8",
+            targetNodeHandleID: "CompileModel"
         }
     ]
 }
@@ -367,14 +375,14 @@ const codeGenFuncs = {
     return {
       imports: ["from keras.layers import Dense"],
       execution: "",
-      return: `Dense(${params["units"]})(${params["payload"]})`,
+      return: `Dense(units = ${params["units"]}, activation = ${params["activation"]})(${params["payload"]})`,
     };
   },
-  Input: function Input(params) {
+  ArrayInput: function ArrayInput(params) {
     return {
       imports: ["from keras.layers import Input"],
       execution: "",
-      return: `Input(shape = ${params["shape"]})`,
+      return: `Input(shape = ${params["input_shape"]})`,
     };
   },
 
@@ -382,28 +390,28 @@ const codeGenFuncs = {
     return {
       imports: ["from keras.layers import Flatten"],
       execution: "",
-      return: "Flatten()",
+      return: `Flatten()(${params["payload"]})`,
     };
   },
   GetTunableInt: function GetTunableInt(params) {
     return {
       imports: [],
       execution: "",
-      return: `hp.Int(value=${params["val"]})`,
+      return: `hp.Int(name=${params["name"]}, min_value = ${params["min_value"]},max_value = ${params["max_value"]},step = ${params["step"]},sampling= ${params["sampling"]})`,
     };
   },
   GetTunableFromList: function GetTunableFromList(params) {
     return {
       imports: [],
       execution: "",
-      return: `hp.Choice('learning_rate', "values= " ${params["value"]})`,
+      return: `hp.Choice(name=${params["name"]},values= ${params["values"]},ordered=${params["ordered"]})`,
     };
   },
   CreateDatasetFromNumpyArray: function CreateDatasetFromNumpyArray(params) {
     return {
       imports: [],
       execution: "",
-      return: `tf.data.Dataset.from_tensor_slices(${params})`,
+      return: `tf.data.Dataset.from_tensor_slices(${params["array"]})`,
     };
   },
 
@@ -411,109 +419,143 @@ const codeGenFuncs = {
     return {
       imports: [],
       execution: "",
-      return: "[1,2,3,4]",
+      return: params["raw-python-data"],
     };
   },
 
-  gradientTape: function gradientTape(params) {
+  ZerosLike: function ZerosLike(params) {
     return {
       imports: [],
       execution: "",
-      return: "tf.GradientTape()",
+      return: `tf.zeros_like(${params["input"]})`,
     };
   },
 
-  zeros_like: function zeros_like(params) {
+  OnesLike: function OnesLike(params) {
     return {
       imports: [],
       execution: "",
-      return: `tf.zeros_like(${params["value"]})`,
+      return: `tf.ones_like(${params["input"]})`,
     };
   },
-
-  ones_like: function ones_like(params) {
+  Add: function Add(params) {
     return {
       imports: [],
       execution: "",
-      return: `tf.ones_like(${params["value"]})`,
+      return: `${params["addend 1"]} + ${params["addend 2"]}`,
     };
   },
-  add: function add(params) {
+  Subtract: function Subtract(params) {
     return {
       imports: [],
       execution: "",
-      return: `tf.add(" ${params["x"]}"," ${params["y"]} ")`,
+      return: `${params["minuend"]} - ${params["subtrahend"]}`,
     };
   },
-  subtract: function subtract(params) {
+  ScalarDivide: function ScalarDivide(params) {
     return {
       imports: [],
       execution: "",
-      return: `tf.subtract(" ${params["x"]}"," ${params["y"]} ")`,
-    };
-  },
-  divide: function divide(params) {
-    return {
-      imports: [],
-      execution: "",
-      return: `tf.divide(" ${params["x"]}"," ${params["y"]} ")`,
+      return: `${params["dividend"]} / ${params["divisor"]}`,
     };
   },
   BinaryCrossentropy: function BinaryCrossentropy(params) {
     return {
       imports: [],
       execution: "",
-      return: "tf.keras.losses.BinaryCrossentropy(from_logits=True)",
+      return: `tf.keras.losses.BinaryCrossentropy(from_logits=${params["from_logits"]})(${params["ground-truth"]},${params["prediction"]})`,
     };
   },
 
-  batch: function batch(params) {
+  Batch: function Batch(params) {
     return {
       imports: [],
       execution: "",
-      return: `.batch(${params["batch"]})`,
+      return: `${params["dataset"]}.batch(batch_size = ${params["batch_size"]})`,
     };
   },
-  shuffle: function shuffle(params) {
+  Shuffle: function Shuffle(params) {
     return {
       imports: [],
       execution: "",
-      return: ".shuffle()",
+      return: `${params["dataset"]}.shuffle(buffer_size = ${params["buffer_size"]})`,
     };
   },
-  reshape: function reshape(params) {
+  Reshape: function Reshape(params) {
     return {
       imports: [],
       execution: "",
-      return: `layers.reshape(${params["shape"]})`,
+      return: `${params["array"]}.reshape(shape = ${params["shape"]})`,
     };
   },
-  evaluateModel: function evaluateModel(params) {
+  TypecastTo: function TypecastTo(params) {
     return {
       imports: [],
       execution: "",
-      return: ".evaluate()",
+      return: `${params["array"]}.astype(dtype = ${params["dtype"]})`,
+    };
+  },
+  EvaluateModel: function EvaluateModel(params) {
+    return {
+      imports: [],
+      execution: "",
+      return: `${params["model"]}.evaluate(${params["x"]},${params["y"]})`,
     };
   },
 
-  getBestModelTuning: function getBestModelTuning(params) {
+  GetBestModelAfterTuning: function GetBestModelAfterTuning(params) {
+    //TODO : return specify 
     return {
-      imports: [],
-      execution: "",
-      return: "",
+      imports: ["import keras_tuner"],
+      execution:
+`dnn_var_custom = keras_tuner.RandomSearch(
+${params["build_model"]},
+objective=${params["objective"]},
+max_trials=${params["max_trials"]})
+dnn_var_custom.search(${params["x_train"]}, ${params["y_train"]}, epochs=${params["epochs"]}, validation_data=(${params["x_test"]}, ${params["y_test"]})
+`,
+      return: `dnn_var_custom.get_best_models()[0]`,
     };
   },
-  loadKerasDataset: function loadKerasDataset(params) {
+  LoadMNISTDataset: function LoadMNISTDataset(params) {
     return {
       imports: [],
       execution: "(x_train,y_train,x_test,y_test)=keras.dataset.mnist.load_data()",
-      return: `{"x_train" : x_train,
-                "y_train" : y_train,
-                "x_test" : x_test,
-                "y_test" : y_test
-      }`
+      return: 
+`{"x_train" : x_train,
+"y_train" : y_train,
+"x_test" : x_test,
+"y_test" : y_test
+}`
     };
   },
+  RunTrainingStep: function RunTrainingStep(params){
+        return {
+        imports: [],
+        execution: "",
+        return: `${params["model"]}(${params["model-input"]}, training=True)`,
+      };
+
+
+  },
+  ApplyGradientsToModelInplace: function ApplyGradientsToModelInplace(params){
+    return {
+    imports: [],
+    execution: "",
+    return: `${params["optimizer"]}.apply_gradients(zip(${params["gradient-tape"]}.gradient(${params["model-loss"]}, ${params["model"]}.trainable_variables),${params["model"]}.trainable_variables))`,
+  };
+
+
+},
+CompileModel: function CompileModel(params) {
+  return {
+    imports: [],
+    execution: `${params["model"]}.compile(optimizer = ${params["optimizer"]} , loss = ${params["loss"]}, metrics =  ${params["metrics"]})`,
+    return: params["model"],
+  };
+},
+
+
   Named: function packerNamed(params){
     let resultString = '{';
       for (let key in params) {
@@ -553,13 +595,6 @@ const codeGenFuncs = {
 
   },
 
-  CompileModel: function CompileModel(params) {
-    return {
-      imports: [],
-      execution: `${params["model"]}.compile(optimizer = ${params["optimizers"]} , loss = ${params["loss"]}, metrics =  ${params["metrics"]})`,
-      return: params["model"],
-    };
-  },
   
   CallBackNode: function Callback(params) {
     return {
@@ -569,7 +604,7 @@ const codeGenFuncs = {
     };
   },
 
-  ClassifierModel: function ClassifierModel(params) {
+  ClassifierModelArtefact: function ClassifierModel(params) {
     return {
       imports: [],
       execution:"",
@@ -597,11 +632,11 @@ const codeGenFuncs = {
       return:`ModelTuner(${params})`,
     };
   },
-  ModelEvaluator: function ModelEvaluator(params) {
+  ModelEvaluator: function ModelEvaluator(artefactName,params=null) {
     return {
       imports: [],
       execution:"",
-      return:`ModelEvaluator(${params})`,
+      return:`${artefactName}(${params})`,
     };
   },
   Constants: function Constants(params) {
@@ -690,7 +725,7 @@ function main(jsonObject) {
   ); // artefact-> nodeId->[dnn_temp_id,targetNodeID,targetNodeHandleID,label]
   outdegreeCnt(nodeOutputEdgeMap, artefactOutDegreeCnt);
   dataVariableNodeMapping(jsonObject, artefactIdMapping, dataVariableInpOutMap);
-  console.log(idToArtefact);
+  console.log(artefactIdMapping);
   // console.log(artefactNodesInfo);
   // console.log(nodeOutputEdgeMap)
   // console.log(nodeInputEdgeMap)
@@ -701,7 +736,7 @@ function main(jsonObject) {
   const graph = new Map();
   createGraph(jsonObject, artefactIdMapping, graph);
 
-  //console.log(graph);
+  console.log(graph);
 
   // Now we start topological sorting
 
@@ -726,7 +761,7 @@ function main(jsonObject) {
       artefactOrder.push(value)
     }
   }
-  
+  console.log(artefactOrder)
   generateCode(artefactNodesInfo,idToArtefact, nodeInputEdgeMap, nodeOutputEdgeMap,nodeInputList, dataVariableInpOutMap,artefactOrder)
 }
 // Write code for Loop NOdes
@@ -777,7 +812,7 @@ function gen_arte_dfs(
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
           
-          if (typeof list[i][3] === "undefined") {
+          if (list[i][3].length === null) {
             let s = `
   ${list[i][0]} = ${dnn_var}`;
 
@@ -805,7 +840,7 @@ function gen_arte_dfs(
        
         return;
       }
-    } else if (nodeType === "InputNode") {
+    } else if (nodeType === "Input") {
       let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
       let dnn_var = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0][0];
 
@@ -834,7 +869,7 @@ function gen_arte_dfs(
         
         return;
       }
-    } else if ((nodeType === "OutputNode")) {
+    } else if ((nodeType === "Output")) {
       let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
 
       out_list[`${name}`] = edge_variable;
@@ -974,7 +1009,7 @@ function gen_arte_dfs(
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
           //console.log(typeof list[i][3])
-          if (typeof list[i][3] === "undefined") {
+          if (list[i][3].length === null) {
             gen_code = gen_code.concat(`
   ${list[i][0]}=${edge_variable}`);
           } else {
@@ -1033,7 +1068,8 @@ function hypermodel_arte_dfs(
       if (nodeType === "FunctionNode") {
         let nodeData = artefactNodesInfo.get(artefact_id).get(curr_node_id)[4];
         let funcCode;
-        if(artefactName.length>0){
+        if(typeof artefactName !== "undefined"){
+          console.log(artefactName)
         funcCode = codeGenFuncs[artefactName](nodeData);
         }else{
           funcCode = codeGenFuncs[nodeSubtype](nodeData);
@@ -1053,7 +1089,9 @@ function hypermodel_arte_dfs(
        if (list.length > 0) {
             for (let i = 0; i < list.length; i++) {
               //console.log(typeof list[i][3])
-              if (typeof list[i][3] === "undefined") {
+              console.log("list" + list[i][3])
+              if (list[i][3].length === null) {
+                
                 let s = `
   ${list[i][0]}=${dnn_var}`;
     
@@ -1082,7 +1120,7 @@ function hypermodel_arte_dfs(
           
           return;
         }
-      } else if (nodeType === "InputNode") {
+      } else if (nodeType === "Input") {
         let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
         let dnn_var = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0][0];
   
@@ -1110,7 +1148,7 @@ function hypermodel_arte_dfs(
           
           return;
         }
-      } else if ((nodeType === "OutputNode")) {
+      } else if ((nodeType === "Output")) {
         let name = artefactNodesInfo.get(artefact_id).get(curr_node_id)[3];
   
         out_list[`${name}`] = edge_variable;
@@ -1148,7 +1186,7 @@ function hypermodel_arte_dfs(
         if (list.length > 0) {
           for (let i = 0; i < list.length; i++) {
             //console.log(typeof list[i][3])
-            if (typeof list[i][3] === "undefined") {
+            if (list[i][3].length === null) {
               gen_code = gen_code.concat(`
     ${list[i][0]}=${edge_variable}`);
             } else {
@@ -1239,7 +1277,7 @@ function model_arte_dfs(
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
           //console.log(typeof list[i][3])
-          if (typeof list[i][3] === "undefined") {
+          if (list[i][3].length === null) {
             let s = `
   ${list[i][0]}=${dnn_var}`;
 
@@ -1463,7 +1501,7 @@ function model_arte_dfs(
       if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
           //console.log(typeof list[i][3])
-          if (typeof list[i][3] === "undefined") {
+          if (list[i][3].length === null) {
             gen_code = gen_code.concat(`
   ${list[i][0]}=${edge_variable}`);
           } else {
@@ -1546,7 +1584,7 @@ function train_step_dfs(
           for (let i = 0; i < list.length; i++) {
             //console.log(typeof list[i][3])
             let s;
-            if (typeof list[i][3] === "undefined") {
+            if (list[i][3].length === null) {
               if(gradientStart){
                 s = `
     ${list[i][0]}=${dnn_var}`;
@@ -1669,7 +1707,7 @@ function train_step_dfs(
         for (let i = 0; i < list.length; i++) {
           //console.log(typeof list[i][3])
           let s;
-          if (typeof list[i][3] === "undefined") {
+          if (list[i][3].length === null) {
             if(gradientStart){
               s = `
   ${list[i][0]}=${dnn_var}`;
@@ -1914,7 +1952,7 @@ gen_code=gen_code.concat(s)
         for (let i = 0; i < list.length; i++) {
           //console.log(typeof list[i][3])
        let s;
-          if (typeof list[i][3] === "undefined") {
+          if (list[i][3].length === null) {
             if(gradientStart){
               s=`
     ${list[i][0]}=${edge_variable}`
@@ -1997,7 +2035,7 @@ def ${artefactName}(hp=None):
   return model`)
 
     } else if (artefactType === "ModelClassifierType") {
-      gen_code=gen_code.concat(`def${artefactName}(hp=None):\n\t`);
+      gen_code=gen_code.concat(`def ${artefactName}(hp=None):\n\t`);
       const out_list=[]
       for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
         if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariableNode" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
@@ -2022,18 +2060,20 @@ def ${artefactName}(hp=None):
         }
         s = s.slice(0, -2)
   
-        gen_code = gen_code.concat(`
-  return{
+        gen_code = gen_code.concat(
+  `return{
     ${s}
   }`);
 
       }
 
     } else if (artefactType === "TrainStepArtefact") {
-      gen_code=gen_code.concat(`@tf.function\ndef ${artefactName}()`);
+      gen_code=gen_code.concat(
+`@tf.function
+def ${artefactName}()`);
       const gradient_tape_list=[]
       for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
-        if(artefactNodesInfo.get(artefactOrder[i]).get(key)[1]=="BeginGradientMonitoring"){
+        if(artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="BeginGradientMonitoring"){
           gradient_tape_list.push(key)
         }else if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariableNode" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
         
@@ -2068,7 +2108,8 @@ def ${artefactName}(hp=None):
       }
 
     } else {
-      gen_code = gen_code.concat(`def ${artefactName}(params):`)
+      gen_code = gen_code.concat(
+`def ${artefactName}(params):`)
       const out_list=[]
       for (const [key, value] of nodeInputEdgeMap.get(artefactOrder[i])) {
         if (value.length === 0 && !(artefactNodesInfo.get(artefactOrder[i]).get(key)[0]==="DataVariableNode" && artefactNodesInfo.get(artefactOrder[i]).get(key)[1]==="Output")) {
@@ -2112,14 +2153,14 @@ def ${artefactName}(hp=None):
     for(const imp of list){
       if(imp.length>0 && !union_import_list.includes(imp)){
         union_import_list.push(imp)
-        imports = `
-${imports}
+        imports = 
+`${imports}
 ${imp}`
       }
     }
   }
-  gen_code = `
-${imports}
+  gen_code = 
+`${imports}
 
 ${gen_code}`
   console.log(gen_code)
@@ -2301,6 +2342,7 @@ function createGraph(jsonObject, artefactIdMapping, graph) {
         } else {
           nodeB = artefactIdMapping.get(node.innerArtefact);
         }
+       // console.log(nodeB + " " + nodeA)
         if(typeof nodeB !== 'undefined'){
         if (graph.has(nodeB)) {
           graph.get(nodeB).push(nodeA);
