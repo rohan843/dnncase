@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { Handle, Position } from "reactflow";
 
-const OutputNode = ({
+const ArtefactInput = ({
   data: { name, onActivate, onActivateAndShowInPane },
   selected,
 }) => {
@@ -16,22 +16,25 @@ const OutputNode = ({
       className="w-[153px] h-[100px] grid grid-cols-1 grid-rows-1 justify-center"
     >
       <div
-        className={classNames("OutputNodeStyles scale-105 relative", {
-          "!bg-[#000000]": selected,
-          "!bg-[#001DBC]": !selected,
-        })}
+        className={classNames(
+          "InputNodeStyles scale-105 relative left-[1.5px]",
+          {
+            "!bg-[#000000]": selected,
+            "!bg-[#001DBC]": !selected,
+          }
+        )}
       ></div>
       <div
-        className="OutputNodeStyles flex flex-col items-end justify-center relative left-[1.5px]"
+        className="InputNodeStyles flex flex-col items-start justify-center"
         title={name || "Untitled"}
       >
-        <p className="truncate text-right pr-1 w-[60%]">
+        <p className="truncate pl-2 w-[60%]">
           {name || <span className="text-blue-200">Untitled</span>}
         </p>
       </div>
-      <Handle id="in" type="target" position={Position.Left} />
+      <Handle id="out" type="source" position={Position.Right} />
     </div>
   );
 };
 
-export default OutputNode;
+export default ArtefactInput;
