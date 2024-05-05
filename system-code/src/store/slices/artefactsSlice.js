@@ -207,7 +207,25 @@ const artefactsSlice = createSlice({
         displayName: "Reshape",
         subcategorization: "Array Manipulations",
         nodeType: "FunctionNode",
-        defaultHyperparams: [],
+        defaultHyperparams: [
+          {
+            id: "shape",
+            value: null,
+          },
+        ],
+        defaultInputHandles: ["array"],
+        defaultOutputHandles: ["array"],
+      },
+      TypecastTo: {
+        displayName: "Typecast To",
+        subcategorization: "Array Manipulations",
+        nodeType: "FunctionNode",
+        defaultHyperparams: [
+          {
+            id: "dtype",
+            value: null,
+          },
+        ],
         defaultInputHandles: ["array"],
         defaultOutputHandles: ["array"],
       },
