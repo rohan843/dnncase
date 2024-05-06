@@ -1788,19 +1788,10 @@ const codeGenFuncs = {
   },
   GenerateArrayFromNormalDistribution:
     function GenerateArrayFromNormalDistribution(params) {
-      let resultString = "{";
-    for (let key in params) {
-      if (params.hasOwnProperty(key)) {
-        resultString = resultString + '"' + key + '": ' + params[key] + ", ";
-      }
-    }
-    resultString = resultString.slice(0, -2);
-
-    resultString += "}";
-      return {
+        return {
         imports: [],
         execution: "",
-        return: `tf.random.normal(${resultString})`,
+        return: `tf.random.normal(${params["shape"]})`,
       };
     },
   CreateAndApplyDenseLayer: function CreateAndApplyDenseLayer(params) {
@@ -2322,7 +2313,7 @@ function gen_arte_dfs(
 
         let s = `
   ${temp_var_destruct} = {**${edge_variable}}
-  for i in ${nodeData["iteration-count"]}
+  for i in ${nodeData["iteration"]}:
     ${temp_var_destruct}["ss_element"]=i
     ${temp_var_inner_arte}=${innerArtefact}(${temp_var_destruct})
     ${temp_var_destruct}.update(${temp_var_inner_arte})`;
@@ -2897,7 +2888,7 @@ function model_arte_dfs(
 
         let s = `
   ${temp_var_destruct} = {**${edge_variable}}
-  for i in ${nodeData["iteration-count"]}
+  for i in ${nodeData["iteration"]}:
     ${temp_var_destruct}["ss_element"]=i
     ${temp_var_inner_arte}=${innerArtefact}(${temp_var_destruct})
     ${temp_var_destruct}.update(${temp_var_inner_arte})`;
@@ -3369,7 +3360,7 @@ function train_step_dfs(
 
         let s = `
   ${temp_var_destruct} = {**${edge_variable}}
-  for i in ${nodeData["iteration-count"]}
+  for i in ${nodeData["iteration"]}:
     ${temp_var_destruct}["ss_index"]=i
     ${temp_var_inner_arte}=${innerArtefact}(${temp_var_destruct})
     ${temp_var_destruct}.update(${temp_var_inner_arte})`;
