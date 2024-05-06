@@ -9,7 +9,7 @@ const permissibleFileTypes = {
 
 function flattenNodeDataHyperparams(nodeData) {
   if (!nodeData.hyperparams) {
-    return {};
+    return nodeData;
   }
   for (let param of nodeData.hyperparams) {
     nodeData[param.id] = param.value;

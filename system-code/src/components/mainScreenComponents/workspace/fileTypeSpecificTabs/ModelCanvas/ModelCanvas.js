@@ -524,7 +524,7 @@ function ModelCanvas({ activeFileIndex }) {
             show
             content={[
               {
-                keyInnerText: "raw-python-data",
+                keyInnerText: "innerCode",
                 valueInnerText: node.data.innerCode,
                 isValueEditable: true,
                 removable: false,
