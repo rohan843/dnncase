@@ -69,11 +69,13 @@ function getNodeMetadata(node) {
     };
   } else if (nodeType === "Packer") {
     return {
+      nodeData:{},
       nodeType,
       nodeSubtype,
     };
   } else if (nodeType === "Unpacker") {
     return {
+      nodeData:{},
       nodeType,
       nodeSubtype,
     };
