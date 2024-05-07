@@ -306,7 +306,7 @@ function code_generator(jsonObject) {
     DataVariableMapping(jsonObject, artefactIdMapping, dataVariableInpOutMap);
     console.log(artefactIdMapping);
     // console.log(artefactNodesInfo);
-    // console.log(nodeOutputEdgeMap)
+     console.log(nodeOutputEdgeMap)
     // console.log(nodeInputEdgeMap)
     //console.log(artefactOutDegreeCnt)
     console.log(dataVariableInpOutMap);
@@ -468,6 +468,7 @@ function code_generator(jsonObject) {
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id);
         if (list.length > 0) {
           for (let i = 0; i < list.length; i++) {
+            console.log(`test ${list[i][0]}`)
             gen_code = gen_code.concat(`
   ${list[i][0]} = ${dnn_var}`);
             gen_arte_dfs(
@@ -483,7 +484,7 @@ function code_generator(jsonObject) {
               out_list
             );
           }
-        } else {
+        }else {
           return;
         }
       } else if (nodeType === "Output") {
@@ -585,10 +586,13 @@ function code_generator(jsonObject) {
         const nodeData = artefactNodesInfo
           .get(artefact_id)
           .get(curr_node_id)[4];
-
+        console.log(`arteId ${artefact_id}`)
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+        console.log(`test  ${list}`)
         let funcCode = codeGenFuncs[nodeSubtype](nodeData);
+        
         const funcReturn = funcCode.return;
+        console.log(`code ${funcReturn}`)
         const funcExe = funcCode.execution;
         const imp = funcCode.imports;
         importList.push(imp);
@@ -1641,6 +1645,7 @@ function code_generator(jsonObject) {
           .get(curr_node_id)[4];
 
         const list = nodeOutputEdgeMap.get(artefact_id).get(curr_node_id)[0];
+        console.log(`test ${list}`)
         let funcCode = codeGenFuncs[nodeSubtype](nodeData);
         const funcReturn = funcCode.return;
         const funcExe = funcCode.execution;
